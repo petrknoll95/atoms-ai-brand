@@ -1,0 +1,71 @@
+---
+// A sub-section: number, title and guideline copy, then specimens spanning the full width.
+// `split` puts the copy beside the content instead (used for Examples).
+interface Props {
+  id: string;
+  title: string;
+  number?: string;
+  split?: boolean;
+}
+
+const { id, title, number, split = false } = Astro.props;
+---
+
+<section class:list={['sub', { split }]} id={id} aria-labelledby={`${id}-title`}>
+  <header class="sub-text">
+    {number && <p class="muted">{number}</p>}
+    <h2 class="display" id={`${id}-title`}>{title}</h2>
+    {Astro.slots.has('text') && <div class="prose"><slot name="text" /></div>}
+  </header>
+  <div class="sub-body">
+    <slot />
+  </div>
+</section>
+
+<style>
+  .sub {
+    display: grid;
+    gap: 2rem;
+    padding: var(--gutter) 0 calc(var(--gutter) * 2);
+    border-top: 1px solid var(--rule);
+  }
+
+  /* The section hero already separates the first sub-section. */
+  .sub:first-of-type {
+    padding-top: 0;
+    border-top: 0;
+  }
+
+  .sub-text {
+    display: grid;
+    align-content: start;
+    gap: 1rem;
+  }
+
+  .sub-text p.muted {
+    margin-bottom: -0.5rem;
+  }
+
+  .prose {
+    max-width: 40rem;
+  }
+
+  .sub-body {
+    min-width: 0;
+  }
+
+  .split {
+    grid-template-columns: minmax(13rem, 17rem) minmax(0, 1fr);
+    gap: var(--gutter);
+  }
+
+  .split .prose {
+    max-width: 34rem;
+  }
+
+  @media (max-width: 1180px) {
+    .split {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+</style>

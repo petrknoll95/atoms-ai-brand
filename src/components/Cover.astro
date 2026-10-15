@@ -1,0 +1,74 @@
+---
+// Intro cover, after the Figma title slide: a rotated Drift field with the mark revealing itself.
+import MarkReveal from './MarkReveal.astro';
+---
+
+<header class="cover" aria-label="AtomsAI Brand Guidelines">
+  <canvas data-pattern data-structure="drift" data-density="0" data-colorway="Forest" data-rotation="90" data-zoom="1.25" aria-hidden="true"></canvas>
+  <div class="cover-content">
+    <MarkReveal uid="cover-reveal" controls={false} class="cover-mark" />
+    <h1 class="cover-title">Brand Guidelines</h1>
+    <p class="cover-year">2026</p>
+  </div>
+</header>
+
+<script>
+  import '../scripts/pattern-canvases';
+</script>
+
+<style>
+  .cover {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    margin-bottom: calc(var(--gutter) * 1.5);
+    overflow: hidden;
+    background: var(--deep-green);
+    color: var(--cream);
+  }
+
+  canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .cover-content {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    grid-template-columns: 1fr 3fr auto;
+    align-items: center;
+    gap: var(--gutter);
+    padding: 0 clamp(1.25rem, 3vw, 2.5rem);
+  }
+
+  .cover-content :global(.cover-mark) {
+    width: clamp(3rem, 7vw, 6rem);
+    color: var(--cream);
+  }
+
+  .cover-title,
+  .cover-year {
+    margin: 0;
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(2rem, 4.5vw, 4.5rem);
+    line-height: 1;
+    letter-spacing: -0.015em;
+  }
+
+  @media (max-width: 700px) {
+    .cover {
+      aspect-ratio: 4 / 5;
+    }
+
+    .cover-content {
+      grid-template-columns: auto 1fr;
+    }
+
+    .cover-year {
+      display: none;
+    }
+  }
+</style>

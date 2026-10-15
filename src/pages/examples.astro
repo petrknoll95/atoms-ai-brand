@@ -1,0 +1,101 @@
+---
+import { Image } from 'astro:assets';
+import Guide from '../layouts/Guide.astro';
+import Sub from '../components/Sub.astro';
+import socialProfile from '../assets/brand/examples/social-profile.webp';
+import socialPosts from '../assets/brand/examples/social-posts.webp';
+import socialStories from '../assets/brand/examples/social-stories.webp';
+import officeScreen from '../assets/brand/examples/office-screen.webp';
+import transitPoster from '../assets/brand/examples/transit-poster.webp';
+import verticalBanner from '../assets/brand/examples/vertical-banner.webp';
+import officeDisplay from '../assets/brand/examples/office-display.webp';
+import eventCards from '../assets/brand/examples/event-access-cards.webp';
+import businessCards from '../assets/brand/examples/business-cards.webp';
+
+const groups = [
+  {
+    id: 'social',
+    title: 'Social',
+    number: '8.1',
+    text: 'Digital applications: social profile, in-feed posts and stories.',
+    items: [
+      { src: socialProfile, caption: 'Digital: Social media profile icon and banner image' },
+      { src: socialPosts, caption: 'Digital: In-feed social media posts' },
+      { src: socialStories, caption: 'Digital: Social media stories' },
+    ],
+  },
+  {
+    id: 'out-of-home',
+    title: 'Out of home',
+    number: '8.4',
+    text: 'Out-of-home applications: office screens, transit posters and banners.',
+    items: [
+      { src: officeScreen, caption: 'Out of home: Office screen' },
+      { src: transitPoster, caption: 'Out of home: Transit poster' },
+      { src: verticalBanner, caption: 'Out of home: Vertical banner' },
+      { src: officeDisplay, caption: 'Out of home: Banner with illustration' },
+    ],
+  },
+  {
+    id: 'print',
+    title: 'Print',
+    number: '8.8',
+    text: 'Print applications: event access cards and business cards.',
+    items: [
+      { src: eventCards, caption: 'Print: Event access cards' },
+      { src: businessCards, caption: 'Print: Business cards' },
+    ],
+  },
+];
+---
+
+<Guide slug="examples" description="The AtomsAI brand applied across social, out-of-home and print.">
+  {
+    groups.map((g) => (
+      <Sub id={g.id} title={g.title} number={g.number} split>
+        <Fragment slot="text">
+          <p>{g.text}</p>
+          <p class="muted">Click an example to open it full size.</p>
+        </Fragment>
+        <div class="examples">
+          {g.items.map((item) => (
+            <figure>
+              <a href={item.src.src} target="_blank" rel="noopener">
+                <Image
+                  src={item.src}
+                  alt={item.caption}
+                  widths={[640, 1140, 1600, 2280]}
+                  sizes="(max-width: 1180px) 100vw, 60vw"
+                  loading="lazy"
+                />
+              </a>
+              <figcaption class="muted">{item.caption}</figcaption>
+            </figure>
+          ))}
+        </div>
+      </Sub>
+    ))
+  }
+</Guide>
+
+<style>
+  .examples {
+    display: grid;
+    gap: 2rem;
+  }
+
+  figure {
+    display: grid;
+    gap: 0.625rem;
+  }
+
+  figure a {
+    display: block;
+    cursor: zoom-in;
+  }
+
+  figure :global(img) {
+    width: 100%;
+    height: auto;
+  }
+</style>

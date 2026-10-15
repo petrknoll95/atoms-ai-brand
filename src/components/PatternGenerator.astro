@@ -1,0 +1,438 @@
+---
+// Pattern generator: pick a published structure, colorway and density, crop to any format, download a PNG.
+// Guardrails from 4.9 Usage: published colorways only, uniform scale (never skewed or stretched),
+// one structure per render.
+import { colorwayNames, structures } from '../data/patterns';
+
+const formats = [
+  { key: 'square', label: 'Square 1:1', w: 2000, h: 2000 },
+  { key: 'portrait', label: 'Portrait 4:5', w: 1600, h: 2000 },
+  { key: 'story', label: 'Story 9:16', w: 1080, h: 1920 },
+  { key: 'landscape', label: 'Landscape 16:9', w: 1920, h: 1080 },
+  { key: 'banner', label: 'Banner 3:1', w: 2400, h: 800 },
+  { key: 'custom', label: 'Custom', w: 1600, h: 1200 },
+];
+const densities = [
+  { value: 0, label: 'Coarse' },
+  { value: 1, label: '1' },
+  { value: 2, label: '2' },
+  { value: 3, label: 'Fine' },
+];
+const swatch: Record<string, string> = {};
+for (const name of colorwayNames) swatch[name] = structures[1].colorways[name].base;
+---
+
+<div class="generator" data-generator>
+  <form class="controls" data-generator-form>
+    <fieldset class="group">
+      <legend class="muted">Structure</legend>
+      <div class="segmented">
+        {
+          structures.map((s, i) => (
+            <label>
+              <input type="radio" name="structure" value={s.id} checked={i === 1} />
+              <span>{s.name}</span>
+            </label>
+          ))
+        }
+      </div>
+    </fieldset>
+
+    <fieldset class="group">
+      <legend class="muted">Colorway</legend>
+      <div class="segmented">
+        {
+          colorwayNames.map((name, i) => (
+            <label>
+              <input type="radio" name="colorway" value={name} checked={i === 0} />
+              <span>
+                <i class="chip" style={`background: ${swatch[name]}`} />
+                {name}
+              </span>
+            </label>
+          ))
+        }
+      </div>
+    </fieldset>
+
+    <fieldset class="group">
+      <legend class="muted">Density</legend>
+      <div class="segmented">
+        {
+          densities.map((d) => (
+            <label>
+              <input type="radio" name="density" value={d.value} checked={d.value === 1} />
+              <span>{d.label}</span>
+            </label>
+          ))
+        }
+      </div>
+    </fieldset>
+
+    <fieldset class="group">
+      <legend class="muted">Format</legend>
+      <div class="format">
+        <select name="format" aria-label="Format">
+          {formats.map((f) => <option value={f.key} data-w={f.w} data-h={f.h}>{f.label}</option>)}
+        </select>
+        <label class="size">
+          <span class="visually-hidden">Width in pixels</span>
+          <input type="number" name="width" min="64" max="6000" step="1" value="2000" inputmode="numeric" />
+        </label>
+        <span class="muted">×</span>
+        <label class="size">
+          <span class="visually-hidden">Height in pixels</span>
+          <input type="number" name="height" min="64" max="6000" step="1" value="2000" inputmode="numeric" />
+        </label>
+        <span class="muted">px</span>
+      </div>
+    </fieldset>
+
+    <fieldset class="group">
+      <legend class="muted">Crop</legend>
+      <label class="slider">
+        <span>Rotation</span>
+        <input type="range" name="rotation" min="0" max="345" step="15" value="0" />
+        <output name="rotationOut">0°</output>
+      </label>
+      <label class="slider">
+        <span>Scale</span>
+        <input type="range" name="zoom" min="1" max="3" step="0.05" value="1" />
+        <output name="zoomOut">100%</output>
+      </label>
+      <label class="slider">
+        <span>Position X</span>
+        <input type="range" name="panX" min="-1" max="1" step="0.01" value="0" />
+        <output name="panXOut">0</output>
+      </label>
+      <label class="slider">
+        <span>Position Y</span>
+        <input type="range" name="panY" min="-1" max="1" step="0.01" value="0" />
+        <output name="panYOut">0</output>
+      </label>
+    </fieldset>
+
+    <div class="btn-row actions">
+      <button class="btn" type="button" data-generator-download>Download PNG</button>
+      <button class="btn" type="button" data-generator-link>Copy link</button>
+      <button class="btn" type="button" data-generator-reset>Reset</button>
+    </div>
+  </form>
+
+  <div class="stage" data-generator-stage>
+    <canvas data-generator-canvas role="img" aria-label="Pattern preview"></canvas>
+    <p class="muted stage-meta" data-generator-meta aria-live="polite"></p>
+  </div>
+</div>
+
+<script>
+  import { colorwayFor, composePattern } from '../scripts/pattern-renderer';
+  import { downloadBlob, copyText } from '../scripts/svg';
+  import { notify } from '../scripts/actions';
+  import { structure as getStructure, type StructureId } from '../data/patterns';
+
+  const root = document.querySelector<HTMLElement>('[data-generator]');
+  if (root) {
+    const form = root.querySelector<HTMLFormElement>('[data-generator-form]')!;
+    const canvas = root.querySelector<HTMLCanvasElement>('[data-generator-canvas]')!;
+    const stage = root.querySelector<HTMLElement>('[data-generator-stage]')!;
+    const meta = root.querySelector<HTMLElement>('[data-generator-meta]')!;
+    const el = <T,>(name: string) => form.elements.namedItem(name) as unknown as T;
+    const defaults = new URLSearchParams(serialize());
+
+    function read() {
+      const data = new FormData(form);
+      return {
+        structure: data.get('structure') as StructureId,
+        colorway: String(data.get('colorway')),
+        density: Number(data.get('density')),
+        format: String(data.get('format')),
+        width: Math.min(6000, Math.max(64, Number(data.get('width')) || 2000)),
+        height: Math.min(6000, Math.max(64, Number(data.get('height')) || 2000)),
+        rotation: Number(data.get('rotation')),
+        zoom: Number(data.get('zoom')),
+        panX: Number(data.get('panX')),
+        panY: Number(data.get('panY')),
+      };
+    }
+
+    function serialize() {
+      const s = new URLSearchParams();
+      new FormData(form).forEach((v, k) => s.set(k, String(v)));
+      return s.toString();
+    }
+
+    function apply(params: URLSearchParams) {
+      for (const [k, v] of params) {
+        const field = form.elements.namedItem(k);
+        if (field instanceof RadioNodeList) field.value = v;
+        else if (field instanceof HTMLInputElement || field instanceof HTMLSelectElement) field.value = v;
+      }
+    }
+
+    // Concentric only comes in the two finer densities.
+    function syncDensities() {
+      const s = read();
+      const allowed = getStructure(s.structure).densities;
+      form.querySelectorAll<HTMLInputElement>('input[name="density"]').forEach((input) => {
+        input.disabled = !allowed.includes(Number(input.value));
+      });
+      if (!allowed.includes(s.density)) el<RadioNodeList>('density').value = String(allowed[0]);
+    }
+
+    function syncOutputs() {
+      const s = read();
+      el<HTMLOutputElement>('rotationOut').value = `${s.rotation}°`;
+      el<HTMLOutputElement>('zoomOut').value = `${Math.round(s.zoom * 100)}%`;
+      el<HTMLOutputElement>('panXOut').value = s.panX.toFixed(2);
+      el<HTMLOutputElement>('panYOut').value = s.panY.toFixed(2);
+    }
+
+    let frame = 0;
+    let token = 0;
+    async function render() {
+      const s = read();
+      const ratio = s.width / s.height;
+      const box = stage.getBoundingClientRect();
+      const maxW = box.width;
+      const maxH = Math.min(window.innerHeight * 0.7, 640);
+      let w = maxW;
+      let h = w / ratio;
+      if (h > maxH) {
+        h = maxH;
+        w = h * ratio;
+      }
+      canvas.style.width = `${w}px`;
+      canvas.style.height = `${h}px`;
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const mine = ++token;
+      const off = document.createElement('canvas');
+      await composePattern(off, {
+        structure: s.structure,
+        density: s.density,
+        colors: colorwayFor(s.structure, s.colorway),
+        width: Math.round(w * dpr),
+        height: Math.round(h * dpr),
+        rotation: s.rotation,
+        zoom: s.zoom,
+        panX: s.panX,
+        panY: s.panY,
+      });
+      if (mine !== token) return; // a newer render started
+      canvas.width = off.width;
+      canvas.height = off.height;
+      canvas.getContext('2d')!.drawImage(off, 0, 0);
+      meta.textContent = `${getStructure(s.structure).name} · ${s.colorway} · ${s.width} × ${s.height} px`;
+    }
+
+    function update() {
+      syncDensities();
+      syncOutputs();
+      history.replaceState(null, '', `#generator?${serialize()}`);
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => void render());
+    }
+
+    form.addEventListener('input', (event) => {
+      const target = event.target as HTMLInputElement;
+      if (target.name === 'format') {
+        const option = (target as unknown as HTMLSelectElement).selectedOptions[0];
+        if (option.value !== 'custom') {
+          el<HTMLInputElement>('width').value = option.dataset.w!;
+          el<HTMLInputElement>('height').value = option.dataset.h!;
+        }
+      } else if (target.name === 'width' || target.name === 'height') {
+        el<HTMLSelectElement>('format').value = 'custom';
+      }
+      update();
+    });
+
+    root.querySelector('[data-generator-download]')!.addEventListener('click', async () => {
+      const s = read();
+      notify('Rendering PNG…');
+      const out = document.createElement('canvas');
+      await composePattern(out, {
+        structure: s.structure,
+        density: s.density,
+        colors: colorwayFor(s.structure, s.colorway),
+        width: s.width,
+        height: s.height,
+        rotation: s.rotation,
+        zoom: s.zoom,
+        panX: s.panX,
+        panY: s.panY,
+      });
+      out.toBlob((blob) => {
+        if (!blob) return notify('Export failed');
+        const name = `atomsai-pattern-${s.structure}-${s.colorway.toLowerCase()}-d${s.density}-${s.width}x${s.height}.png`;
+        downloadBlob(blob, name);
+        notify('PNG downloaded');
+      }, 'image/png');
+    });
+
+    root.querySelector('[data-generator-link]')!.addEventListener('click', async () => {
+      await copyText(`${location.origin}${location.pathname}#generator?${serialize()}`);
+      notify('Link copied');
+    });
+
+    root.querySelector('[data-generator-reset]')!.addEventListener('click', () => {
+      apply(defaults);
+      update();
+    });
+
+    // Restore settings from a shared link.
+    const hash = location.hash.match(/^#generator\?(.+)$/);
+    if (hash) {
+      apply(new URLSearchParams(hash[1]));
+      document.getElementById('generator')?.scrollIntoView();
+    }
+    syncDensities();
+    syncOutputs();
+    new ResizeObserver(() => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => void render());
+    }).observe(stage);
+  }
+</script>
+
+<style>
+  .generator {
+    display: grid;
+    grid-template-columns: minmax(16rem, 22rem) minmax(0, 1fr);
+    gap: var(--gutter);
+    align-items: start;
+  }
+
+  .controls {
+    display: grid;
+    gap: 1.25rem;
+  }
+
+  .group {
+    display: grid;
+    gap: 0.5rem;
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+
+  .segmented {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.375rem;
+  }
+
+  .segmented label {
+    position: relative;
+    cursor: pointer;
+  }
+
+  .segmented input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .segmented span {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    min-height: 2rem;
+    padding: 0 0.75rem;
+    border: 1px solid var(--rule);
+    border-radius: 999px;
+    color: var(--muted);
+    transition: border-color 120ms ease;
+  }
+
+  .segmented input:checked + span {
+    border-color: var(--fg);
+    color: var(--fg);
+  }
+
+  .segmented input:disabled + span {
+    opacity: 0.35;
+    cursor: not-allowed;
+  }
+
+  .segmented input:focus-visible + span {
+    outline: 1.5px solid var(--fg);
+    outline-offset: 2px;
+  }
+
+  .chip {
+    width: 0.75rem;
+    height: 0.75rem;
+    border-radius: 50%;
+  }
+
+  .format {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .format select {
+    flex-basis: 100%;
+  }
+
+  select,
+  .size input {
+    min-height: 2rem;
+    padding: 0 0.625rem;
+    border: 1px solid var(--rule);
+    border-radius: 999px;
+    background: var(--bg);
+    font-size: var(--size-annotation);
+  }
+
+  .size input {
+    width: 5.5rem;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .slider {
+    display: grid;
+    grid-template-columns: 5.5rem minmax(0, 1fr) 3rem;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .slider output {
+    color: var(--muted);
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+  }
+
+  input[type='range'] {
+    width: 100%;
+    accent-color: var(--deep-green);
+  }
+
+  .stage {
+    display: grid;
+    justify-items: start;
+    gap: 0.75rem;
+    min-width: 0;
+    position: sticky;
+    top: var(--gutter);
+  }
+
+  .stage canvas {
+    display: block;
+    max-width: 100%;
+    background: var(--forest-shade);
+  }
+
+  @media (max-width: 1100px) {
+    .generator {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .stage {
+      position: static;
+      order: -1;
+    }
+  }
+</style>

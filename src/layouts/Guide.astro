@@ -1,0 +1,126 @@
+---
+import '../styles/global.css';
+import Sidebar from '../components/Sidebar.astro';
+import { section, sectionNumber } from '../data/nav';
+
+interface Props {
+  slug: string;
+  description?: string;
+  /** Section hero (number + title on Deep green). The Intro uses its cover instead. */
+  hero?: boolean;
+}
+
+const { slug, description = 'AtomsAI brand guidelines and asset library.', hero = true } = Astro.props;
+const current = section(slug);
+const title = slug === 'intro' ? 'AtomsAI Brand' : `${current.title} — AtomsAI Brand`;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preload" href="/fonts/PPNeueMontreal-Regular.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/FoundersGrotesk-Regular.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="/tokens.css" />
+  </head>
+  <body>
+    <div class="shell">
+      <Sidebar current={slug} />
+      <main class="content" id="main">
+        {
+          hero && (
+            <header class="hero">
+              <p class="hero-text" aria-hidden="true">
+                {sectionNumber(slug).padStart(2, '0')}
+              </p>
+              <h1 class="hero-text">{current.title}</h1>
+            </header>
+          )
+        }
+        <slot />
+      </main>
+    </div>
+    <p class="toast" role="status" aria-live="polite" data-toast></p>
+    <script>
+      import '../scripts/actions';
+    </script>
+  </body>
+</html>
+
+<style>
+  .shell {
+    display: grid;
+    grid-template-columns: var(--sidebar) minmax(0, 1fr);
+    min-height: 100dvh;
+  }
+
+  .content {
+    padding: var(--gutter) var(--gutter) 8rem;
+    min-width: 0;
+  }
+
+  /* Section hero, after the Figma section title slides: number left, title from the middle. */
+  .hero {
+    container-type: inline-size;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+    aspect-ratio: 2000 / 735;
+    margin-bottom: calc(var(--gutter) * 1.5);
+    padding: 3.5%;
+    background: var(--deep-green);
+    color: var(--cream);
+  }
+
+  .hero-text {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 7cqi, 9rem);
+    font-weight: 400;
+    line-height: 0.9;
+    letter-spacing: -0.015em;
+  }
+
+  .toast {
+    position: fixed;
+    left: 50%;
+    bottom: 1.5rem;
+    translate: -50% 0.5rem;
+    padding: 0.5rem 0.875rem;
+    border: 1px solid var(--fg);
+    border-radius: 999px;
+    background: var(--bg);
+    color: var(--fg);
+    opacity: 0;
+    pointer-events: none;
+    transition:
+      opacity 160ms ease,
+      translate 160ms ease;
+  }
+
+  .toast:global(.is-visible) {
+    opacity: 1;
+    translate: -50% 0;
+  }
+
+  @media (max-width: 900px) {
+    .shell {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+
+  /* Too narrow for two columns: number top-left, title bottom-left. */
+  @media (max-width: 640px) {
+    .hero {
+      grid-template-columns: minmax(0, 1fr);
+      align-content: space-between;
+      aspect-ratio: 3 / 2;
+      padding: 1.25rem;
+    }
+  }
+</style>

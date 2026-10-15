@@ -1,0 +1,155 @@
+---
+// 2.9 Mark reveal: each blade is a circle seen through a vertical slit; the circles
+// slide inward until they fill their slits. 1.28 s, cubic-bezier(0.7, 0, 0.3, 1).
+import { markPath } from '../data/logos';
+
+interface Props {
+  uid: string;
+  /** Play automatically when scrolled into view. */
+  autoplay?: boolean;
+  controls?: boolean;
+  class?: string;
+}
+
+const { uid, autoplay = true, controls = true, class: className } = Astro.props;
+
+// The mark is two mirrored sets of three circles, each seen through a vertical slit
+// (derived from the master path: blade = circle ∩ slit). Outer pair first, center last.
+const strips = [
+  { x0: 0, x1: 40, cx: -117.4, r: 157.4, from: -42, delay: 0.1, dur: 0.8 },
+  { x0: 50, x1: 125, cx: -72.4, r: 202.4, from: -82, delay: 0.25, dur: 0.8 },
+  { x0: 125, x1: 220, cx: -24.9, r: 249.9, from: -102, delay: 0.45, dur: 0.83 },
+  { x0: 220, x1: 315, cx: 464.9, r: 249.9, from: 102, delay: 0.45, dur: 0.83 },
+  { x0: 315, x1: 390, cx: 512.4, r: 202.4, from: 82, delay: 0.25, dur: 0.8 },
+  { x0: 400, x1: 440, cx: 557.4, r: 157.4, from: 42, delay: 0.1, dur: 0.8 },
+];
+---
+
+<div class:list={['reveal', className]} data-reveal data-autoplay={autoplay ? '' : undefined}>
+  <svg class="reveal-art" viewBox="-2 -2 444 404" role="img" aria-label="AtomsAI mark reveal animation">
+    <defs>
+      {
+        strips.map((s, i) => (
+          <clipPath id={`${uid}-slit-${i}`}>
+            <rect x={s.x0} y="-10" width={s.x1 - s.x0} height="420" />
+          </clipPath>
+        ))
+      }
+    </defs>
+    <g class="strips">
+      {
+        strips.map((s, i) => (
+          <g clip-path={`url(#${uid}-slit-${i})`}>
+            <circle
+              class="blade"
+              cx={s.cx}
+              cy="200"
+              r={s.r}
+              style={`--from: ${s.from}px; --delay: ${s.delay}s; --dur: ${s.dur}s`}
+            />
+          </g>
+        ))
+      }
+    </g>
+    <path class="whole" d={markPath} />
+  </svg>
+  {
+    controls && (
+      <button class="btn replay" type="button" data-reveal-replay>
+        Replay
+      </button>
+    )
+  }
+</div>
+
+<script>
+  function play(root: HTMLElement) {
+    root.classList.remove('is-playing', 'is-done');
+    void root.offsetWidth; // restart CSS animations
+    root.classList.add('is-ready', 'is-playing');
+  }
+
+  document.querySelectorAll<HTMLElement>('[data-reveal]').forEach((root) => {
+    const blades = root.querySelectorAll('.blade');
+    const last = blades[2];
+    last?.addEventListener('animationend', () => root.classList.add('is-done'));
+    root.querySelector('[data-reveal-replay]')?.addEventListener('click', () => play(root));
+
+    if (root.hasAttribute('data-autoplay')) {
+      const io = new IntersectionObserver(
+        (entries) => {
+          if (entries.some((e) => e.isIntersecting)) {
+            play(root);
+            io.disconnect();
+          }
+        },
+        { threshold: 0.4 },
+      );
+      io.observe(root);
+    } else {
+      root.classList.add('is-ready', 'is-done');
+    }
+  });
+</script>
+
+<style>
+  .reveal {
+    position: relative;
+    color: var(--fg);
+  }
+
+  .reveal-art {
+    display: block;
+    width: 100%;
+    height: auto;
+    fill: currentColor;
+    overflow: visible;
+  }
+
+  .blade {
+    transform: translateX(var(--from));
+  }
+
+  .whole {
+    opacity: 1;
+  }
+
+  .strips {
+    opacity: 0;
+  }
+
+  .reveal:global(.is-ready) .whole {
+    opacity: 0;
+  }
+
+  .reveal:global(.is-ready) .strips {
+    opacity: 1;
+  }
+
+  .reveal:global(.is-playing) .blade {
+    animation: reveal-slide var(--dur) cubic-bezier(0.7, 0, 0.3, 1) var(--delay) both;
+  }
+
+  .reveal:global(.is-done) .whole {
+    opacity: 1;
+  }
+
+  .reveal:global(.is-done) .strips {
+    opacity: 0;
+  }
+
+  .replay {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+  }
+
+  @keyframes reveal-slide {
+    from {
+      transform: translateX(var(--from));
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+</style>

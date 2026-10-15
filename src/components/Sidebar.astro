@@ -1,0 +1,198 @@
+---
+import markSvg from '../assets/brand/logo/mark.svg?raw';
+import { sections } from '../data/nav';
+
+interface Props {
+  current: string;
+}
+
+const { current } = Astro.props;
+---
+
+<aside class="sidebar">
+  <div class="bar">
+    <a class="brand" href="/" aria-label="AtomsAI Brand — home">
+      <span class="brand-mark" set:html={markSvg} />
+    </a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" data-menu-toggle>Menu</button>
+  </div>
+  <nav id="site-nav" class="nav" aria-label="Sections" data-nav>
+    <ol>
+      {
+        sections.map((s) => {
+          const active = s.slug === current;
+          return (
+            <li class:list={['section', { active }]}>
+              <a href={s.href} aria-current={active ? 'page' : undefined}>
+                {s.title}
+              </a>
+              {active && (
+                <ol class="subs">
+                  {s.subs.map((sub) => (
+                    <li>
+                      <a href={`#${sub.id}`} data-spy={sub.id}>
+                        {sub.title}
+                      </a>
+                    </li>
+                  ))}
+                </ol>
+              )}
+            </li>
+          );
+        })
+      }
+    </ol>
+  </nav>
+</aside>
+
+<script>
+  // Mobile menu toggle
+  const toggle = document.querySelector<HTMLButtonElement>('[data-menu-toggle]');
+  const nav = document.querySelector<HTMLElement>('[data-nav]');
+  toggle?.addEventListener('click', () => {
+    const open = toggle.getAttribute('aria-expanded') !== 'true';
+    toggle.setAttribute('aria-expanded', String(open));
+    nav?.classList.toggle('is-open', open);
+  });
+
+  // Scroll-spy: highlight the sub-section currently in view
+  const links = new Map(
+    [...document.querySelectorAll<HTMLAnchorElement>('[data-spy]')].map((a) => [a.dataset.spy!, a]),
+  );
+  const targets = [...links.keys()]
+    .map((id) => document.getElementById(id))
+    .filter((el): el is HTMLElement => el !== null);
+
+  if (targets.length) {
+    const setActive = (id: string) => {
+      links.forEach((a, key) => a.classList.toggle('is-current', key === id));
+    };
+    const update = () => {
+      const line = window.innerHeight * 0.3;
+      let currentId = targets[0].id;
+      for (const el of targets) {
+        if (el.getBoundingClientRect().top <= line) currentId = el.id;
+      }
+      setActive(currentId);
+    };
+    let frame = 0;
+    window.addEventListener(
+      'scroll',
+      () => {
+        cancelAnimationFrame(frame);
+        frame = requestAnimationFrame(update);
+      },
+      { passive: true },
+    );
+    update();
+  }
+</script>
+
+<style>
+  .sidebar {
+    position: sticky;
+    top: 0;
+    align-self: start;
+    height: 100dvh;
+    overflow-y: auto;
+    padding: var(--gutter) 1.5rem var(--gutter) var(--gutter);
+    border-right: 1px solid var(--rule);
+  }
+
+  .bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2.5rem;
+  }
+
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.625rem;
+    text-decoration: none;
+  }
+
+  .brand-mark {
+    display: block;
+    width: 2.25rem;
+    color: var(--fg);
+  }
+
+  .brand-mark :global(svg) {
+    width: 100%;
+    height: auto;
+  }
+
+  .menu-toggle {
+    display: none;
+    padding: 0;
+    border: 0;
+    background: none;
+    cursor: pointer;
+  }
+
+  .nav a {
+    display: block;
+    padding: 0.25rem 0;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 120ms ease;
+  }
+
+  .nav a:hover,
+  .nav a[aria-current='page'],
+  .nav a:global(.is-current) {
+    color: var(--fg);
+  }
+
+  .section + .section {
+    margin-top: 0.125rem;
+  }
+
+  .subs {
+    margin: 0.25rem 0 0.75rem;
+    border-left: 1px solid var(--rule);
+  }
+
+  .subs a {
+    margin-left: -1px;
+    padding-left: 0.875rem;
+    border-left: 1px solid transparent;
+  }
+
+  .subs a:global(.is-current) {
+    border-left-color: var(--fg);
+  }
+
+  @media (max-width: 900px) {
+    .sidebar {
+      position: sticky;
+      z-index: 10;
+      height: auto;
+      padding: 1rem var(--gutter);
+      border-right: 0;
+      border-bottom: 1px solid var(--rule);
+      background: var(--bg);
+    }
+
+    .bar {
+      margin-bottom: 0;
+    }
+
+    .menu-toggle {
+      display: block;
+    }
+
+    .nav {
+      display: none;
+      max-height: calc(100dvh - 4rem);
+      overflow-y: auto;
+      padding-top: 1rem;
+    }
+
+    .nav:global(.is-open) {
+      display: block;
+    }
+  }
+</style>

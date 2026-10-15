@@ -1,0 +1,55 @@
+---
+// A color chip that copies its hex value when clicked.
+import { bare, colors, contrast, type ColorKey } from '../data/colors';
+
+interface Props {
+  color: ColorKey;
+  /** Hide the label inside the chip (for dense ramps). */
+  compact?: boolean;
+  class?: string;
+  style?: string;
+}
+
+const { color, compact = false, class: className, style } = Astro.props;
+const c = colors[color];
+// Pick whichever brand ink reads best on this color.
+const ink = contrast(c.hex, colors.deepGreen.hex) >= contrast(c.hex, colors.cream.hex) ? colors.deepGreen.hex : colors.cream.hex;
+---
+
+<button
+  type="button"
+  class:list={['swatch', className, { compact }]}
+  style={`--swatch: ${c.hex}; --ink: ${ink};${style ?? ''}`}
+  data-copy={c.hex}
+  data-copy-message={`Copied ${c.name} ${c.hex}`}
+  aria-label={`Copy ${c.name} ${c.hex}`}
+  title={`Copy ${c.hex}`}
+>
+  {
+    !compact && (
+      <>
+        <span class="name">{c.name}</span>
+        <span class="hex">{bare(c.hex)}</span>
+      </>
+    )
+  }
+</button>
+
+<style>
+  .swatch {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 3.5rem;
+    padding: 0.75rem;
+    border: 0;
+    border-radius: 0;
+    background: var(--swatch);
+    color: var(--ink);
+    font-size: var(--size-annotation);
+    text-align: left;
+    cursor: copy;
+    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--deep-green) 8%, transparent);
+  }
+</style>

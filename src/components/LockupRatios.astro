@@ -1,0 +1,73 @@
+---
+// 2.5 Lockup proportions, redrawn from the master logotype:
+// the wordmark's x-height is 56% of the mark's height, and the gap is 0.3X.
+import Figure from './Figure.astro';
+import { colors } from '../data/colors';
+import { lockup, logotypeInner } from '../data/logos';
+
+const W = 550;
+const H = 373;
+const s = 160 / lockup.height; // mark drawn 160 px tall
+const lx = 90;
+const ly = (H - lockup.height * s) / 2;
+const markRight = lx + lockup.markWidth * s;
+const markBottom = ly + lockup.height * s;
+const wordLeft = lx + lockup.wordX * s;
+const xTop = ly + lockup.xTop * s;
+const baseline = ly + lockup.baseline * s;
+const xHeight = Math.round(((lockup.baseline - lockup.xTop) / lockup.height) * 100);
+const guide = 'stroke-width="1" vector-effect="non-scaling-stroke"';
+---
+
+<div class="ratios">
+  <Figure caption="Symbol / wordmark height ratio" tone="plain">
+    <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label={`The wordmark x-height is ${xHeight}% of the mark height`}>
+      <rect width={W} height={H} fill={colors.deepGreen.hex} />
+      <g stroke={colors.cream.hex} stroke-opacity="0.35" set:html={`
+        <line x1="0" x2="${W}" y1="${ly}" y2="${ly}" ${guide}/>
+        <line x1="0" x2="${W}" y1="${markBottom}" y2="${markBottom}" ${guide}/>
+        <line x1="${wordLeft - 20}" x2="${W}" y1="${xTop}" y2="${xTop}" ${guide}/>
+        <line x1="${wordLeft - 20}" x2="${W}" y1="${baseline}" y2="${baseline}" ${guide}/>
+      `} />
+      <g transform={`translate(${lx} ${ly}) scale(${s})`} fill={colors.cream.hex} set:html={logotypeInner} />
+      <g stroke={colors.cream.hex} fill="none" set:html={`
+        <path d="M66 ${ly} h-8 V${markBottom} h8" ${guide}/>
+        <path d="M${wordLeft - 6} ${xTop} h-8 V${baseline} h8" ${guide}/>
+      `} />
+      <g fill={colors.cream.hex} font-family="PP Neue Montreal, sans-serif" font-size="13" text-anchor="end">
+        <text x="50" y={(ly + markBottom) / 2 + 4}>100%</text>
+        <text x={wordLeft - 18} y={(xTop + baseline) / 2 + 4}>{xHeight}%</text>
+      </g>
+    </svg>
+  </Figure>
+
+  <Figure caption="Symbol / wordmark gap" tone="plain">
+    <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label="The gap between mark and wordmark is 0.3 times the mark height">
+      <rect width={W} height={H} fill={colors.iris.hex} />
+      <rect x={markRight} width={wordLeft - markRight} height={H} fill={colors.irisShade.hex} />
+      <g transform={`translate(${lx} ${ly}) scale(${s})`} fill={colors.white.hex} set:html={logotypeInner} />
+      <g stroke={colors.white.hex} fill="none" set:html={`
+        <path d="M66 ${ly} h-8 V${markBottom} h8" ${guide}/>
+        <path d="M${markRight + 4} ${H / 2} H${wordLeft - 4}" ${guide}/>
+      `} />
+      <g fill={colors.white.hex} font-family="PP Neue Montreal, sans-serif" font-size="13" text-anchor="middle">
+        <text x="40" y={(ly + markBottom) / 2 + 4}>X</text>
+        <text x={(markRight + wordLeft) / 2} y={H / 2 - 10}>0.3X</text>
+      </g>
+    </svg>
+  </Figure>
+</div>
+
+<style>
+  .ratios {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem;
+  }
+
+  @media (max-width: 760px) {
+    .ratios {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+</style>

@@ -1,0 +1,419 @@
+---
+import Guide from '../layouts/Guide.astro';
+import Sub from '../components/Sub.astro';
+import Swatch from '../components/Swatch.astro';
+import {
+  bare,
+  colors,
+  combinations,
+  contrast,
+  gradientCss,
+  gradients,
+  overview,
+  ramps,
+  rgb,
+  roles,
+  themes,
+  tokensCss,
+  wcag,
+  type ColorKey,
+} from '../data/colors';
+
+
+const roleBlocks = [
+  { id: 'primary', title: 'Primary', number: '3.2', ...roles.primary },
+  { id: 'secondary', title: 'Secondary', number: '3.3', ...roles.secondary },
+  { id: 'accent', title: 'Accent', number: '3.4', ...roles.accent },
+];
+
+const rgbString = (hex: string) => rgb(hex).join(' ');
+const ink = (key: ColorKey) =>
+  contrast(colors[key].hex, colors.deepGreen.hex) >= contrast(colors[key].hex, colors.cream.hex)
+    ? colors.deepGreen.hex
+    : colors.cream.hex;
+---
+
+<Guide slug="color" description="The AtomsAI palette: copy any color, gradient or theme.">
+  <Sub id="palette" title="Palette" number="3.1">
+    <Fragment slot="text">
+      <p>A forest-led palette. Deep green grounds the brand, cream gives it air, and iris adds a single, deliberate accent.</p>
+      <p class="muted">Click any color to copy its hex value.</p>
+      <div class="btn-row">
+        <button class="btn" type="button" data-copy={tokensCss()} data-copy-message="CSS variables copied">Copy CSS variables</button>
+        <a class="btn" href="/tokens.css" download="atomsai-colors.css">Download .css</a>
+      </div>
+    </Fragment>
+    <div class="mosaic">
+      {
+        overview.map((column) => (
+          <div class="mosaic-col">
+            {column.map(({ key, weight }) => (
+              <Swatch color={key} style={` flex: ${weight} 1 0;`} />
+            ))}
+          </div>
+        ))
+      }
+    </div>
+  </Sub>
+
+  {
+    roleBlocks.map((block) => (
+      <Sub id={block.id} title={block.title} number={block.number}>
+        <Fragment slot="text">
+          <p>{block.intro}</p>
+        </Fragment>
+        <div class="roles" style={`--count: ${block.keys.length}`}>
+          {block.keys.map((key) => {
+            const c = colors[key];
+            const [r, g, b] = rgb(c.hex);
+            const cmyk = c.cmyk ? `${c.cmyk[0]} ${c.cmyk[1]} ${c.cmyk[2]} ${c.cmyk[3]}` : '';
+            return (
+              <div class="role">
+                <Swatch color={key} class="role-chip" />
+                <dl class="specs">
+                  <dt class="muted">HEX</dt>
+                  <dd>
+                    <button type="button" class="value" data-copy={c.hex}>
+                      {bare(c.hex)}
+                    </button>
+                  </dd>
+                  <dt class="muted">RGB</dt>
+                  <dd>
+                    <button type="button" class="value" data-copy={`rgb(${r}, ${g}, ${b})`}>
+                      {rgbString(c.hex)}
+                    </button>
+                  </dd>
+                  {c.cmyk && (
+                    <>
+                      <dt class="muted">CMYK</dt>
+                      <dd>
+                        <button type="button" class="value" data-copy={`C${c.cmyk[0]} M${c.cmyk[1]} Y${c.cmyk[2]} K${c.cmyk[3]}`}>
+                          {cmyk}
+                        </button>
+                      </dd>
+                    </>
+                  )}
+                  <dt class="muted">CSS</dt>
+                  <dd>
+                    <button type="button" class="value" data-copy={`var(--${c.token})`}>
+                      --{c.token}
+                    </button>
+                  </dd>
+                </dl>
+              </div>
+            );
+          })}
+        </div>
+      </Sub>
+    ))
+  }
+
+  <Sub id="shades" title="Shades" number="3.5">
+    <Fragment slot="text">
+      <p>Forest – Cream. Seven steps from forest shade to cream. Use the ramp for hierarchy, interface states and data visualization.</p>
+    </Fragment>
+    <div class="ramp">
+      {ramps.shades.map((key) => <Swatch color={key} />)}
+    </div>
+  </Sub>
+
+  <Sub id="neutrals" title="Neutrals" number="3.6">
+    <Fragment slot="text">
+      <p>Forest – Neutral. Seven steps from forest shade to neutral white. Use the ramp for hierarchy, interface states and data visualization.</p>
+    </Fragment>
+    <div class="ramp">
+      {ramps.neutrals.map((key) => <Swatch color={key} />)}
+    </div>
+  </Sub>
+
+  <Sub id="combinations" title="Combinations" number="3.7">
+    <Fragment slot="text">
+      <p>Six approved combinations. Lead with one color, support with a second and accent with a third, at roughly 60/30/10.</p>
+    </Fragment>
+    <ol class="combos">
+      {
+        combinations.map(([lead, support, accent], i) => (
+          <li class="combo">
+            <Swatch color={lead} class="combo-lead" />
+            <Swatch color={support} class="combo-support" />
+            <Swatch color={accent} class="combo-accent" />
+            <span class="muted combo-num">{String(i + 1).padStart(2, '0')}</span>
+          </li>
+        ))
+      }
+    </ol>
+  </Sub>
+
+  <Sub id="gradients" title="Gradients" number="3.8">
+    <Fragment slot="text">
+      <p>Soft vertical blends built only from palette colors. Use them as quiet backgrounds or as the base field for patterns.</p>
+      <p class="muted">Click a gradient to copy its CSS.</p>
+    </Fragment>
+    <div class="gradients">
+      {
+        gradients.map((g) => {
+          const css = gradientCss(g);
+          return (
+            <button
+              type="button"
+              class="gradient"
+              style={`background: ${css}`}
+              data-copy={`background: ${css};`}
+              data-copy-message={`Copied ${colors[g.from].name} → ${colors[g.to].name} gradient`}
+              aria-label={`Copy ${colors[g.from].name} to ${colors[g.to].name} gradient CSS`}
+            >
+              <span style={`color: ${ink(g.from)}`}>{colors[g.from].name}</span>
+              <span style={`color: ${ink(g.to)}`}>{colors[g.to].name}</span>
+            </button>
+          );
+        })
+      }
+    </div>
+  </Sub>
+
+  <Sub id="themes" title="Themes" number="3.9">
+    <Fragment slot="text">
+      <p>Each theme pairs one background with one foreground across three tonal steps. Contrast ratios are calculated with WCAG 2.2.</p>
+    </Fragment>
+    <div class="themes">
+      {
+        themes.map((theme) => (
+          <section class="theme-group" aria-label={`${theme.name} themes`}>
+            <p>
+              {theme.name} <span class="muted">— {theme.intro}</span>
+            </p>
+            <div class="theme-row">
+              {theme.steps.map((step) => {
+                const bg = colors[step.bg];
+                const fg = colors[step.fg];
+                const ratio = contrast(bg.hex, fg.hex);
+                return (
+                  <figure class="theme">
+                    <div class="theme-card" style={`background: ${bg.hex}; color: ${fg.hex}`}>
+                      <span class="theme-aa">Aa</span>
+                    </div>
+                    <figcaption>
+                      <span class="theme-meta">
+                        <span>{step.label}</span>
+                        <span class="muted">
+                          {ratio.toFixed(1)}:1 {wcag(ratio)}
+                        </span>
+                      </span>
+                      <span class="theme-tokens">
+                        <button type="button" class="value" data-copy={fg.hex}>
+                          <span class="dot" style={`background: ${fg.hex}`} /> {fg.token}
+                        </button>
+                        <button type="button" class="value" data-copy={bg.hex}>
+                          <span class="dot" style={`background: ${bg.hex}`} /> {bg.token}
+                        </button>
+                      </span>
+                    </figcaption>
+                  </figure>
+                );
+              })}
+            </div>
+          </section>
+        ))
+      }
+    </div>
+  </Sub>
+</Guide>
+
+<style>
+  .mosaic {
+    display: grid;
+    grid-template-columns: 1.42fr 1.85fr 1.42fr 1fr;
+    height: clamp(26rem, 60vh, 36rem);
+  }
+
+  .mosaic-col {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+
+  .mosaic-col :global(.swatch) {
+    min-height: 3rem;
+  }
+
+  .roles {
+    display: grid;
+    grid-template-columns: repeat(var(--count), minmax(0, 1fr));
+    gap: 1.25rem;
+  }
+
+  .role :global(.role-chip) {
+    width: 100%;
+    height: clamp(11rem, 22vw, 17rem);
+  }
+
+  .specs {
+    display: grid;
+    grid-template-columns: 3.5rem 1fr;
+    gap: 0.25rem 0.5rem;
+    margin-top: 0.75rem;
+  }
+
+  .value {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0;
+    border: 0;
+    background: none;
+    font-size: var(--size-annotation);
+    text-align: left;
+    cursor: copy;
+  }
+
+  .value:hover {
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+
+  .ramp {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+  }
+
+  .ramp :global(.swatch) {
+    aspect-ratio: 2 / 5;
+    min-height: 12rem;
+  }
+
+  .combos {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.25rem;
+  }
+
+  .combo {
+    position: relative;
+    display: grid;
+    grid-template-rows: 6fr 3fr 1fr;
+    height: 15rem;
+  }
+
+  .combo :global(.swatch) {
+    min-height: 0;
+    flex-direction: row;
+    align-items: start;
+  }
+
+  .combo :global(.combo-accent) {
+    padding-block: 0.25rem;
+    align-items: center;
+  }
+
+  .combo-num {
+    position: absolute;
+    left: 0;
+    bottom: -1.5rem;
+  }
+
+  .combos {
+    row-gap: 2.75rem;
+  }
+
+  .gradients {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1.25rem;
+  }
+
+  .gradient {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    aspect-ratio: 2 / 3;
+    padding: 0.75rem;
+    border: 0;
+    font-size: var(--size-annotation);
+    text-align: left;
+    cursor: copy;
+  }
+
+  .themes {
+    display: grid;
+    gap: 2.5rem;
+  }
+
+  .theme-group {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .theme-row {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.25rem;
+  }
+
+  .theme-card {
+    display: grid;
+    place-items: center;
+    aspect-ratio: 4 / 3;
+    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--deep-green) 8%, transparent);
+  }
+
+  .theme-aa {
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    letter-spacing: -0.015em;
+    line-height: 1;
+  }
+
+  .theme figcaption {
+    display: grid;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+  }
+
+  .theme-meta,
+  .theme-tokens {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .dot {
+    width: 0.75rem;
+    height: 0.75rem;
+    border-radius: 50%;
+    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--deep-green) 20%, transparent);
+  }
+
+  @media (max-width: 760px) {
+    .mosaic {
+      grid-template-columns: 1fr 1fr;
+      height: auto;
+    }
+
+    .mosaic-col {
+      min-height: 14rem;
+    }
+
+    .mosaic-col :global(.swatch) {
+      min-height: 4.25rem;
+    }
+
+    .roles,
+    .combos,
+    .theme-row {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .ramp {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .ramp :global(.swatch) {
+      aspect-ratio: auto;
+      min-height: 3.5rem;
+    }
+
+    .gradients {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+</style>

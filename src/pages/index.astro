@@ -1,0 +1,87 @@
+---
+import Guide from '../layouts/Guide.astro';
+import Sub from '../components/Sub.astro';
+import Cover from '../components/Cover.astro';
+import { sections } from '../data/nav';
+---
+
+<Guide slug="intro" hero={false}>
+  <Cover />
+  <Sub id="about" title="About this guide" number="1.1">
+    <Fragment slot="text">
+      <p>
+        Every proposal, deck and post is a chance to show who we are: senior, practical and accountable for what we
+        ship. When those moments line up, clients trust us sooner.
+      </p>
+      <p>
+        Treat these pages as a toolkit, not a rulebook. Hold on to the foundations that keep us recognizable, and use
+        your judgment everywhere else.
+      </p>
+    </Fragment>
+    <p class="display lede">
+      We don’t sell AI. We ship your workflow. This guide shows how that idea looks, sounds and behaves, so everything
+      we make feels like it came from the same team.
+    </p>
+  </Sub>
+
+  <Sub id="contents" title="Contents" number="1.2">
+    <Fragment slot="text">
+      <p>Every section holds the rules and the files. Copy colors, download logos, icons and artwork, and generate patterns in any format.</p>
+    </Fragment>
+    <ol class="contents">
+      {
+        sections
+          .filter((s) => s.slug !== 'intro')
+          .map((s, i) => (
+            <li>
+              <a href={s.href} class="contents-title">
+                <span class="muted">{String(i + 2).padStart(2, '0')}</span>
+                <span>{s.title}</span>
+              </a>
+              <ul>
+                {s.subs.map((sub) => (
+                  <li>
+                    <a class="muted" href={`${s.href}#${sub.id}`}>
+                      {sub.title}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </li>
+          ))
+      }
+    </ol>
+  </Sub>
+</Guide>
+
+<style>
+  .lede {
+    max-width: 18em;
+  }
+
+  .contents {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr));
+    gap: 2rem var(--gutter);
+  }
+
+  .contents a {
+    text-decoration: none;
+  }
+
+  .contents a:hover {
+    color: var(--fg);
+  }
+
+  .contents-title {
+    display: flex;
+    gap: 0.75rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .contents ul {
+    display: grid;
+    gap: 0.125rem;
+    padding-left: 1.75rem;
+  }
+</style>

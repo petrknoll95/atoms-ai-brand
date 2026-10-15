@@ -1,0 +1,310 @@
+---
+import Guide from '../layouts/Guide.astro';
+import Sub from '../components/Sub.astro';
+
+const faces = [
+  { name: 'Founders Grotesk Regular', role: 'Primary — Display', family: 'var(--font-display)', weight: 400 },
+  { name: 'Founders Grotesk Medium', role: 'Primary — Emphasis', family: 'var(--font-display)', weight: 500 },
+  { name: 'PP Neue Montreal Regular', role: 'Body', family: 'var(--font-text)', weight: 400 },
+];
+
+const charset = [
+  ['Uppercase', 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'],
+  ['Lowercase', 'abcdefghijklmnopqrstuvwxyz'],
+  ['Numbers', '1234567890'],
+  ['Accented', 'Áá Çç Ëë Îî Ňň Öö Řř Şş Ţţ Ůů Ŵŵ Ŷŷ Żż'],
+  ['Ligatures', 'fi fl fb fh fk ffb ffh'],
+  ['Punctuation', '(,.:;?!)[&@#] {-–—}/“”‘’'],
+  ['Symbols', '€$£¥¢%+−×÷=≈<>'],
+  ['Misc.', '©®™*'],
+];
+---
+
+<Guide slug="typography" description="Founders Grotesk and PP Neue Montreal: typefaces, scale and headline rules.">
+  <Sub id="typefaces" title="Typefaces" number="5.2">
+    <Fragment slot="text">
+      <p>
+        Our type system pairs two typefaces to keep layouts simple and considered. Founders Grotesk is our primary
+        typeface. Sharp, confident and compact, it sets headlines and display type in Regular and Medium.
+      </p>
+      <p>PP Neue Montreal is our body typeface, used for running text, captions and interface copy where clarity matters most.</p>
+      <p class="muted">Every specimen on this page is editable. Click one to try your own copy.</p>
+    </Fragment>
+    <p class="hero balance" contenteditable="plaintext-only" spellcheck="false">AtomsAI<br />Built to ship.</p>
+    <div class="faces">
+      {
+        faces.map((f) => (
+          <article class="face" style={`--family: ${f.family}; --weight: ${f.weight}`}>
+            <header>
+              <p>{f.name}</p>
+              <p class="muted">{f.role}</p>
+            </header>
+            <p class="face-alphabet" contenteditable="plaintext-only" spellcheck="false">
+              ABCDEFGHIJKLMN OPQRSTUVWXYZ abcdefghijklmn opqrstuvwxyz 1234567890,.?!*
+            </p>
+            <p class="face-headline balance" contenteditable="plaintext-only" spellcheck="false">
+              The future isn’t imagined. It’s built.
+            </p>
+            <p class="face-lead balance" contenteditable="plaintext-only" spellcheck="false">
+              Turn operational friction into operating leverage.
+            </p>
+          </article>
+        ))
+      }
+    </div>
+  </Sub>
+
+  <Sub id="character-set" title="Character set" number="5.3">
+    <Fragment slot="text">
+      <p>
+        An overview of the main character sets in Founders Grotesk, shown here in Regular. The typeface also includes
+        tabular and lining figures, fractions and ordinals.
+      </p>
+      <p>Use the default forms shown here in our communication, and switch to tabular figures for tables and data.</p>
+    </Fragment>
+    <dl class="charset">
+      {
+        charset.map(([label, glyphs]) => (
+          <div class="charset-row">
+            <dt class="muted">{label}</dt>
+            <dd contenteditable="plaintext-only" spellcheck="false">{glyphs}</dd>
+          </div>
+        ))
+      }
+    </dl>
+  </Sub>
+
+  <Sub id="scale" title="Scale & line-height" number="5.4">
+    <Fragment slot="text">
+      <p>
+        Line-height is the space between baselines. It sets the rhythm and readability of our type, and the strength of
+        its voice.
+      </p>
+      <p>
+        As type gets larger, tighten the line-height. As it gets smaller, open it up so the eye has room to rest.
+        Display sits at 100%, lead text at 130% and body text at 140%.
+      </p>
+    </Fragment>
+    <div class="scale">
+      <figure>
+        <p class="scale-display balance" contenteditable="plaintext-only" spellcheck="false">The future isn’t imagined. It’s built.</p>
+        <figcaption class="muted">Display — Founders Grotesk Regular — 80 px — 90%</figcaption>
+      </figure>
+      <figure>
+        <p class="scale-lead balance" contenteditable="plaintext-only" spellcheck="false">
+          AtomsAI turns operational friction into operating leverage. Our engineers embed with your team and ship AI
+          agents into the workflows you already run.
+        </p>
+        <figcaption class="muted">Display — Founders Grotesk Regular — 32 px — 120%</figcaption>
+      </figure>
+      <figure>
+        <p class="scale-body" contenteditable="plaintext-only" spellcheck="false">
+          We don’t sell AI. We ship your workflow. Our engineers embed with your team, map the work as it really runs
+          and build agents inside your own systems, under your credentials. Accuracy, cost and latency are measured
+          from a baseline, and the code, prompts and evals are yours from week one.
+        </p>
+        <figcaption class="muted">Body — PP Neue Montreal Regular — 16 px — 140%</figcaption>
+      </figure>
+    </div>
+  </Sub>
+
+  <Sub id="headlines" title="Headlines" number="5.5">
+    <Fragment slot="text">
+      <p>When setting headlines in Founders Grotesk, keep leading and tracking consistent across all applications and sizes.</p>
+      <dl class="rules">
+        <dt>Leading</dt>
+        <dd class="muted">Between 90% and 100% of the type size, depending on headline size.</dd>
+        <dt>Tracking</dt>
+        <dd class="muted">−15 (−1.5%) for all headlines.</dd>
+        <dt>Case</dt>
+        <dd class="muted">Headlines are always set in sentence case, with punctuation.</dd>
+      </dl>
+    </Fragment>
+    <div class="compare">
+      <figure>
+        <p class="headline default balance" contenteditable="plaintext-only" spellcheck="false">Your competitors are automating.</p>
+        <figcaption class="muted">Default — leading auto — tracking 0</figcaption>
+      </figure>
+      <figure>
+        <p class="headline applied balance" contenteditable="plaintext-only" spellcheck="false">Your competitors are automating.</p>
+        <figcaption class="muted">Applied — leading 90% — tracking −15</figcaption>
+      </figure>
+    </div>
+    <figure class="applied-large">
+      <p class="headline applied big balance" contenteditable="plaintext-only" spellcheck="false">The future isn’t imagined. It’s built.</p>
+      <figcaption class="muted">Founders Grotesk Regular — leading 90% — tracking −15 — sentence case</figcaption>
+    </figure>
+  </Sub>
+</Guide>
+
+<style>
+  [contenteditable] {
+    outline: none;
+    border-radius: 2px;
+  }
+
+  [contenteditable]:focus-visible {
+    box-shadow: 0 0 0 1px var(--rule);
+  }
+
+  .hero {
+    margin-bottom: 3rem;
+    padding: 2.5rem;
+    background: var(--deep-green);
+    color: var(--cream);
+    font-family: var(--font-display);
+    font-size: clamp(3.5rem, 9vw, 9rem);
+    line-height: 0.9;
+    letter-spacing: -0.015em;
+  }
+
+  .faces {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.25rem;
+  }
+
+  .face {
+    display: grid;
+    align-content: start;
+    gap: 1.75rem;
+    padding-left: 1rem;
+    border-left: 1px solid var(--fg);
+    font-family: var(--family);
+    font-weight: var(--weight);
+  }
+
+  .face header {
+    font-family: var(--font-text);
+    font-weight: 400;
+  }
+
+  .face header p:first-child {
+    font-family: var(--family);
+    font-weight: var(--weight);
+    font-size: 1.375rem;
+  }
+
+  .face-alphabet {
+    font-size: 1.75rem;
+    line-height: 1.1;
+  }
+
+  .face-headline {
+    font-size: clamp(2rem, 3.5vw, 3.25rem);
+    line-height: 1;
+    letter-spacing: -0.015em;
+  }
+
+  .face-lead {
+    font-size: 1.5rem;
+    line-height: 1.2;
+  }
+
+  .charset {
+    display: grid;
+  }
+
+  .charset-row {
+    display: grid;
+    grid-template-columns: 7rem minmax(0, 1fr);
+    align-items: baseline;
+    gap: 1rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .charset-row dd {
+    font-family: var(--font-display);
+    font-size: clamp(1.75rem, 4vw, 3.75rem);
+    line-height: 1.1;
+    overflow-wrap: anywhere;
+  }
+
+  .scale {
+    display: grid;
+    gap: 3rem;
+  }
+
+  .scale figure,
+  .compare figure,
+  .applied-large {
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  .scale-display {
+    max-width: 10em;
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 6vw, 5rem);
+    line-height: 0.9;
+    letter-spacing: -0.015em;
+  }
+
+  .scale-lead {
+    max-width: 24em;
+    font-family: var(--font-display);
+    font-size: 2rem;
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+  }
+
+  .scale-body {
+    max-width: 36em;
+    font-size: 1rem;
+    line-height: 1.4;
+  }
+
+  .rules {
+    display: grid;
+    gap: 0.25rem;
+  }
+
+  .rules dd + dt {
+    margin-top: 0.5rem;
+  }
+
+  .compare {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem;
+    margin-bottom: 3rem;
+  }
+
+  .compare figure {
+    padding: 1.5rem;
+    box-shadow: inset 0 0 0 1px var(--rule);
+  }
+
+  .headline {
+    font-family: var(--font-display);
+    font-size: clamp(2.25rem, 4.5vw, 4rem);
+  }
+
+  .headline.default {
+    line-height: normal;
+    letter-spacing: 0;
+  }
+
+  .headline.applied {
+    line-height: 0.9;
+    letter-spacing: -0.015em;
+  }
+
+  .headline.big {
+    max-width: 11em;
+    font-size: clamp(3rem, 6vw, 5.5rem);
+  }
+
+  @media (max-width: 1000px) {
+    .faces,
+    .compare {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .charset-row {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 0.25rem;
+    }
+  }
+</style>

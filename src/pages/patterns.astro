@@ -1,0 +1,204 @@
+---
+import { Image } from 'astro:assets';
+import Guide from '../layouts/Guide.astro';
+import Sub from '../components/Sub.astro';
+import PatternTile from '../components/PatternTile.astro';
+import PatternGenerator from '../components/PatternGenerator.astro';
+import { SLITS, structures } from '../data/patterns';
+import doCrop from '../assets/brand/pattern-usage/do-crop.webp';
+import doType from '../assets/brand/pattern-usage/do-type.webp';
+import doRotate from '../assets/brand/pattern-usage/do-rotate.webp';
+import doColorway from '../assets/brand/pattern-usage/do-colorway.webp';
+import dontSkew from '../assets/brand/pattern-usage/dont-skew.webp';
+import dontRecolor from '../assets/brand/pattern-usage/dont-recolor.webp';
+import dontType from '../assets/brand/pattern-usage/dont-type.webp';
+import dontMix from '../assets/brand/pattern-usage/dont-mix.webp';
+
+const greens = ['Forest', 'Sage', 'Graphite'];
+// The densities the guideline slides use: colorway previews (4.2–4.5) and the Iris slide (4.6).
+const previewDensity: Record<string, number> = { drift: 1, offset: 1, 'single-band': 1, concentric: 1 };
+const irisDensity: Record<string, number> = { drift: 0, offset: 1, 'single-band': 1, concentric: 1 };
+const densityLabels = ['Density 0 — Coarse', 'Density 1', 'Density 2', 'Density 3 — Fine'];
+
+const usage = {
+  do: [
+    { src: doCrop, title: 'Crop and scale freely', text: 'Let the field bleed off the edge. Any crop is on-brand.' },
+    { src: doType, title: 'Set type in the calm field', text: 'Place copy where the pattern is quiet, never across the beams.' },
+    { src: doRotate, title: 'Rotate to suit the format', text: 'Run the field horizontally, vertically or at an angle to fit the layout.' },
+    { src: doColorway, title: 'Use a published colorway', text: 'Forest by default, Iris as an accent.' },
+  ],
+  dont: [
+    { src: dontSkew, title: 'Skew or stretch', text: 'Never warp, skew or stretch the field out of proportion.' },
+    { src: dontRecolor, title: 'Recolor off-palette', text: 'Use only the published colorways or palette colors.' },
+    { src: dontType, title: 'Set type across the beams', text: 'Copy over the bright spikes loses contrast and rhythm.' },
+    { src: dontMix, title: 'Mix structures', text: 'Use one structure per composition.' },
+  ],
+};
+---
+
+<Guide slug="patterns" description="AtomsAI interference patterns: structures, densities, colorways and a live generator.">
+  <Sub id="structures" title="Structures" number="4.1">
+    <Fragment slot="text">
+      <p>
+        Our patterns are drawn from interference — light passing through parallel slits and overlapping. They add depth
+        and rhythm, and can carry a moment on their own or quietly fill space.
+      </p>
+      <p>Four structures, each in up to four densities and two colorways, built as editable components.</p>
+    </Fragment>
+    <div class="structures">
+      {
+        structures.map((s) => (
+          <section class="structure" aria-labelledby={`structure-${s.id}`}>
+            <div class="structure-text">
+              <p id={`structure-${s.id}`}>{s.name}</p>
+              <p class="muted">{s.description}</p>
+            </div>
+            <div class="row three">
+              {greens.map((name) => (
+                <PatternTile structure={s.id} density={previewDensity[s.id]} colorway={name} caption={name} ratio="353 / 786" />
+              ))}
+            </div>
+          </section>
+        ))
+      }
+    </div>
+  </Sub>
+
+  <Sub id="density" title="Density" number="4.7">
+    <Fragment slot="text">
+      <p>
+        Each structure comes in up to four densities — {SLITS.join(', ').replace(/, (\d+)$/, ' and $1')} slits per frame.
+        Coarse reads boldly at small sizes; fine adds texture to large surfaces.
+      </p>
+      <p>Concentric comes in the two finer densities.</p>
+    </Fragment>
+    <div class="row four">
+      {densityLabels.map((label, d) => <PatternTile structure="offset" density={d} caption={label} ratio="1 / 3" />)}
+    </div>
+  </Sub>
+
+  <Sub id="colorways" title="Colorways" number="4.8">
+    <Fragment slot="text">
+      <p>
+        Greyscale masters define structure. Colorways are instances with color overrides — edit the master and every
+        colorway follows. Forest is the default.
+      </p>
+      <p>
+        Iris is the accent colorway. Every structure also comes in Iris, for moments that need a lift. Use it sparingly —
+        Forest stays the default.
+      </p>
+    </Fragment>
+    <div class="stack">
+      <div class="row four">
+        <PatternTile structure="offset" colorway="Master" caption="Master — Greyscale" />
+        <PatternTile structure="offset" colorway="Forest" caption="Forest" />
+        <PatternTile structure="offset" colorway="Sage" caption="Sage" />
+        <PatternTile structure="offset" colorway="Graphite" caption="Graphite" />
+      </div>
+      <div class="row four">
+        {structures.map((s) => <PatternTile structure={s.id} density={irisDensity[s.id]} colorway="Iris" caption={`${s.name} — Iris`} />)}
+      </div>
+    </div>
+  </Sub>
+
+  <Sub id="generator" title="Generator">
+    <Fragment slot="text">
+      <p>
+        Make a pattern for any format. Pick a structure, colorway and density, set the size, then crop, rotate and scale
+        the field. Only published colorways are available, and the field always scales evenly — it is never skewed or
+        stretched.
+      </p>
+    </Fragment>
+    <PatternGenerator />
+  </Sub>
+
+  <Sub id="usage" title="Usage" number="4.9">
+    <Fragment slot="text">
+      <p>Patterns are a field, not a decoration. Keep them within the palette and calm enough to carry type.</p>
+    </Fragment>
+    <div class="stack">
+      {
+        (['do', 'dont'] as const).map((kind) => (
+          <div class="usage">
+            <p>{kind === 'do' ? 'Do' : 'Don’t'}</p>
+            <div class="row four">
+              {usage[kind].map((u) => (
+                <figure class="usage-item">
+                  <Image src={u.src} alt={`${kind === 'do' ? 'Do' : 'Don’t'}: ${u.title}`} widths={[300, 510]} sizes="(max-width: 1180px) 50vw, 20vw" />
+                  <figcaption>
+                    <span>{u.title}</span>
+                    <span class="muted">{u.text}</span>
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </Sub>
+</Guide>
+
+<script>
+  import '../scripts/pattern-canvases';
+</script>
+
+<style>
+  .structures,
+  .stack {
+    display: grid;
+    gap: 2.5rem;
+  }
+
+  .structure {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .structure-text {
+    display: grid;
+    gap: 0.25rem;
+    max-width: 36rem;
+  }
+
+  .row {
+    display: grid;
+    gap: 1.25rem;
+  }
+
+  .three {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .four {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .usage {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .usage-item {
+    display: grid;
+    gap: 0.75rem;
+    align-content: start;
+  }
+
+  .usage-item :global(img) {
+    width: 100%;
+    height: auto;
+  }
+
+  .usage-item figcaption {
+    display: grid;
+    gap: 0.25rem;
+  }
+
+  @media (max-width: 760px) {
+    .three,
+    .four {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+</style>

@@ -1,0 +1,156 @@
+---
+import Guide from '../layouts/Guide.astro';
+import Sub from '../components/Sub.astro';
+import Figure from '../components/Figure.astro';
+import IconLibrary from '../components/IconLibrary.astro';
+import { icon } from '../data/icons';
+import miter from '../assets/brand/diagrams/icon-miter-joins.svg?raw';
+import butt from '../assets/brand/diagrams/icon-butt-caps.svg?raw';
+import regular from '../assets/brand/diagrams/icon-weight-regular.svg?raw';
+import medium from '../assets/brand/diagrams/icon-weight-medium.svg?raw';
+
+const inline = (name: string) => icon(name).replace('<svg ', '<svg aria-hidden="true" class="btn-icon" ');
+const buttons = [
+  { label: 'Learn more', trailing: 'arrow-right' },
+  { label: 'Search', leading: 'search' },
+  { label: 'Filter', leading: 'filter' },
+  { label: 'What’s this?', leading: 'info', badge: true },
+  { label: 'Create New...', leading: 'plus' },
+];
+---
+
+<Guide slug="icons" description="The AtomsAI stroke icon set: style, weight and a downloadable library.">
+  <Sub id="style" title="Style" number="6.1">
+    <Fragment slot="text">
+      <p>Icons are drawn with one even stroke on a 24 px grid, the same line as our illustrations.</p>
+      <p>
+        Keep corners sharp with miter joins and end every open stroke with a butt cap, so lines stop exactly on the grid.
+        Never round joins or caps.
+      </p>
+    </Fragment>
+    <div class="pair">
+      <Figure caption="Miter joins — corners stay sharp and land on the grid." tone="plain"><Fragment set:html={miter} /></Figure>
+      <Figure caption="Butt caps — strokes stop flush at their end point." tone="plain"><Fragment set:html={butt} /></Figure>
+    </div>
+  </Sub>
+
+  <Sub id="weight" title="Weight" number="6.2">
+    <Fragment slot="text">
+      <p>Icons use two stroke weights, matched to our type.</p>
+      <dl class="rules">
+        <dt>Regular — 1.5 px</dt>
+        <dd class="muted">Pairs with body copy and interface text. Default for most icons.</dd>
+        <dt>Medium — 2 px</dt>
+        <dd class="muted">Pairs with headlines and Medium labels. Use for emphasis and at small sizes.</dd>
+      </dl>
+      <p>Weights are measured at 24 px. Scale the stroke with the icon, using the Scale tool (K) in Figma, so line weight stays in proportion.</p>
+    </Fragment>
+    <div class="pair">
+      <Figure caption="Regular (400) — 1.5 px stroke" tone="plain"><Fragment set:html={regular} /></Figure>
+      <Figure caption="Medium (500) — 2 px stroke" tone="plain"><Fragment set:html={medium} /></Figure>
+    </div>
+  </Sub>
+
+  <Sub id="library" title="Library" number="6.3">
+    <Fragment slot="text">
+      <p>
+        A starter set of icons in our stroke style. As you add new icons, draw them on the same 24 px grid with a
+        Regular stroke, miter joins, butt caps and open gaps where strokes cross, so the set stays cohesive.
+      </p>
+      <p class="muted">Pick a color and weight, then copy or download any icon. SVGs keep the 24 px grid; PNGs export at 512 px.</p>
+    </Fragment>
+    <IconLibrary />
+  </Sub>
+
+  <Sub id="in-use" title="In use" number="6.4">
+    <Fragment slot="text">
+      <p>Icons sit inline with labels in buttons and links, in the same color as the text.</p>
+      <p>
+        Size the icon to the label and scale the stroke with it, so it always reads as Regular weight. Keep a fixed gap
+        between icon and label.
+      </p>
+      <p>Lead with the icon to name an action. Trail with an arrow when the button takes you somewhere next.</p>
+    </Fragment>
+    <div class="in-use">
+      {
+        buttons.map((b) => (
+          <span class="pill">
+            {b.leading && <span class:list={['pill-icon', { badge: b.badge }]} set:html={inline(b.leading)} />}
+            <span>{b.label}</span>
+            {b.trailing && <span class="pill-icon" set:html={inline(b.trailing)} />}
+          </span>
+        ))
+      }
+    </div>
+  </Sub>
+</Guide>
+
+<style>
+  .pair {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem;
+  }
+
+  .rules {
+    display: grid;
+    gap: 0.25rem;
+  }
+
+  .rules dd + dt {
+    margin-top: 0.5rem;
+  }
+
+  .in-use {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    gap: 1rem;
+    min-height: 24rem;
+    padding: clamp(1.5rem, 4vw, 3rem);
+    background: var(--cream);
+  }
+
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3em;
+    padding: 0.18em 0.55em 0.22em;
+    border-radius: 999px;
+    background: var(--deep-green);
+    color: var(--cream);
+    font-family: var(--font-display);
+    font-size: clamp(1.75rem, 4vw, 3.25rem);
+    line-height: 1.1;
+    letter-spacing: -0.015em;
+  }
+
+  .pill-icon {
+    display: inline-grid;
+    place-items: center;
+    width: 0.8em;
+    height: 0.8em;
+  }
+
+  .pill-icon :global(svg) {
+    width: 100%;
+    height: 100%;
+    /* Regular weight at any size: 1.5 px at 24 px */
+    stroke-width: 1.5;
+  }
+
+  .pill-icon.badge {
+    width: 1em;
+    height: 1em;
+    padding: 0.15em;
+    border-radius: 50%;
+    background: var(--cream);
+    color: var(--deep-green);
+  }
+
+  @media (max-width: 900px) {
+    .pair {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+</style>

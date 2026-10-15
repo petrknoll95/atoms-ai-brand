@@ -1,0 +1,104 @@
+---
+import Guide from '../layouts/Guide.astro';
+import Sub from '../components/Sub.astro';
+import AssetCard from '../components/AssetCard.astro';
+import { colors } from '../data/colors';
+import type { ColorOption } from '../data/assets';
+
+const files = import.meta.glob<string>('../assets/brand/illustration/*.svg', { query: '?raw', import: 'default', eager: true });
+const svg = (name: string) => files[`../assets/brand/illustration/${name}.svg`].trim();
+
+const concepts = [
+  { slug: 'full-visibility', title: 'Full Visibility', caption: 'We map every workflow, system and handoff before we build.' },
+  { slug: 'built-in-your-stack', title: 'Built In Your Stack', caption: 'Agents run inside your own systems, under your credentials and permissions.' },
+  { slug: 'compounding-outcomes', title: 'Compounding Outcomes', caption: 'Each workflow we ship becomes leverage for the next one.' },
+];
+
+const objects = [
+  { slug: 'scale', title: 'Scale' },
+  { slug: 'focus', title: 'Focus' },
+  { slug: 'modular', title: 'Modular' },
+  { slug: 'always-on', title: 'Always on' },
+  { slug: 'insight', title: 'Insight' },
+  { slug: 'momentum', title: 'Momentum' },
+];
+
+// Linework is opaque: a line color plus the surface color that fills each form.
+const linework: ColorOption[] = [
+  { key: 'deep-green-white', label: 'Deep green on White', ink: colors.deepGreen.hex, surface: colors.white.hex, tone: 'light' },
+  { key: 'deep-green-cream', label: 'Deep green on Cream', ink: colors.deepGreen.hex, surface: colors.cream.hex, tone: 'light' },
+  { key: 'cream-deep-green', label: 'Cream on Deep green', ink: colors.cream.hex, surface: colors.deepGreen.hex, tone: 'dark' },
+  { key: 'black-white', label: 'Black on White', ink: colors.black.hex, surface: colors.white.hex, tone: 'light' },
+];
+---
+
+<Guide slug="illustration" description="AtomsAI illustration style and linework, ready to download.">
+  <Sub id="style" title="Style" number="7.1">
+    <Fragment slot="text">
+      <p>
+        Our illustrations express abstract ideas through simple geometry: outlined 2D and 3D forms drawn with a single
+        line weight. One concept per drawing, minimal and precise.
+      </p>
+      <p>Draw in one palette color on a light surface. Use small nodes and arrows for emphasis. No fills, shading, gradients or literal imagery.</p>
+    </Fragment>
+    <div class="grid three">
+      {
+        concepts.map((c) => (
+          <div class="concept">
+            <AssetCard id={`atomsai-illustration-${c.slug}`} name={c.title} svg={svg(c.slug)} defaultOption="cream" artWidth="62%" previewHeight="22rem" pngSize={2000} />
+            <p class="muted">{c.caption}</p>
+          </div>
+        ))
+      }
+    </div>
+  </Sub>
+
+  <Sub id="linework" title="Linework" number="7.2">
+    <Fragment slot="text">
+      <p>
+        For product and campaign moments we draw solid isometric objects in a single thin line. Forms are opaque: nearer
+        shapes hide the lines behind them, which gives depth without any shading.
+      </p>
+      <p>One object per card, centered, with generous space around it. Line in Deep green, filled with the surface color.</p>
+    </Fragment>
+    <div class="grid three">
+      {
+        objects.map((o) => (
+          <AssetCard
+            id={`atomsai-linework-${o.slug}`}
+            name={o.title}
+            svg={svg(o.slug)}
+            options={linework}
+            defaultOption="deep-green-white"
+            artWidth="72%"
+            previewHeight="20rem"
+            pngSize={2000}
+          />
+        ))
+      }
+    </div>
+  </Sub>
+</Guide>
+
+<style>
+  .grid {
+    display: grid;
+    gap: 2rem 1.25rem;
+  }
+
+  .three {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .concept {
+    display: grid;
+    gap: 0.75rem;
+    align-content: start;
+  }
+
+  @media (max-width: 1000px) {
+    .three {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+</style>

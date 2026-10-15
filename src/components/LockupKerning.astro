@@ -1,0 +1,40 @@
+---
+// 2.5 Wordmark kerning, drawn from the master logotype. Values are in thousandths of an em,
+// as specified on the Figma lockup slide.
+import Figure from './Figure.astro';
+import { colors } from '../data/colors';
+import { lockup, logotypeInner } from '../data/logos';
+
+const pad = 80;
+const top = 70;
+const W = lockup.width + pad * 2;
+const H = lockup.height + top + 50;
+const mid = lockup.height / 2;
+---
+
+<Figure caption="Wordmark kerning" tone="framed">
+  <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label="Custom kerning between each pair of letters in the wordmark">
+    <g transform={`translate(${pad} ${top})`}>
+      <g stroke={colors.iris.hex} stroke-width="1.2" fill="none">
+        <line x1={-pad} x2={lockup.width + pad} y1={lockup.capTop} y2={lockup.capTop} />
+        <line x1={lockup.wordX - 20} x2={lockup.width + pad} y1={lockup.xTop} y2={lockup.xTop} />
+        <line x1={-pad} x2={lockup.width + pad} y1={lockup.baseline} y2={lockup.baseline} />
+        <line x1={-pad} x2={lockup.width + pad} y1={mid} y2={mid} stroke-dasharray="6 6" />
+        <rect x="0" y="0" width={lockup.markWidth} height={lockup.height} />
+      </g>
+      <g fill={colors.deepGreen.hex} set:html={logotypeInner} />
+      <g fill={colors.iris.hex} font-family="PP Neue Montreal, sans-serif" font-size="18" text-anchor="middle">
+        {
+          lockup.kerning.map((k) => (
+            <>
+              <rect x={k.x - 3} y={lockup.xTop - 30} width="6" height={lockup.baseline - lockup.xTop + 40} fill-opacity="0.35" />
+              <text x={k.x} y="-16">
+                {String(k.value).replace('-', '−')}
+              </text>
+            </>
+          ))
+        }
+      </g>
+    </g>
+  </svg>
+</Figure>

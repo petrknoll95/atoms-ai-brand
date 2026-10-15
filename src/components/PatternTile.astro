@@ -1,0 +1,56 @@
+---
+// A live pattern render (drawn client-side by pattern-canvases.ts) with a caption.
+import type { StructureId } from '../data/patterns';
+
+interface Props {
+  structure: StructureId;
+  density?: number;
+  colorway?: string;
+  caption?: string;
+  /** CSS aspect ratio of the tile. */
+  ratio?: string;
+  label?: string;
+}
+
+const { structure, density = 1, colorway = 'Forest', caption, ratio = '3 / 4', label } = Astro.props;
+---
+
+<figure class="tile">
+  <div class="frame" style={`aspect-ratio: ${ratio}`}>
+    <canvas
+      data-pattern
+      data-structure={structure}
+      data-density={density}
+      data-colorway={colorway}
+      role="img"
+      aria-label={label ?? `${structure} pattern, ${colorway}, density ${density}`}></canvas>
+    {caption && <span class="label">{caption}</span>}
+  </div>
+</figure>
+
+<style>
+  .tile {
+    min-width: 0;
+  }
+
+  .frame {
+    position: relative;
+    background: var(--forest-shade);
+  }
+
+  canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .label {
+    position: absolute;
+    left: 0.75rem;
+    top: 0.75rem;
+    color: var(--white);
+    font-size: var(--size-annotation);
+    text-shadow: 0 0 12px rgb(0 0 0 / 0.15);
+  }
+</style>
