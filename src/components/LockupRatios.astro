@@ -1,13 +1,14 @@
 ---
-// 2.5 Lockup proportions, redrawn from the master logotype:
+// 2.5 Lockup proportions, drawn in HTML around the master logotype:
 // the wordmark's x-height is 56% of the mark's height, and the gap is 0.3X.
+// Each panel is a 550 × 373 frame that crops the logotype; everything is placed in those units,
+// so the panels scale with their width. Only the logotype itself is SVG.
 import Figure from './Figure.astro';
-import { colors } from '../data/colors';
-import { lockup, logotypeInner } from '../data/logos';
+import { lockup, logotypeSvg } from '../data/logos';
 
 const W = 550;
 const H = 373;
-const s = 160 / lockup.height; // mark drawn 160 px tall
+const s = 160 / lockup.height; // mark drawn 160 units tall
 const lx = 90;
 const ly = (H - lockup.height * s) / 2;
 const markRight = lx + lockup.markWidth * s;
@@ -16,57 +17,131 @@ const wordLeft = lx + lockup.wordX * s;
 const xTop = ly + lockup.xTop * s;
 const baseline = ly + lockup.baseline * s;
 const xHeight = Math.round(((lockup.baseline - lockup.xTop) / lockup.height) * 100);
-const guide = 'stroke-width="1" vector-effect="non-scaling-stroke"';
+
+// Panel units → percentages of the frame.
+const pct = (v: number) => `${+(v * 100).toFixed(4)}%`;
+const x = (v: number) => pct(v / W);
+const y = (v: number) => pct(v / H);
+const fromRight = (v: number) => pct((W - v) / W);
+
+// Labels are 14 units: annotation size at 550 px, shrinking with the panel to an 11px floor.
+const frame = `aspect-ratio: ${W} / ${H}; --label: ${+((14 / W) * 100).toFixed(4)}cqi`;
+const art = `left: ${x(lx)}; top: ${y(ly)}; width: ${x(lockup.width * s)}`;
+// Bracket beside the mark, from its top to its bottom.
+const markBracket = `left: ${x(58)}; top: ${y(ly)}; width: ${x(8)}; height: ${y(markBottom - ly)}`;
 ---
 
 <div class="ratios">
-  <Figure caption="Symbol / wordmark height ratio" tone="plain">
-    <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label={`The wordmark x-height is ${xHeight}% of the mark height`}>
-      <rect width={W} height={H} fill={colors.deepGreen.hex} />
-      <g stroke={colors.cream.hex} stroke-opacity="0.35" set:html={`
-        <line x1="0" x2="${W}" y1="${ly}" y2="${ly}" ${guide}/>
-        <line x1="0" x2="${W}" y1="${markBottom}" y2="${markBottom}" ${guide}/>
-        <line x1="${wordLeft - 20}" x2="${W}" y1="${xTop}" y2="${xTop}" ${guide}/>
-        <line x1="${wordLeft - 20}" x2="${W}" y1="${baseline}" y2="${baseline}" ${guide}/>
-      `} />
-      <g transform={`translate(${lx} ${ly}) scale(${s})`} fill={colors.cream.hex} set:html={logotypeInner} />
-      <g stroke={colors.cream.hex} fill="none" set:html={`
-        <path d="M66 ${ly} h-8 V${markBottom} h8" ${guide}/>
-        <path d="M${wordLeft - 6} ${xTop} h-8 V${baseline} h8" ${guide}/>
-      `} />
-      <g fill={colors.cream.hex} font-family="PP Neue Montreal, sans-serif" font-size="13" text-anchor="end">
-        <text x="50" y={(ly + markBottom) / 2 + 4}>100%</text>
-        <text x={wordLeft - 18} y={(xTop + baseline) / 2 + 4}>{xHeight}%</text>
-      </g>
-    </svg>
-  </Figure>
+  <div class="pair">
+    <Figure caption="Symbol / wordmark height ratio" tone="plain">
+      <div class="panel height" style={frame} role="img" aria-label={`The wordmark x-height is ${xHeight}% of the mark height`}>
+        <div class="guide" style={`top: ${y(ly)}`}></div>
+        <div class="guide" style={`top: ${y(markBottom)}`}></div>
+        <div class="guide" style={`top: ${y(xTop)}; left: ${x(wordLeft - 20)}`}></div>
+        <div class="guide" style={`top: ${y(baseline)}; left: ${x(wordLeft - 20)}`}></div>
+        <div class="art" style={art} set:html={logotypeSvg} />
+        <div class="bracket" style={markBracket}></div>
+        <div class="bracket" style={`left: ${x(wordLeft - 14)}; top: ${y(xTop)}; width: ${x(8)}; height: ${y(baseline - xTop)}`}></div>
+        <span class="label end" style={`right: ${fromRight(50)}; top: ${y((ly + markBottom) / 2)}`}>100%</span>
+        <span class="label" style={`left: ${x((markRight + wordLeft - 14) / 2)}; top: ${y((xTop + baseline) / 2)}`}>{xHeight}%</span>
+      </div>
+    </Figure>
 
-  <Figure caption="Symbol / wordmark gap" tone="plain">
-    <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label="The gap between mark and wordmark is 0.3 times the mark height">
-      <rect width={W} height={H} fill={colors.iris.hex} />
-      <rect x={markRight} width={wordLeft - markRight} height={H} fill={colors.irisShade.hex} />
-      <g transform={`translate(${lx} ${ly}) scale(${s})`} fill={colors.white.hex} set:html={logotypeInner} />
-      <g stroke={colors.white.hex} fill="none" set:html={`
-        <path d="M66 ${ly} h-8 V${markBottom} h8" ${guide}/>
-        <path d="M${markRight + 4} ${H / 2} H${wordLeft - 4}" ${guide}/>
-      `} />
-      <g fill={colors.white.hex} font-family="PP Neue Montreal, sans-serif" font-size="13" text-anchor="middle">
-        <text x="40" y={(ly + markBottom) / 2 + 4}>X</text>
-        <text x={(markRight + wordLeft) / 2} y={H / 2 - 10}>0.3X</text>
-      </g>
-    </svg>
-  </Figure>
+    <Figure caption="Symbol / wordmark gap" tone="plain">
+      <div class="panel gap" style={frame} role="img" aria-label="The gap between mark and wordmark is 0.3 times the mark height">
+        <div class="band" style={`left: ${x(markRight)}; width: ${x(wordLeft - markRight)}`}></div>
+        <div class="art" style={art} set:html={logotypeSvg} />
+        <div class="bracket" style={markBracket}></div>
+        <div class="rule" style={`left: ${x(markRight + 4)}; top: ${y(H / 2)}; width: ${x(wordLeft - markRight - 8)}`}></div>
+        <span class="label" style={`left: ${x(40)}; top: ${y((ly + markBottom) / 2)}`}>X</span>
+        <span class="label" style={`left: ${x((markRight + wordLeft) / 2)}; top: ${y(H / 2 - 14)}`}>0.3X</span>
+      </div>
+    </Figure>
+  </div>
 </div>
 
 <style>
+  /* Side by side while each panel is at least ~360px wide, so the labels keep their room. */
   .ratios {
+    container-type: inline-size;
+  }
+
+  .pair {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 1.25rem;
   }
 
-  @media (max-width: 760px) {
-    .ratios {
+  .panel {
+    container-type: inline-size;
+    position: relative;
+    overflow: hidden;
+    background: var(--panel);
+    color: var(--ink);
+  }
+
+  .panel > * {
+    position: absolute;
+  }
+
+  .height {
+    --panel: var(--deep-green);
+    --ink: var(--cream);
+  }
+
+  .gap {
+    --panel: var(--iris);
+    --ink: var(--white);
+  }
+
+  /* Faint 1px guides at the mark's top and bottom and the wordmark's x-height and baseline. */
+  .guide {
+    left: 0;
+    right: 0;
+    border-top: 1px solid color-mix(in srgb, var(--ink) 35%, transparent);
+  }
+
+  /* The 0.3X gap between mark and wordmark, full height. */
+  .band {
+    top: 0;
+    bottom: 0;
+    background: var(--iris-shade);
+  }
+
+  .art {
+    line-height: 0;
+  }
+
+  .art :global(svg) {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  /* [ — open to the right. */
+  .bracket {
+    border: 1px solid;
+    border-right: 0;
+  }
+
+  .rule {
+    border-top: 1px solid;
+  }
+
+  .label {
+    translate: -50% -50%;
+    font-family: var(--font-text);
+    font-size: clamp(0.6875rem, var(--label), var(--size-annotation));
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  .label.end {
+    translate: 0 -50%;
+  }
+
+  @container (max-width: 46rem) {
+    .pair {
       grid-template-columns: minmax(0, 1fr);
     }
   }

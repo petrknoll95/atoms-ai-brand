@@ -82,7 +82,7 @@ src/data/
   logos.ts                   logo variants + the 4 download colors
   icons.ts                   15 stroke icons (name + SVG)
   patterns.json              layer spec extracted from Figma (structure × density) + colorways
-src/assets/brand/            logo/, diagrams/, icons/, illustration/, examples/, usage/  (exported from Figma)
+src/assets/brand/            logo/, diagrams/, icons/, illustration/, examples/  (exported from Figma)
 src/styles/                  fonts.css (@font-face), global.css (shell: 2 sizes, 2 colors)
 src/pages/tokens.css.ts      static endpoint that generates :root { --deep-green: … } from colors.ts
 src/layouts/Guide.astro      sidebar + content shell, links /tokens.css
@@ -109,7 +109,7 @@ src/pages/                   index (Intro), logo, color, typography, icons, patt
 - Implementation: one master SVG per variant with the fill swapped at runtime, so nothing is duplicated.
 - Cream and White previews sit on a Deep green tile so they're visible. The others sit on white with a hairline border.
 - **App icon:** rounded square (radius ≈ 17.4%) and circle, Cream on Deep green, mark at 60% width. Composed at build time from the master mark path. SVG and PNG downloads.
-- **Diagrams** (construction, clear space, kerning, height ratio, gap, placement, minimum size) are exported from Figma as SVG and inlined with guideline copy.
+- **Diagrams** are built in HTML (grids, guides, frames and every label) around the master mark and logotype; only artwork and icon strokes stay SVG.
 - **Mark reveal:** a replayable SVG/CSS recreation (circles slide inward through clip-path slits, using the documented timings and easing), with a Replay button. Respects `prefers-reduced-motion`.
 - **Name in copy:** do/don't list set in live type.
 
@@ -149,7 +149,7 @@ src/pages/                   index (Intro), logo, color, typography, icons, patt
    - The field is always scaled uniformly and cropped, never stretched.
    - One structure per render.
 5. The Structures, Density and Colorways sub-sections use the same renderer, so the docs and the tool can't drift apart.
-6. The Usage do/don't tiles are exported from Figma as images. The "don't" tiles can't come from the guarded generator by design.
+6. The Usage do/don't tiles render live from the pattern renderer, with HTML headlines and CSS crosses. The "don't" tiles bypass the guarded generator on purpose (off-palette colors, stretching, mixed structures).
 
 ### Illustration
 - Style (3 concept drawings: Full Visibility, Built In Your Stack, Compounding Outcomes) and Linework (6 isometric objects).
@@ -168,7 +168,7 @@ src/pages/                   index (Intro), logo, color, typography, icons, patt
 
 All extraction is read-only against Figma via the MCP:
 - **SVG:** `node.exportAsync({ format: 'SVG_STRING' })` through `use_figma`. This was verified to give clean output for the mark and logotype.
-- **Raster:** `download_assets` at 2× for the mockups and usage tiles.
+- **Raster:** `download_assets` at 2× for the mockups.
 
 All copy text comes from the slides verbatim. The source node IDs are recorded in a `README.md` table so assets can be re-synced when the WIP file changes.
 

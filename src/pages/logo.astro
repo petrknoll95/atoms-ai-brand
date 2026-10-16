@@ -1,20 +1,17 @@
 ---
 import Guide from '../layouts/Guide.astro';
 import Sub from '../components/Sub.astro';
+import AppIconGuides from '../components/AppIconGuides.astro';
 import AssetCard from '../components/AssetCard.astro';
+import ClearSpace from '../components/ClearSpace.astro';
 import Figure from '../components/Figure.astro';
 import LockupKerning from '../components/LockupKerning.astro';
 import LockupRatios from '../components/LockupRatios.astro';
+import MarkConstruction from '../components/MarkConstruction.astro';
 import MarkReveal from '../components/MarkReveal.astro';
+import MinimumSize from '../components/MinimumSize.astro';
+import Placement from '../components/Placement.astro';
 import { appIconSvg, logotypeSvg, markSvg } from '../data/logos';
-import construction from '../assets/brand/diagrams/mark-construction.svg?raw';
-import markClearSpace from '../assets/brand/diagrams/mark-clear-space.svg?raw';
-import markPlacement from '../assets/brand/diagrams/mark-placement.svg?raw';
-import logotypeClearSpace from '../assets/brand/diagrams/logotype-clear-space.svg?raw';
-import logotypePlacement from '../assets/brand/diagrams/logotype-placement.svg?raw';
-import minimumSize from '../assets/brand/diagrams/logotype-minimum-size.svg?raw';
-import squareGuides from '../assets/brand/diagrams/app-icon-square-guides.svg?raw';
-import circleGuides from '../assets/brand/diagrams/app-icon-circle-guides.svg?raw';
 
 const timeline = [
   ['0.40 s', 'Outer pair appears'],
@@ -36,9 +33,9 @@ const timeline = [
       <p>Always use the master artwork. Never redraw or adjust the mark.</p>
     </Fragment>
     <div class="stack">
-      <AssetCard id="atomsai-mark" name="Mark" svg={markSvg} artWidth="clamp(5rem, 22%, 9rem)" previewHeight="16rem" />
+      <AssetCard id="atomsai-mark" name="Mark" svg={markSvg} artWidth="clamp(5rem, 22%, 9rem)" previewHeight="clamp(18rem, 30vw, 26rem)" />
       <Figure caption="Mark construction" tone="plain">
-        <Fragment set:html={construction} />
+        <MarkConstruction />
       </Figure>
     </div>
   </Sub>
@@ -61,7 +58,7 @@ const timeline = [
       </dl>
     </Fragment>
     <div class="stack">
-      <AssetCard id="atomsai-logotype" name="Logotype" svg={logotypeSvg} artWidth="clamp(12rem, 55%, 26rem)" previewHeight="16rem" />
+      <AssetCard id="atomsai-logotype" name="Logotype" svg={logotypeSvg} artWidth="clamp(12rem, 55%, 26rem)" previewHeight="clamp(18rem, 30vw, 26rem)" />
       <LockupKerning />
       <LockupRatios />
     </div>
@@ -80,8 +77,8 @@ const timeline = [
       <p>No type, imagery or other graphic elements should enter this space.</p>
     </Fragment>
     <div class="pair clear">
-      <Figure caption="Mark — X/2 and Y/2" tone="plain"><Fragment set:html={markClearSpace} /></Figure>
-      <Figure caption="Logotype — X and Y" tone="plain" class="on-dark"><Fragment set:html={logotypeClearSpace} /></Figure>
+      <Figure caption="Mark — X/2 and Y/2" tone="plain"><ClearSpace variant="mark" /></Figure>
+      <Figure caption="Logotype — X and Y" tone="plain" class="on-dark"><ClearSpace variant="logotype" /></Figure>
     </div>
   </Sub>
 
@@ -97,8 +94,8 @@ const timeline = [
       </p>
     </Fragment>
     <div class="stack">
-      <Figure caption="Mark — top, middle or bottom, left or right" tone="plain"><Fragment set:html={markPlacement} /></Figure>
-      <Figure caption="Logotype — top, middle or bottom, always left" tone="plain"><Fragment set:html={logotypePlacement} /></Figure>
+      <Figure caption="Mark — top, middle or bottom, left or right" tone="plain"><Placement variant="mark" /></Figure>
+      <Figure caption="Logotype — top, middle or bottom, always left" tone="plain"><Placement variant="logotype" /></Figure>
     </div>
   </Sub>
 
@@ -116,7 +113,7 @@ const timeline = [
       </dl>
       <p>Below these sizes, use the mark on its own.</p>
     </Fragment>
-    <Figure tone="plain"><Fragment set:html={minimumSize} /></Figure>
+    <MinimumSize />
   </Sub>
 
   <Sub id="app-icon" title="App icon" number="2.11">
@@ -131,10 +128,10 @@ const timeline = [
       </p>
     </Fragment>
     <div class="pair">
-      <AssetCard id="atomsai-icon-rounded" name="Rounded square" svg={appIconSvg('square')} options={null} artWidth="9rem" previewHeight="14rem" pngSize={1024} />
-      <AssetCard id="atomsai-icon-circle" name="Circle" svg={appIconSvg('circle')} options={null} artWidth="9rem" previewHeight="14rem" pngSize={1024} />
-      <Figure tone="plain"><Fragment set:html={squareGuides} /></Figure>
-      <Figure tone="plain"><Fragment set:html={circleGuides} /></Figure>
+      <AssetCard id="atomsai-icon-rounded" name="Rounded square" svg={appIconSvg('square')} options={null} artWidth="9rem" previewHeight="20rem" pngSize={1024} />
+      <AssetCard id="atomsai-icon-circle" name="Circle" svg={appIconSvg('circle')} options={null} artWidth="9rem" previewHeight="20rem" pngSize={1024} />
+      <Figure tone="plain"><AppIconGuides shape="square" /></Figure>
+      <Figure tone="plain"><AppIconGuides shape="circle" /></Figure>
     </div>
   </Sub>
 

@@ -1,40 +1,111 @@
 ---
-// 2.5 Wordmark kerning, drawn from the master logotype. Values are in thousandths of an em,
-// as specified on the Figma lockup slide.
+// 2.5 Wordmark kerning, drawn in HTML around the master logotype. Values are in thousandths of
+// an em, as specified on the Figma lockup slide. Everything is placed in lockup units (see
+// `lockup`) inside a frame with the same aspect ratio, so the diagram scales with its width;
+// only the logotype itself is SVG.
 import Figure from './Figure.astro';
-import { colors } from '../data/colors';
-import { lockup, logotypeInner } from '../data/logos';
+import { lockup, logotypeSvg } from '../data/logos';
 
 const pad = 80;
 const top = 70;
 const W = lockup.width + pad * 2;
 const H = lockup.height + top + 50;
 const mid = lockup.height / 2;
+
+// Lockup units → percentages of the frame.
+const pct = (v: number) => `${+(v * 100).toFixed(4)}%`;
+const x = (v: number) => pct((v + pad) / W);
+const y = (v: number) => pct((v + top) / H);
+const w = (v: number) => pct(v / W);
+const h = (v: number) => pct(v / H);
+
+// Labels stay at annotation size until the closest pair would touch (about 2.2em apart), then
+// shrink with the frame down to an 11px floor.
+const closest = Math.min(...lockup.kerning.slice(1).map((k, i) => k.x - lockup.kerning[i].x));
+const labelSize = `${+((closest / 2.2 / W) * 100).toFixed(4)}cqi`;
+
+const minus = (n: number) => String(n).replace('-', '−');
+const label = `Custom kerning between each pair of letters in the wordmark, in thousandths of an em: ${lockup.kerning
+  .map((k) => `${k.pair} ${minus(k.value)}`)
+  .join(', ')}`;
 ---
 
 <Figure caption="Wordmark kerning" tone="framed">
-  <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label="Custom kerning between each pair of letters in the wordmark">
-    <g transform={`translate(${pad} ${top})`}>
-      <g stroke={colors.iris.hex} stroke-width="1.2" fill="none">
-        <line x1={-pad} x2={lockup.width + pad} y1={lockup.capTop} y2={lockup.capTop} />
-        <line x1={lockup.wordX - 20} x2={lockup.width + pad} y1={lockup.xTop} y2={lockup.xTop} />
-        <line x1={-pad} x2={lockup.width + pad} y1={lockup.baseline} y2={lockup.baseline} />
-        <line x1={-pad} x2={lockup.width + pad} y1={mid} y2={mid} stroke-dasharray="6 6" />
-        <rect x="0" y="0" width={lockup.markWidth} height={lockup.height} />
-      </g>
-      <g fill={colors.deepGreen.hex} set:html={logotypeInner} />
-      <g fill={colors.iris.hex} font-family="PP Neue Montreal, sans-serif" font-size="18" text-anchor="middle">
-        {
-          lockup.kerning.map((k) => (
-            <>
-              <rect x={k.x - 3} y={lockup.xTop - 30} width="6" height={lockup.baseline - lockup.xTop + 40} fill-opacity="0.35" />
-              <text x={k.x} y="-16">
-                {String(k.value).replace('-', '−')}
-              </text>
-            </>
-          ))
-        }
-      </g>
-    </g>
-  </svg>
+  <div class="diagram" style={`aspect-ratio: ${W} / ${H}; --label: ${labelSize}`} role="img" aria-label={label}>
+    <div class="guide" style={`top: ${y(lockup.capTop)}`}></div>
+    <div class="guide" style={`top: ${y(lockup.xTop)}; left: ${x(lockup.wordX - 20)}`}></div>
+    <div class="guide" style={`top: ${y(lockup.baseline)}`}></div>
+    <div class="guide dashed" style={`top: ${y(mid)}; --dash: ${w(6)}`}></div>
+    <div class="box" style={`left: ${x(0)}; top: ${y(0)}; width: ${w(lockup.markWidth)}; height: ${h(lockup.height)}`}></div>
+    <div class="art" style={`left: ${x(0)}; top: ${y(0)}; width: ${w(lockup.width)}`} set:html={logotypeSvg} />
+    {
+      lockup.kerning.map((k) => (
+        <>
+          <div
+            class="marker"
+            style={`left: ${x(k.x - 3)}; top: ${y(lockup.xTop - 30)}; width: ${w(6)}; height: ${h(lockup.baseline - lockup.xTop + 40)}`}
+          />
+          {/* Centred where the slide's 18-unit labels sat (baseline 16 units above cap top). */}
+          <span class="value" style={`left: ${x(k.x)}; top: ${y(-22)}`}>
+            {minus(k.value)}
+          </span>
+        </>
+      ))
+    }
+  </div>
 </Figure>
+
+<style>
+  .diagram {
+    container-type: inline-size;
+    position: relative;
+    overflow: hidden;
+    color: var(--iris);
+  }
+
+  .diagram > * {
+    position: absolute;
+  }
+
+  /* 1px Iris guides: cap top, x-height, baseline and the dashed midline. */
+  .guide {
+    left: 0;
+    right: 0;
+    border-top: 1px solid;
+  }
+
+  /* 6-unit dashes, like the Figma guide (a dashed border would draw 3px dashes at any size). */
+  .dashed {
+    height: 1px;
+    border: 0;
+    background: repeating-linear-gradient(to right, currentColor 0 var(--dash), transparent 0 calc(var(--dash) * 2));
+  }
+
+  .box {
+    border: 1px solid;
+  }
+
+  .art {
+    color: var(--deep-green);
+    line-height: 0;
+  }
+
+  .art :global(svg) {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .marker {
+    background: currentColor;
+    opacity: 0.35;
+  }
+
+  .value {
+    translate: -50% -50%;
+    font-family: var(--font-text);
+    font-size: clamp(0.6875rem, var(--label), var(--size-annotation));
+    line-height: 1;
+    white-space: nowrap;
+  }
+</style>

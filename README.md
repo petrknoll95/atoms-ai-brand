@@ -33,7 +33,7 @@ public/pattern-masks/    Concentric ring masks (Figma's own SVG output, minified
 src/data/colors.ts       The palette — single source for /tokens.css and every swatch
 src/data/patterns.ts     Pattern spec: slit gradients, ring masks, colorways
 src/data/*.ts            Navigation, logos, icons, asset color options
-src/assets/brand/        Logo masters, icons, illustrations, diagrams, examples, usage tiles
+src/assets/brand/        Logo masters, icons, illustrations, icon diagram strokes, examples
 src/scripts/             Copy/download actions, SVG→PNG export, pattern renderer
 src/components/          Shell, swatches, asset cards, pattern tiles and generator
 src/pages/               One page per section; tokens.css.ts serves the CSS variables
@@ -55,7 +55,7 @@ File `71GQknySbCroHLUwJYdAn2` (AtomsAI-Brand), page **Brand Guidelines (WIP)**, 
 | Pattern colorways | slides 4.2–4.6 (`1157:11788`, `1157:11807`, `1157:11826`, `1157:11845`, `1274:10177`) |
 | Icons | 6.3 Library `1262:7807` (72 px artwork, normalized to 24 px) |
 | Illustrations | 7.1 Style `1157:14267`, 7.2 Linework `1157:14345` |
-| Diagrams | Logo slides 2.1–2.11, Iconography 6.1–6.2 |
+| Diagrams | Logo slides 2.1–2.11 are redrawn in HTML from the master artwork (`src/components/`); Iconography 6.1–6.2 keep their icon strokes as SVG over an HTML grid |
 | Examples | Applications 8.1–8.9 `Mockups` frames |
 
 ### Re-syncing assets

@@ -1,0 +1,50 @@
+---
+// An icon drawn large on its 24 px grid. The square, grid lines and frame are CSS; the svg
+// (470 viewBox, from Figma) only carries the strokes and any callout, laid over the grid.
+interface Props {
+  svg: string;
+  tone?: 'dark' | 'light';
+}
+const { svg, tone = 'dark' } = Astro.props;
+---
+
+<div class:list={['icon-grid', tone]} set:html={svg} />
+
+<style>
+  .icon-grid {
+    position: relative;
+    aspect-ratio: 1;
+    background: var(--surface);
+  }
+
+  /* 23 inner lines at k/24, painted as one layer at 10% so crossings don't double up */
+  .icon-grid::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0.1;
+    background-image:
+      repeating-linear-gradient(to right, var(--line) 0 1px, transparent 1px calc(100% / 24)),
+      repeating-linear-gradient(to bottom, var(--line) 0 1px, transparent 1px calc(100% / 24));
+    /* drop the k = 0 edge lines and keep the frame clear */
+    clip-path: inset(1px);
+  }
+
+  .icon-grid :global(svg) {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .dark {
+    --surface: var(--forest-shade);
+    --line: var(--cream);
+  }
+
+  .light {
+    --surface: var(--white);
+    --line: var(--deep-green);
+    box-shadow: inset 0 0 0 1px var(--mist);
+  }
+</style>

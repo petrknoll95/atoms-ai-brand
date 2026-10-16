@@ -1,18 +1,9 @@
 ---
-import { Image } from 'astro:assets';
 import Guide from '../layouts/Guide.astro';
 import Sub from '../components/Sub.astro';
 import PatternTile from '../components/PatternTile.astro';
 import PatternGenerator from '../components/PatternGenerator.astro';
-import { SLITS, structures } from '../data/patterns';
-import doCrop from '../assets/brand/pattern-usage/do-crop.webp';
-import doType from '../assets/brand/pattern-usage/do-type.webp';
-import doRotate from '../assets/brand/pattern-usage/do-rotate.webp';
-import doColorway from '../assets/brand/pattern-usage/do-colorway.webp';
-import dontSkew from '../assets/brand/pattern-usage/dont-skew.webp';
-import dontRecolor from '../assets/brand/pattern-usage/dont-recolor.webp';
-import dontType from '../assets/brand/pattern-usage/dont-type.webp';
-import dontMix from '../assets/brand/pattern-usage/dont-mix.webp';
+import { SLITS, structures, type Colors, type StructureId } from '../data/patterns';
 
 const greens = ['Forest', 'Sage', 'Graphite'];
 // The densities the guideline slides use: colorway previews (4.2–4.5) and the Iris slide (4.6).
@@ -20,18 +11,54 @@ const previewDensity: Record<string, number> = { drift: 1, offset: 1, 'single-ba
 const irisDensity: Record<string, number> = { drift: 0, offset: 1, 'single-band': 1, concentric: 1 };
 const densityLabels = ['Density 0 — Coarse', 'Density 1', 'Density 2', 'Density 3 — Fine'];
 
-const usage = {
+// Usage examples (4.9): live fields with real type. Each tile layers one or more fields; the zooms, pans and
+// rotations reproduce the crops of the Figma examples.
+interface UsageField {
+  structure: StructureId;
+  density: number;
+  colorway?: string;
+  /** Role → color overrides. Don't examples only. */
+  colors?: Colors;
+  rotation?: number;
+  zoom?: number;
+  panX?: number;
+  panY?: number;
+  /** Where the field sits in the tile: the whole frame (default), one half, or squashed out of proportion. */
+  fit?: 'left' | 'right' | 'squash';
+}
+
+interface UsageExample {
+  title: string;
+  text: string;
+  fields: UsageField[];
+  /** Sample headline, set in the quiet top of the field or across the beams at the bottom. */
+  headline?: 'top' | 'bottom';
+}
+
+// Deliberately off-palette (the point of the Don't) — never use these anywhere else.
+const offPalette: Colors = { base: '#1E2A5D', upper: '#406CD4', lower: '#F3A643' };
+
+const usage: Record<'do' | 'dont', UsageExample[]> = {
   do: [
-    { src: doCrop, title: 'Crop and scale freely', text: 'Let the field bleed off the edge. Any crop is on-brand.' },
-    { src: doType, title: 'Set type in the calm field', text: 'Place copy where the pattern is quiet, never across the beams.' },
-    { src: doRotate, title: 'Rotate to suit the format', text: 'Run the field horizontally, vertically or at an angle to fit the layout.' },
-    { src: doColorway, title: 'Use a published colorway', text: 'Forest by default, Iris as an accent.' },
+    { title: 'Crop and scale freely', text: 'Let the field bleed off the edge. Any crop is on-brand.', fields: [{ structure: 'offset', density: 1, zoom: 5.85, panX: 0.17, panY: -0.13 }] },
+    { title: 'Set type in the calm field', text: 'Place copy where the pattern is quiet, never across the beams.', fields: [{ structure: 'offset', density: 1, zoom: 1.24, panY: -1 }], headline: 'top' },
+    { title: 'Rotate to suit the format', text: 'Run the field horizontally, vertically or at an angle to fit the layout.', fields: [{ structure: 'offset', density: 1, rotation: -45, zoom: 1.95 }] },
+    { title: 'Use a published colorway', text: 'Forest by default, Iris as an accent.', fields: [{ structure: 'offset', density: 1, colorway: 'Iris' }] },
   ],
   dont: [
-    { src: dontSkew, title: 'Skew or stretch', text: 'Never warp, skew or stretch the field out of proportion.' },
-    { src: dontRecolor, title: 'Recolor off-palette', text: 'Use only the published colorways or palette colors.' },
-    { src: dontType, title: 'Set type across the beams', text: 'Copy over the bright spikes loses contrast and rhythm.' },
-    { src: dontMix, title: 'Mix structures', text: 'Use one structure per composition.' },
+    // Panned half a slit so a spike sits at the center, as in the Figma example.
+    { title: 'Skew or stretch', text: 'Never warp, skew or stretch the field out of proportion.', fields: [{ structure: 'offset', density: 0, panX: 0.435, fit: 'squash' }] },
+    { title: 'Recolor off-palette', text: 'Use only the published colorways or palette colors.', fields: [{ structure: 'offset', density: 1, colors: offPalette }] },
+    { title: 'Set type across the beams', text: 'Copy over the bright spikes loses contrast and rhythm.', fields: [{ structure: 'offset', density: 1 }], headline: 'bottom' },
+    {
+      title: 'Mix structures',
+      text: 'Use one structure per composition.',
+      fields: [
+        { structure: 'offset', density: 1, zoom: 2, fit: 'left' },
+        // Panned so the rings center on the seam.
+        { structure: 'concentric', density: 1, zoom: 2, panX: 0.366, fit: 'right' },
+      ],
+    },
   ],
 };
 ---
@@ -124,7 +151,29 @@ const usage = {
             <div class="row four">
               {usage[kind].map((u) => (
                 <figure class="usage-item">
-                  <Image src={u.src} alt={`${kind === 'do' ? 'Do' : 'Don’t'}: ${u.title}`} widths={[300, 510]} sizes="(max-width: 1180px) 50vw, 20vw" />
+                  <div class:list={['usage-tile', kind]} role="img" aria-label={`${kind === 'do' ? 'Do' : 'Don’t'}: ${u.title}`}>
+                    {u.fields.map((f) => (
+                      <canvas
+                        class={f.fit}
+                        data-pattern
+                        data-structure={f.structure}
+                        data-density={f.density}
+                        data-colorway={f.colorway ?? 'Forest'}
+                        data-colors={f.colors && JSON.stringify(f.colors)}
+                        data-rotation={f.rotation}
+                        data-zoom={f.zoom}
+                        data-pan-x={f.panX}
+                        data-pan-y={f.panY}
+                        data-distort={f.fit === 'squash' ? '' : undefined}></canvas>
+                    ))}
+                    {u.headline && (
+                      <p class:list={['headline', u.headline]}>
+                        Built to
+                        <br />
+                        ship.
+                      </p>
+                    )}
+                  </div>
                   <figcaption>
                     <span>{u.title}</span>
                     <span class="muted">{u.text}</span>
@@ -185,9 +234,72 @@ const usage = {
     align-content: start;
   }
 
-  .usage-item :global(img) {
+  .usage-tile {
+    position: relative;
+    aspect-ratio: 510 / 476;
+    overflow: hidden;
+    isolation: isolate;
+    container-type: inline-size;
+    background: var(--deep-green);
+  }
+
+  .usage-tile canvas {
+    position: absolute;
+    inset: 0;
     width: 100%;
-    height: auto;
+    height: 100%;
+  }
+
+  /* Two structures side by side, each framed in its own half. */
+  .usage-tile .left,
+  .usage-tile .right {
+    width: 50%;
+  }
+
+  .usage-tile .right {
+    left: 50%;
+  }
+
+  /* The field squashed into a band. data-distort renders the canvas at its untransformed size, so the scale warps it. */
+  .usage-tile .squash {
+    top: 50%;
+    height: 193cqw;
+    translate: 0 -50%;
+    scale: 1 0.138;
+  }
+
+  .headline {
+    position: absolute;
+    left: 7.7cqw;
+    margin: 0;
+    color: var(--cream);
+    font-family: var(--font-display);
+    font-weight: 400;
+    line-height: 0.9;
+    letter-spacing: -0.01em;
+  }
+
+  .headline.top {
+    top: 8.2cqw;
+    font-size: 20.5cqw;
+  }
+
+  .headline.bottom {
+    bottom: 8.5cqw;
+    font-size: 15.3cqw;
+    line-height: 0.93;
+  }
+
+  /* Don't: a corner-to-corner cross. "to <corner>" gradients put their 50% line through the other two corners at any
+     aspect ratio; difference blending keeps it visible over both dark and bright parts of the field. */
+  .dont::after {
+    --cross: transparent calc(50% - 1.4px), var(--white) calc(50% - 0.8px), var(--white) calc(50% + 0.8px), transparent calc(50% + 1.4px);
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top right, var(--cross)), linear-gradient(to bottom right, var(--cross));
+    mix-blend-mode: difference;
+    pointer-events: none;
   }
 
   .usage-item figcaption {

@@ -1,0 +1,98 @@
+---
+// 2.3 Placement, drawn in HTML from the Figma slide: square frames with the artwork at the top,
+// middle or bottom. Sizes and insets keep the Figma proportions (frame 353 px wide): the mark is
+// 44 px wide with a 0.5X inset, the logotype 172 px wide with an inset of X.
+import { logotypeSvg, markSvg } from '../data/logos';
+
+interface Props {
+  variant: 'mark' | 'logotype';
+}
+
+const { variant } = Astro.props;
+const art = variant === 'mark' ? markSvg : logotypeSvg;
+const sides = variant === 'mark' ? 'left / right' : 'left';
+const positions = [
+  { key: 'top', label: 'Top' },
+  { key: 'middle', label: 'Middle' },
+  { key: 'bottom', label: 'Bottom' },
+];
+---
+
+<div class:list={['placement', variant]}>
+  {
+    positions.map((p) => (
+      <div class="cell">
+        <div class="frame" data-position={p.key}>
+          <span class="art" set:html={art} />
+          {variant === 'mark' && <span class="art alt" set:html={art} />}
+        </div>
+        <p class="muted">
+          {p.label} {sides}
+        </p>
+      </div>
+    ))
+  }
+</div>
+
+<style>
+  .placement {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.25rem;
+  }
+
+  .cell {
+    container-type: inline-size;
+    display: grid;
+    gap: 0.625rem;
+    align-content: start;
+  }
+
+  .frame {
+    display: flex;
+    justify-content: space-between;
+    aspect-ratio: 1;
+    padding: var(--inset);
+    box-shadow: inset 0 0 0 1px var(--frame);
+  }
+
+  .frame[data-position='middle'] {
+    align-items: center;
+  }
+
+  .frame[data-position='bottom'] {
+    align-items: flex-end;
+  }
+
+  .art {
+    display: block;
+    width: var(--art-w);
+    color: var(--ink);
+    line-height: 0;
+  }
+
+  .art :global(svg) {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .mark {
+    --inset: 5.66cqi;
+    --art-w: 12.45cqi;
+    --frame: var(--mist);
+    --ink: var(--deep-green);
+  }
+
+  /* The mark may sit on either margin; the right position is shown as the alternative. */
+  .mark .alt {
+    --ink: var(--mist);
+  }
+
+  .logotype {
+    --inset: 9.06cqi;
+    --art-w: 48.77cqi;
+    --frame: var(--deep-green);
+    --ink: var(--forest-shade);
+  }
+</style>

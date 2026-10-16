@@ -3,6 +3,7 @@ import Guide from '../layouts/Guide.astro';
 import Sub from '../components/Sub.astro';
 import Figure from '../components/Figure.astro';
 import IconLibrary from '../components/IconLibrary.astro';
+import IconGrid from '../components/IconGrid.astro';
 import { icon } from '../data/icons';
 import miter from '../assets/brand/diagrams/icon-miter-joins.svg?raw';
 import butt from '../assets/brand/diagrams/icon-butt-caps.svg?raw';
@@ -29,8 +30,8 @@ const buttons = [
       </p>
     </Fragment>
     <div class="pair">
-      <Figure caption="Miter joins — corners stay sharp and land on the grid." tone="plain"><Fragment set:html={miter} /></Figure>
-      <Figure caption="Butt caps — strokes stop flush at their end point." tone="plain"><Fragment set:html={butt} /></Figure>
+      <Figure caption="Miter joins — corners stay sharp and land on the grid." tone="plain"><IconGrid svg={miter} /></Figure>
+      <Figure caption="Butt caps — strokes stop flush at their end point." tone="plain"><IconGrid svg={butt} /></Figure>
     </div>
   </Sub>
 
@@ -46,8 +47,8 @@ const buttons = [
       <p>Weights are measured at 24 px. Scale the stroke with the icon, using the Scale tool (K) in Figma, so line weight stays in proportion.</p>
     </Fragment>
     <div class="pair">
-      <Figure caption="Regular (400) — 1.5 px stroke" tone="plain"><Fragment set:html={regular} /></Figure>
-      <Figure caption="Medium (500) — 2 px stroke" tone="plain"><Fragment set:html={medium} /></Figure>
+      <Figure caption="Regular (400) — 1.5 px stroke" tone="plain"><IconGrid svg={regular} tone="light" /></Figure>
+      <Figure caption="Medium (500) — 2 px stroke" tone="plain"><IconGrid svg={medium} tone="light" /></Figure>
     </div>
   </Sub>
 

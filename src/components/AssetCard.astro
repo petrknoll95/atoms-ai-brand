@@ -38,54 +38,44 @@ if (weights?.length) initial = withStrokeWidth(initial, weights[0].value);
 
 <article class="asset" data-asset={id} data-png-size={pngSize}>
   <template data-asset-svg set:html={svg} />
-  <div
-    class="preview"
-    data-asset-preview
-    data-tone={selected?.tone ?? 'light'}
-    style={`--art-w: ${artWidth}; --preview-h: ${previewHeight}`}
-    role="img"
-    aria-label={`${name} preview`}
-    set:html={initial}
-  />
-  <div class="controls">
-    <div class="meta">
-      <p>{name}</p>
-      {selected && options && options.length > 1 && <p class="muted" data-asset-color-label>{selected.label}</p>}
-    </div>
+  <div class="stage" data-asset-tone data-tone={selected?.tone ?? 'light'} style={`--art-w: ${artWidth}; --preview-h: ${previewHeight}`}>
+    <div class="preview" data-asset-preview role="img" aria-label={`${name} preview`} set:html={initial} />
     {
-      options && options.length > 1 && (
-        <fieldset class="options">
-          <legend class="visually-hidden">{name} color</legend>
-          {options.map((o) => (
-            <label class="color-option" title={o.label}>
-              <input
-                type="radio"
-                name={`${id}-color`}
-                value={o.ink}
-                checked={o === selected}
-                data-asset-color={o.key}
-                data-surface={o.surface}
-                data-tone={o.tone}
-                data-label={o.label}
-              />
-              <span class="dot" style={`--ink: ${o.ink}; --surface: ${o.surface ?? o.ink}`} />
-              <span class="visually-hidden">{o.label}</span>
-            </label>
-          ))}
-        </fieldset>
-      )
-    }
-    {
-      weights && weights.length > 1 && (
-        <fieldset class="options weights">
-          <legend class="visually-hidden">{name} stroke weight</legend>
-          {weights.map((w, i) => (
-            <label class="weight-option">
-              <input type="radio" name={`${id}-weight`} value={w.value} checked={i === 0} data-asset-weight={w.key} />
-              <span>{w.label}</span>
-            </label>
-          ))}
-        </fieldset>
+      ((options && options.length > 1) || (weights && weights.length > 1)) && (
+        <div class="pickers">
+          {options && options.length > 1 && (
+            <fieldset class="options">
+              <legend class="visually-hidden">{name} color</legend>
+              {options.map((o) => (
+                <label class="color-option" title={o.label}>
+                  <input
+                    type="radio"
+                    name={`${id}-color`}
+                    value={o.ink}
+                    checked={o === selected}
+                    data-asset-color={o.key}
+                    data-surface={o.surface}
+                    data-tone={o.tone}
+                    data-label={o.label}
+                  />
+                  <span class="dot" style={`--ink: ${o.ink}; --surface: ${o.surface ?? o.ink}`} />
+                  <span class="visually-hidden">{o.label}</span>
+                </label>
+              ))}
+            </fieldset>
+          )}
+          {weights && weights.length > 1 && (
+            <fieldset class="options weights">
+              <legend class="visually-hidden">{name} stroke weight</legend>
+              {weights.map((w, i) => (
+                <label class="weight-option">
+                  <input type="radio" name={`${id}-weight`} value={w.value} checked={i === 0} data-asset-weight={w.key} />
+                  <span>{w.label}</span>
+                </label>
+              ))}
+            </fieldset>
+          )}
+        </div>
       )
     }
     <div class="btn-row">
@@ -93,6 +83,10 @@ if (weights?.length) initial = withStrokeWidth(initial, weights[0].value);
       <button class="btn" type="button" data-asset-action="download-svg">SVG ↓</button>
       <button class="btn" type="button" data-asset-action="download-png">PNG ↓</button>
     </div>
+  </div>
+  <div class="meta">
+    <p>{name}</p>
+    {selected && options && options.length > 1 && <p class="muted" data-asset-color-label>{selected.label}</p>}
   </div>
 </article>
 
@@ -103,19 +97,34 @@ if (weights?.length) initial = withStrokeWidth(initial, weights[0].value);
     align-content: start;
   }
 
-  .preview {
+  /* The canvas: art centered, color picker top left, actions bottom right. */
+  .stage {
+    --stage-bg: var(--white);
+    --stage-ring: var(--fg);
+    --dot-edge: color-mix(in srgb, var(--deep-green) 25%, transparent);
     display: grid;
-    place-items: center;
+    grid-template-areas: 'pickers' 'art' 'actions';
+    grid-template-rows: 2rem minmax(0, 1fr) 2rem;
+    gap: 1.5rem;
     height: var(--preview-h);
-    padding: 1.5rem;
-    background: var(--white);
+    padding: 1rem;
+    background: var(--stage-bg);
     box-shadow: inset 0 0 0 1px var(--rule);
     transition: background-color 160ms ease;
   }
 
-  .preview[data-tone='dark'] {
-    background: var(--deep-green);
+  .stage[data-tone='dark'] {
+    --stage-bg: var(--deep-green);
+    --stage-ring: var(--cream);
+    --dot-edge: color-mix(in srgb, var(--cream) 45%, transparent);
     box-shadow: none;
+  }
+
+  .preview {
+    grid-area: art;
+    display: grid;
+    place-items: center;
+    min-height: 0;
   }
 
   .preview :global(svg) {
@@ -124,9 +133,18 @@ if (weights?.length) initial = withStrokeWidth(initial, weights[0].value);
     max-height: 100%;
   }
 
-  .controls {
-    display: grid;
-    gap: 0.75rem;
+  .pickers {
+    grid-area: pickers;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .btn-row {
+    grid-area: actions;
+    justify-content: flex-end;
+    align-items: center;
   }
 
   .meta {
@@ -137,6 +155,7 @@ if (weights?.length) initial = withStrokeWidth(initial, weights[0].value);
 
   .options {
     display: flex;
+    align-items: center;
     flex-wrap: wrap;
     gap: 0.5rem;
     margin: 0;
@@ -164,21 +183,21 @@ if (weights?.length) initial = withStrokeWidth(initial, weights[0].value);
     border-radius: 50%;
     background: linear-gradient(135deg, var(--ink) 50%, var(--surface) 50%);
     box-shadow:
-      inset 0 0 0 1px color-mix(in srgb, var(--deep-green) 25%, transparent),
-      0 0 0 2px var(--bg),
+      inset 0 0 0 1px var(--dot-edge),
+      0 0 0 2px var(--stage-bg),
       0 0 0 3px transparent;
   }
 
   input:checked + .dot {
     box-shadow:
-      inset 0 0 0 1px color-mix(in srgb, var(--deep-green) 25%, transparent),
-      0 0 0 2px var(--bg),
-      0 0 0 3px var(--fg);
+      inset 0 0 0 1px var(--dot-edge),
+      0 0 0 2px var(--stage-bg),
+      0 0 0 3px var(--stage-ring);
   }
 
   input:focus-visible + .dot,
   input:focus-visible + span {
-    outline: 1.5px solid var(--fg);
+    outline: 1.5px solid var(--stage-ring);
     outline-offset: 4px;
   }
 

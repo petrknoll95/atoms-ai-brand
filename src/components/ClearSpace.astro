@@ -1,0 +1,181 @@
+---
+// 2.2 Clear space, drawn in HTML from the Figma slide. The grid cells are the clear zone, where
+// X and Y are the mark's width and height: X/2 and Y/2 around the mark, X and Y around the logotype.
+// Each ghost mark hugs the outer corner of its cell, so the cells read as slices of the mark.
+import { logotypeSvg, markSvg } from '../data/logos';
+
+interface Props {
+  variant: 'mark' | 'logotype';
+}
+
+const { variant } = Astro.props;
+const isMark = variant === 'mark';
+
+const columns = isMark ? ['X/2', 'X', 'X/2'] : ['X', '', 'X'];
+const rows = isMark ? ['Y/2', 'Y', 'Y/2'] : ['Y', 'Y', 'Y'];
+const label = isMark
+  ? 'Clear space around the mark: half its width on each side and half its height above and below'
+  : 'Clear space around the logotype: the width of the mark on each side and its height above and below';
+
+type Cell = { x: 'start' | 'center' | 'end'; y: 'start' | 'center' | 'end'; art?: 'ghost' | 'main' };
+const cells: Cell[] = isMark
+  ? [
+      { x: 'start', y: 'start', art: 'ghost' },
+      { x: 'start', y: 'start', art: 'ghost' },
+      { x: 'end', y: 'start', art: 'ghost' },
+      { x: 'start', y: 'start', art: 'ghost' },
+      { x: 'center', y: 'center', art: 'main' },
+      { x: 'end', y: 'start', art: 'ghost' },
+      { x: 'start', y: 'end', art: 'ghost' },
+      { x: 'start', y: 'end', art: 'ghost' },
+      { x: 'end', y: 'end', art: 'ghost' },
+    ]
+  : [
+      { x: 'center', y: 'center', art: 'ghost' },
+      { x: 'center', y: 'center' },
+      { x: 'center', y: 'center', art: 'ghost' },
+      { x: 'center', y: 'center', art: 'ghost' },
+      { x: 'center', y: 'center', art: 'main' },
+      { x: 'center', y: 'center', art: 'ghost' },
+      { x: 'center', y: 'center', art: 'ghost' },
+      { x: 'center', y: 'center' },
+      { x: 'center', y: 'center', art: 'ghost' },
+    ];
+---
+
+<div class:list={['clear-space', variant]}>
+  <div class="labels top" aria-hidden="true">{columns.map((c) => <span>{c}</span>)}</div>
+  <div class="labels left" aria-hidden="true">{rows.map((r) => <span>{r}</span>)}</div>
+  <div class="grid" role="img" aria-label={label}>
+    {
+      cells.map((c) => (
+        <div class="cell" style={`justify-content: ${c.x}; align-items: ${c.y}`}>
+          {c.art && <span class:list={['art', c.art]} set:html={c.art === 'main' && !isMark ? logotypeSvg : markSvg} />}
+        </div>
+      ))
+    }
+  </div>
+  {isMark && <div class="labels right" aria-hidden="true">{rows.map((r) => <span>{r}</span>)}</div>}
+  <div class="labels bottom" aria-hidden="true">{columns.map((c) => <span>{c}</span>)}</div>
+</div>
+
+<style>
+  .clear-space {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    grid-template-areas:
+      '. top .'
+      'left grid right'
+      '. bottom .';
+    gap: 0.5rem;
+    font-size: var(--size-annotation);
+    line-height: 1;
+  }
+
+  .mark {
+    --cols: minmax(0, 1fr) minmax(0, 2fr) minmax(0, 1fr);
+    --rows: minmax(0, 1fr) minmax(0, 2fr) minmax(0, 1fr);
+    --ratio: 352 / 320;
+    --cell: var(--white);
+    --ink: var(--deep-green);
+    --text: var(--fg);
+    --text-alt: var(--muted);
+  }
+
+  /* Mark 110 × 100 beside a 538.5 × 100 logotype. */
+  .logotype {
+    --cols: minmax(0, 110fr) minmax(0, 538.5fr) minmax(0, 110fr);
+    --rows: repeat(3, minmax(0, 1fr));
+    --ratio: 758.5 / 300;
+    --cell: var(--forest-shade);
+    --ink: var(--cream);
+    --text: var(--cream);
+    --text-alt: var(--cream);
+  }
+
+  /* 1px Iris lines between the cells. */
+  .grid {
+    grid-area: grid;
+    container-type: inline-size;
+    display: grid;
+    grid-template-columns: var(--cols);
+    grid-template-rows: var(--rows);
+    gap: 1px;
+    aspect-ratio: var(--ratio);
+    padding: 1px;
+    background: var(--iris);
+  }
+
+  .cell {
+    display: flex;
+    overflow: hidden;
+    background: var(--cell);
+  }
+
+  .art {
+    flex: none;
+    color: var(--ink);
+    line-height: 0;
+  }
+
+  .art :global(svg) {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .ghost {
+    opacity: 0.1;
+  }
+
+  .mark .art {
+    width: 50cqi;
+  }
+
+  .logotype .art {
+    width: 100%;
+  }
+
+  .labels {
+    display: grid;
+    color: var(--text);
+    text-align: center;
+  }
+
+  .top,
+  .bottom {
+    grid-template-columns: var(--cols);
+    padding-inline: 1px;
+  }
+
+  .top {
+    grid-area: top;
+  }
+
+  .bottom {
+    grid-area: bottom;
+    color: var(--text-alt);
+  }
+
+  .left,
+  .right {
+    grid-template-rows: var(--rows);
+    align-items: center;
+    padding-block: 1px;
+  }
+
+  .left {
+    grid-area: left;
+  }
+
+  .right {
+    grid-area: right;
+    color: var(--text-alt);
+  }
+
+  .left span,
+  .right span {
+    writing-mode: vertical-rl;
+    rotate: 180deg;
+  }
+</style>

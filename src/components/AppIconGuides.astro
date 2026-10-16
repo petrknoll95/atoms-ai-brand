@@ -1,0 +1,95 @@
+---
+// 2.11 App icon guides, drawn in HTML from the Figma slide (562 × 385): the container outline,
+// the mark at 60% of its width, and Iris guides marking the equal margin X on each side.
+import { markSvg } from '../data/logos';
+
+interface Props {
+  shape: 'square' | 'circle';
+}
+
+const { shape } = Astro.props;
+const W = 562;
+const H = 385;
+const pct = (v: number, of: number) => `${((v / of) * 100).toFixed(3)}%`;
+
+const box = { x: 166.5, y: 90, size: 229 };
+const mark = { x: 212, y: 141.8, width: 138 };
+const guides = [166, 212, 350, 395];
+const guideTop = 59.5;
+const guideHeight = 290;
+const labelY = 362;
+---
+
+<div class="guides" role="img" aria-label={`App icon, ${shape === 'square' ? 'rounded square' : 'circle'}: the mark spans 60% of the width, leaving a margin X on each side`}>
+  <p class="title">{shape === 'square' ? 'Rounded square' : 'Circle'} with guides</p>
+  <span
+    class:list={['shape', shape]}
+    style={`left: ${pct(box.x, W)}; top: ${pct(box.y, H)}; width: ${pct(box.size, W)}; height: ${pct(box.size, H)}`}
+  ></span>
+  <span class="art" style={`left: ${pct(mark.x, W)}; top: ${pct(mark.y, H)}; width: ${pct(mark.width, W)}`} set:html={markSvg} />
+  {guides.map((x) => <span class="guide" style={`left: ${pct(x, W)}; top: ${pct(guideTop, H)}; height: ${pct(guideHeight, H)}`} />)}
+  {
+    [0, 2].map((i) => (
+      <span class="x" style={`left: ${pct((guides[i] + guides[i + 1]) / 2, W)}; top: ${pct(labelY, H)}`}>
+        X
+      </span>
+    ))
+  }
+</div>
+
+<style>
+  .guides {
+    position: relative;
+    aspect-ratio: 562 / 385;
+    box-shadow: inset 0 0 0 1px var(--deep-green);
+  }
+
+  .title {
+    position: absolute;
+    top: 1.25rem;
+    left: 1.25rem;
+  }
+
+  .shape,
+  .art,
+  .guide,
+  .x {
+    position: absolute;
+  }
+
+  .shape {
+    border: 1px solid var(--mist);
+  }
+
+  .square {
+    border-radius: 17.25%;
+  }
+
+  .circle {
+    border-radius: 50%;
+  }
+
+  .art {
+    color: var(--deep-green);
+    line-height: 0;
+    opacity: 0.25;
+  }
+
+  .art :global(svg) {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .guide {
+    width: 1px;
+    background: var(--iris);
+  }
+
+  .x {
+    translate: -50% -50%;
+    color: var(--iris);
+    font-size: var(--size-annotation);
+    line-height: 1;
+  }
+</style>

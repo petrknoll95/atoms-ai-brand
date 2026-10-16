@@ -1,0 +1,79 @@
+---
+// 2.1 Mark construction, drawn in HTML from the Figma slide (1140 × 786): two mirrored sets of
+// three circles, the vertical cuts that slice them, and the points where cuts meet arcs.
+import { markSvg } from '../data/logos';
+
+const W = 1140;
+const H = 786;
+const pct = (v: number, of: number) => `${((v / of) * 100).toFixed(3)}%`;
+
+const mark = { x: 316.71, y: 162.81, width: 506.59 };
+const cuts = [316.71, 374.28, 460.63, 679.38, 765.73, 823.3];
+// [left, top, right] of each circle's bounding box.
+const circles = [
+  [0.13, 105.23, 575.8],
+  [0.0, 159.78, 466.43],
+  [1.5, 212.19, 362.77],
+  [564.21, 105.23, 1139.88],
+  [673.59, 159.95, 1140.0],
+  [777.25, 212.69, 1138.49],
+];
+const points = [
+  [316.71, 272.32], [316.71, 513.69], [362.77, 393.01], [374.28, 207.43], [374.28, 578.57],
+  [460.63, 162.81], [460.63, 341.41], [460.63, 444.58], [460.63, 623.19], [570.0, 335.57],
+  [570.0, 450.41], [679.38, 162.81], [679.38, 341.41], [679.38, 444.58], [679.38, 623.19],
+  [765.73, 207.43], [765.73, 578.57], [777.25, 393.01], [823.3, 272.32], [823.3, 513.69],
+];
+---
+
+<div class="construction" role="img" aria-label="Mark construction: two mirrored sets of three circles sliced by vertical cuts">
+  <span class="art" style={`left: ${pct(mark.x, W)}; top: ${pct(mark.y, H)}; width: ${pct(mark.width, W)}`} set:html={markSvg} />
+  {circles.map(([x0, y0, x1]) => <span class="circle" style={`left: ${pct(x0, W)}; top: ${pct(y0, H)}; width: ${pct(x1 - x0, W)}`} />)}
+  {cuts.map((x) => <span class="cut" style={`left: ${pct(x, W)}`} />)}
+  {points.map(([x, y]) => <span class="point" style={`left: ${pct(x, W)}; top: ${pct(y, H)}`} />)}
+</div>
+
+<style>
+  .construction {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 1140 / 786;
+  }
+
+  .construction > * {
+    position: absolute;
+  }
+
+  .art {
+    color: var(--deep-green);
+    line-height: 0;
+    opacity: 0.1;
+  }
+
+  .art :global(svg) {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .circle {
+    aspect-ratio: 1;
+    border: 1px solid var(--mist);
+    border-radius: 50%;
+  }
+
+  .cut {
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: var(--mist);
+  }
+
+  .point {
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: var(--black);
+    translate: -50% -50%;
+  }
+</style>
