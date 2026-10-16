@@ -1,0 +1,20 @@
+---
+import Guide from '../../layouts/Guide.astro';
+import Sub from '../../components/Sub.astro';
+import DownloadGroup from '../../components/DownloadGroup.astro';
+import { downloadCategories } from '../../data/downloads';
+---
+
+<Guide slug="assets" description="AtomsAI brand assets to download, one by one or a whole category at once.">
+  {
+    downloadCategories.map((c) => (
+      <Sub id={c.id} title={c.title}>
+        <Fragment slot="text">
+          <p>{c.description}</p>
+          {c.id === 'fonts' && <p class="muted">The font files are licensed to AtomsAI. Use them only for AtomsAI work.</p>}
+        </Fragment>
+        <DownloadGroup category={c} />
+      </Sub>
+    ))
+  }
+</Guide>

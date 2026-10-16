@@ -1,0 +1,117 @@
+---
+// One asset category on /assets/: a "Download all" bar and a grid of cards (4 columns wide,
+// 2 in between, 1 on phones), each with a preview, the file's name, format and size, and a download.
+import { statSync } from 'node:fs';
+import { join } from 'node:path';
+import { withBase } from '../data/base';
+import { fileName, type DownloadCategory } from '../data/downloads';
+
+interface Props {
+  category: DownloadCategory;
+}
+
+const { category } = Astro.props;
+const sizeOf = (file: string) => statSync(join(process.cwd(), 'public', file)).size;
+const kb = (bytes: number) => `${Math.round(bytes / 1024)} KB`;
+const items = category.items.map((d) => ({ ...d, fileName: fileName(d), size: sizeOf(d.file) }));
+const total = items.reduce((sum, d) => sum + d.size, 0);
+---
+
+<div class="group">
+  <div class="bar">
+    <p class="muted">{items.length} files · {kb(total)}</p>
+    <a class="btn" href={withBase(`/assets/${category.id}.zip`)} download={category.zip}>Download all ↓</a>
+  </div>
+  <ul class="grid">
+    {
+      items.map((d) => (
+        <li class="card">
+          <div class="preview" style={`--family: ${d.preview.family}; --weight: ${d.preview.weight}`} aria-hidden="true">
+            <span>Aa</span>
+          </div>
+          <div class="info">
+            <div class="meta">
+              <p>{d.name}</p>
+              <p class="muted">
+                {d.format} · {kb(d.size)}
+              </p>
+            </div>
+            <a class="btn" href={withBase(d.file)} download={d.fileName} aria-label={`Download ${d.name}`}>
+              Download ↓
+            </a>
+          </div>
+        </li>
+      ))
+    }
+  </ul>
+</div>
+
+<style>
+  .group {
+    container-type: inline-size;
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem 1rem;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2rem 1.25rem;
+  }
+
+  @container (min-width: 28rem) {
+    .grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @container (min-width: 46rem) {
+    .grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+
+  .card {
+    display: grid;
+    align-content: start;
+    gap: 0.875rem;
+  }
+
+  /* The font itself, large, as the preview. */
+  .preview {
+    display: grid;
+    place-items: center;
+    aspect-ratio: 4 / 3;
+    box-shadow: inset 0 0 0 1px var(--rule);
+    font-family: var(--family);
+    font-weight: var(--weight);
+    font-size: 4.5rem;
+    letter-spacing: -0.015em;
+    line-height: 1;
+  }
+
+  .preview span {
+    text-box: trim-both cap alphabetic;
+  }
+
+  .info {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 0.75rem;
+  }
+
+  .meta {
+    display: grid;
+    gap: 0.625rem;
+  }
+</style>

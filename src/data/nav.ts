@@ -90,9 +90,10 @@ export const sections: Section[] = [
   },
 ];
 
-/** Working tools, listed apart from the numbered guideline sections. */
+/** Working tools and the asset hub, listed apart from the numbered guideline sections. */
 export const tools: Section[] = [
   { slug: 'tools', title: 'Tools', href: withBase('/tools/'), subs: [s('pattern-generator', 'Pattern generator'), s('mark-reveal', 'Mark reveal')] },
+  { slug: 'assets', title: 'Assets', href: withBase('/assets/'), subs: [s('fonts', 'Fonts')] },
 ];
 
 export const section = (slug: string) => {

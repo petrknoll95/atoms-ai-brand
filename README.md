@@ -33,6 +33,7 @@ and `base` to `'/'`.
 | Illustration | Concept drawings and linework, recolorable, as SVG or PNG |
 | Examples | Application mockups |
 | Tools | `/tools/`: the pattern generator, with a Tweakpane panel (structure, colorway, density, size, rotation, scale, position, PNG export, shareable link), and the looping mark reveal with four colorways, an export frame, logo size and video export (MP4 or WebM, four aspect ratios, 720p to 4K) |
+| Assets | `/assets/`: downloadable files by category, each with a preview and a download, and a "Download all" zip built per category at build time (`src/pages/assets/[category].zip.ts`). Fonts for now; add categories in `src/data/downloads.ts` |
 
 The UI chrome uses two type sizes (display 32 px Founders Grotesk, annotation 14 px PP Neue Montreal) and two text colors (`--fg` Deep green, `--muted` Graphite) on white.
 

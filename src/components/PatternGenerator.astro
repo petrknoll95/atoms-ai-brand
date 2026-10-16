@@ -111,8 +111,10 @@
         step: rings ? 3 : 1,
         format: (v) => String(DENSITY_STOPS[Math.round(v)] ?? ''),
       });
-      // The field shows the slit count but would read typing as a stop index, so only the slider edits it.
+      // The field shows the slit count but would read typing as a stop index, so only the slider edits it,
+      // and the count reads as plain text.
       binding.element.querySelector('input')?.setAttribute('readonly', '');
+      binding.element.classList.add('value-only');
       densityBinding = binding;
     }
     bindDensity();
@@ -312,6 +314,18 @@
   .controls :global(.tp-lstv_s),
   .controls :global(.tp-btnv_b) {
     font-weight: 400;
+  }
+
+  /* Number fields are typed into, not dragged: drop Tweakpane's scrub handle, so the slider is
+     the only thing that slides. */
+  .controls :global(.tp-txtv_k) {
+    display: none;
+  }
+
+  .controls :global(.value-only .tp-txtv_i) {
+    padding-right: 0;
+    background: none;
+    cursor: default;
   }
 
   /* Folder toggle: a chevron at the right, pointing right when closed and down when open. */
