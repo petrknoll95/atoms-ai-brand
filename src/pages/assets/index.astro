@@ -2,13 +2,28 @@
 import Guide from '../../layouts/Guide.astro';
 import Sub from '../../components/Sub.astro';
 import DownloadGroup from '../../components/DownloadGroup.astro';
+import LogoDownloads from '../../components/LogoDownloads.astro';
 import { downloadCategories } from '../../data/downloads';
+import { logoVariants } from '../../data/logoExports';
+import { withBase } from '../../data/base';
+import logoManifest from '../../../public/logos/manifest.json';
+
+const logoBytes = logoManifest.files.reduce((total, file) => total + file.bytes, 0);
 ---
 
 <Guide slug="assets" description="AtomsAI brand assets to download, one by one or a whole category at once.">
+  <Sub id="logos" title="Logos" number="10.1">
+    <div class="logo-library">
+      <div class="package-bar">
+        <p class="muted">{logoManifest.files.length} files · {(logoBytes / 1024 / 1024).toFixed(1)} MB · Bitmaps 256–4096 px wide</p>
+        <a class="btn" href={withBase('/assets/logos.zip')} download="atomsai-logos.zip">Download all logos ↓</a>
+      </div>
+      {logoVariants.map((variant) => <LogoDownloads variant={variant} />)}
+    </div>
+  </Sub>
   {
     downloadCategories.map((c, i) => (
-      <Sub id={c.id} title={c.title} number={`10.${i + 1}`}>
+      <Sub id={c.id} title={c.title} number={`10.${i + 2}`}>
         <Fragment slot="text">
           <p>{c.description}</p>
           {c.id === 'fonts' && <p class="muted">The font files are licensed to AtomsAI. Use them only for AtomsAI work.</p>}
@@ -18,3 +33,8 @@ import { downloadCategories } from '../../data/downloads';
     ))
   }
 </Guide>
+
+<style>
+  .logo-library { display: grid; gap: 3rem; }
+  .package-bar { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+</style>

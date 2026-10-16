@@ -4,12 +4,20 @@ import { brandDownloads } from '../../../data/brandDownloads';
 import { allColors, colors, combinations, contrast, gradientCss, gradients, ramps, rgb, themes } from '../../../data/colors';
 import { downloadCategories } from '../../../data/downloads';
 import { colorwayNames, DENSITY_STOPS, SLITS, structures } from '../../../data/patterns';
+import logoManifest from '../../../../public/logos/manifest.json';
 
 export const GET: APIRoute = () => new Response(JSON.stringify({
   schemaVersion: 1,
   guidelines: publishedUrl('/'),
   usage: 'Use official artwork and the written guidelines. Font files are for AtomsAI work. currentColor SVGs need an explicit ink for standalone imports.',
   tokens: publishedUrl('/tokens.css'),
+  logoPackage: {
+    download: publishedUrl('/assets/logos.zip'),
+    manifest: publishedUrl('/logos/manifest.json'),
+    guidance: publishedUrl('/logos/README.md'),
+    sizes: logoManifest.sizes,
+    sizeUnit: logoManifest.sizeUnit,
+  },
   palette: allColors.map((c) => ({ ...c, rgb: rgb(c.hex) })),
   ramps: Object.fromEntries(Object.entries(ramps).map(([name, keys]) => [name, keys.map((key) => colors[key].token)])),
   combinations: combinations.map((keys) => ({
@@ -30,6 +38,9 @@ export const GET: APIRoute = () => new Response(JSON.stringify({
     note: 'Concentric uses only density indices 1 and 2 (10 and 20 in the generator). The generator produces final PNGs; these color recipes alone are not rendered patterns.',
   },
   assets: [
+    ...logoManifest.files.map(({ path, ...asset }) => ({
+      ...asset, category: 'logo', format: asset.format.toUpperCase(), url: publishedUrl(`/logos/${path}`),
+    })),
     ...brandDownloads.map(({ svg: _svg, path, ...asset }) => ({ ...asset, format: 'SVG', url: publishedUrl(`/assets/brand/${path}`) })),
     ...downloadCategories.flatMap((c) => c.items.map((d) => ({
       name: d.name, category: c.id, format: d.format, url: publishedUrl(d.file),

@@ -33,7 +33,7 @@ and `base` to `'/'`.
 | Illustration | Concept drawings and linework, recolorable, as SVG or PNG |
 | Examples | Application mockups |
 | Tools | `/tools/`: the pattern generator, with a Tweakpane panel (structure, colorway, density, size, rotation, scale, position, PNG export, shareable link), and the looping mark reveal with four colorways, an export frame, logo size and video export (MP4 or WebM, four aspect ratios, 720p to 4K) |
-| Assets | `/assets/`: downloadable files by category, each with a preview and a download, and a "Download all" zip built per category at build time (`src/pages/assets/[category].zip.ts`). Fonts for now; add categories in `src/data/downloads.ts` |
+| Assets | `/assets/`: 128 logo exports with format/size controls and full or per-logo ZIPs, plus the font library with individual and category downloads |
 | Skills | `/skills/`: a compact library linking to one page per skill, with formatted and source previews, clipboard copy, individual Markdown downloads and a ZIP with standard skill folders |
 
 The UI chrome uses two type sizes (display 32 px Founders Grotesk, annotation 14 px PP Neue Montreal) and two text colors (`--fg` Deep green, `--muted` Graphite) on white.
@@ -41,6 +41,7 @@ The UI chrome uses two type sizes (display 32 px Founders Grotesk, annotation 14
 ## Structure
 
 ```
+public/logos/            Generated logo delivery: logotype/symbol, SVG/PNG/JPG/WEBP, manifest and usage notes
 public/fonts/            Founders Grotesk + PP Neue Montreal (Regular, Medium) as woff2
 public/pattern-masks/    Concentric ring masks (Figma's own SVG output, minified)
 src/data/colors.ts       The palette — single source for /tokens.css and every swatch
@@ -55,13 +56,21 @@ scripts/figma/           Helpers used to clean Figma exports (see below)
 
 Colors are available as CSS custom properties at `/tokens.css` (`--deep-green`, `--cream`, …), generated from `src/data/colors.ts`.
 
+## Logo delivery
+
+`public/logos/` contains 128 checked-in exports generated from the canonical logo SVGs and palette. Both logo forms have four transparent SVGs, plus PNG, lossless WEBP and background JPGs at widths of 256, 512, 1024, 2048 and 4096 pixels. JPGs include the clear space specified by the logo diagrams. The package README explains sizing, bounds, colors and RGB usage; its manifest records exact dimensions and SHA-256 checksums.
+
+Run `npm run assets:logos` after changing a logo master, palette or export specification (`src/data/logoExports.ts`). This uses Sharp to rasterize at final resolution. Run `npm run check`, `npm run build`, `npm run check:logos -- --built` and `npm run check:skills` before delivery. Logo checks verify the master geometry, all dimensions and alpha channels, sRGB, lossless WEBP pixel parity, JPG backgrounds and ZIP contents.
+
+The Assets page offers individual files, `/assets/logos.zip`, `/assets/logos/logotype.zip` and `/assets/logos/symbol.zip`. ZIPs are built from the checked-in files. `/assets/brand/manifest.json` includes every export and links to `/logos/manifest.json` for machine-readable package metadata.
+
 ## Agent skills
 
 `skills/atomsai-brand/SKILL.md` covers the full brand system; `skills/atomsai-icons/SKILL.md` covers the icon style, measured master geometry and SVG production. Both are self-contained Markdown with portable `name` and `description` frontmatter. They can be installed in a host's skills directory or used as ordinary instructions/attachments. No vendor-specific tools are required.
 
 The dedicated `/skills/<name>/` pages, clipboard payload, `/skills/<name>/SKILL.md` endpoints and `/skills/atomsai-skills.zip` all use these same source files. Source files contain the current production links; generated previews/downloads automatically rewrite that origin and base from Astro's `site`/`base` settings. Add new skills to `src/data/skills.ts` and the Skills subsection list in `src/data/nav.ts`.
 
-Agents can fetch artwork without operating browser buttons: `/assets/brand/manifest.json` lists stable SVG/font URLs and current palette, theme, combination and gradient data. SVG routes are built from the original masters by `src/data/brandDownloads.ts`; there is no duplicate artwork directory. Fonts retain the asset library's AtomsAI-only usage restriction.
+Agents can fetch artwork without operating browser buttons: `/assets/brand/manifest.json` lists stable logo export, SVG and font URLs and current palette, theme, combination and gradient data. SVG routes are built from the original masters by `src/data/brandDownloads.ts`; there is no duplicate artwork directory. Fonts retain the asset library's AtomsAI-only usage restriction.
 
 The review and implementation decisions are recorded in `docs/skills-review.md`. When brand rules change, update the skill prose and its review metadata, then run `npm run check`, `npm run build` and `npm run check:skills`. The last command checks the built delivery files, links, palette and icon geometry against the canonical data, and checks that the ZIP contains the same Markdown as the individual downloads.
 

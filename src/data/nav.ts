@@ -100,7 +100,7 @@ export const tools: Section[] = [
     href: withBase('/tools/'),
     subs: [s('pattern-generator', 'Pattern generator', '9.1'), s('mark-reveal', 'Mark reveal', '9.2')],
   },
-  { slug: 'assets', title: 'Assets', href: withBase('/assets/'), subs: [s('fonts', 'Fonts', '10.1')] },
+  { slug: 'assets', title: 'Assets', href: withBase('/assets/'), subs: [s('logos', 'Logos', '10.1'), s('fonts', 'Fonts', '10.2')] },
   {
     slug: 'skills', title: 'Skills', href: withBase('/skills/'),
     subs: [
