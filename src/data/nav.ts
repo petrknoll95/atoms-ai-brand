@@ -1,3 +1,5 @@
+import { withBase } from './base';
+
 export interface SubSection {
   id: string;
   title: string;
@@ -15,11 +17,11 @@ export interface Section {
 const s = (id: string, title: string, number?: string): SubSection => ({ id, title, number });
 
 export const sections: Section[] = [
-  { slug: 'intro', title: 'Intro', href: '/', subs: [s('about', 'About this guide', '1.1'), s('contents', 'Contents', '1.2')] },
+  { slug: 'intro', title: 'Intro', href: withBase('/'), subs: [s('about', 'About this guide', '1.1'), s('contents', 'Contents', '1.2')] },
   {
     slug: 'logo',
     title: 'Logo',
-    href: '/logo/',
+    href: withBase('/logo/'),
     subs: [
       s('mark', 'Mark', '2.1'),
       s('logotype', 'Logotype', '2.4'),
@@ -33,7 +35,7 @@ export const sections: Section[] = [
   {
     slug: 'color',
     title: 'Color',
-    href: '/color/',
+    href: withBase('/color/'),
     subs: [
       s('palette', 'Palette', '3.1'),
       s('primary', 'Primary', '3.2'),
@@ -49,7 +51,7 @@ export const sections: Section[] = [
   {
     slug: 'typography',
     title: 'Typography',
-    href: '/typography/',
+    href: withBase('/typography/'),
     subs: [
       s('typefaces', 'Typefaces', '5.2'),
       s('character-set', 'Character set', '5.3'),
@@ -60,13 +62,13 @@ export const sections: Section[] = [
   {
     slug: 'icons',
     title: 'Icons',
-    href: '/icons/',
+    href: withBase('/icons/'),
     subs: [s('style', 'Style', '6.1'), s('weight', 'Weight', '6.2'), s('library', 'Library', '6.3'), s('in-use', 'In use', '6.4')],
   },
   {
     slug: 'patterns',
     title: 'Patterns',
-    href: '/patterns/',
+    href: withBase('/patterns/'),
     subs: [
       s('structures', 'Structures', '4.1'),
       s('density', 'Density', '4.7'),
@@ -77,20 +79,20 @@ export const sections: Section[] = [
   {
     slug: 'illustration',
     title: 'Illustration',
-    href: '/illustration/',
+    href: withBase('/illustration/'),
     subs: [s('style', 'Style', '7.1'), s('linework', 'Linework', '7.2')],
   },
   {
     slug: 'examples',
     title: 'Examples',
-    href: '/examples/',
+    href: withBase('/examples/'),
     subs: [s('social', 'Social', '8.1'), s('out-of-home', 'Out of home', '8.4'), s('print', 'Print', '8.8')],
   },
 ];
 
 /** Working tools, listed apart from the numbered guideline sections. */
 export const tools: Section[] = [
-  { slug: 'tools', title: 'Tools', href: '/tools/', subs: [s('pattern-generator', 'Pattern generator'), s('mark-reveal', 'Mark reveal')] },
+  { slug: 'tools', title: 'Tools', href: withBase('/tools/'), subs: [s('pattern-generator', 'Pattern generator'), s('mark-reveal', 'Mark reveal')] },
 ];
 
 export const section = (slug: string) => {

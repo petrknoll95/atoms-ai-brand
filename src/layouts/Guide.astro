@@ -3,6 +3,7 @@ import '../styles/global.css';
 import PageLink from '../components/PageLink.astro';
 import Sidebar from '../components/Sidebar.astro';
 import { section, sectionNumber } from '../data/nav';
+import { withBase } from '../data/base';
 
 interface Props {
   slug: string;
@@ -25,10 +26,10 @@ const title = slug === 'intro' ? 'AtomsAI Brand' : `${current.title} — AtomsAI
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="robots" content="noindex, nofollow" />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <link rel="preload" href="/fonts/PPNeueMontreal-Regular.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="/fonts/FoundersGrotesk-Regular.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="stylesheet" href="/tokens.css" />
+    <link rel="icon" href={withBase('/favicon.svg')} type="image/svg+xml" />
+    <link rel="preload" href={withBase('/fonts/PPNeueMontreal-Regular.woff2')} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={withBase('/fonts/FoundersGrotesk-Regular.woff2')} as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href={withBase('/tokens.css')} />
   </head>
   <body>
     <div class="shell">

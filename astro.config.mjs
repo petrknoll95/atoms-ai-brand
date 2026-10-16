@@ -2,7 +2,10 @@
 import { defineConfig } from 'astro/config';
 
 export default defineConfig({
-  site: 'https://brand.atomsai.com',
+  // Published on GitHub Pages at petrknoll95.github.io/atoms-ai-brand/. On a custom domain
+  // (e.g. brand.atomsai.com) set `site` to it and `base` to '/'.
+  site: 'https://petrknoll95.github.io',
+  base: '/atoms-ai-brand',
   build: { format: 'directory' },
   vite: {
     // Pre-bundle the client libraries at dev-server start. Otherwise Vite finds them on first use

@@ -5,10 +5,20 @@ It mirrors the **Brand Guidelines (WIP)** page of the `AtomsAI-Brand` Figma file
 
 ```bash
 npm install
-npm run dev      # http://localhost:4321
+npm run dev      # http://localhost:4321/atoms-ai-brand/
 npm run build    # static site in dist/
 npm run check    # type check
 ```
+
+## Deploy
+
+Every push to `main` publishes the site to GitHub Pages at
+https://petrknoll95.github.io/atoms-ai-brand/ through `.github/workflows/deploy.yml`.
+One-time setup: repo Settings → Pages → Source: GitHub Actions.
+
+The site is served from `/atoms-ai-brand/` (`base` in `astro.config.mjs`), so internal links and
+public assets go through `withBase()` in `src/data/base.ts`. On a custom domain, set `site` to it
+and `base` to `'/'`.
 
 ## What's in it
 

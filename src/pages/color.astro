@@ -1,4 +1,5 @@
 ---
+import { withBase } from '../data/base';
 import Guide from '../layouts/Guide.astro';
 import Sub from '../components/Sub.astro';
 import Swatch from '../components/Swatch.astro';
@@ -40,7 +41,7 @@ const ink = (key: ColorKey) =>
       <p class="muted">Click any color to copy its hex value.</p>
       <div class="btn-row">
         <button class="btn" type="button" data-copy={tokensCss()} data-copy-message="CSS variables copied">Copy CSS variables</button>
-        <a class="btn" href="/tokens.css" download="atomsai-colors.css">Download .css</a>
+        <a class="btn" href={withBase('/tokens.css')} download="atomsai-colors.css">Download .css</a>
       </div>
     </Fragment>
     <div class="mosaic">

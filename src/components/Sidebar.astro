@@ -1,6 +1,7 @@
 ---
 import SlitMark from './SlitMark.astro';
 import { sections, tools } from '../data/nav';
+import { withBase } from '../data/base';
 
 interface Props {
   current: string;
@@ -11,7 +12,7 @@ const { current } = Astro.props;
 
 <aside class="sidebar">
   <div class="bar">
-    <a class="brand" href="/" aria-label="AtomsAI Brand — home">
+    <a class="brand" href={withBase('/')} aria-label="AtomsAI Brand — home">
       <span class="brand-mark"><SlitMark uid="brand" /></span>
     </a>
     <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" data-menu-toggle>Menu</button>

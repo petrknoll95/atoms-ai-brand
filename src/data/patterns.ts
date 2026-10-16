@@ -9,6 +9,8 @@
 // count. Concentric is a stack of rings (annuli) whose gradients form soft bands at the ring
 // boundaries.
 
+import { withBase } from './base';
+
 export const FIELD = 840;
 export const VISIBLE = 800;
 
@@ -134,7 +136,7 @@ export const ringLayers: RingLayer[] = [
   { role: 'reflection', blend: 'lighter', uniform: 0.2 },
 ];
 
-export const ringMaskUrl = (density: number, role: Role) => `/pattern-masks/concentric-${density}-${role}.svg`;
+export const ringMaskUrl = (density: number, role: Role) => withBase(`/pattern-masks/concentric-${density}-${role}.svg`);
 
 const c = (base: string, upper: string, lower: string, highlight: string, reflection: string): Colors => ({
   base, upper, lower, highlight, reflection,

@@ -4,6 +4,7 @@ import Sub from '../components/Sub.astro';
 import PatternGenerator from '../components/PatternGenerator.astro';
 import MarkReveal from '../components/MarkReveal.astro';
 import { slitDefaults, slitMotion } from '../data/slitLogo';
+import { withBase } from '../data/base';
 
 // Mark reveal timings, from the slit logo's cycle.
 const cycle = slitMotion.seconds;
@@ -20,7 +21,7 @@ const pairStagger = at(slitMotion.stagger / slitDefaults.copies);
         the field. Only published colorways are available, and the field always scales evenly — it is never skewed or
         stretched.
       </p>
-      <p class="muted">The rules behind each structure, density and colorway are in <a href="/patterns/">Patterns</a>.</p>
+      <p class="muted">The rules behind each structure, density and colorway are in <a href={withBase('/patterns/')}>Patterns</a>.</p>
     </Fragment>
     <PatternGenerator />
   </Sub>
