@@ -138,13 +138,12 @@ const initial = colorways[0];
     const state = { format: 'square', resolution: 1080, logo: 40 };
     const pane = new Pane({ container: host });
 
-    const video = pane.addFolder({ title: 'Video' });
-    const format = video
+    const format = pane
       .addBinding(state, 'format', { label: 'Format', options: Object.fromEntries(Object.entries(formats).map(([key, f]) => [f.label, key])) })
       .on('change', () => root.style.setProperty('--ratio', String(formats[state.format].ratio)));
     addSteppers(format, 'format');
-    addSteppers(video.addBinding(state, 'resolution', { label: 'Resolution', options: { '720p': 720, '1080p': 1080, '4K': 2160 } }), 'resolution');
-    video
+    addSteppers(pane.addBinding(state, 'resolution', { label: 'Resolution', options: { '720p': 720, '1080p': 1080, '4K': 2160 } }), 'resolution');
+    pane
       .addBinding(state, 'logo', { label: 'Logo size', min: 10, max: 90, step: 1, format: (v) => `${v}%` })
       .on('change', () => root.style.setProperty('--logo', String(state.logo)));
 
