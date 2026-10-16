@@ -27,7 +27,6 @@ export const sections: Section[] = [
       s('placement', 'Placement', '2.3'),
       s('minimum-size', 'Minimum size', '2.8'),
       s('app-icon', 'App icon', '2.11'),
-      s('mark-reveal', 'Mark reveal', '2.9'),
       s('name-in-copy', 'Name in copy', '2.10'),
     ],
   },
@@ -91,7 +90,7 @@ export const sections: Section[] = [
 
 /** Working tools, listed apart from the numbered guideline sections. */
 export const tools: Section[] = [
-  { slug: 'tools', title: 'Tools', href: '/tools/', subs: [s('pattern-generator', 'Pattern generator')] },
+  { slug: 'tools', title: 'Tools', href: '/tools/', subs: [s('pattern-generator', 'Pattern generator'), s('mark-reveal', 'Mark reveal')] },
 ];
 
 export const section = (slug: string) => {

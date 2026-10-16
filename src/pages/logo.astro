@@ -8,20 +8,12 @@ import Figure from '../components/Figure.astro';
 import LockupKerning from '../components/LockupKerning.astro';
 import LockupRatios from '../components/LockupRatios.astro';
 import MarkConstruction from '../components/MarkConstruction.astro';
-import MarkReveal from '../components/MarkReveal.astro';
 import MinimumSize from '../components/MinimumSize.astro';
 import Placement from '../components/Placement.astro';
 import { appIconSvg, lockup, logotypeSvg, markSvg } from '../data/logos';
-import { slitDefaults, slitMotion } from '../data/slitLogo';
 
 // The wordmark's cap height as a share of the mark, from the lockup geometry.
 const capHeightRatio = Math.round(((lockup.baseline - lockup.capTop) / lockup.height) * 100);
-
-// Mark reveal timings, from the slit logo's cycle.
-const cycle = slitMotion.seconds;
-const at = (fraction: number) => `${+(fraction * cycle).toFixed(2)} s`;
-const moveDuration = at(slitMotion.hide[1] - slitMotion.hide[0]);
-const pairStagger = at(slitMotion.stagger / slitDefaults.copies);
 ---
 
 <Guide slug="logo" description="The AtomsAI mark and logotype: rules and downloads in every color.">
@@ -146,34 +138,6 @@ const pairStagger = at(slitMotion.stagger / slitDefaults.copies);
     </div>
   </Sub>
 
-  <Sub id="mark-reveal" title="Mark reveal" number="2.9">
-    <Fragment slot="text">
-      <p>
-        The mark hides and reveals itself. Each blade is a circle seen through a vertical slit: the circles retreat
-        outward until they clear their slits, hold, then return. The outer pair moves first and the center pair last.
-      </p>
-      <dl class="rules">
-        <div>
-          <dt>Cycle</dt>
-          <dd class="muted">{cycle} s, looping</dd>
-        </div>
-        <div>
-          <dt>Each move</dt>
-          <dd class="muted">{moveDuration}</dd>
-        </div>
-        <div>
-          <dt>Stagger</dt>
-          <dd class="muted">{pairStagger} per pair, from the outside in</dd>
-        </div>
-        <div>
-          <dt>Easing</dt>
-          <dd class="muted">{slitMotion.easing}</dd>
-        </div>
-      </dl>
-    </Fragment>
-    <MarkReveal uid="logo-reveal" controls />
-  </Sub>
-
   <Sub id="name-in-copy" title="Name in copy" number="2.10">
     <Fragment slot="text">
       <p>
@@ -219,7 +183,6 @@ const pairStagger = at(slitMotion.stagger / slitDefaults.copies);
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 2rem 1.25rem;
   }
-
 
 
   .copy-examples {

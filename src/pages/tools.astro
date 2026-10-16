@@ -2,9 +2,17 @@
 import Guide from '../layouts/Guide.astro';
 import Sub from '../components/Sub.astro';
 import PatternGenerator from '../components/PatternGenerator.astro';
+import MarkReveal from '../components/MarkReveal.astro';
+import { slitDefaults, slitMotion } from '../data/slitLogo';
+
+// Mark reveal timings, from the slit logo's cycle.
+const cycle = slitMotion.seconds;
+const at = (fraction: number) => `${+(fraction * cycle).toFixed(2)} s`;
+const moveDuration = at(slitMotion.hide[1] - slitMotion.hide[0]);
+const pairStagger = at(slitMotion.stagger / slitDefaults.copies);
 ---
 
-<Guide slug="tools" description="AtomsAI brand tools: make a pattern for any format with the live pattern generator.">
+<Guide slug="tools" description="AtomsAI brand tools: the pattern generator and the animated mark, ready to export.">
   <Sub id="pattern-generator" title="Pattern generator">
     <Fragment slot="text">
       <p>
@@ -15,5 +23,33 @@ import PatternGenerator from '../components/PatternGenerator.astro';
       <p class="muted">The rules behind each structure, density and colorway are in <a href="/patterns/">Patterns</a>.</p>
     </Fragment>
     <PatternGenerator />
+  </Sub>
+
+  <Sub id="mark-reveal" title="Mark reveal">
+    <Fragment slot="text">
+      <p>
+        The mark hides and reveals itself. Each blade is a circle seen through a vertical slit: the circles retreat
+        outward until they clear their slits, hold, then return. The outer pair moves first and the center pair last.
+      </p>
+      <dl class="rules">
+        <div>
+          <dt>Cycle</dt>
+          <dd class="muted">{cycle} s, looping</dd>
+        </div>
+        <div>
+          <dt>Each move</dt>
+          <dd class="muted">{moveDuration}</dd>
+        </div>
+        <div>
+          <dt>Stagger</dt>
+          <dd class="muted">{pairStagger} per pair, from the outside in</dd>
+        </div>
+        <div>
+          <dt>Easing</dt>
+          <dd class="muted">{slitMotion.easing}</dd>
+        </div>
+      </dl>
+    </Fragment>
+    <MarkReveal uid="tools-reveal" controls />
   </Sub>
 </Guide>

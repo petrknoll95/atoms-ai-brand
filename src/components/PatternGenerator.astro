@@ -5,11 +5,11 @@
 ---
 
 <div class="generator" data-generator>
-  <div class="controls" data-generator-pane></div>
   <div class="stage" data-generator-stage>
     <canvas data-generator-canvas role="img" aria-label="Pattern preview"></canvas>
     <p class="muted stage-meta" data-generator-meta aria-live="polite"></p>
   </div>
+  <div class="controls" data-generator-pane></div>
 </div>
 
 <script>
@@ -59,14 +59,42 @@
 
     const pane = new Pane({ container: root.querySelector<HTMLElement>('[data-generator-pane]')! });
 
+    // Previous / next buttons beside a list, for quick switching. They step the list's own select,
+    // so Tweakpane handles the change exactly as if it had been picked.
+    function addSteppers(binding: { element: HTMLElement }, name: string) {
+      const select = binding.element.querySelector('select')!;
+      const value = binding.element.querySelector<HTMLElement>('.tp-lblv_v')!;
+      const group = document.createElement('div');
+      group.className = 'stepper';
+      for (const [dir, label, path] of [
+        [-1, 'Previous', 'M6 1 2 5l4 4'],
+        [1, 'Next', 'M2 1l4 4-4 4'],
+      ] as const) {
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'step';
+        button.setAttribute('aria-label', `${label} ${name}`);
+        button.innerHTML = `<svg viewBox="0 0 8 10" aria-hidden="true"><path d="${path}" fill="none" stroke="currentColor" stroke-width="1.4"/></svg>`;
+        button.addEventListener('click', () => {
+          const n = select.options.length;
+          select.selectedIndex = (select.selectedIndex + dir + n) % n;
+          select.dispatchEvent(new Event('change', { bubbles: true }));
+        });
+        group.append(button);
+      }
+      value.append(group);
+      value.classList.add('has-stepper');
+    }
+
     const pattern = pane.addFolder({ title: 'Pattern' });
-    pattern
+    const structureBinding = pattern
       .addBinding(state, 'structure', { label: 'Structure', options: Object.fromEntries(structures.map((s) => [s.name, s.id])) })
       .on('change', () => {
         bindDensity();
         update();
       });
-    pattern.addBinding(state, 'colorway', { label: 'Colorway', options: Object.fromEntries(colorwayNames.map((n) => [n, n])) });
+    addSteppers(structureBinding, 'structure');
+    addSteppers(pattern.addBinding(state, 'colorway', { label: 'Colorway', options: Object.fromEntries(colorwayNames.map((n) => [n, n])) }), 'colorway');
 
     // Concentric is drawn from Figma's ring masks, so it only has its two densities: 10 and 20 slits
     // (stops 3 and 6). The slit structures take every stop. Tweakpane can't change a slider's range,
@@ -90,7 +118,7 @@
     bindDensity();
 
     const format = pane.addFolder({ title: 'Format' });
-    format
+    const formatBinding = format
       .addBinding(state, 'format', { label: 'Format', options: Object.fromEntries(Object.entries(formats).map(([key, f]) => [f.label, key])) })
       .on('change', (event) => {
         if (event.value === 'custom') return;
@@ -98,6 +126,7 @@
         state.height = formats[event.value].h;
         pane.refresh();
       });
+    addSteppers(formatBinding, 'format');
     for (const key of ['width', 'height'] as const) {
       format.addBinding(state, key, { label: key === 'width' ? 'Width (px)' : 'Height (px)', step: 1 }).on('change', (event) => {
         let changed = false;
@@ -234,9 +263,10 @@
 </script>
 
 <style>
+  /* Preview on the left, the panel on the right. */
   .generator {
     display: grid;
-    grid-template-columns: minmax(16rem, 22rem) minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1fr) minmax(16rem, 22rem);
     gap: var(--gutter);
     align-items: start;
   }
@@ -278,6 +308,77 @@
     font-size: var(--size-annotation);
   }
 
+  /* Tweakpane sets lists and buttons in bold; keep them at the regular weight. */
+  .controls :global(.tp-lstv_s),
+  .controls :global(.tp-btnv_b) {
+    font-weight: 400;
+  }
+
+  /* Folder toggle: a chevron at the right, pointing right when closed and down when open. */
+  .controls :global(.tp-fldv_b) {
+    position: relative;
+  }
+
+  .controls :global(.tp-fldv_m) {
+    left: auto;
+    right: 6px;
+    width: 6px;
+    height: 6px;
+    background: none;
+    border-radius: 0;
+    border-right: 1.5px solid currentColor;
+    border-bottom: 1.5px solid currentColor;
+    opacity: 0.6;
+    transform: rotate(-45deg);
+  }
+
+  .controls :global(.tp-fldv.tp-fldv-expanded > .tp-fldv_b > .tp-fldv_m) {
+    transform: translateY(-2px) rotate(45deg);
+  }
+
+  /* Previous / next buttons beside each list. */
+  .controls :global(.has-stepper) {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .controls :global(.has-stepper > .tp-lstv) {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .controls :global(.stepper) {
+    display: flex;
+    gap: 4px;
+  }
+
+  .controls :global(.step) {
+    display: grid;
+    place-items: center;
+    width: var(--tp-blade-unit-size);
+    height: var(--tp-blade-unit-size);
+    padding: 0;
+    border: 0;
+    border-radius: 999px;
+    background: var(--tp-button-background-color);
+    color: var(--fg);
+    cursor: pointer;
+  }
+
+  .controls :global(.step:hover) {
+    background: var(--tp-button-background-color-hover);
+  }
+
+  .controls :global(.step:active) {
+    background: var(--tp-button-background-color-active);
+  }
+
+  .controls :global(.step svg) {
+    width: 8px;
+    height: 10px;
+  }
+
   /* Slider knobs use the button color, which is a light tint here; keep them solid. */
   .controls :global(.tp-sldv_k::after),
   .controls :global(.tp-sldv_t:hover .tp-sldv_k::after),
@@ -308,7 +409,6 @@
 
     .stage {
       position: static;
-      order: -1;
     }
   }
 </style>
