@@ -1,124 +1,11 @@
 ---
 // Pattern generator: pick a published structure, colorway and density, crop to any format, download a PNG.
-// Guardrails from 4.9 Usage: published colorways only, uniform scale (never skewed or stretched),
-// one structure per render.
-import { colorwayNames, structures } from '../data/patterns';
-
-const formats = [
-  { key: 'square', label: 'Square 1:1', w: 2000, h: 2000 },
-  { key: 'portrait', label: 'Portrait 4:5', w: 1600, h: 2000 },
-  { key: 'story', label: 'Story 9:16', w: 1080, h: 1920 },
-  { key: 'landscape', label: 'Landscape 16:9', w: 1920, h: 1080 },
-  { key: 'banner', label: 'Banner 3:1', w: 2400, h: 800 },
-  { key: 'custom', label: 'Custom', w: 1600, h: 1200 },
-];
-const densities = [
-  { value: 0, label: 'Coarse' },
-  { value: 1, label: '1' },
-  { value: 2, label: '2' },
-  { value: 3, label: 'Fine' },
-];
-const swatch: Record<string, string> = {};
-for (const name of colorwayNames) swatch[name] = structures[1].colorways[name].base;
+// Controls are a Tweakpane panel. Guardrails from 4.9 Usage: published colorways only, uniform scale
+// (never skewed or stretched), one structure per render.
 ---
 
 <div class="generator" data-generator>
-  <form class="controls" data-generator-form>
-    <fieldset class="group">
-      <legend class="muted">Structure</legend>
-      <div class="segmented">
-        {
-          structures.map((s, i) => (
-            <label>
-              <input type="radio" name="structure" value={s.id} checked={i === 1} />
-              <span>{s.name}</span>
-            </label>
-          ))
-        }
-      </div>
-    </fieldset>
-
-    <fieldset class="group">
-      <legend class="muted">Colorway</legend>
-      <div class="segmented">
-        {
-          colorwayNames.map((name, i) => (
-            <label>
-              <input type="radio" name="colorway" value={name} checked={i === 0} />
-              <span>
-                <i class="chip" style={`background: ${swatch[name]}`} />
-                {name}
-              </span>
-            </label>
-          ))
-        }
-      </div>
-    </fieldset>
-
-    <fieldset class="group">
-      <legend class="muted">Density</legend>
-      <div class="segmented">
-        {
-          densities.map((d) => (
-            <label>
-              <input type="radio" name="density" value={d.value} checked={d.value === 1} />
-              <span>{d.label}</span>
-            </label>
-          ))
-        }
-      </div>
-    </fieldset>
-
-    <fieldset class="group">
-      <legend class="muted">Format</legend>
-      <div class="format">
-        <select name="format" aria-label="Format">
-          {formats.map((f) => <option value={f.key} data-w={f.w} data-h={f.h}>{f.label}</option>)}
-        </select>
-        <label class="size">
-          <span class="visually-hidden">Width in pixels</span>
-          <input type="number" name="width" min="64" max="6000" step="1" value="2000" inputmode="numeric" />
-        </label>
-        <span class="muted">×</span>
-        <label class="size">
-          <span class="visually-hidden">Height in pixels</span>
-          <input type="number" name="height" min="64" max="6000" step="1" value="2000" inputmode="numeric" />
-        </label>
-        <span class="muted">px</span>
-      </div>
-    </fieldset>
-
-    <fieldset class="group">
-      <legend class="muted">Crop</legend>
-      <label class="slider">
-        <span>Rotation</span>
-        <input type="range" name="rotation" min="0" max="345" step="15" value="0" />
-        <output name="rotationOut">0°</output>
-      </label>
-      <label class="slider">
-        <span>Scale</span>
-        <input type="range" name="zoom" min="1" max="3" step="0.05" value="1" />
-        <output name="zoomOut">100%</output>
-      </label>
-      <label class="slider">
-        <span>Position X</span>
-        <input type="range" name="panX" min="-1" max="1" step="0.01" value="0" />
-        <output name="panXOut">0</output>
-      </label>
-      <label class="slider">
-        <span>Position Y</span>
-        <input type="range" name="panY" min="-1" max="1" step="0.01" value="0" />
-        <output name="panYOut">0</output>
-      </label>
-    </fieldset>
-
-    <div class="btn-row actions">
-      <button class="btn" type="button" data-generator-download>Download PNG</button>
-      <button class="btn" type="button" data-generator-link>Copy link</button>
-      <button class="btn" type="button" data-generator-reset>Reset</button>
-    </div>
-  </form>
-
+  <div class="controls" data-generator-pane></div>
   <div class="stage" data-generator-stage>
     <canvas data-generator-canvas role="img" aria-label="Pattern preview"></canvas>
     <p class="muted stage-meta" data-generator-meta aria-live="polite"></p>
@@ -126,75 +13,170 @@ for (const name of colorwayNames) swatch[name] = structures[1].colorways[name].b
 </div>
 
 <script>
+  import { Pane } from 'tweakpane';
   import { colorwayFor, composePattern } from '../scripts/pattern-renderer';
   import { downloadBlob, copyText } from '../scripts/svg';
   import { notify } from '../scripts/actions';
-  import { structure as getStructure, type StructureId } from '../data/patterns';
+  import {
+    DENSITY_STOPS,
+    colorwayNames,
+    structures,
+    structure as getStructure,
+    type StructureId,
+  } from '../data/patterns';
+
+  const formats: Record<string, { label: string; w: number; h: number }> = {
+    square: { label: 'Square 1:1', w: 2000, h: 2000 },
+    portrait: { label: 'Portrait 4:5', w: 1600, h: 2000 },
+    story: { label: 'Story 9:16', w: 1080, h: 1920 },
+    landscape: { label: 'Landscape 16:9', w: 1920, h: 1080 },
+    banner: { label: 'Banner 3:1', w: 2400, h: 800 },
+    custom: { label: 'Custom', w: 1600, h: 1200 },
+  };
 
   const root = document.querySelector<HTMLElement>('[data-generator]');
   if (root) {
-    const form = root.querySelector<HTMLFormElement>('[data-generator-form]')!;
     const canvas = root.querySelector<HTMLCanvasElement>('[data-generator-canvas]')!;
     const stage = root.querySelector<HTMLElement>('[data-generator-stage]')!;
     const meta = root.querySelector<HTMLElement>('[data-generator-meta]')!;
-    const el = <T,>(name: string) => form.elements.namedItem(name) as unknown as T;
-    const defaults = new URLSearchParams(serialize());
 
-    function read() {
-      const data = new FormData(form);
-      return {
-        structure: data.get('structure') as StructureId,
-        colorway: String(data.get('colorway')),
-        density: Number(data.get('density')),
-        format: String(data.get('format')),
-        width: Math.min(6000, Math.max(64, Number(data.get('width')) || 2000)),
-        height: Math.min(6000, Math.max(64, Number(data.get('height')) || 2000)),
-        rotation: Number(data.get('rotation')),
-        zoom: Number(data.get('zoom')),
-        panX: Number(data.get('panX')),
-        panY: Number(data.get('panY')),
-      };
+    // `density` is a stop index into DENSITY_STOPS (slits per frame).
+    const state = {
+      structure: 'offset' as StructureId,
+      colorway: 'Forest',
+      density: 3,
+      format: 'square',
+      width: 2000,
+      height: 2000,
+      rotation: 0,
+      zoom: 1,
+      panX: 0,
+      panY: 0,
+    };
+    type State = typeof state;
+    const defaults: State = { ...state };
+    const clampSize = (v: number) => Math.min(6000, Math.max(64, Math.round(v) || 2000));
+
+    const pane = new Pane({ container: root.querySelector<HTMLElement>('[data-generator-pane]')! });
+
+    const pattern = pane.addFolder({ title: 'Pattern' });
+    pattern
+      .addBinding(state, 'structure', { label: 'Structure', options: Object.fromEntries(structures.map((s) => [s.name, s.id])) })
+      .on('change', () => {
+        bindDensity();
+        update();
+      });
+    pattern.addBinding(state, 'colorway', { label: 'Colorway', options: Object.fromEntries(colorwayNames.map((n) => [n, n])) });
+
+    // Concentric is drawn from Figma's ring masks, so it only has its two densities: 10 and 20 slits
+    // (stops 3 and 6). The slit structures take every stop. Tweakpane can't change a slider's range,
+    // so the binding is rebuilt when the structure changes.
+    let densityBinding: { dispose(): void } | undefined;
+    function bindDensity() {
+      const rings = state.structure === 'concentric';
+      if (rings) state.density = state.density >= 5 ? 6 : 3;
+      densityBinding?.dispose();
+      const binding = pattern.addBinding(state, 'density', {
+        label: 'Slits',
+        min: rings ? 3 : 0,
+        max: rings ? 6 : DENSITY_STOPS.length - 1,
+        step: rings ? 3 : 1,
+        format: (v) => String(DENSITY_STOPS[Math.round(v)] ?? ''),
+      });
+      // The field shows the slit count but would read typing as a stop index, so only the slider edits it.
+      binding.element.querySelector('input')?.setAttribute('readonly', '');
+      densityBinding = binding;
+    }
+    bindDensity();
+
+    const format = pane.addFolder({ title: 'Format' });
+    format
+      .addBinding(state, 'format', { label: 'Format', options: Object.fromEntries(Object.entries(formats).map(([key, f]) => [f.label, key])) })
+      .on('change', (event) => {
+        if (event.value === 'custom') return;
+        state.width = formats[event.value].w;
+        state.height = formats[event.value].h;
+        pane.refresh();
+      });
+    for (const key of ['width', 'height'] as const) {
+      format.addBinding(state, key, { label: key === 'width' ? 'Width (px)' : 'Height (px)', step: 1 }).on('change', (event) => {
+        let changed = false;
+        const clamped = clampSize(event.value);
+        if (clamped !== state[key]) {
+          state[key] = clamped;
+          changed = true;
+        }
+        // Typing a size that isn't the preset's switches the format to Custom.
+        const preset = formats[state.format];
+        if (state.format !== 'custom' && (preset.w !== state.width || preset.h !== state.height)) {
+          state.format = 'custom';
+          changed = true;
+        }
+        if (changed) pane.refresh();
+      });
     }
 
+    const crop = pane.addFolder({ title: 'Crop' });
+    crop.addBinding(state, 'rotation', { label: 'Rotation', min: 0, max: 345, step: 15, format: (v) => `${v}°` });
+    crop.addBinding(state, 'zoom', { label: 'Scale', min: 1, max: 3, step: 0.05, format: (v) => `${Math.round(v * 100)}%` });
+    crop.addBinding(state, 'panX', { label: 'Position X', min: -1, max: 1, step: 0.01, format: (v) => v.toFixed(2) });
+    crop.addBinding(state, 'panY', { label: 'Position Y', min: -1, max: 1, step: 0.01, format: (v) => v.toFixed(2) });
+
+    pane.addButton({ title: 'Download PNG' }).on('click', download);
+    pane.addButton({ title: 'Copy link' }).on('click', async () => {
+      await copyText(`${location.origin}${location.pathname}#pattern-generator?${serialize()}`);
+      notify('Link copied');
+    });
+    pane.addButton({ title: 'Reset' }).on('click', () => {
+      Object.assign(state, defaults);
+      bindDensity();
+      pane.refresh();
+      update();
+    });
+
+    pane.on('change', update);
+
     function serialize() {
-      const s = new URLSearchParams();
-      new FormData(form).forEach((v, k) => s.set(k, String(v)));
-      return s.toString();
+      return new URLSearchParams(Object.entries(state).map(([k, v]) => [k, String(v)])).toString();
     }
 
     function apply(params: URLSearchParams) {
+      const s = state as Record<string, string | number>;
       for (const [k, v] of params) {
-        const field = form.elements.namedItem(k);
-        if (field instanceof RadioNodeList) field.value = v;
-        else if (field instanceof HTMLInputElement || field instanceof HTMLSelectElement) field.value = v;
+        if (!(k in s)) continue;
+        s[k] = typeof s[k] === 'number' ? Number(v) || 0 : v;
       }
+      state.width = clampSize(state.width);
+      state.height = clampSize(state.height);
+      if (!structures.some((x) => x.id === state.structure)) state.structure = defaults.structure;
+      if (!colorwayNames.includes(state.colorway as never)) state.colorway = defaults.colorway;
+      if (!(state.format in formats)) state.format = 'custom';
+      state.density = Math.min(DENSITY_STOPS.length - 1, Math.max(0, Math.round(state.density)));
     }
 
-    // Concentric only comes in the two finer densities.
-    function syncDensities() {
-      const s = read();
-      const allowed = getStructure(s.structure).densities;
-      form.querySelectorAll<HTMLInputElement>('input[name="density"]').forEach((input) => {
-        input.disabled = !allowed.includes(Number(input.value));
-      });
-      if (!allowed.includes(s.density)) el<RadioNodeList>('density').value = String(allowed[0]);
+    /** Renderer options for the current density stop. */
+    function fieldDensity() {
+      if (state.structure === 'concentric') return { density: state.density >= 6 ? 2 : 1 };
+      return { density: 1, slits: DENSITY_STOPS[state.density] };
     }
 
-    function syncOutputs() {
-      const s = read();
-      el<HTMLOutputElement>('rotationOut').value = `${s.rotation}°`;
-      el<HTMLOutputElement>('zoomOut').value = `${Math.round(s.zoom * 100)}%`;
-      el<HTMLOutputElement>('panXOut').value = s.panX.toFixed(2);
-      el<HTMLOutputElement>('panYOut').value = s.panY.toFixed(2);
-    }
+    const renderOptions = (width: number, height: number) => ({
+      structure: state.structure,
+      ...fieldDensity(),
+      colors: colorwayFor(state.structure, state.colorway),
+      width,
+      height,
+      rotation: state.rotation,
+      zoom: state.zoom,
+      panX: state.panX,
+      panY: state.panY,
+    });
 
     let frame = 0;
     let token = 0;
     async function render() {
-      const s = read();
-      const ratio = s.width / s.height;
-      const box = stage.getBoundingClientRect();
-      const maxW = box.width;
+      const ratio = state.width / state.height;
+      const maxW = stage.getBoundingClientRect().width;
       const maxH = Math.min(window.innerHeight * 0.7, 640);
       let w = maxW;
       let h = w / ratio;
@@ -207,91 +189,47 @@ for (const name of colorwayNames) swatch[name] = structures[1].colorways[name].b
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
       const mine = ++token;
       const off = document.createElement('canvas');
-      await composePattern(off, {
-        structure: s.structure,
-        density: s.density,
-        colors: colorwayFor(s.structure, s.colorway),
-        width: Math.round(w * dpr),
-        height: Math.round(h * dpr),
-        rotation: s.rotation,
-        zoom: s.zoom,
-        panX: s.panX,
-        panY: s.panY,
-      });
+      await composePattern(off, renderOptions(Math.round(w * dpr), Math.round(h * dpr)));
       if (mine !== token) return; // a newer render started
       canvas.width = off.width;
       canvas.height = off.height;
       canvas.getContext('2d')!.drawImage(off, 0, 0);
-      meta.textContent = `${getStructure(s.structure).name} · ${s.colorway} · ${s.width} × ${s.height} px`;
+      meta.textContent = `${getStructure(state.structure).name} · ${state.colorway} · ${DENSITY_STOPS[state.density]} slits · ${state.width} × ${state.height} px`;
+    }
+
+    function schedule() {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => void render());
     }
 
     function update() {
-      syncDensities();
-      syncOutputs();
-      history.replaceState(null, '', `#generator?${serialize()}`);
-      cancelAnimationFrame(frame);
-      frame = requestAnimationFrame(() => void render());
+      history.replaceState(null, '', `#pattern-generator?${serialize()}`);
+      schedule();
     }
 
-    form.addEventListener('input', (event) => {
-      const target = event.target as HTMLInputElement;
-      if (target.name === 'format') {
-        const option = (target as unknown as HTMLSelectElement).selectedOptions[0];
-        if (option.value !== 'custom') {
-          el<HTMLInputElement>('width').value = option.dataset.w!;
-          el<HTMLInputElement>('height').value = option.dataset.h!;
-        }
-      } else if (target.name === 'width' || target.name === 'height') {
-        el<HTMLSelectElement>('format').value = 'custom';
-      }
-      update();
-    });
-
-    root.querySelector('[data-generator-download]')!.addEventListener('click', async () => {
-      const s = read();
+    async function download() {
+      const s = { ...state };
       notify('Rendering PNG…');
       const out = document.createElement('canvas');
-      await composePattern(out, {
-        structure: s.structure,
-        density: s.density,
-        colors: colorwayFor(s.structure, s.colorway),
-        width: s.width,
-        height: s.height,
-        rotation: s.rotation,
-        zoom: s.zoom,
-        panX: s.panX,
-        panY: s.panY,
-      });
+      await composePattern(out, renderOptions(s.width, s.height));
       out.toBlob((blob) => {
         if (!blob) return notify('Export failed');
-        const name = `atomsai-pattern-${s.structure}-${s.colorway.toLowerCase()}-d${s.density}-${s.width}x${s.height}.png`;
+        const name = `atomsai-pattern-${s.structure}-${s.colorway.toLowerCase()}-${DENSITY_STOPS[s.density]}-slits-${s.width}x${s.height}.png`;
         downloadBlob(blob, name);
         notify('PNG downloaded');
       }, 'image/png');
-    });
-
-    root.querySelector('[data-generator-link]')!.addEventListener('click', async () => {
-      await copyText(`${location.origin}${location.pathname}#generator?${serialize()}`);
-      notify('Link copied');
-    });
-
-    root.querySelector('[data-generator-reset]')!.addEventListener('click', () => {
-      apply(defaults);
-      update();
-    });
+    }
 
     // Restore settings from a shared link.
-    const hash = location.hash.match(/^#generator\?(.+)$/);
+    const hash = location.hash.match(/^#pattern-generator\?(.+)$/);
     if (hash) {
       apply(new URLSearchParams(hash[1]));
-      document.getElementById('generator')?.scrollIntoView();
+      bindDensity();
+      pane.refresh();
+      document.getElementById('pattern-generator')?.scrollIntoView();
     }
-    syncDensities();
-    syncOutputs();
-    new ResizeObserver(() => {
-      cancelAnimationFrame(frame);
-      frame = requestAnimationFrame(() => void render());
-    }).observe(stage);
+    schedule();
+    new ResizeObserver(schedule).observe(stage);
   }
 </script>
 
@@ -303,111 +241,49 @@ for (const name of colorwayNames) swatch[name] = structures[1].colorways[name].b
     align-items: start;
   }
 
+  /* Tweakpane, themed with brand tokens: pill-shaped controls, PP Neue Montreal, quiet tints.
+     Lists and buttons share Tweakpane's button colors, so both use the input tint. */
   .controls {
-    display: grid;
-    gap: 1.25rem;
+    --tp-base-background-color: var(--white);
+    --tp-base-shadow-color: transparent;
+    --tp-base-border-radius: 0;
+    --tp-base-font-family: var(--font-text);
+    --tp-blade-border-radius: 999px;
+    --tp-blade-unit-size: 28px;
+    --tp-blade-value-width: 60%;
+    --tp-blade-horizontal-padding: 10px;
+    --tp-container-horizontal-padding: 0;
+    --tp-container-vertical-padding: 0.5rem;
+    --tp-container-unit-spacing: 6px;
+    --tp-container-background-color: transparent;
+    --tp-container-background-color-hover: color-mix(in srgb, var(--deep-green) 4%, transparent);
+    --tp-container-background-color-focus: color-mix(in srgb, var(--deep-green) 6%, transparent);
+    --tp-container-background-color-active: color-mix(in srgb, var(--deep-green) 8%, transparent);
+    --tp-container-foreground-color: var(--fg);
+    --tp-label-foreground-color: var(--muted);
+    --tp-input-background-color: color-mix(in srgb, var(--deep-green) 6%, transparent);
+    --tp-input-background-color-hover: color-mix(in srgb, var(--deep-green) 9%, transparent);
+    --tp-input-background-color-focus: color-mix(in srgb, var(--deep-green) 11%, transparent);
+    --tp-input-background-color-active: color-mix(in srgb, var(--deep-green) 13%, transparent);
+    --tp-input-foreground-color: var(--fg);
+    --tp-groove-foreground-color: color-mix(in srgb, var(--deep-green) 14%, transparent);
+    --tp-button-background-color: color-mix(in srgb, var(--deep-green) 6%, transparent);
+    --tp-button-background-color-hover: color-mix(in srgb, var(--deep-green) 9%, transparent);
+    --tp-button-background-color-focus: color-mix(in srgb, var(--deep-green) 11%, transparent);
+    --tp-button-background-color-active: color-mix(in srgb, var(--deep-green) 13%, transparent);
+    --tp-button-foreground-color: var(--fg);
   }
 
-  .group {
-    display: grid;
-    gap: 0.5rem;
-    margin: 0;
-    padding: 0;
-    border: 0;
-  }
-
-  .segmented {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.375rem;
-  }
-
-  .segmented label {
-    position: relative;
-    cursor: pointer;
-  }
-
-  .segmented input {
-    position: absolute;
-    opacity: 0;
-    pointer-events: none;
-  }
-
-  .segmented span {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.375rem;
-    min-height: 2rem;
-    padding: 0 0.75rem;
-    border: 1px solid var(--rule);
-    border-radius: 999px;
-    color: var(--muted);
-    transition: border-color 120ms ease;
-  }
-
-  .segmented input:checked + span {
-    border-color: var(--fg);
-    color: var(--fg);
-  }
-
-  .segmented input:disabled + span {
-    opacity: 0.35;
-    cursor: not-allowed;
-  }
-
-  .segmented input:focus-visible + span {
-    outline: 1.5px solid var(--fg);
-    outline-offset: 2px;
-  }
-
-  .chip {
-    width: 0.75rem;
-    height: 0.75rem;
-    border-radius: 50%;
-  }
-
-  .format {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 0.5rem;
-  }
-
-  .format select {
-    flex-basis: 100%;
-  }
-
-  select,
-  .size input {
-    min-height: 2rem;
-    padding: 0 0.625rem;
-    border: 1px solid var(--rule);
-    border-radius: 999px;
-    background: var(--bg);
+  .controls :global(.tp-rotv) {
     font-size: var(--size-annotation);
   }
 
-  .size input {
-    width: 5.5rem;
-    font-variant-numeric: tabular-nums;
-  }
-
-  .slider {
-    display: grid;
-    grid-template-columns: 5.5rem minmax(0, 1fr) 3rem;
-    align-items: center;
-    gap: 0.75rem;
-  }
-
-  .slider output {
-    color: var(--muted);
-    text-align: right;
-    font-variant-numeric: tabular-nums;
-  }
-
-  input[type='range'] {
-    width: 100%;
-    accent-color: var(--deep-green);
+  /* Slider knobs use the button color, which is a light tint here; keep them solid. */
+  .controls :global(.tp-sldv_k::after),
+  .controls :global(.tp-sldv_t:hover .tp-sldv_k::after),
+  .controls :global(.tp-sldv_t:focus .tp-sldv_k::after),
+  .controls :global(.tp-sldv_t:active .tp-sldv_k::after) {
+    background-color: var(--deep-green);
   }
 
   .stage {

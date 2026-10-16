@@ -5,8 +5,8 @@ export interface ColorOption {
   label: string;
   ink: string;
   surface?: string;
-  /** `dark` previews on Deep green so light artwork stays visible. */
-  tone: 'light' | 'dark';
+  /** Preview background: `light` on White, `dark` on Deep green (Cream artwork), `black` on Black (White artwork). */
+  tone: 'light' | 'dark' | 'black';
 }
 
 export interface WeightOption {
@@ -15,12 +15,13 @@ export interface WeightOption {
   value: string;
 }
 
-const lightInks = new Set(['cream', 'white']);
+// White artwork always previews on Black; Cream on Deep green.
+const toneOf = (token: string): ColorOption['tone'] => (token === 'white' ? 'black' : token === 'cream' ? 'dark' : 'light');
 
 /** Black, Deep green, Cream and White — every logo and icon ships in these. */
 export const defaultColorOptions: ColorOption[] = assetColors.map((key) => ({
   key: colors[key].token,
   label: colors[key].name,
   ink: colors[key].hex,
-  tone: lightInks.has(colors[key].token) ? 'dark' : 'light',
+  tone: toneOf(colors[key].token),
 }));

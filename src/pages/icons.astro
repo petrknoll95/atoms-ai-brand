@@ -39,10 +39,14 @@ const buttons = [
     <Fragment slot="text">
       <p>Icons use two stroke weights, matched to our type.</p>
       <dl class="rules">
-        <dt>Regular — 1.5 px</dt>
-        <dd class="muted">Pairs with body copy and interface text. Default for most icons.</dd>
-        <dt>Medium — 2 px</dt>
-        <dd class="muted">Pairs with headlines and Medium labels. Use for emphasis and at small sizes.</dd>
+        <div>
+          <dt>Regular — 1.5 px</dt>
+          <dd class="muted">Pairs with body copy and interface text. Default for most icons.</dd>
+        </div>
+        <div>
+          <dt>Medium — 2 px</dt>
+          <dd class="muted">Pairs with headlines and Medium labels. Use for emphasis and at small sizes.</dd>
+        </div>
       </dl>
       <p>Weights are measured at 24 px. Scale the stroke with the icon, using the Scale tool (K) in Figma, so line weight stays in proportion.</p>
     </Fragment>
@@ -77,7 +81,7 @@ const buttons = [
         buttons.map((b) => (
           <span class="pill">
             {b.leading && <span class:list={['pill-icon', { badge: b.badge }]} set:html={inline(b.leading)} />}
-            <span>{b.label}</span>
+            <span class="pill-label">{b.label}</span>
             {b.trailing && <span class="pill-icon" set:html={inline(b.trailing)} />}
           </span>
         ))
@@ -91,15 +95,6 @@ const buttons = [
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 1.25rem;
-  }
-
-  .rules {
-    display: grid;
-    gap: 0.25rem;
-  }
-
-  .rules dd + dt {
-    margin-top: 0.5rem;
   }
 
   .in-use {
@@ -116,7 +111,7 @@ const buttons = [
     display: inline-flex;
     align-items: center;
     gap: 0.3em;
-    padding: 0.18em 0.55em 0.22em;
+    padding: 0.3em 0.6em;
     border-radius: 999px;
     background: var(--deep-green);
     color: var(--cream);
@@ -126,11 +121,26 @@ const buttons = [
     letter-spacing: -0.015em;
   }
 
+  .pill-label {
+    text-box: trim-both cap alphabetic;
+  }
+
+  /* Icons draw within 16 of their 24 grid units, so a 1.5cap box makes the drawing exactly as
+     tall as the capitals. The grid's 4-unit margin is pulled in at the pill edges. */
   .pill-icon {
-    display: inline-grid;
+    display: grid;
+    flex: none;
     place-items: center;
-    width: 0.8em;
-    height: 0.8em;
+    width: 1.5cap;
+    height: 1.5cap;
+  }
+
+  .pill-icon:first-child {
+    margin-left: -0.25cap;
+  }
+
+  .pill-icon:last-child {
+    margin-right: -0.25cap;
   }
 
   .pill-icon :global(svg) {
@@ -140,13 +150,18 @@ const buttons = [
     stroke-width: 1.5;
   }
 
+  /* The info badge: a circle just over cap height, with the same outer spacing as the line icons. */
   .pill-icon.badge {
-    width: 1em;
-    height: 1em;
-    padding: 0.15em;
+    width: 1.1cap;
+    height: 1.1cap;
+    margin: 0 0.2cap;
     border-radius: 50%;
     background: var(--cream);
     color: var(--deep-green);
+  }
+
+  .pill-icon.badge:first-child {
+    margin-left: 0;
   }
 
   @media (max-width: 900px) {

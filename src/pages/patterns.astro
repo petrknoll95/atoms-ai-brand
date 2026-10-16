@@ -2,7 +2,6 @@
 import Guide from '../layouts/Guide.astro';
 import Sub from '../components/Sub.astro';
 import PatternTile from '../components/PatternTile.astro';
-import PatternGenerator from '../components/PatternGenerator.astro';
 import { SLITS, structures, type Colors, type StructureId } from '../data/patterns';
 
 const greens = ['Forest', 'Sage', 'Graphite'];
@@ -63,7 +62,7 @@ const usage: Record<'do' | 'dont', UsageExample[]> = {
 };
 ---
 
-<Guide slug="patterns" description="AtomsAI interference patterns: structures, densities, colorways and a live generator.">
+<Guide slug="patterns" description="AtomsAI interference patterns: structures, densities, colorways and usage.">
   <Sub id="structures" title="Structures" number="4.1">
     <Fragment slot="text">
       <p>
@@ -82,7 +81,7 @@ const usage: Record<'do' | 'dont', UsageExample[]> = {
             </div>
             <div class="row three">
               {greens.map((name) => (
-                <PatternTile structure={s.id} density={previewDensity[s.id]} colorway={name} caption={name} ratio="353 / 786" />
+                <PatternTile structure={s.id} density={previewDensity[s.id]} colorway={name} caption={name} />
               ))}
             </div>
           </section>
@@ -100,7 +99,7 @@ const usage: Record<'do' | 'dont', UsageExample[]> = {
       <p>Concentric comes in the two finer densities.</p>
     </Fragment>
     <div class="row four">
-      {densityLabels.map((label, d) => <PatternTile structure="offset" density={d} caption={label} ratio="1 / 3" />)}
+      {densityLabels.map((label, d) => <PatternTile structure="offset" density={d} caption={label} />)}
     </div>
   </Sub>
 
@@ -128,16 +127,6 @@ const usage: Record<'do' | 'dont', UsageExample[]> = {
     </div>
   </Sub>
 
-  <Sub id="generator" title="Generator">
-    <Fragment slot="text">
-      <p>
-        Make a pattern for any format. Pick a structure, colorway and density, set the size, then crop, rotate and scale
-        the field. Only published colorways are available, and the field always scales evenly — it is never skewed or
-        stretched.
-      </p>
-    </Fragment>
-    <PatternGenerator />
-  </Sub>
 
   <Sub id="usage" title="Usage" number="4.9">
     <Fragment slot="text">
@@ -201,12 +190,13 @@ const usage: Record<'do' | 'dont', UsageExample[]> = {
 
   .structure {
     display: grid;
-    gap: 1rem;
+    gap: 1.5rem;
   }
 
+  /* Title and description, trimmed, so they need a real gap between them. */
   .structure-text {
     display: grid;
-    gap: 0.25rem;
+    gap: 0.625rem;
     max-width: 36rem;
   }
 
@@ -279,13 +269,14 @@ const usage: Record<'do' | 'dont', UsageExample[]> = {
     letter-spacing: -0.01em;
   }
 
+  /* Offsets include the text-box trim (cap top, baseline), so the type sits where it did in Figma. */
   .headline.top {
-    top: 8.2cqw;
+    top: 12.1cqw;
     font-size: 20.5cqw;
   }
 
   .headline.bottom {
-    bottom: 8.5cqw;
+    bottom: 9.95cqw;
     font-size: 15.3cqw;
     line-height: 0.93;
   }

@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import PageLink from '../components/PageLink.astro';
 import Sidebar from '../components/Sidebar.astro';
 import { section, sectionNumber } from '../data/nav';
 
@@ -12,6 +13,7 @@ interface Props {
 
 const { slug, description = 'AtomsAI brand guidelines and asset library.', hero = true } = Astro.props;
 const current = section(slug);
+const number = sectionNumber(slug);
 const title = slug === 'intro' ? 'AtomsAI Brand' : `${current.title} — AtomsAI Brand`;
 ---
 
@@ -35,13 +37,16 @@ const title = slug === 'intro' ? 'AtomsAI Brand' : `${current.title} — AtomsAI
         {
           hero && (
             <header class="hero">
-              <p class="hero-text" aria-hidden="true">
-                {sectionNumber(slug).padStart(2, '0')}
-              </p>
+              {number && (
+                <p class="hero-text" aria-hidden="true">
+                  {number.padStart(2, '0')}
+                </p>
+              )}
               <h1 class="hero-text">{current.title}</h1>
             </header>
           )
         }
+        {hero && <PageLink />}
         <slot />
       </main>
     </div>
@@ -71,7 +76,8 @@ const title = slug === 'intro' ? 'AtomsAI Brand' : `${current.title} — AtomsAI
     grid-template-columns: repeat(2, minmax(0, 1fr));
     align-items: start;
     aspect-ratio: 2000 / 735;
-    margin-bottom: calc(var(--gutter) * 1.5);
+    /* Full bleed: out through the content gutter to the top, the sidebar and the right edge. */
+    margin: calc(-1 * var(--gutter)) calc(-1 * var(--gutter)) 1rem;
     padding: 3.5%;
     background: var(--deep-green);
     color: var(--cream);
@@ -84,6 +90,11 @@ const title = slug === 'intro' ? 'AtomsAI Brand' : `${current.title} — AtomsAI
     font-weight: 400;
     line-height: 0.9;
     letter-spacing: -0.015em;
+  }
+
+  /* The title starts at the middle, with or without a section number. */
+  .hero h1 {
+    grid-column: 2;
   }
 
   .toast {
@@ -118,9 +129,15 @@ const title = slug === 'intro' ? 'AtomsAI Brand' : `${current.title} — AtomsAI
   @media (max-width: 640px) {
     .hero {
       grid-template-columns: minmax(0, 1fr);
-      align-content: space-between;
+      grid-template-rows: auto minmax(0, 1fr);
       aspect-ratio: 3 / 2;
       padding: 1.25rem;
+    }
+
+    .hero h1 {
+      grid-column: 1;
+      grid-row: 2;
+      align-self: end;
     }
   }
 </style>

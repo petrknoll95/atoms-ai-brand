@@ -1,8 +1,8 @@
 ---
 // 2.3 Placement, drawn in HTML from the Figma slide: square frames with the artwork at the top,
 // middle or bottom. Sizes and insets keep the Figma proportions (frame 353 px wide): the mark is
-// 44 px wide with a 0.5X inset, the logotype 172 px wide with an inset of X.
-import { logotypeSvg, markSvg } from '../data/logos';
+// 44 px wide with a 0.5X inset, the logotype 32 px tall (its width follows the lockup) with an inset of X.
+import { lockup, logotypeSvg, markSvg } from '../data/logos';
 
 interface Props {
   variant: 'mark' | 'logotype';
@@ -10,6 +10,8 @@ interface Props {
 
 const { variant } = Astro.props;
 const art = variant === 'mark' ? markSvg : logotypeSvg;
+// Logotype width in frame units (frame 353.33 wide, logotype 32 tall).
+const logotypeWidth = `${+((((32 * lockup.width) / lockup.height) / 353.33) * 100).toFixed(2)}cqi`;
 const sides = variant === 'mark' ? 'left / right' : 'left';
 const positions = [
   { key: 'top', label: 'Top' },
@@ -18,7 +20,7 @@ const positions = [
 ];
 ---
 
-<div class:list={['placement', variant]}>
+<div class:list={['placement', variant]} style={variant === 'logotype' ? `--art-w: ${logotypeWidth}` : undefined}>
   {
     positions.map((p) => (
       <div class="cell">
@@ -53,7 +55,7 @@ const positions = [
     justify-content: space-between;
     aspect-ratio: 1;
     padding: var(--inset);
-    box-shadow: inset 0 0 0 1px var(--frame);
+    box-shadow: inset 0 0 0 1px var(--rule);
   }
 
   .frame[data-position='middle'] {
@@ -80,7 +82,6 @@ const positions = [
   .mark {
     --inset: 5.66cqi;
     --art-w: 12.45cqi;
-    --frame: var(--mist);
     --ink: var(--deep-green);
   }
 
@@ -89,10 +90,9 @@ const positions = [
     --ink: var(--mist);
   }
 
+  /* --art-w comes from the lockup (inline style). */
   .logotype {
     --inset: 9.06cqi;
-    --art-w: 48.77cqi;
-    --frame: var(--deep-green);
     --ink: var(--forest-shade);
   }
 </style>

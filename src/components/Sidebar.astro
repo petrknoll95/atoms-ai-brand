@@ -1,6 +1,6 @@
 ---
-import markSvg from '../assets/brand/logo/mark.svg?raw';
-import { sections } from '../data/nav';
+import SlitMark from './SlitMark.astro';
+import { sections, tools } from '../data/nav';
 
 interface Props {
   current: string;
@@ -12,40 +12,46 @@ const { current } = Astro.props;
 <aside class="sidebar">
   <div class="bar">
     <a class="brand" href="/" aria-label="AtomsAI Brand — home">
-      <span class="brand-mark" set:html={markSvg} />
+      <span class="brand-mark"><SlitMark uid="brand" /></span>
     </a>
     <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" data-menu-toggle>Menu</button>
   </div>
   <nav id="site-nav" class="nav" aria-label="Sections" data-nav>
-    <ol>
-      {
-        sections.map((s) => {
-          const active = s.slug === current;
-          return (
-            <li class:list={['section', { active }]}>
-              <a href={s.href} aria-current={active ? 'page' : undefined}>
-                {s.title}
-              </a>
-              {active && (
-                <ol class="subs">
-                  {s.subs.map((sub) => (
-                    <li>
-                      <a href={`#${sub.id}`} data-spy={sub.id}>
-                        {sub.title}
-                      </a>
-                    </li>
-                  ))}
-                </ol>
-              )}
-            </li>
-          );
-        })
-      }
-    </ol>
+    {
+      [sections, tools].map((group, i) => (
+        <ol class:list={['group', { tools: i > 0 }]}>
+          {group.map((s) => {
+            const active = s.slug === current;
+            return (
+              <li class:list={['section', { active, open: active }]} data-section>
+                <a href={s.href} aria-current={active ? 'page' : undefined} data-section-link>
+                  {s.title}
+                </a>
+                <div class="subs-wrap">
+                  <div class="subs-clip">
+                    <ol class="subs">
+                      {s.subs.map((sub) => (
+                        <li>
+                          <a href={active ? `#${sub.id}` : `${s.href}#${sub.id}`} data-spy={active ? sub.id : undefined}>
+                            {sub.title}
+                          </a>
+                        </li>
+                      ))}
+                    </ol>
+                  </div>
+                </div>
+              </li>
+            );
+          })}
+        </ol>
+      ))
+    }
   </nav>
 </aside>
 
 <script>
+  import { playCycle } from '../scripts/slit-logo';
+
   // Mobile menu toggle
   const toggle = document.querySelector<HTMLButtonElement>('[data-menu-toggle]');
   const nav = document.querySelector<HTMLElement>('[data-nav]');
@@ -53,6 +59,53 @@ const { current } = Astro.props;
     const open = toggle.getAttribute('aria-expanded') !== 'true';
     toggle.setAttribute('aria-expanded', String(open));
     nav?.classList.toggle('is-open', open);
+  });
+
+  // Sub-sections expand and collapse through a grid-row transition (0fr to 1fr). Each section is
+  // its own page, so a section link opens its list and closes the open one, then navigates once
+  // the transition has run.
+  const motion = matchMedia('(prefers-reduced-motion: no-preference)');
+  const sections = [...document.querySelectorAll<HTMLElement>('[data-section]')];
+  const rendered = sections.map((el) => el.classList.contains('open'));
+
+  document.querySelectorAll<HTMLAnchorElement>('[data-section-link]').forEach((link) => {
+    link.addEventListener('click', (event) => {
+      const section = link.closest<HTMLElement>('[data-section]')!;
+      const modified = event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey;
+      if (modified || !motion.matches || section.classList.contains('active')) return;
+      event.preventDefault();
+      sections.forEach((el) => el.classList.toggle('open', el === section));
+
+      const wrap = section.querySelector<HTMLElement>('.subs-wrap')!;
+      let gone = false;
+      const go = () => {
+        if (gone) return;
+        gone = true;
+        window.location.href = link.href;
+      };
+      wrap.addEventListener('transitionend', (e) => {
+        if (e.propertyName === 'grid-template-rows') go();
+      });
+      window.setTimeout(go, 400);
+    });
+  });
+
+  // Hovering (or focusing) the logo plays one hide-and-reveal cycle of the mark.
+  const brand = document.querySelector<HTMLAnchorElement>('.brand');
+  const brandMark = brand?.querySelector<SVGSVGElement>('.slit-mark');
+  let cycling = false;
+  const playBrand = async () => {
+    if (cycling || !brandMark || !motion.matches) return;
+    cycling = true;
+    await playCycle(brandMark);
+    cycling = false;
+  };
+  brand?.addEventListener('mouseenter', playBrand);
+  brand?.addEventListener('focus', playBrand);
+
+  // Coming back from the page cache, show this page's own section open again.
+  window.addEventListener('pageshow', (event) => {
+    if (event.persisted) sections.forEach((el, i) => el.classList.toggle('open', rendered[i]));
   });
 
   // Scroll-spy: highlight the sub-section currently in view
@@ -95,6 +148,7 @@ const { current } = Astro.props;
     align-self: start;
     height: 100dvh;
     overflow-y: auto;
+    overscroll-behavior: contain;
     padding: var(--gutter) 1.5rem var(--gutter) var(--gutter);
     border-right: 1px solid var(--rule);
   }
@@ -132,10 +186,12 @@ const { current } = Astro.props;
     cursor: pointer;
   }
 
+  /* Labels are trimmed to cap height and baseline; the padding keeps a comfortable hit area. */
   .nav a {
     display: block;
-    padding: 0.25rem 0;
+    padding: 0.5rem 0;
     color: var(--muted);
+    text-box: trim-both cap alphabetic;
     text-decoration: none;
     transition: color 120ms ease;
   }
@@ -150,19 +206,105 @@ const { current } = Astro.props;
     margin-top: 0.125rem;
   }
 
+  /* Tools sit apart from the guideline sections. */
+  .tools {
+    margin-top: 2.5rem;
+  }
+
+  /* Collapsed sub-lists: a single grid row animates between 0fr and 1fr. Visibility flips after
+     the collapse, so hidden links leave the tab order. */
+  .subs-wrap {
+    display: grid;
+    grid-template-rows: 0fr;
+    visibility: hidden;
+    transition:
+      grid-template-rows 320ms var(--ease),
+      visibility 0s 320ms;
+  }
+
+  .open > .subs-wrap {
+    grid-template-rows: 1fr;
+    visibility: visible;
+    transition:
+      grid-template-rows 320ms var(--ease),
+      visibility 0s;
+  }
+
+  /* Clips the list while it animates; the side padding keeps focus rings visible. */
+  .subs-clip {
+    min-height: 0;
+    overflow: hidden;
+    margin-inline: -3px;
+    padding-inline: 3px;
+  }
+
   .subs {
+    position: relative;
     margin: 0.25rem 0 0.75rem;
-    border-left: 1px solid var(--rule);
+  }
+
+  /* The track runs from the first label's cap height to the last label's baseline. */
+  .subs::before {
+    content: '';
+    position: absolute;
+    top: 0.5rem;
+    bottom: 0.5rem;
+    left: 0;
+    width: 1px;
+    background: var(--rule);
   }
 
   .subs a {
-    margin-left: -1px;
+    position: relative;
     padding-left: 0.875rem;
-    border-left: 1px solid transparent;
   }
 
-  .subs a:global(.is-current) {
-    border-left-color: var(--fg);
+  /* The current marker covers the trimmed label exactly: cap height to baseline. Browsers without
+     anchor positioning draw it on the link itself. */
+  .subs a::before {
+    content: '';
+    position: absolute;
+    top: 0.5rem;
+    bottom: 0.5rem;
+    left: 0;
+    width: 1px;
+  }
+
+  .subs a:global(.is-current)::before {
+    background: var(--fg);
+  }
+
+  /* With anchor positioning, one marker is anchored to the current link and slides between labels. */
+  @supports (anchor-name: --current-sub) {
+    .subs a:global(.is-current) {
+      anchor-name: --current-sub;
+    }
+
+    .subs a:global(.is-current)::before {
+      background: none;
+    }
+
+    .active .subs::after {
+      content: '';
+      position: absolute;
+      position-anchor: --current-sub;
+      position-visibility: anchors-valid;
+      top: calc(anchor(top) + 0.5rem);
+      bottom: calc(anchor(bottom) + 0.5rem);
+      left: 0;
+      width: 1px;
+      background: var(--fg);
+      transition:
+        top 320ms var(--ease),
+        bottom 320ms var(--ease);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .active .subs::after,
+    .subs-wrap {
+      transition: none;
+    }
   }
 
   @media (max-width: 900px) {

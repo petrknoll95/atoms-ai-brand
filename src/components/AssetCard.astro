@@ -38,7 +38,12 @@ if (weights?.length) initial = withStrokeWidth(initial, weights[0].value);
 
 <article class="asset" data-asset={id} data-png-size={pngSize}>
   <template data-asset-svg set:html={svg} />
-  <div class="stage" data-asset-tone data-tone={selected?.tone ?? 'light'} style={`--art-w: ${artWidth}; --preview-h: ${previewHeight}`}>
+  <div
+    class="stage"
+    data-asset-tone
+    data-tone={selected?.tone ?? 'light'}
+    style={`--art-w: ${artWidth}; --preview-h: ${previewHeight}${selected?.surface ? `; --surface: ${selected.surface}` : ''}`}
+  >
     <div class="preview" data-asset-preview role="img" aria-label={`${name} preview`} set:html={initial} />
     {
       ((options && options.length > 1) || (weights && weights.length > 1)) && (
@@ -97,9 +102,10 @@ if (weights?.length) initial = withStrokeWidth(initial, weights[0].value);
     align-content: start;
   }
 
-  /* The canvas: art centered, color picker top left, actions bottom right. */
+  /* The canvas: art centered, color picker top left, actions bottom right. Opaque artwork
+     (linework) sets --surface, so the canvas always matches the fill. */
   .stage {
-    --stage-bg: var(--white);
+    --stage-bg: var(--surface, var(--white));
     --stage-ring: var(--fg);
     --dot-edge: color-mix(in srgb, var(--deep-green) 25%, transparent);
     display: grid;
@@ -114,9 +120,17 @@ if (weights?.length) initial = withStrokeWidth(initial, weights[0].value);
   }
 
   .stage[data-tone='dark'] {
-    --stage-bg: var(--deep-green);
+    --stage-bg: var(--surface, var(--deep-green));
     --stage-ring: var(--cream);
     --dot-edge: color-mix(in srgb, var(--cream) 45%, transparent);
+    box-shadow: none;
+  }
+
+  /* White artwork always previews on Black. */
+  .stage[data-tone='black'] {
+    --stage-bg: var(--surface, var(--black));
+    --stage-ring: var(--white);
+    --dot-edge: color-mix(in srgb, var(--white) 45%, transparent);
     box-shadow: none;
   }
 

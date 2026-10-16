@@ -1,155 +1,368 @@
 ---
-// 2.9 Mark reveal: each blade is a circle seen through a vertical slit; the circles
-// slide inward until they fill their slits. 1.28 s, cubic-bezier(0.7, 0, 0.3, 1).
-import { markPath } from '../data/logos';
+// 2.9 Mark reveal: the animated mark from the atoms-ai-slit-logo sketch. Six slits each clip a
+// circle; on a 4 s loop the circles retreat outward until they clear their slits, then return,
+// outer pair first. Native SVG animation (SMIL), identical to the sketch's animated export.
+// With controls it sits in its own stage: colorways top left, the export frame dashed in the
+// middle with the mark at the chosen size, and pause and video export along the bottom.
+import { colors } from '../data/colors';
+import { keyTimesOf, markBounds, slitBlades, slitClip, slitMotion } from '../data/slitLogo';
 
 interface Props {
   uid: string;
-  /** Play automatically when scrolled into view. */
-  autoplay?: boolean;
   controls?: boolean;
   class?: string;
 }
 
-const { uid, autoplay = true, controls = true, class: className } = Astro.props;
+const { uid, controls = false, class: className } = Astro.props;
 
-// The mark is two mirrored sets of three circles, each seen through a vertical slit
-// (derived from the master path: blade = circle ∩ slit). Outer pair first, center last.
-const strips = [
-  { x0: 0, x1: 40, cx: -117.4, r: 157.4, from: -42, delay: 0.1, dur: 0.8 },
-  { x0: 50, x1: 125, cx: -72.4, r: 202.4, from: -82, delay: 0.25, dur: 0.8 },
-  { x0: 125, x1: 220, cx: -24.9, r: 249.9, from: -102, delay: 0.45, dur: 0.83 },
-  { x0: 220, x1: 315, cx: 464.9, r: 249.9, from: 102, delay: 0.45, dur: 0.83 },
-  { x0: 315, x1: 390, cx: 512.4, r: 202.4, from: 82, delay: 0.25, dur: 0.8 },
-  { x0: 400, x1: 440, cx: 557.4, r: 157.4, from: 42, delay: 0.1, dur: 0.8 },
+const round = (v: number) => +v.toFixed(4);
+const bounds = markBounds();
+const viewBox = [bounds.x, bounds.y, bounds.width, bounds.height].map(round).join(' ');
+const blades = slitBlades().map((b) => {
+  const hidden = b.cx - b.direction * b.distance;
+  return {
+    ...b,
+    id: `${uid}-slit-${b.n}-${b.direction}`,
+    values: [b.cx, b.cx, hidden, hidden, b.cx, b.cx].map(round).join(';'),
+    keyTimes: keyTimesOf(b.n),
+  };
+});
+
+const colorways = [
+  { key: 'deep-green-white', label: 'Deep green on White', fg: colors.deepGreen.hex, bg: colors.white.hex, tone: 'light' },
+  { key: 'cream-deep-green', label: 'Cream on Deep green', fg: colors.cream.hex, bg: colors.deepGreen.hex, tone: 'dark' },
+  { key: 'black-white', label: 'Black on White', fg: colors.black.hex, bg: colors.white.hex, tone: 'light' },
+  { key: 'white-black', label: 'White on Black', fg: colors.white.hex, bg: colors.black.hex, tone: 'dark' },
 ];
+const aspects = [
+  { key: 'square', label: 'Square 1:1', ratio: 1 },
+  { key: 'landscape', label: 'Landscape 16:9', ratio: 16 / 9 },
+  { key: 'story', label: 'Story 9:16', ratio: 9 / 16 },
+  { key: 'portrait', label: 'Portrait 4:5', ratio: 4 / 5 },
+];
+const sizes = [
+  { key: '720', label: '720p' },
+  { key: '1080', label: '1080p' },
+  { key: '2160', label: '4K' },
+];
+const logo = 40;
+const initial = colorways[0];
 ---
 
-<div class:list={['reveal', className]} data-reveal data-autoplay={autoplay ? '' : undefined}>
-  <svg class="reveal-art" viewBox="-2 -2 444 404" role="img" aria-label="AtomsAI mark reveal animation">
-    <defs>
-      {
-        strips.map((s, i) => (
-          <clipPath id={`${uid}-slit-${i}`}>
-            <rect x={s.x0} y="-10" width={s.x1 - s.x0} height="420" />
-          </clipPath>
-        ))
-      }
-    </defs>
-    <g class="strips">
-      {
-        strips.map((s, i) => (
-          <g clip-path={`url(#${uid}-slit-${i})`}>
-            <circle
-              class="blade"
-              cx={s.cx}
-              cy="200"
-              r={s.r}
-              style={`--from: ${s.from}px; --delay: ${s.delay}s; --dur: ${s.dur}s`}
-            />
-          </g>
-        ))
-      }
-    </g>
-    <path class="whole" d={markPath} />
-  </svg>
+<div
+  class:list={['reveal', { framed: controls }, className]}
+  data-reveal
+  data-tone={initial.tone}
+  style={controls ? `--reveal-fg: ${initial.fg}; --reveal-bg: ${initial.bg}; --ratio: 1; --logo: ${logo}` : undefined}
+>
   {
     controls && (
-      <button class="btn replay" type="button" data-reveal-replay>
-        Replay
-      </button>
+      <fieldset class="options">
+        <legend class="visually-hidden">Mark colors</legend>
+        {colorways.map((c, i) => (
+          <label class="color-option" title={c.label}>
+            <input type="radio" name={`${uid}-colors`} checked={i === 0} data-reveal-color data-fg={c.fg} data-bg={c.bg} data-tone={c.tone} />
+            <span class="dot" style={`--ink: ${c.fg}; --surface: ${c.bg}`} />
+            <span class="visually-hidden">{c.label}</span>
+          </label>
+        ))}
+      </fieldset>
+    )
+  }
+  <div class="area">
+    <div class="frame">
+      <svg class="reveal-svg" viewBox={viewBox} role="img" aria-label="The AtomsAI mark hiding and revealing itself">
+        <defs>
+          {
+            blades.map((b) => (
+              <clipPath id={b.id} clipPathUnits="userSpaceOnUse">
+                <rect x={round(b.x)} y={slitClip.y} width={round(b.w)} height={slitClip.height} />
+              </clipPath>
+            ))
+          }
+        </defs>
+        {
+          blades.map((b) => (
+            <g clip-path={`url(#${b.id})`}>
+              <circle cx={round(b.cx)} cy="50" r={round(b.r)}>
+                <animate
+                  attributeName="cx"
+                  values={b.values}
+                  dur={`${slitMotion.seconds}s`}
+                  repeatCount="indefinite"
+                  calcMode="spline"
+                  keyTimes={b.keyTimes}
+                  keySplines={slitMotion.keySplines}
+                />
+              </circle>
+            </g>
+          ))
+        }
+      </svg>
+    </div>
+  </div>
+  {
+    controls && (
+      <div class="reveal-bar">
+        <button class="btn" type="button" data-reveal-toggle>
+          Pause
+        </button>
+        <div class="btn-row export">
+          <select class="pick" data-reveal-aspect aria-label="Video aspect ratio">
+            {aspects.map((a) => <option value={a.key} data-ratio={a.ratio}>{a.label}</option>)}
+          </select>
+          <select class="pick" data-reveal-size aria-label="Video resolution">
+            {sizes.map((s) => <option value={s.key} selected={s.key === '1080'}>{s.label}</option>)}
+          </select>
+          <label class="logo-size">
+            <span>Logo</span>
+            <input type="range" min="10" max="90" step="1" value={logo} data-reveal-logo aria-label="Logo size, as a share of the video width" />
+            <output data-reveal-logo-out>{logo}%</output>
+          </label>
+          <button class="btn" type="button" data-reveal-export>
+            Download video
+          </button>
+        </div>
+      </div>
     )
   }
 </div>
 
 <script>
-  function play(root: HTMLElement) {
-    root.classList.remove('is-playing', 'is-done');
-    void root.offsetWidth; // restart CSS animations
-    root.classList.add('is-ready', 'is-playing');
-  }
+  import { exportMarkVideo } from '../scripts/slit-logo';
+  import { downloadBlob } from '../scripts/svg';
+  import { notify } from '../scripts/actions';
+
+  // Reduced motion shows the full mark, paused. Otherwise it loops; the button pauses and resumes.
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   document.querySelectorAll<HTMLElement>('[data-reveal]').forEach((root) => {
-    const blades = root.querySelectorAll('.blade');
-    const last = blades[2];
-    last?.addEventListener('animationend', () => root.classList.add('is-done'));
-    root.querySelector('[data-reveal-replay]')?.addEventListener('click', () => play(root));
+    const svg = root.querySelector<SVGSVGElement>('.reveal-svg')!;
+    const toggle = root.querySelector<HTMLButtonElement>('[data-reveal-toggle]');
 
-    if (root.hasAttribute('data-autoplay')) {
-      const io = new IntersectionObserver(
-        (entries) => {
-          if (entries.some((e) => e.isIntersecting)) {
-            play(root);
-            io.disconnect();
-          }
-        },
-        { threshold: 0.4 },
-      );
-      io.observe(root);
-    } else {
-      root.classList.add('is-ready', 'is-done');
+    const setPlaying = (playing: boolean) => {
+      if (playing) svg.unpauseAnimations();
+      else svg.pauseAnimations();
+      if (toggle) toggle.textContent = playing ? 'Pause' : 'Play';
+    };
+
+    if (reduced) {
+      svg.setCurrentTime(0);
+      setPlaying(false);
     }
+    toggle?.addEventListener('click', () => setPlaying(svg.animationsPaused()));
+
+    // Colorway, export frame and logo size drive the stage through custom properties.
+    const color = () => root.querySelector<HTMLInputElement>('[data-reveal-color]:checked')!;
+    const aspect = root.querySelector<HTMLSelectElement>('[data-reveal-aspect]');
+    const size = root.querySelector<HTMLSelectElement>('[data-reveal-size]');
+    const logo = root.querySelector<HTMLInputElement>('[data-reveal-logo]');
+    const logoOut = root.querySelector<HTMLOutputElement>('[data-reveal-logo-out]');
+
+    root.addEventListener('change', (event) => {
+      const input = event.target as HTMLInputElement;
+      if (!input.matches('[data-reveal-color]')) return;
+      root.style.setProperty('--reveal-fg', input.dataset.fg!);
+      root.style.setProperty('--reveal-bg', input.dataset.bg!);
+      root.dataset.tone = input.dataset.tone;
+    });
+    aspect?.addEventListener('change', () => root.style.setProperty('--ratio', aspect.selectedOptions[0].dataset.ratio!));
+    logo?.addEventListener('input', () => {
+      root.style.setProperty('--logo', logo.value);
+      if (logoOut) logoOut.value = `${logo.value}%`;
+    });
+
+    // Video export at the chosen aspect ratio and resolution (the shorter side), in the current
+    // colors, with the mark at the chosen share of the width.
+    const exportButton = root.querySelector<HTMLButtonElement>('[data-reveal-export]');
+    exportButton?.addEventListener('click', async () => {
+      const option = aspect!.selectedOptions[0];
+      const short = Number(size!.value);
+      const ratio = Number(option.dataset.ratio);
+      const even = (v: number) => Math.round(v / 2) * 2;
+      const width = ratio >= 1 ? even(short * ratio) : short;
+      const height = ratio >= 1 ? short : even(short / ratio);
+      const { fg, bg } = color().dataset;
+
+      exportButton.disabled = true;
+      let shown = -1;
+      try {
+        const { blob, extension } = await exportMarkVideo({
+          width,
+          height,
+          fg: fg!,
+          bg: bg!,
+          logo: Number(logo!.value) / 100,
+          onProgress: (done) => {
+            const step = Math.floor(done * 10);
+            if (step !== shown) {
+              shown = step;
+              notify(`Rendering video… ${step * 10}%`);
+            }
+          },
+        });
+        downloadBlob(blob, `atomsai-mark-reveal-${option.value}-${width}x${height}.${extension}`);
+        notify('Video downloaded');
+      } catch (error) {
+        notify(error instanceof Error ? error.message : 'Video export failed');
+      } finally {
+        exportButton.disabled = false;
+      }
+    });
   });
 </script>
 
 <style>
   .reveal {
     position: relative;
-    color: var(--fg);
+    color: var(--reveal-fg, var(--fg));
   }
 
-  .reveal-art {
+  .reveal-svg {
     display: block;
     width: 100%;
     height: auto;
     fill: currentColor;
-    overflow: visible;
   }
 
-  .blade {
-    transform: translateX(var(--from));
+  /* The stage on the Logo page: colorways, the export frame, then the controls. */
+  .framed {
+    --stage-ring: var(--fg);
+    --dot-edge: color-mix(in srgb, var(--deep-green) 25%, transparent);
+    display: grid;
+    grid-template-rows: auto minmax(0, 1fr) auto;
+    gap: 1rem;
+    padding: 1rem;
+    background: var(--reveal-bg);
+    box-shadow: inset 0 0 0 1px var(--rule);
+    transition: background-color 160ms ease;
   }
 
-  .whole {
-    opacity: 1;
+  .framed[data-tone='dark'] {
+    --stage-ring: var(--white);
+    --dot-edge: color-mix(in srgb, var(--white) 45%, transparent);
+    box-shadow: none;
   }
 
-  .strips {
-    opacity: 0;
+  /* The export frame, fitted to the stage at the chosen aspect ratio. */
+  .framed .area {
+    container-type: size;
+    display: grid;
+    place-items: center;
+    height: clamp(16rem, 34vw, 28rem);
   }
 
-  .reveal:global(.is-ready) .whole {
-    opacity: 0;
+  .framed .frame {
+    display: grid;
+    place-items: center;
+    width: min(100cqw, 100cqh * var(--ratio));
+    aspect-ratio: var(--ratio);
+    outline: 1px dashed color-mix(in srgb, var(--reveal-fg) 45%, transparent);
+    transition: width 200ms ease;
   }
 
-  .reveal:global(.is-ready) .strips {
-    opacity: 1;
+  .framed .reveal-svg {
+    width: calc(var(--logo) * 1%);
   }
 
-  .reveal:global(.is-playing) .blade {
-    animation: reveal-slide var(--dur) cubic-bezier(0.7, 0, 0.3, 1) var(--delay) both;
+  .options {
+    display: flex;
+    gap: 0.5rem;
+    margin: 0;
+    padding: 0;
+    border: 0;
   }
 
-  .reveal:global(.is-done) .whole {
-    opacity: 1;
+  .color-option {
+    position: relative;
+    cursor: pointer;
   }
 
-  .reveal:global(.is-done) .strips {
-    opacity: 0;
-  }
-
-  .replay {
+  .color-option input {
     position: absolute;
-    right: 0;
-    bottom: 0;
+    opacity: 0;
+    pointer-events: none;
   }
 
-  @keyframes reveal-slide {
-    from {
-      transform: translateX(var(--from));
-    }
-    to {
-      transform: translateX(0);
-    }
+  /* Split dots: the mark color over the background, like the asset canvases. */
+  .dot {
+    display: block;
+    width: 1.25rem;
+    height: 1.25rem;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--ink) 50%, var(--surface) 50%);
+    box-shadow:
+      inset 0 0 0 1px var(--dot-edge),
+      0 0 0 2px var(--reveal-bg),
+      0 0 0 3px transparent;
+  }
+
+  input:checked + .dot {
+    box-shadow:
+      inset 0 0 0 1px var(--dot-edge),
+      0 0 0 2px var(--reveal-bg),
+      0 0 0 3px var(--stage-ring);
+  }
+
+  input:focus-visible + .dot {
+    outline: 1.5px solid var(--stage-ring);
+    outline-offset: 4px;
+  }
+
+  .reveal-bar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .export {
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  /* Pill selects with a centered chevron in place of the native caret. */
+  .pick {
+    min-height: 2rem;
+    padding: 0 2rem 0 0.875rem;
+    border: 1px solid var(--rule);
+    border-radius: 999px;
+    background: var(--bg)
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%2327433B' stroke-width='1.2'/%3E%3C/svg%3E")
+      no-repeat right 0.875rem center / 0.625rem auto;
+    color: var(--fg);
+    font-size: var(--size-annotation);
+    appearance: none;
+    cursor: pointer;
+  }
+
+  .logo-size {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 2rem;
+    padding: 0 0.875rem;
+    border: 1px solid var(--rule);
+    border-radius: 999px;
+    background: var(--bg);
+    color: var(--fg);
+    font-size: var(--size-annotation);
+  }
+
+  .logo-size input {
+    width: 6rem;
+    accent-color: var(--deep-green);
+  }
+
+  .logo-size output {
+    min-width: 2.25em;
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .btn:disabled {
+    opacity: 0.5;
+    cursor: progress;
   }
 </style>

@@ -68,6 +68,19 @@ html {
   scroll-padding-top: 1.5rem;
 }
 
+/* Sidebar and contents links glide to their section. */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* No rubber-band overscroll past the top or bottom of the page. */
+html,
+body {
+  overscroll-behavior: none;
+}
+
 body {
   margin: 0;
   font-size: var(--size-annotation);
@@ -116,6 +129,22 @@ select {
   outline-offset: 2px;
 }
 
+/* Text blocks are trimmed to cap height and baseline, so every gap is measured from the
+   letters themselves rather than from the line box. */
+h1,
+h2,
+h3,
+h4,
+p,
+dt,
+dd,
+figcaption,
+legend,
+blockquote,
+.display {
+  text-box: trim-both cap alphabetic;
+}
+
 /* Headlines never leave a lone word on the last line. */
 h1,
 h2,
@@ -137,8 +166,27 @@ h3,
   color: var(--muted);
 }
 
+/* Twice the gap between lines, now that paragraphs are trimmed. */
 .prose > * + * {
-  margin-top: 0.7em;
+  margin-top: 1.4em;
+}
+
+/* Term and description pairs in guideline copy, two to a row. */
+.rules {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem 1.5rem;
+}
+
+.rules > div {
+  display: grid;
+  align-content: start;
+  gap: 0.625rem;
+}
+
+/* Set the details apart from the paragraphs above them. */
+.prose > * + .rules {
+  margin-top: 2.5rem;
 }
 
 .visually-hidden {

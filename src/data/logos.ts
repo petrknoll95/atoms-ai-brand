@@ -11,26 +11,29 @@ export const markPath = markSvg.match(/ d="([^"]+)"/)![1];
 export const logotypeInner = logotypeSvg.replace(/^<svg[^>]*>/, '').replace(/<\/svg>\s*$/, '');
 
 /**
- * Lockup geometry of the master "Logo" component in Figma (1289:21547), in its own units.
- * The mark is 220 × 200 (X = 200); the wordmark starts after a 0.3X gap. Its x-height is
- * 56% of the mark (caps reach 155, lowercase 42 → 155).
+ * Lockup geometry of the master "Logotype" component in Figma (1330:27629), in its own units.
+ * The mark is 220 × 200 (X = 200); the wordmark starts after a 0.3X gap and is centered on the
+ * mark: capitals run from 20 to the baseline at 180, so the cap height is 80% of the mark.
  */
 export const lockup = {
-  width: 1077,
+  width: 1132,
   height: 200,
   markWidth: 220,
   wordX: 280,
-  capTop: 0,
-  xTop: 42,
-  baseline: 155,
-  /** Custom kerning (thousandths of an em) between each letter pair, left to right. */
+  capTop: 20,
+  xTop: 67.3,
+  baseline: 180,
+  /**
+   * Custom kerning (thousandths of an em) per letter pair, from the lockup slide. `bars` are the
+   * left edges of the markers that bound each kerned span, `bar` their width.
+   */
   kerning: [
-    { pair: 'at', x: 395.4, value: -32 },
-    { pair: 'to', x: 472.8, value: -18 },
-    { pair: 'om', x: 596.3, value: -40 },
-    { pair: 'ms', x: 781.9, value: -24 },
-    { pair: 'sA', x: 890.4, value: -12 },
-    { pair: 'AI', x: 1051.1, value: -36 },
+    { pair: 'At', value: -36, bars: [436, 470.7], bar: 8 },
+    { pair: 'to', value: -24, bars: [518.7, 552], bar: 5.3 },
+    { pair: 'om', value: -32, bars: [648, 677.3], bar: 8 },
+    { pair: 'ms', value: -18, bars: [840, 864], bar: 5.3 },
+    { pair: 'sA', value: -32, bars: [942.7, 965.3], bar: 8 },
+    { pair: 'AI', value: -30, bars: [1109.3], bar: 8 },
   ],
 };
 

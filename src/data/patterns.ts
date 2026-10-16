@@ -64,6 +64,9 @@ export type StructureId = 'drift' | 'offset' | 'single-band' | 'concentric';
 
 export const SLITS = [5, 10, 20, 40];
 
+/** Generator density stops: geometric from 5 to 40 slits. Stops 0, 3, 6 and 9 are the published densities. */
+export const DENSITY_STOPS = [5, 6, 8, 10, 13, 16, 20, 25, 32, 40];
+
 const reflection: Transform = [[0, 1, -0.0002], [-1.8578, 0, 2.3561]];
 
 // Explicit Figma stop curves (Single band).

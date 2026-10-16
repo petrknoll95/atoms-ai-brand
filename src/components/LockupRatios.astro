@@ -1,6 +1,6 @@
 ---
-// 2.5 Lockup proportions, drawn in HTML around the master logotype:
-// the wordmark's x-height is 56% of the mark's height, and the gap is 0.3X.
+// 2.5 Lockup proportions, drawn in HTML around the master logotype, after the Figma slide:
+// the wordmark's cap height is 80% of the mark's height, and the gap is 0.3X.
 // Each panel is a 550 × 373 frame that crops the logotype; everything is placed in those units,
 // so the panels scale with their width. Only the logotype itself is SVG.
 import Figure from './Figure.astro';
@@ -14,9 +14,9 @@ const ly = (H - lockup.height * s) / 2;
 const markRight = lx + lockup.markWidth * s;
 const markBottom = ly + lockup.height * s;
 const wordLeft = lx + lockup.wordX * s;
-const xTop = ly + lockup.xTop * s;
+const capTop = ly + lockup.capTop * s;
 const baseline = ly + lockup.baseline * s;
-const xHeight = Math.round(((lockup.baseline - lockup.xTop) / lockup.height) * 100);
+const capHeight = Math.round(((lockup.baseline - lockup.capTop) / lockup.height) * 100);
 
 // Panel units → percentages of the frame.
 const pct = (v: number) => `${+(v * 100).toFixed(4)}%`;
@@ -33,27 +33,29 @@ const markBracket = `left: ${x(58)}; top: ${y(ly)}; width: ${x(8)}; height: ${y(
 
 <div class="ratios">
   <div class="pair">
-    <Figure caption="Symbol / wordmark height ratio" tone="plain">
-      <div class="panel height" style={frame} role="img" aria-label={`The wordmark x-height is ${xHeight}% of the mark height`}>
+    <Figure caption="Symbol / wordmark height ratio" tone="framed">
+      <div class="panel" style={frame} role="img" aria-label={`The wordmark cap height is ${capHeight}% of the mark height`}>
         <div class="guide" style={`top: ${y(ly)}`}></div>
         <div class="guide" style={`top: ${y(markBottom)}`}></div>
-        <div class="guide" style={`top: ${y(xTop)}; left: ${x(wordLeft - 20)}`}></div>
-        <div class="guide" style={`top: ${y(baseline)}; left: ${x(wordLeft - 20)}`}></div>
+        <div class="guide" style={`top: ${y(capTop)}`}></div>
+        <div class="guide" style={`top: ${y(baseline)}`}></div>
         <div class="art" style={art} set:html={logotypeSvg} />
         <div class="bracket" style={markBracket}></div>
-        <div class="bracket" style={`left: ${x(wordLeft - 14)}; top: ${y(xTop)}; width: ${x(8)}; height: ${y(baseline - xTop)}`}></div>
+        <div class="bracket" style={`left: ${x(wordLeft - 9)}; top: ${y(capTop)}; width: ${x(8)}; height: ${y(baseline - capTop)}`}></div>
         <span class="label end" style={`right: ${fromRight(50)}; top: ${y((ly + markBottom) / 2)}`}>100%</span>
-        <span class="label" style={`left: ${x((markRight + wordLeft - 14) / 2)}; top: ${y((xTop + baseline) / 2)}`}>{xHeight}%</span>
+        <span class="label end" style={`right: ${fromRight(wordLeft - 15)}; top: ${y((capTop + baseline) / 2)}`}>{capHeight}%</span>
       </div>
     </Figure>
 
-    <Figure caption="Symbol / wordmark gap" tone="plain">
-      <div class="panel gap" style={frame} role="img" aria-label="The gap between mark and wordmark is 0.3 times the mark height">
+    <Figure caption="Symbol / wordmark gap" tone="framed">
+      <div class="panel" style={frame} role="img" aria-label="The gap between mark and wordmark is 0.3 times the mark height">
+        <div class="guide" style={`top: ${y(ly)}`}></div>
+        <div class="guide" style={`top: ${y(markBottom)}`}></div>
         <div class="band" style={`left: ${x(markRight)}; width: ${x(wordLeft - markRight)}`}></div>
         <div class="art" style={art} set:html={logotypeSvg} />
         <div class="bracket" style={markBracket}></div>
-        <div class="rule" style={`left: ${x(markRight + 4)}; top: ${y(H / 2)}; width: ${x(wordLeft - markRight - 8)}`}></div>
-        <span class="label" style={`left: ${x(40)}; top: ${y((ly + markBottom) / 2)}`}>X</span>
+        <div class="rule" style={`left: ${x(markRight)}; top: ${y(H / 2)}; width: ${x(wordLeft - markRight)}`}></div>
+        <span class="label end" style={`right: ${fromRight(50)}; top: ${y((ly + markBottom) / 2)}`}>1X</span>
         <span class="label" style={`left: ${x((markRight + wordLeft) / 2)}; top: ${y(H / 2 - 14)}`}>0.3X</span>
       </div>
     </Figure>
@@ -76,39 +78,29 @@ const markBracket = `left: ${x(58)}; top: ${y(ly)}; width: ${x(8)}; height: ${y(
     container-type: inline-size;
     position: relative;
     overflow: hidden;
-    background: var(--panel);
-    color: var(--ink);
+    color: var(--iris);
   }
 
   .panel > * {
     position: absolute;
   }
 
-  .height {
-    --panel: var(--deep-green);
-    --ink: var(--cream);
-  }
-
-  .gap {
-    --panel: var(--iris);
-    --ink: var(--white);
-  }
-
-  /* Faint 1px guides at the mark's top and bottom and the wordmark's x-height and baseline. */
+  /* Dotted Iris guides at the mark's top and bottom, and the wordmark's cap top and baseline. */
   .guide {
     left: 0;
     right: 0;
-    border-top: 1px solid color-mix(in srgb, var(--ink) 35%, transparent);
+    border-top: 1px dotted;
   }
 
-  /* The 0.3X gap between mark and wordmark, full height. */
+  /* The 0.3X gap between mark and wordmark, outlined full height. */
   .band {
     top: 0;
     bottom: 0;
-    background: var(--iris-shade);
+    border-inline: 1px solid;
   }
 
   .art {
+    color: var(--forest-shade);
     line-height: 0;
   }
 

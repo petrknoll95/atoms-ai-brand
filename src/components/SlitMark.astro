@@ -1,0 +1,42 @@
+---
+// The mark drawn from the slit geometry, at rest. Circles carry their motion data so
+// playCycle() in src/scripts/slit-logo.ts can run one hide-and-reveal cycle on demand.
+import { markBounds, slitBlades, slitClip } from '../data/slitLogo';
+
+interface Props {
+  uid: string;
+}
+
+const { uid } = Astro.props;
+const round = (v: number) => +v.toFixed(4);
+const bounds = markBounds();
+const viewBox = [bounds.x, bounds.y, bounds.width, bounds.height].map(round).join(' ');
+const blades = slitBlades().map((b) => ({ ...b, id: `${uid}-slit-${b.n}-${b.direction}` }));
+---
+
+<svg class="slit-mark" viewBox={viewBox} fill="currentColor" aria-hidden="true">
+  <defs>
+    {
+      blades.map((b) => (
+        <clipPath id={b.id} clipPathUnits="userSpaceOnUse">
+          <rect x={round(b.x)} y={slitClip.y} width={round(b.w)} height={slitClip.height} />
+        </clipPath>
+      ))
+    }
+  </defs>
+  {
+    blades.map((b) => (
+      <g clip-path={`url(#${b.id})`}>
+        <circle
+          cx={round(b.cx)}
+          cy="50"
+          r={round(b.r)}
+          data-cx={round(b.cx)}
+          data-direction={b.direction}
+          data-distance={round(b.distance)}
+          data-stagger={b.stagger}
+        />
+      </g>
+    ))
+  }
+</svg>

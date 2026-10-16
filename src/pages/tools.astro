@@ -1,0 +1,19 @@
+---
+import Guide from '../layouts/Guide.astro';
+import Sub from '../components/Sub.astro';
+import PatternGenerator from '../components/PatternGenerator.astro';
+---
+
+<Guide slug="tools" description="AtomsAI brand tools: make a pattern for any format with the live pattern generator.">
+  <Sub id="pattern-generator" title="Pattern generator">
+    <Fragment slot="text">
+      <p>
+        Make a pattern for any format. Pick a structure, colorway and density, set the size, then crop, rotate and scale
+        the field. Only published colorways are available, and the field always scales evenly — it is never skewed or
+        stretched.
+      </p>
+      <p class="muted">The rules behind each structure, density and colorway are in <a href="/patterns/">Patterns</a>.</p>
+    </Fragment>
+    <PatternGenerator />
+  </Sub>
+</Guide>

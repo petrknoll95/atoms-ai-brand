@@ -1,8 +1,9 @@
 ---
-// 2.5 Wordmark kerning, drawn in HTML around the master logotype. Values are in thousandths of
-// an em, as specified on the Figma lockup slide. Everything is placed in lockup units (see
-// `lockup`) inside a frame with the same aspect ratio, so the diagram scales with its width;
-// only the logotype itself is SVG.
+// 2.5 Wordmark kerning, drawn in HTML around the master logotype, after the Figma lockup slide:
+// dotted guides at the mark's top and bottom and the x-height, solid guides at cap top and
+// baseline, a dashed midline, the 0.3X gap outlined, and Iris bars bounding each kerned span.
+// Values are in thousandths of an em. Everything is placed in lockup units (see `lockup`) inside a
+// frame with the same aspect ratio, so the diagram scales with its width; only the logotype is SVG.
 import Figure from './Figure.astro';
 import { lockup, logotypeSvg } from '../data/logos';
 
@@ -19,37 +20,35 @@ const y = (v: number) => pct((v + top) / H);
 const w = (v: number) => pct(v / W);
 const h = (v: number) => pct(v / H);
 
+const pairs = lockup.kerning.map((k) => ({ ...k, center: (k.bars[0] + k.bars[k.bars.length - 1] + k.bar) / 2 }));
+
 // Labels stay at annotation size until the closest pair would touch (about 2.2em apart), then
 // shrink with the frame down to an 11px floor.
-const closest = Math.min(...lockup.kerning.slice(1).map((k, i) => k.x - lockup.kerning[i].x));
+const closest = Math.min(...pairs.slice(1).map((k, i) => k.center - pairs[i].center));
 const labelSize = `${+((closest / 2.2 / W) * 100).toFixed(4)}cqi`;
 
 const minus = (n: number) => String(n).replace('-', '−');
-const label = `Custom kerning between each pair of letters in the wordmark, in thousandths of an em: ${lockup.kerning
+const label = `Custom kerning between each pair of letters in the wordmark, in thousandths of an em: ${pairs
   .map((k) => `${k.pair} ${minus(k.value)}`)
   .join(', ')}`;
 ---
 
 <Figure caption="Wordmark kerning" tone="framed">
-  <div class="diagram" style={`aspect-ratio: ${W} / ${H}; --label: ${labelSize}`} role="img" aria-label={label}>
+  <div class="diagram" style={`aspect-ratio: ${W} / ${H}; --label: ${labelSize}; --dash: ${w(6)}`} role="img" aria-label={label}>
+    {pairs.map((k) => k.bars.map((b) => <div class="bar" style={`left: ${x(b)}; top: ${y(0)}; width: ${w(k.bar)}; height: ${h(lockup.height)}`} />))}
+    <div class="guide dotted" style={`top: ${y(0)}`}></div>
+    <div class="guide dotted" style={`top: ${y(lockup.height)}`}></div>
     <div class="guide" style={`top: ${y(lockup.capTop)}`}></div>
-    <div class="guide" style={`top: ${y(lockup.xTop)}; left: ${x(lockup.wordX - 20)}`}></div>
+    <div class="guide dotted" style={`top: ${y(lockup.xTop)}`}></div>
     <div class="guide" style={`top: ${y(lockup.baseline)}`}></div>
-    <div class="guide dashed" style={`top: ${y(mid)}; --dash: ${w(6)}`}></div>
-    <div class="box" style={`left: ${x(0)}; top: ${y(0)}; width: ${w(lockup.markWidth)}; height: ${h(lockup.height)}`}></div>
+    <div class="guide dashed" style={`top: ${y(mid)}`}></div>
+    <div class="box" style={`left: ${x(lockup.markWidth)}; top: ${y(0)}; width: ${w(lockup.wordX - lockup.markWidth)}; height: ${h(lockup.height)}`}></div>
     <div class="art" style={`left: ${x(0)}; top: ${y(0)}; width: ${w(lockup.width)}`} set:html={logotypeSvg} />
     {
-      lockup.kerning.map((k) => (
-        <>
-          <div
-            class="marker"
-            style={`left: ${x(k.x - 3)}; top: ${y(lockup.xTop - 30)}; width: ${w(6)}; height: ${h(lockup.baseline - lockup.xTop + 40)}`}
-          />
-          {/* Centred where the slide's 18-unit labels sat (baseline 16 units above cap top). */}
-          <span class="value" style={`left: ${x(k.x)}; top: ${y(-22)}`}>
-            {minus(k.value)}
-          </span>
-        </>
+      pairs.map((k) => (
+        <span class="value" style={`left: ${x(k.center)}; top: ${y(-22)}`}>
+          {minus(k.value)}
+        </span>
       ))
     }
   </div>
@@ -67,14 +66,18 @@ const label = `Custom kerning between each pair of letters in the wordmark, in t
     position: absolute;
   }
 
-  /* 1px Iris guides: cap top, x-height, baseline and the dashed midline. */
+  /* 1px Iris guides across the full width. */
   .guide {
     left: 0;
     right: 0;
     border-top: 1px solid;
   }
 
-  /* 6-unit dashes, like the Figma guide (a dashed border would draw 3px dashes at any size). */
+  .dotted {
+    border-top-style: dotted;
+  }
+
+  /* 6-unit dashes, like the Figma midline (a dashed border would draw 3px dashes at any size). */
   .dashed {
     height: 1px;
     border: 0;
@@ -85,8 +88,12 @@ const label = `Custom kerning between each pair of letters in the wordmark, in t
     border: 1px solid;
   }
 
+  .bar {
+    background: currentColor;
+  }
+
   .art {
-    color: var(--deep-green);
+    color: var(--forest-shade);
     line-height: 0;
   }
 
@@ -94,11 +101,6 @@ const label = `Custom kerning between each pair of letters in the wordmark, in t
     display: block;
     width: 100%;
     height: auto;
-  }
-
-  .marker {
-    background: currentColor;
-    opacity: 0.35;
   }
 
   .value {

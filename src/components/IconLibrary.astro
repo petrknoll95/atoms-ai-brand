@@ -173,6 +173,12 @@ const selected = defaultColorOptions.find((o) => o.key === 'deep-green')!;
     box-shadow: none;
   }
 
+  /* White icons always preview on Black. */
+  .tile-art[data-tone='black'] {
+    background: var(--black);
+    box-shadow: none;
+  }
+
   .tile-art :global(svg) {
     width: 34%;
     height: auto;

@@ -1,0 +1,26 @@
+---
+// "Copy page link" under each page hero. actions.ts copies the page URL without its hash.
+---
+
+<button class="page-link" type="button" data-copy-page>Copy page link</button>
+
+<style>
+  .page-link {
+    display: block;
+    margin: 0 0 calc(var(--gutter) * 1.5);
+    padding: 0;
+    border: 0;
+    background: none;
+    color: var(--muted);
+    font-size: var(--size-annotation);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.2em;
+    cursor: pointer;
+    transition: color 120ms ease;
+  }
+
+  .page-link:hover {
+    color: var(--fg);
+  }
+</style>

@@ -2,7 +2,8 @@
 // 2.2 Clear space, drawn in HTML from the Figma slide. The grid cells are the clear zone, where
 // X and Y are the mark's width and height: X/2 and Y/2 around the mark, X and Y around the logotype.
 // Each ghost mark hugs the outer corner of its cell, so the cells read as slices of the mark.
-import { logotypeSvg, markSvg } from '../data/logos';
+// Both diagrams sit in a full-width 4:3 frame and draw the mark at the same size (--m).
+import { lockup, logotypeSvg, markSvg } from '../data/logos';
 
 interface Props {
   variant: 'mark' | 'logotype';
@@ -10,6 +11,11 @@ interface Props {
 
 const { variant } = Astro.props;
 const isMark = variant === 'mark';
+
+// Logotype at half size: X = the mark's width (110), Y = its height (100), around the full lockup.
+// --span is the grid's width in mark widths: 2 for the mark (X/2 + X + X/2), 786/110 here.
+const half = lockup.width / 2;
+const logotypeGrid = `--cols: minmax(0, 110fr) minmax(0, ${half}fr) minmax(0, 110fr); --ratio: ${220 + half} / 300; --span: ${(220 + half) / 110}`;
 
 const columns = isMark ? ['X/2', 'X', 'X/2'] : ['X', '', 'X'];
 const rows = isMark ? ['Y/2', 'Y', 'Y/2'] : ['Y', 'Y', 'Y'];
@@ -43,7 +49,8 @@ const cells: Cell[] = isMark
     ];
 ---
 
-<div class:list={['clear-space', variant]}>
+<div class:list={['frame', variant]} style={isMark ? undefined : logotypeGrid}>
+<div class="clear-space">
   <div class="labels top" aria-hidden="true">{columns.map((c) => <span>{c}</span>)}</div>
   <div class="labels left" aria-hidden="true">{rows.map((r) => <span>{r}</span>)}</div>
   <div class="grid" role="img" aria-label={label}>
@@ -58,11 +65,26 @@ const cells: Cell[] = isMark
   {isMark && <div class="labels right" aria-hidden="true">{rows.map((r) => <span>{r}</span>)}</div>}
   <div class="labels bottom" aria-hidden="true">{columns.map((c) => <span>{c}</span>)}</div>
 </div>
+</div>
 
 <style>
+  /* Full-width 4:3 frame; the mark is drawn 11% of the frame wide in both diagrams. */
+  .frame {
+    --m: 11cqi;
+    container-type: inline-size;
+    display: grid;
+    place-items: center;
+    aspect-ratio: 4 / 3;
+    background: var(--cell);
+  }
+
+  .frame.mark {
+    box-shadow: inset 0 0 0 1px var(--rule);
+  }
+
   .clear-space {
     display: grid;
-    grid-template-columns: auto minmax(0, 1fr) auto;
+    grid-template-columns: auto calc(var(--span) * var(--m)) auto;
     grid-template-areas:
       '. top .'
       'left grid right'
@@ -73,6 +95,7 @@ const cells: Cell[] = isMark
   }
 
   .mark {
+    --span: 2;
     --cols: minmax(0, 1fr) minmax(0, 2fr) minmax(0, 1fr);
     --rows: minmax(0, 1fr) minmax(0, 2fr) minmax(0, 1fr);
     --ratio: 352 / 320;
@@ -82,11 +105,9 @@ const cells: Cell[] = isMark
     --text-alt: var(--muted);
   }
 
-  /* Mark 110 × 100 beside a 538.5 × 100 logotype. */
+  /* Columns and ratio come from the lockup width (inline style). */
   .logotype {
-    --cols: minmax(0, 110fr) minmax(0, 538.5fr) minmax(0, 110fr);
     --rows: repeat(3, minmax(0, 1fr));
-    --ratio: 758.5 / 300;
     --cell: var(--forest-shade);
     --ink: var(--cream);
     --text: var(--cream);

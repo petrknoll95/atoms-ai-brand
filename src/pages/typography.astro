@@ -112,21 +112,33 @@ const charset = [
     <Fragment slot="text">
       <p>When setting headlines in Founders Grotesk, keep leading and tracking consistent across all applications and sizes.</p>
       <dl class="rules">
-        <dt>Leading</dt>
-        <dd class="muted">Between 90% and 100% of the type size, depending on headline size.</dd>
-        <dt>Tracking</dt>
-        <dd class="muted">−15 (−1.5%) for all headlines.</dd>
-        <dt>Case</dt>
-        <dd class="muted">Headlines are always set in sentence case, with punctuation.</dd>
+        <div>
+          <dt>Leading</dt>
+          <dd class="muted">Between 90% and 100% of the type size, depending on headline size.</dd>
+        </div>
+        <div>
+          <dt>Tracking</dt>
+          <dd class="muted">−15 (−1.5%) for all headlines.</dd>
+        </div>
+        <div>
+          <dt>Case</dt>
+          <dd class="muted">Headlines are always set in sentence case, with punctuation.</dd>
+        </div>
       </dl>
     </Fragment>
     <div class="compare">
       <figure>
-        <p class="headline default balance" contenteditable="plaintext-only" spellcheck="false">Your competitors are automating.</p>
-        <figcaption class="muted">Default — leading auto — tracking 0</figcaption>
+        <div class="leading" style="--lh: 1.176">
+          <p class="headline default balance" contenteditable="plaintext-only" spellcheck="false">Your competitors are automating.</p>
+          <span class="leading-measure" aria-hidden="true"><span>118%</span></span>
+        </div>
+        <figcaption class="muted">Default — leading auto (118%) — tracking 0</figcaption>
       </figure>
       <figure>
-        <p class="headline applied balance" contenteditable="plaintext-only" spellcheck="false">Your competitors are automating.</p>
+        <div class="leading" style="--lh: 0.9">
+          <p class="headline applied balance" contenteditable="plaintext-only" spellcheck="false">Your competitors are automating.</p>
+          <span class="leading-measure" aria-hidden="true"><span>90%</span></span>
+        </div>
         <figcaption class="muted">Applied — leading 90% — tracking −15</figcaption>
       </figure>
     </div>
@@ -149,9 +161,7 @@ const charset = [
 
   .hero {
     margin-bottom: 3rem;
-    padding: 2.5rem;
-    background: var(--deep-green);
-    color: var(--cream);
+    padding-bottom: 0.22em;
     font-family: var(--font-display);
     font-size: clamp(3.5rem, 9vw, 9rem);
     line-height: 0.9;
@@ -164,7 +174,9 @@ const charset = [
     gap: 1.25rem;
   }
 
+  /* Specimens size to their own column (cqi), so line breaks hold at any layout width. */
   .face {
+    container-type: inline-size;
     display: grid;
     align-content: start;
     gap: 1.75rem;
@@ -175,6 +187,8 @@ const charset = [
   }
 
   .face header {
+    display: grid;
+    gap: 0.625rem;
     font-family: var(--font-text);
     font-weight: 400;
   }
@@ -191,7 +205,7 @@ const charset = [
   }
 
   .face-headline {
-    font-size: clamp(2rem, 3.5vw, 3.25rem);
+    font-size: clamp(1.75rem, 15cqi, 3.25rem);
     line-height: 1;
     letter-spacing: -0.015em;
   }
@@ -202,6 +216,7 @@ const charset = [
   }
 
   .charset {
+    container-type: inline-size;
     display: grid;
   }
 
@@ -210,13 +225,15 @@ const charset = [
     grid-template-columns: 7rem minmax(0, 1fr);
     align-items: baseline;
     gap: 1rem;
-    padding: 1rem 0;
+    padding: 1.25rem 0;
     border-bottom: 1px solid var(--rule);
   }
 
+  /* Room for descenders below the trimmed baseline. */
   .charset-row dd {
+    padding-bottom: 0.2em;
     font-family: var(--font-display);
-    font-size: clamp(1.75rem, 4vw, 3.75rem);
+    font-size: clamp(1.5rem, 4.8cqi, 3.75rem);
     line-height: 1.1;
     overflow-wrap: anywhere;
   }
@@ -231,6 +248,13 @@ const charset = [
   .applied-large {
     display: grid;
     gap: 0.75rem;
+  }
+
+  /* Text is trimmed at the baseline, so large specimens keep room for their descenders. */
+  .scale-display,
+  .scale-lead,
+  .headline {
+    padding-bottom: 0.22em;
   }
 
   .scale-display {
@@ -255,15 +279,6 @@ const charset = [
     line-height: 1.4;
   }
 
-  .rules {
-    display: grid;
-    gap: 0.25rem;
-  }
-
-  .rules dd + dt {
-    margin-top: 0.5rem;
-  }
-
   .compare {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -272,6 +287,7 @@ const charset = [
   }
 
   .compare figure {
+    container-type: inline-size;
     padding: 1.5rem;
     box-shadow: inset 0 0 0 1px var(--rule);
   }
@@ -294,6 +310,46 @@ const charset = [
   .headline.big {
     max-width: 11em;
     font-size: clamp(3rem, 6vw, 5.5rem);
+  }
+
+  /* Leading made visible: a guide on every baseline and a bracket measuring one line of leading
+     (baseline to baseline). Text is trimmed to cap height, so the first baseline sits 0.63em
+     (Founders Grotesk's cap height) below the top; auto leading is its ascent plus descent, 117.6%. */
+  .leading {
+    position: relative;
+    font-family: var(--font-display);
+    font-size: clamp(1.75rem, 9cqi, 4rem);
+  }
+
+  .leading .headline {
+    padding-right: 3.5rem;
+    font-size: inherit;
+    line-height: var(--lh);
+    background-image: linear-gradient(to top, color-mix(in srgb, var(--iris) 60%, transparent) 1px, transparent 1px);
+    background-position: 0 calc(0.63em - var(--lh) * 1em);
+    background-size: 100% calc(var(--lh) * 1em);
+  }
+
+  /* Guides fill the pixel above each baseline, so the bracket starts 1px higher to sit on them. */
+  .leading-measure {
+    position: absolute;
+    top: calc(0.63em - 1px);
+    right: 0;
+    width: 0.5rem;
+    height: calc(var(--lh) * 1em + 1px);
+    border: 1px solid var(--iris);
+    border-left: 0;
+  }
+
+  .leading-measure span {
+    position: absolute;
+    top: 50%;
+    right: calc(100% + 0.5rem);
+    translate: 0 -50%;
+    color: var(--iris);
+    font-family: var(--font-text);
+    font-size: var(--size-annotation);
+    line-height: 1;
   }
 
   @media (max-width: 1000px) {

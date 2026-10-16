@@ -1,31 +1,39 @@
 ---
-// A sub-section: number, title and guideline copy, then specimens spanning the full width.
-// `split` puts the copy beside the content instead (used for Examples).
+// A sub-section in two columns: a narrow, sticky column with the number and title, and the
+// guideline copy and specimens beside it. `split` keeps the copy in the sticky column too (used for
+// Examples). `quiet` sets the title as a small label like the number, for a section led by a
+// statement in its body.
 interface Props {
   id: string;
   title: string;
   number?: string;
   split?: boolean;
+  quiet?: boolean;
 }
 
-const { id, title, number, split = false } = Astro.props;
+const { id, title, number, split = false, quiet = false } = Astro.props;
+const hasText = Astro.slots.has('text');
 ---
 
-<section class:list={['sub', { split }]} id={id} aria-labelledby={`${id}-title`}>
-  <header class="sub-text">
+<section class:list={['sub', { split, quiet }]} id={id} aria-labelledby={`${id}-title`}>
+  <header class="sub-head">
     {number && <p class="muted">{number}</p>}
-    <h2 class="display" id={`${id}-title`}>{title}</h2>
-    {Astro.slots.has('text') && <div class="prose"><slot name="text" /></div>}
+    <h2 class:list={[quiet ? 'muted' : 'display']} id={`${id}-title`}>{title}</h2>
+    {split && hasText && <div class="prose"><slot name="text" /></div>}
   </header>
-  <div class="sub-body">
-    <slot />
+  <div class="sub-main">
+    {!split && hasText && <div class="prose"><slot name="text" /></div>}
+    <div class="sub-body">
+      <slot />
+    </div>
   </div>
 </section>
 
 <style>
   .sub {
     display: grid;
-    gap: 2rem;
+    grid-template-columns: minmax(10rem, 16rem) minmax(0, 1fr);
+    gap: 2rem var(--gutter);
     padding: var(--gutter) 0 calc(var(--gutter) * 2);
     border-top: 1px solid var(--rule);
   }
@@ -36,14 +44,40 @@ const { id, title, number, split = false } = Astro.props;
     border-top: 0;
   }
 
-  .sub-text {
+  /* Stays in view while the section's content scrolls past. */
+  .sub-head {
+    position: sticky;
+    top: 2rem;
+    align-self: start;
     display: grid;
     align-content: start;
-    gap: 1rem;
+    gap: 1.5rem;
   }
 
-  .sub-text p.muted {
-    margin-bottom: -0.5rem;
+  .sub-head p.muted {
+    margin-bottom: -0.25rem;
+  }
+
+  /* Number and title side by side, like the contents list. */
+  .quiet .sub-head {
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 0.75rem;
+  }
+
+  .quiet .sub-head p.muted {
+    margin-bottom: 0;
+  }
+
+  .quiet h2 {
+    font-size: inherit;
+    font-weight: 400;
+  }
+
+  .sub-main {
+    display: grid;
+    align-content: start;
+    gap: 2rem;
+    min-width: 0;
   }
 
   .prose {
@@ -55,17 +89,21 @@ const { id, title, number, split = false } = Astro.props;
   }
 
   .split {
-    grid-template-columns: minmax(13rem, 17rem) minmax(0, 1fr);
-    gap: var(--gutter);
+    grid-template-columns: minmax(14rem, 19rem) minmax(0, 1fr);
   }
 
   .split .prose {
     max-width: 34rem;
   }
 
-  @media (max-width: 1180px) {
+  @media (max-width: 1100px) {
+    .sub,
     .split {
       grid-template-columns: minmax(0, 1fr);
+    }
+
+    .sub-head {
+      position: static;
     }
   }
 </style>

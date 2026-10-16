@@ -3,8 +3,8 @@
 Usage:
   python3 -I compose_logos.py SYMBOL.svg WORDMARK.svg OUT_DIR --wordmark-at X Y [--mark MARK.svg]
 
-SYMBOL/WORDMARK are the per-group `svgAssets` from `download_assets` on the "Logo" component
-(1289:21547). X Y is the wordmark's offset inside the lockup. Writes logotype.svg (and mark.svg
+SYMBOL/WORDMARK are the per-group `svgAssets` from `download_assets` on the "Logotype" component
+(1330:27629). X Y is the wordmark's offset inside the lockup (280 20). Writes logotype.svg (and mark.svg
 when --mark is given) with fill="currentColor".
 """
 import argparse, pathlib, re

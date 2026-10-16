@@ -218,6 +218,8 @@ export interface PatternOptions {
   structure: StructureId;
   /** Density index: 0–3 for slit structures, 1–2 for concentric. */
   density: number;
+  /** Slit count for slit structures; overrides `density` (the generator's in-between stops). */
+  slits?: number;
   colors: Colors;
 }
 
@@ -226,13 +228,13 @@ const fieldCache = new Map<string, Promise<HTMLCanvasElement>>();
 /** A square render of the visible 800 × 800 field at `size` px. */
 export function renderField(opts: PatternOptions, size: number): Promise<HTMLCanvasElement> {
   const s = Math.round(size);
-  const key = `${opts.structure}|${opts.density}|${Object.values(opts.colors).join(',')}|${s}`;
+  const key = `${opts.structure}|${opts.density}|${opts.slits ?? ''}|${Object.values(opts.colors).join(',')}|${s}`;
   const cached = fieldCache.get(key);
   if (cached) return cached;
   const field =
     opts.structure === 'concentric'
       ? renderRingField(s, opts.density === 2 ? 2 : 1, opts.colors)
-      : Promise.resolve(renderSlitField(s, slitLayers[opts.structure], SLITS[opts.density] ?? 10, opts.colors));
+      : Promise.resolve(renderSlitField(s, slitLayers[opts.structure], opts.slits ?? SLITS[opts.density] ?? 10, opts.colors));
   if (fieldCache.size > 24) fieldCache.delete(fieldCache.keys().next().value!);
   fieldCache.set(key, field);
   return field;

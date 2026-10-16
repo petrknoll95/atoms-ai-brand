@@ -2,13 +2,25 @@
 import Guide from '../layouts/Guide.astro';
 import Sub from '../components/Sub.astro';
 import Cover from '../components/Cover.astro';
-import { sections } from '../data/nav';
+import PageLink from '../components/PageLink.astro';
+import { sections, tools } from '../data/nav';
+
+// Contents: every guideline section numbered from 02, then the tools, unnumbered.
+const rows = [
+  ...sections.filter((x) => x.slug !== 'intro').map((x, i) => ({ ...x, number: String(i + 2).padStart(2, '0') })),
+  ...tools.map((x) => ({ ...x, number: '' })),
+];
 ---
 
 <Guide slug="intro" hero={false}>
   <Cover />
-  <Sub id="about" title="About this guide" number="1.1">
-    <Fragment slot="text">
+  <PageLink />
+  <Sub id="about" title="About this guide" number="1.1" quiet>
+    <p class="statement balance">
+      We don’t sell AI. We ship your workflow. This guide shows how that idea looks, sounds and behaves, so everything
+      we make feels like it came from the same team.
+    </p>
+    <div class="prose about-copy">
       <p>
         Every proposal, deck and post is a chance to show who we are: senior, practical and accountable for what we
         ship. When those moments line up, clients trust us sooner.
@@ -17,11 +29,7 @@ import { sections } from '../data/nav';
         Treat these pages as a toolkit, not a rulebook. Hold on to the foundations that keep us recognizable, and use
         your judgment everywhere else.
       </p>
-    </Fragment>
-    <p class="display lede">
-      We don’t sell AI. We ship your workflow. This guide shows how that idea looks, sounds and behaves, so everything
-      we make feels like it came from the same team.
-    </p>
+    </div>
   </Sub>
 
   <Sub id="contents" title="Contents" number="1.2">
@@ -30,58 +38,99 @@ import { sections } from '../data/nav';
     </Fragment>
     <ol class="contents">
       {
-        sections
-          .filter((s) => s.slug !== 'intro')
-          .map((s, i) => (
-            <li>
-              <a href={s.href} class="contents-title">
-                <span class="muted">{String(i + 2).padStart(2, '0')}</span>
-                <span>{s.title}</span>
-              </a>
-              <ul>
-                {s.subs.map((sub) => (
-                  <li>
-                    <a class="muted" href={`${s.href}#${sub.id}`}>
-                      {sub.title}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </li>
-          ))
+        rows.map((row) => (
+          <li class="row">
+            <a href={row.href} class="row-title">
+              {row.number && <span>{row.number}</span>}
+              {row.title}
+            </a>
+            <ul class="row-list">
+              {row.subs.map((sub) => (
+                <li>
+                  <a href={`${row.href}#${sub.id}`}>
+                    <span>{sub.title}</span>
+                    {sub.number && <span class="muted">{sub.number}</span>}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </li>
+        ))
       }
     </ol>
   </Sub>
 </Guide>
 
 <style>
-  .lede {
-    max-width: 18em;
+  /* The guide’s statement, set large across the full width (87.5% leading, −15 tracking). */
+  .statement {
+    padding-bottom: 0.22em;
+    font-family: var(--font-display);
+    font-size: clamp(2.25rem, 5.6vw, 6.5rem);
+    line-height: 0.875;
+    letter-spacing: -0.015em;
   }
 
+  .about-copy {
+    max-width: 40rem;
+    margin-top: clamp(1.5rem, 3vw, 2.5rem);
+  }
+
+  /* Contents: one row per section, a large number and title beside its sub-sections. */
   .contents {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr));
-    gap: 2rem var(--gutter);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem var(--gutter);
+    padding: 1.25rem 0 2.5rem;
+    border-top: 1px solid var(--rule);
   }
 
   .contents a {
     text-decoration: none;
   }
 
-  .contents a:hover {
-    color: var(--fg);
+  .row-title {
+    display: block;
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4.2vw, 4rem);
+    line-height: 1;
+    letter-spacing: -0.015em;
+    text-box: trim-both cap alphabetic;
   }
 
-  .contents-title {
-    display: flex;
-    gap: 0.75rem;
-    margin-bottom: 0.5rem;
+  .row-title span {
+    margin-right: 0.25em;
   }
 
-  .contents ul {
+  .row-list {
     display: grid;
-    gap: 0.125rem;
-    padding-left: 1.75rem;
+    align-content: start;
+    gap: 0.75rem;
+  }
+
+  .row-list a {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .row-list a > span {
+    text-box: trim-both cap alphabetic;
+  }
+
+  .row-list a:hover span:first-child {
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+
+  @media (max-width: 760px) {
+    .row {
+      grid-template-columns: minmax(0, 1fr);
+    }
   }
 </style>

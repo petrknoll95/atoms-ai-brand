@@ -15,13 +15,14 @@ npm run check    # type check
 | Section | Interactive |
 | --- | --- |
 | Intro | Cover with the mark reveal; contents |
-| Logo | Mark and logotype in Black, Deep green, Cream and White: Copy SVG, SVG, PNG (transparent, 2400 px). App icon in its official colorway. Rule diagrams and a replayable mark reveal |
+| Logo | Mark and logotype in Black, Deep green, Cream and White: Copy SVG, SVG, PNG (transparent, 2400 px). App icon in its official colorway. Rule diagrams, and the looping mark reveal with a color swap and video export (MP4 or WebM, four aspect ratios, 720p to 4K) |
 | Color | Click any color to copy its hex; copy RGB, CMYK or the CSS variable; copy gradient CSS; theme contrast ratios calculated live |
 | Typography | Editable specimens for every face, character set, scale and headline rule |
 | Icons | 15 stroke icons with a shared color and Regular/Medium weight switch; Copy SVG, SVG, PNG (512 px) |
-| Patterns | Live renders of every structure, density and colorway, plus a generator (structure, colorway, density, size, rotation, scale, position, PNG export, shareable link) |
+| Patterns | Live renders of every structure, density and colorway, and live usage tiles |
 | Illustration | Concept drawings and linework, recolorable, as SVG or PNG |
 | Examples | Application mockups |
+| Tools | Pattern generator (`/tools/`), with a Tweakpane panel: structure, colorway, density, size, rotation, scale, position, PNG export, shareable link |
 
 The UI chrome uses two type sizes (display 32 px Founders Grotesk, annotation 14 px PP Neue Montreal) and two text colors (`--fg` Deep green, `--muted` Graphite) on white.
 
@@ -49,7 +50,7 @@ File `71GQknySbCroHLUwJYdAn2` (AtomsAI-Brand), page **Brand Guidelines (WIP)**, 
 | Asset | Figma node |
 | --- | --- |
 | Mark master | `743:816` (Logo / Mark) |
-| Logotype lockup | `1289:21547` (component "Logo", lowercase atomsAI) — Symbol + Wordmark |
+| Logotype lockup | `1330:27629` (component "Logotype", AtomsAI, 1132 × 200) — Symbol + Wordmark at (280, 20) |
 | Color variables | collection "Brand colors" |
 | Pattern templates | Drift A `1032:17487–17490`, Offset B `1032:17491–17494`, Single band C `1032:17495–17498` (in "Frame 187"), Concentric `1042:12649`, `1042:12742` |
 | Pattern colorways | slides 4.2–4.6 (`1157:11788`, `1157:11807`, `1157:11826`, `1157:11845`, `1274:10177`) |
@@ -57,12 +58,13 @@ File `71GQknySbCroHLUwJYdAn2` (AtomsAI-Brand), page **Brand Guidelines (WIP)**, 
 | Illustrations | 7.1 Style `1157:14267`, 7.2 Linework `1157:14345` |
 | Diagrams | Logo slides 2.1–2.11 are redrawn in HTML from the master artwork (`src/components/`); Iconography 6.1–6.2 keep their icon strokes as SVG over an HTML grid |
 | Examples | Applications 8.1–8.9 `Mockups` frames |
+| Mark animation | Not in Figma: the slit logo sketch (`~/Documents/Design/AI/atoms-ai-slit-logo`, `sketch.js` default preset), ported to `src/data/slitLogo.ts`. The reveal's markup matches the sketch's animated SVG export exactly |
 
 ### Re-syncing assets
 
 Assets were exported through the Figma MCP server and cleaned with the scripts in `scripts/figma/`:
 
-- `compose_logos.py` builds `logotype.svg` (and optionally `mark.svg`) with `currentColor` from the clean Symbol/Wordmark exports of the "Logo" component (`--wordmark-at 280 0`). The lockup geometry (kerning, x-height, gap) used by the diagrams lives in `src/data/logos.ts`.
+- `compose_logos.py` builds `logotype.svg` (and optionally `mark.svg`) with `currentColor` from the clean Symbol/Wordmark exports of the "Logotype" component (`--wordmark-at 280 20`). The lockup geometry (kerning, x-height, gap) used by the diagrams lives in `src/data/logos.ts`.
 - `extract.py` cuts a single layer out of a node's SVG export, keeps only the defs it references, maps colors (e.g. `white=currentColor`) and namespaces ids so diagrams can be inlined together.
 - `icons.py` normalizes the 72 px icon exports to a 24 px grid with `stroke="currentColor"`.
 - `minify_rings.py` turns the Concentric mask exports into the files in `public/pattern-masks/`.

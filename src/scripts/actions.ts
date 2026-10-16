@@ -43,6 +43,12 @@ async function runAssetAction(card: HTMLElement, action: string) {
 document.addEventListener('click', async (event) => {
   const target = event.target as Element;
 
+  if (target.closest('[data-copy-page]')) {
+    await copyText(`${location.origin}${location.pathname}`);
+    notify('Page link copied');
+    return;
+  }
+
   const copy = target.closest<HTMLElement>('[data-copy]');
   if (copy) {
     const value = copy.dataset.copy!;
@@ -72,6 +78,11 @@ document.addEventListener('change', (event) => {
   if (input.matches('[data-asset-color]')) {
     scope.querySelectorAll<HTMLElement>('[data-asset-preview], [data-asset-tone]').forEach((el) => {
       el.dataset.tone = input.dataset.tone;
+    });
+    // Opaque artwork: the canvas takes the fill color.
+    scope.querySelectorAll<HTMLElement>('[data-asset-tone]').forEach((el) => {
+      if (input.dataset.surface) el.style.setProperty('--surface', input.dataset.surface);
+      else el.style.removeProperty('--surface');
     });
     const label = scope.querySelector('[data-asset-color-label]');
     if (label) label.textContent = input.dataset.label ?? '';
