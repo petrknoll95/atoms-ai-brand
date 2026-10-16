@@ -3,14 +3,15 @@
 // dotted guides at the mark's top and bottom and the x-height, solid guides at cap top and
 // baseline, a dashed midline, the 0.3X gap outlined, and Iris bars bounding each kerned span.
 // Values are in thousandths of an em. Everything is placed in lockup units (see `lockup`) inside a
-// frame with the same aspect ratio, so the diagram scales with its width; only the logotype is SVG.
+// 4:3 frame, so the diagram scales with its width; only the logotype is SVG.
 import Figure from './Figure.astro';
 import { lockup, logotypeSvg } from '../data/logos';
 
-const pad = 80;
-const top = 70;
-const W = lockup.width + pad * 2;
-const H = lockup.height + top + 50;
+// A 4:3 frame with the lockup centered at 72% of its width; guides run edge to edge.
+const W = lockup.width / 0.72;
+const H = (W * 3) / 4;
+const pad = (W - lockup.width) / 2;
+const top = (H - lockup.height) / 2;
 const mid = lockup.height / 2;
 
 // Lockup units → percentages of the frame.

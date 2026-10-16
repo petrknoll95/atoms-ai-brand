@@ -1,15 +1,16 @@
 ---
 // 2.5 Lockup proportions, drawn in HTML around the master logotype, after the Figma slide:
 // the wordmark's cap height is 80% of the mark's height, and the gap is 0.3X.
-// Each panel is a 550 × 373 frame that crops the logotype; everything is placed in those units,
+// Each panel is a 4:3 frame (550 units wide) that crops the logotype; everything is placed in those units,
 // so the panels scale with their width. Only the logotype itself is SVG.
 import Figure from './Figure.astro';
 import { lockup, logotypeSvg } from '../data/logos';
 
+// 4:3 panels with the mark drawn 130 units tall; the wordmark runs off the right edge.
 const W = 550;
-const H = 373;
-const s = 160 / lockup.height; // mark drawn 160 units tall
-const lx = 90;
+const H = (W * 3) / 4;
+const s = 130 / lockup.height;
+const lx = 120;
 const ly = (H - lockup.height * s) / 2;
 const markRight = lx + lockup.markWidth * s;
 const markBottom = ly + lockup.height * s;
@@ -28,7 +29,7 @@ const fromRight = (v: number) => pct((W - v) / W);
 const frame = `aspect-ratio: ${W} / ${H}; --label: ${+((14 / W) * 100).toFixed(4)}cqi`;
 const art = `left: ${x(lx)}; top: ${y(ly)}; width: ${x(lockup.width * s)}`;
 // Bracket beside the mark, from its top to its bottom.
-const markBracket = `left: ${x(58)}; top: ${y(ly)}; width: ${x(8)}; height: ${y(markBottom - ly)}`;
+const markBracket = `left: ${x(lx - 32)}; top: ${y(ly)}; width: ${x(8)}; height: ${y(markBottom - ly)}`;
 ---
 
 <div class="ratios">
@@ -41,9 +42,9 @@ const markBracket = `left: ${x(58)}; top: ${y(ly)}; width: ${x(8)}; height: ${y(
         <div class="guide" style={`top: ${y(baseline)}`}></div>
         <div class="art" style={art} set:html={logotypeSvg} />
         <div class="bracket" style={markBracket}></div>
-        <div class="bracket" style={`left: ${x(wordLeft - 9)}; top: ${y(capTop)}; width: ${x(8)}; height: ${y(baseline - capTop)}`}></div>
-        <span class="label end" style={`right: ${fromRight(50)}; top: ${y((ly + markBottom) / 2)}`}>100%</span>
-        <span class="label end" style={`right: ${fromRight(wordLeft - 15)}; top: ${y((capTop + baseline) / 2)}`}>{capHeight}%</span>
+        <div class="bracket" style={`left: ${x(wordLeft - 7)}; top: ${y(capTop)}; width: ${x(5)}; height: ${y(baseline - capTop)}`}></div>
+        <span class="label end" style={`right: ${fromRight(lx - 40)}; top: ${y((ly + markBottom) / 2)}`}>100%</span>
+        <span class="label end gap-label" style={`right: ${fromRight(wordLeft - 10)}; top: ${y((capTop + baseline) / 2)}`}>{capHeight}%</span>
       </div>
     </Figure>
 
@@ -55,8 +56,8 @@ const markBracket = `left: ${x(58)}; top: ${y(ly)}; width: ${x(8)}; height: ${y(
         <div class="art" style={art} set:html={logotypeSvg} />
         <div class="bracket" style={markBracket}></div>
         <div class="rule" style={`left: ${x(markRight)}; top: ${y(H / 2)}; width: ${x(wordLeft - markRight)}`}></div>
-        <span class="label end" style={`right: ${fromRight(50)}; top: ${y((ly + markBottom) / 2)}`}>1X</span>
-        <span class="label" style={`left: ${x((markRight + wordLeft) / 2)}; top: ${y(H / 2 - 14)}`}>0.3X</span>
+        <span class="label end" style={`right: ${fromRight(lx - 40)}; top: ${y((ly + markBottom) / 2)}`}>1X</span>
+        <span class="label gap-label" style={`left: ${x((markRight + wordLeft) / 2)}; top: ${y(H / 2 - 12)}`}>0.3X</span>
       </div>
     </Figure>
   </div>
@@ -126,6 +127,11 @@ const markBracket = `left: ${x(58)}; top: ${y(ly)}; width: ${x(8)}; height: ${y(
     font-size: clamp(0.6875rem, var(--label), var(--size-annotation));
     line-height: 1;
     white-space: nowrap;
+  }
+
+  /* Labels inside the 0.3X gap may go a little smaller so they clear the mark. */
+  .gap-label {
+    font-size: clamp(0.625rem, var(--label), var(--size-annotation));
   }
 
   .label.end {

@@ -1,9 +1,9 @@
 ---
-// 2.9 Mark reveal: the animated mark from the atoms-ai-slit-logo sketch. Six slits each clip a
+// Mark reveal: the animated mark from the atoms-ai-slit-logo sketch. Six slits each clip a
 // circle; on a 4 s loop the circles retreat outward until they clear their slits, then return,
 // outer pair first. Native SVG animation (SMIL), identical to the sketch's animated export.
-// With controls it sits in its own stage: colorways top left, the export frame dashed in the
-// middle with the mark at the chosen size, and pause and video export along the bottom.
+// With controls (Tools page) it becomes a tool like the pattern generator: a 4:3 stage with the
+// colorways top left and the export frame dashed in the middle, and a Tweakpane panel on the right.
 import { colors } from '../data/colors';
 import { keyTimesOf, markBounds, slitBlades, slitClip, slitMotion } from '../data/slitLogo';
 
@@ -34,98 +34,64 @@ const colorways = [
   { key: 'black-white', label: 'Black on White', fg: colors.black.hex, bg: colors.white.hex, tone: 'light' },
   { key: 'white-black', label: 'White on Black', fg: colors.white.hex, bg: colors.black.hex, tone: 'dark' },
 ];
-const aspects = [
-  { key: 'square', label: 'Square 1:1', ratio: 1 },
-  { key: 'landscape', label: 'Landscape 16:9', ratio: 16 / 9 },
-  { key: 'story', label: 'Story 9:16', ratio: 9 / 16 },
-  { key: 'portrait', label: 'Portrait 4:5', ratio: 4 / 5 },
-];
-const sizes = [
-  { key: '720', label: '720p' },
-  { key: '1080', label: '1080p' },
-  { key: '2160', label: '4K' },
-];
-const logo = 40;
 const initial = colorways[0];
 ---
 
 <div
-  class:list={['reveal', { framed: controls }, className]}
+  class:list={['reveal', { tool: controls }, className]}
   data-reveal
   data-tone={initial.tone}
-  style={controls ? `--reveal-fg: ${initial.fg}; --reveal-bg: ${initial.bg}; --ratio: 1; --logo: ${logo}` : undefined}
+  style={controls ? `--reveal-fg: ${initial.fg}; --reveal-bg: ${initial.bg}; --ratio: 1; --logo: 40` : undefined}
 >
-  {
-    controls && (
-      <fieldset class="options">
-        <legend class="visually-hidden">Mark colors</legend>
-        {colorways.map((c, i) => (
-          <label class="color-option" title={c.label}>
-            <input type="radio" name={`${uid}-colors`} checked={i === 0} data-reveal-color data-fg={c.fg} data-bg={c.bg} data-tone={c.tone} />
-            <span class="dot" style={`--ink: ${c.fg}; --surface: ${c.bg}`} />
-            <span class="visually-hidden">{c.label}</span>
-          </label>
-        ))}
-      </fieldset>
-    )
-  }
-  <div class="area">
-    <div class="frame">
-      <svg class="reveal-svg" viewBox={viewBox} role="img" aria-label="The AtomsAI mark hiding and revealing itself">
-        <defs>
+  <div class="stage">
+    {
+      controls && (
+        <fieldset class="options">
+          <legend class="visually-hidden">Mark colors</legend>
+          {colorways.map((c, i) => (
+            <label class="color-option" title={c.label}>
+              <input type="radio" name={`${uid}-colors`} checked={i === 0} data-reveal-color data-fg={c.fg} data-bg={c.bg} data-tone={c.tone} />
+              <span class="dot" style={`--ink: ${c.fg}; --surface: ${c.bg}`} />
+              <span class="visually-hidden">{c.label}</span>
+            </label>
+          ))}
+        </fieldset>
+      )
+    }
+    <div class="area">
+      <div class="frame">
+        <svg class="reveal-svg" viewBox={viewBox} role="img" aria-label="The AtomsAI mark hiding and revealing itself">
+          <defs>
+            {
+              blades.map((b) => (
+                <clipPath id={b.id} clipPathUnits="userSpaceOnUse">
+                  <rect x={round(b.x)} y={slitClip.y} width={round(b.w)} height={slitClip.height} />
+                </clipPath>
+              ))
+            }
+          </defs>
           {
             blades.map((b) => (
-              <clipPath id={b.id} clipPathUnits="userSpaceOnUse">
-                <rect x={round(b.x)} y={slitClip.y} width={round(b.w)} height={slitClip.height} />
-              </clipPath>
+              <g clip-path={`url(#${b.id})`}>
+                <circle cx={round(b.cx)} cy="50" r={round(b.r)}>
+                  <animate
+                    attributeName="cx"
+                    values={b.values}
+                    dur={`${slitMotion.seconds}s`}
+                    repeatCount="indefinite"
+                    calcMode="spline"
+                    keyTimes={b.keyTimes}
+                    keySplines={slitMotion.keySplines}
+                  />
+                </circle>
+              </g>
             ))
           }
-        </defs>
-        {
-          blades.map((b) => (
-            <g clip-path={`url(#${b.id})`}>
-              <circle cx={round(b.cx)} cy="50" r={round(b.r)}>
-                <animate
-                  attributeName="cx"
-                  values={b.values}
-                  dur={`${slitMotion.seconds}s`}
-                  repeatCount="indefinite"
-                  calcMode="spline"
-                  keyTimes={b.keyTimes}
-                  keySplines={slitMotion.keySplines}
-                />
-              </circle>
-            </g>
-          ))
-        }
-      </svg>
+        </svg>
+      </div>
     </div>
   </div>
-  {
-    controls && (
-      <div class="reveal-bar">
-        <button class="btn" type="button" data-reveal-toggle>
-          Pause
-        </button>
-        <div class="btn-row export">
-          <select class="pick" data-reveal-aspect aria-label="Video aspect ratio">
-            {aspects.map((a) => <option value={a.key} data-ratio={a.ratio}>{a.label}</option>)}
-          </select>
-          <select class="pick" data-reveal-size aria-label="Video resolution">
-            {sizes.map((s) => <option value={s.key} selected={s.key === '1080'}>{s.label}</option>)}
-          </select>
-          <label class="logo-size">
-            <span>Logo</span>
-            <input type="range" min="10" max="90" step="1" value={logo} data-reveal-logo aria-label="Logo size, as a share of the video width" />
-            <output data-reveal-logo-out>{logo}%</output>
-          </label>
-          <button class="btn" type="button" data-reveal-export>
-            Download video
-          </button>
-        </div>
-      </div>
-    )
-  }
+  {controls && <div class="pane tp-theme" data-reveal-pane />}
 </div>
 
 <script>
@@ -133,32 +99,28 @@ const initial = colorways[0];
   import { downloadBlob } from '../scripts/svg';
   import { notify } from '../scripts/actions';
 
-  // Reduced motion shows the full mark, paused. Otherwise it loops; the button pauses and resumes.
+  // Reduced motion shows the full mark, paused. Otherwise it loops.
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Video formats; the resolution is the shorter side.
+  const formats: Record<string, { label: string; ratio: number }> = {
+    square: { label: 'Square 1:1', ratio: 1 },
+    landscape: { label: 'Landscape 16:9', ratio: 16 / 9 },
+    story: { label: 'Story 9:16', ratio: 9 / 16 },
+    portrait: { label: 'Portrait 4:5', ratio: 4 / 5 },
+  };
 
   document.querySelectorAll<HTMLElement>('[data-reveal]').forEach((root) => {
     const svg = root.querySelector<SVGSVGElement>('.reveal-svg')!;
-    const toggle = root.querySelector<HTMLButtonElement>('[data-reveal-toggle]');
-
-    const setPlaying = (playing: boolean) => {
-      if (playing) svg.unpauseAnimations();
-      else svg.pauseAnimations();
-      if (toggle) toggle.textContent = playing ? 'Pause' : 'Play';
-    };
-
     if (reduced) {
       svg.setCurrentTime(0);
-      setPlaying(false);
+      svg.pauseAnimations();
     }
-    toggle?.addEventListener('click', () => setPlaying(svg.animationsPaused()));
 
-    // Colorway, export frame and logo size drive the stage through custom properties.
-    const color = () => root.querySelector<HTMLInputElement>('[data-reveal-color]:checked')!;
-    const aspect = root.querySelector<HTMLSelectElement>('[data-reveal-aspect]');
-    const size = root.querySelector<HTMLSelectElement>('[data-reveal-size]');
-    const logo = root.querySelector<HTMLInputElement>('[data-reveal-logo]');
-    const logoOut = root.querySelector<HTMLOutputElement>('[data-reveal-logo-out]');
+    const host = root.querySelector<HTMLElement>('[data-reveal-pane]');
+    if (!host) return;
 
+    // The colorway swatches on the stage.
     root.addEventListener('change', (event) => {
       const input = event.target as HTMLInputElement;
       if (!input.matches('[data-reveal-color]')) return;
@@ -166,25 +128,44 @@ const initial = colorways[0];
       root.style.setProperty('--reveal-bg', input.dataset.bg!);
       root.dataset.tone = input.dataset.tone;
     });
-    aspect?.addEventListener('change', () => root.style.setProperty('--ratio', aspect.selectedOptions[0].dataset.ratio!));
-    logo?.addEventListener('input', () => {
-      root.style.setProperty('--logo', logo.value);
-      if (logoOut) logoOut.value = `${logo.value}%`;
+
+    void buildPane(root, svg, host);
+  });
+
+  // Tweakpane loads only where there is a panel (Tools), never for the plain mark on the cover.
+  async function buildPane(root: HTMLElement, svg: SVGSVGElement, host: HTMLElement) {
+    const [{ Pane }, { addSteppers }] = await Promise.all([import('tweakpane'), import('../scripts/tweakpane')]);
+    const state = { format: 'square', resolution: 1080, logo: 40 };
+    const pane = new Pane({ container: host });
+
+    const video = pane.addFolder({ title: 'Video' });
+    const format = video
+      .addBinding(state, 'format', { label: 'Format', options: Object.fromEntries(Object.entries(formats).map(([key, f]) => [f.label, key])) })
+      .on('change', () => root.style.setProperty('--ratio', String(formats[state.format].ratio)));
+    addSteppers(format, 'format');
+    addSteppers(video.addBinding(state, 'resolution', { label: 'Resolution', options: { '720p': 720, '1080p': 1080, '4K': 2160 } }), 'resolution');
+    video
+      .addBinding(state, 'logo', { label: 'Logo size', min: 10, max: 90, step: 1, format: (v) => `${v}%` })
+      .on('change', () => root.style.setProperty('--logo', String(state.logo)));
+
+    const play = pane.addButton({ title: svg.animationsPaused() ? 'Play' : 'Pause' });
+    play.on('click', () => {
+      if (svg.animationsPaused()) svg.unpauseAnimations();
+      else svg.pauseAnimations();
+      play.title = svg.animationsPaused() ? 'Play' : 'Pause';
     });
 
-    // Video export at the chosen aspect ratio and resolution (the shorter side), in the current
-    // colors, with the mark at the chosen share of the width.
-    const exportButton = root.querySelector<HTMLButtonElement>('[data-reveal-export]');
-    exportButton?.addEventListener('click', async () => {
-      const option = aspect!.selectedOptions[0];
-      const short = Number(size!.value);
-      const ratio = Number(option.dataset.ratio);
+    // The video at the chosen format and resolution, in the current colors, with the mark at the
+    // chosen share of the width.
+    const download = pane.addButton({ title: 'Download video' });
+    download.on('click', async () => {
+      const ratio = formats[state.format].ratio;
       const even = (v: number) => Math.round(v / 2) * 2;
-      const width = ratio >= 1 ? even(short * ratio) : short;
-      const height = ratio >= 1 ? short : even(short / ratio);
-      const { fg, bg } = color().dataset;
+      const width = ratio >= 1 ? even(state.resolution * ratio) : state.resolution;
+      const height = ratio >= 1 ? state.resolution : even(state.resolution / ratio);
+      const { fg, bg } = root.querySelector<HTMLInputElement>('[data-reveal-color]:checked')!.dataset;
 
-      exportButton.disabled = true;
+      download.disabled = true;
       let shown = -1;
       try {
         const { blob, extension } = await exportMarkVideo({
@@ -192,7 +173,7 @@ const initial = colorways[0];
           height,
           fg: fg!,
           bg: bg!,
-          logo: Number(logo!.value) / 100,
+          logo: state.logo / 100,
           onProgress: (done) => {
             const step = Math.floor(done * 10);
             if (step !== shown) {
@@ -201,15 +182,15 @@ const initial = colorways[0];
             }
           },
         });
-        downloadBlob(blob, `atomsai-mark-reveal-${option.value}-${width}x${height}.${extension}`);
+        downloadBlob(blob, `atomsai-mark-reveal-${state.format}-${width}x${height}.${extension}`);
         notify('Video downloaded');
       } catch (error) {
         notify(error instanceof Error ? error.message : 'Video export failed');
       } finally {
-        exportButton.disabled = false;
+        download.disabled = false;
       }
     });
-  });
+  }
 </script>
 
 <style>
@@ -225,13 +206,27 @@ const initial = colorways[0];
     fill: currentColor;
   }
 
-  /* The stage on the Logo page, 4:3: colorways, the export frame, then the controls. */
-  .framed {
+  /* The tool on the Tools page: the stage on the left, the panel on the right. */
+  .tool {
     --stage-ring: var(--fg);
     --dot-edge: color-mix(in srgb, var(--deep-green) 25%, transparent);
     display: grid;
-    grid-template-rows: auto minmax(0, 1fr) auto;
+    grid-template-columns: minmax(0, 1fr) minmax(16rem, 22rem);
+    gap: var(--gutter);
+    align-items: start;
+  }
+
+  .tool[data-tone='dark'] {
+    --stage-ring: var(--white);
+    --dot-edge: color-mix(in srgb, var(--white) 45%, transparent);
+  }
+
+  /* 4:3 stage: the colorways, then the export frame in the space left. */
+  .tool .stage {
+    display: grid;
+    grid-template-rows: auto minmax(0, 1fr);
     gap: 1rem;
+    min-width: 0;
     aspect-ratio: 4 / 3;
     padding: 1rem;
     background: var(--reveal-bg);
@@ -239,21 +234,19 @@ const initial = colorways[0];
     transition: background-color 160ms ease;
   }
 
-  .framed[data-tone='dark'] {
-    --stage-ring: var(--white);
-    --dot-edge: color-mix(in srgb, var(--white) 45%, transparent);
+  .tool[data-tone='dark'] .stage {
     box-shadow: none;
   }
 
-  /* The export frame, fitted to the space left in the stage at the chosen aspect ratio. */
-  .framed .area {
+  /* The export frame, fitted to the stage at the chosen aspect ratio. */
+  .tool .area {
     container-type: size;
     display: grid;
     place-items: center;
     min-height: 0;
   }
 
-  .framed .frame {
+  .tool .frame {
     display: grid;
     place-items: center;
     width: min(100cqw, 100cqh * var(--ratio));
@@ -262,8 +255,13 @@ const initial = colorways[0];
     transition: width 200ms ease;
   }
 
-  .framed .reveal-svg {
+  .tool .reveal-svg {
     width: calc(var(--logo) * 1%);
+  }
+
+  /* Tweakpane sets its own colors; keep the stage's mark color out of it. */
+  .pane {
+    color: var(--fg);
   }
 
   .options {
@@ -310,70 +308,19 @@ const initial = colorways[0];
     outline-offset: 4px;
   }
 
-  .reveal-bar {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-    gap: 0.5rem;
+  @media (max-width: 1100px) {
+    .tool {
+      grid-template-columns: minmax(0, 1fr);
+    }
   }
 
-  .export {
-    justify-content: flex-end;
-    align-items: center;
-  }
-
-  /* Pill selects with a centered chevron in place of the native caret. */
-  .pick {
-    min-height: 2rem;
-    padding: 0 2rem 0 0.875rem;
-    border: 1px solid var(--rule);
-    border-radius: 999px;
-    background: var(--bg)
-      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%2327433B' stroke-width='1.2'/%3E%3C/svg%3E")
-      no-repeat right 0.875rem center / 0.625rem auto;
-    color: var(--fg);
-    font-size: var(--size-annotation);
-    appearance: none;
-    cursor: pointer;
-  }
-
-  .logo-size {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    min-height: 2rem;
-    padding: 0 0.875rem;
-    border: 1px solid var(--rule);
-    border-radius: 999px;
-    background: var(--bg);
-    color: var(--fg);
-    font-size: var(--size-annotation);
-  }
-
-  .logo-size input {
-    width: 6rem;
-    accent-color: var(--deep-green);
-  }
-
-  .logo-size output {
-    min-width: 2.25em;
-    text-align: right;
-    font-variant-numeric: tabular-nums;
-  }
-
-  .btn:disabled {
-    opacity: 0.5;
-    cursor: progress;
-  }
-
-  /* Narrow screens: the controls wrap, so the stage grows with them around a fixed preview. */
+  /* Narrow screens: a fixed-height preview instead of the 4:3 stage. */
   @media (max-width: 760px) {
-    .framed {
+    .tool .stage {
       aspect-ratio: auto;
     }
 
-    .framed .area {
+    .tool .area {
       height: 18rem;
     }
   }

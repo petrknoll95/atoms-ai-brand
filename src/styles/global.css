@@ -249,3 +249,133 @@ h3,
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Tweakpane panels (pattern generator, mark reveal), themed with brand tokens: pill-shaped
+   controls, PP Neue Montreal, quiet tints. Lists and buttons share Tweakpane's button colors,
+   so both use the input tint. Add .tp-theme to the pane's container. */
+.tp-theme {
+  --tp-base-background-color: var(--white);
+  --tp-base-shadow-color: transparent;
+  --tp-base-border-radius: 0;
+  --tp-base-font-family: var(--font-text);
+  --tp-blade-border-radius: 999px;
+  --tp-container-unit-size: 28px;
+  --tp-blade-value-width: 60%;
+  --tp-blade-horizontal-padding: 10px;
+  --tp-container-horizontal-padding: 0;
+  --tp-container-vertical-padding: 0.5rem;
+  --tp-container-unit-spacing: 6px;
+  --tp-container-background-color: transparent;
+  --tp-container-background-color-hover: color-mix(in srgb, var(--deep-green) 4%, transparent);
+  --tp-container-background-color-focus: color-mix(in srgb, var(--deep-green) 6%, transparent);
+  --tp-container-background-color-active: color-mix(in srgb, var(--deep-green) 8%, transparent);
+  --tp-container-foreground-color: var(--fg);
+  --tp-label-foreground-color: var(--muted);
+  --tp-input-background-color: color-mix(in srgb, var(--deep-green) 6%, transparent);
+  --tp-input-background-color-hover: color-mix(in srgb, var(--deep-green) 9%, transparent);
+  --tp-input-background-color-focus: color-mix(in srgb, var(--deep-green) 11%, transparent);
+  --tp-input-background-color-active: color-mix(in srgb, var(--deep-green) 13%, transparent);
+  --tp-input-foreground-color: var(--fg);
+  --tp-groove-foreground-color: color-mix(in srgb, var(--deep-green) 14%, transparent);
+  --tp-button-background-color: color-mix(in srgb, var(--deep-green) 6%, transparent);
+  --tp-button-background-color-hover: color-mix(in srgb, var(--deep-green) 9%, transparent);
+  --tp-button-background-color-focus: color-mix(in srgb, var(--deep-green) 11%, transparent);
+  --tp-button-background-color-active: color-mix(in srgb, var(--deep-green) 13%, transparent);
+  --tp-button-foreground-color: var(--fg);
+}
+
+.tp-theme .tp-rotv {
+  font-size: var(--size-annotation);
+}
+
+/* Tweakpane sets lists and buttons in bold; keep them at the regular weight. */
+.tp-theme .tp-lstv_s,
+.tp-theme .tp-btnv_b {
+  font-weight: 400;
+}
+
+/* Number fields are typed into, not dragged: drop Tweakpane's scrub handle, so the slider is
+   the only thing that slides. */
+.tp-theme .tp-txtv_k {
+  display: none;
+}
+
+/* A read-only value shown as plain text (add .value-only to the binding element). */
+.tp-theme .value-only .tp-txtv_i {
+  padding-right: 0;
+  background: none;
+  cursor: default;
+}
+
+/* Folder toggle: a chevron at the right, pointing right when closed and down when open. */
+.tp-theme .tp-fldv_b {
+  position: relative;
+}
+
+.tp-theme .tp-fldv_m {
+  left: auto;
+  right: 6px;
+  width: 6px;
+  height: 6px;
+  background: none;
+  border-radius: 0;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  opacity: 0.6;
+  transform: rotate(-45deg);
+}
+
+.tp-theme .tp-fldv.tp-fldv-expanded > .tp-fldv_b > .tp-fldv_m {
+  transform: translateY(-2px) rotate(45deg);
+}
+
+/* Previous / next buttons beside a list (addSteppers in src/scripts/tweakpane.ts). */
+.tp-theme .has-stepper {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.tp-theme .has-stepper > .tp-lstv {
+  flex: 1;
+  min-width: 0;
+}
+
+.tp-theme .stepper {
+  display: flex;
+  gap: 4px;
+}
+
+.tp-theme .step {
+  display: grid;
+  place-items: center;
+  width: var(--tp-container-unit-size);
+  height: var(--tp-container-unit-size);
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: var(--tp-button-background-color);
+  color: var(--fg);
+  cursor: pointer;
+}
+
+.tp-theme .step:hover {
+  background: var(--tp-button-background-color-hover);
+}
+
+.tp-theme .step:active {
+  background: var(--tp-button-background-color-active);
+}
+
+.tp-theme .step svg {
+  width: 8px;
+  height: 10px;
+}
+
+/* Slider knobs use the button color, which is a light tint here; keep them solid. */
+.tp-theme .tp-sldv_k::after,
+.tp-theme .tp-sldv_t:hover .tp-sldv_k::after,
+.tp-theme .tp-sldv_t:focus .tp-sldv_k::after,
+.tp-theme .tp-sldv_t:active .tp-sldv_k::after {
+  background-color: var(--deep-green);
+}

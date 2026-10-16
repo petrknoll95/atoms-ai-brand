@@ -90,7 +90,8 @@ const cells: Cell[] = isMark
       'left grid right'
       '. bottom .';
     gap: 0.5rem;
-    font-size: var(--size-annotation);
+    /* Small labels that scale with the frame: 12px at full width, 10px on phones. */
+    font-size: clamp(0.625rem, 1.35cqi, 0.75rem);
     line-height: 1;
   }
 
