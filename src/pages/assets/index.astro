@@ -15,7 +15,7 @@ const logoBytes = logoManifest.files.reduce((total, file) => total + file.bytes,
   <Sub id="logos" title="Logos" number="10.1">
     <div class="logo-library">
       <div class="package-bar">
-        <p class="muted">{logoManifest.files.length} files · {(logoBytes / 1024 / 1024).toFixed(1)} MB · Bitmaps 256–4096 px wide</p>
+        <p class="muted">{logoManifest.files.length} files · {(logoBytes / 1024 / 1024).toFixed(1)} MB</p>
         <a class="btn" href={withBase('/assets/logos.zip')} download="atomsai-logos.zip">Download all logos ↓</a>
       </div>
       {logoVariants.map((variant) => <LogoDownloads variant={variant} />)}

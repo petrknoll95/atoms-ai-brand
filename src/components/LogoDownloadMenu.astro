@@ -1,0 +1,108 @@
+---
+import { readFileSync } from 'node:fs';
+import { resolve } from 'node:path';
+import { withBase } from '../data/base';
+import type manifest from '../../public/logos/manifest.json';
+
+interface Props {
+  files: (typeof manifest.files)[number][];
+  backgroundName: string;
+}
+const { files, backgroundName } = Astro.props;
+const svg = files.find((file) => file.format === 'svg')!;
+const id = `download-${svg.variant}-${svg.inkToken}`;
+const label = `${svg.name}, ${svg.inkName}`;
+const source = readFileSync(resolve('public/logos', svg.path), 'utf8');
+---
+
+<div class="download" style={`--download-anchor: --${id}`}>
+  <button type="button" class="btn trigger" popovertarget={id} aria-label={`Download ${label}`}>
+    Download
+    <svg class="chevron" viewBox="0 0 16 16" aria-hidden="true"><path d="m4 6 4 4 4-4" /></svg>
+  </button>
+  <div class="download-menu" id={id} popover aria-label={`${label} download options`} data-logo-menu>
+    <a class="option" href={withBase(`/logos/${svg.path}`)} download={svg.filename} aria-label={`Download ${label}, SVG`}>
+      <span>SVG <span class="detail muted">Vector · Transparent</span></span>
+      <span aria-hidden="true">↓</span>
+    </a>
+    {(['png', 'jpg', 'webp'] as const).map((format) => (
+      <details name={`${id}-format`}>
+        <summary class="option">
+          <span>{format.toUpperCase()} <span class="detail muted">{format === 'jpg' ? `${svg.inkName} on ${backgroundName}` : 'Transparent'}</span></span>
+          <svg class="chevron" viewBox="0 0 16 16" aria-hidden="true"><path d="m4 6 4 4 4-4" /></svg>
+        </summary>
+        <div class="sizes">
+          <p class="muted">Width in pixels{format === 'jpg' ? ' · Includes clear space' : ''}</p>
+          <div class="size-options">
+            {files.filter((file) => file.format === format).map((file) => (
+              <a href={withBase(`/logos/${file.path}`)} download={file.filename} aria-label={`Download ${label}${format === 'jpg' ? ` on ${backgroundName}` : ''}, ${format.toUpperCase()}, ${file.width} pixels wide`} title={`${file.width} × ${file.height} px`}>{file.width}</a>
+            ))}
+          </div>
+        </div>
+      </details>
+    ))}
+    <div class="copy-option">
+      <button class="option" type="button" data-logo-copy>
+        <span>Copy SVG</span>
+        <svg class="copy-icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M5.5 5.5h8v8h-8zM10.5 3V2.5h-8v8H3" /></svg>
+      </button>
+      <p class="copy-error muted" role="status" data-copy-error hidden></p>
+    </div>
+    <script type="application/json" data-logo-source set:html={JSON.stringify(source).replaceAll('<', '\u003c')} />
+  </div>
+</div>
+
+<script>
+  import { copyText } from '../scripts/svg';
+  import { notify } from '../scripts/actions';
+
+  document.querySelectorAll<HTMLElement>('[data-logo-menu]').forEach((menu) => {
+    const error = menu.querySelector<HTMLElement>('[data-copy-error]')!;
+    menu.addEventListener('toggle', () => {
+      if (menu.matches(':popover-open')) return;
+      menu.querySelectorAll('details').forEach((details) => { details.open = false; });
+      error.hidden = true;
+    });
+    menu.addEventListener('click', async (event) => {
+      const target = event.target as Element;
+      if (target.closest('a[download]')) menu.hidePopover();
+      const copy = target.closest<HTMLButtonElement>('[data-logo-copy]');
+      if (!copy) return;
+      error.hidden = true;
+      copy.disabled = true;
+      try {
+        await copyText(JSON.parse(menu.querySelector('[data-logo-source]')!.textContent!));
+        menu.hidePopover();
+        notify('SVG copied');
+      } catch {
+        error.textContent = 'Couldn’t copy. Download the SVG instead.';
+        error.hidden = false;
+      } finally {
+        copy.disabled = false;
+      }
+    });
+  });
+</script>
+
+<style>
+  .trigger { anchor-name: var(--download-anchor); }
+  .chevron, .copy-icon { width: 1rem; height: 1rem; flex: none; fill: none; stroke: currentColor; stroke-width: 1.25; }
+  .download:has(:popover-open) .trigger { border-color: var(--fg); }
+  .download-menu { position-anchor: var(--download-anchor); position-area: bottom span-left; position-try-fallbacks: flip-block, flip-inline; width: min(20rem, calc(100vw - 2rem)); max-height: calc(100dvh - 2rem); overflow-y: auto; margin: 0.375rem 0; padding: 0.375rem; border: 0; background: var(--white); color: var(--fg); font-size: var(--size-annotation); box-shadow: 0 0 0 1px var(--rule), 0 0.5rem 1.5rem color-mix(in srgb, var(--forest-shade) 12%, transparent); }
+  .option { display: flex; justify-content: space-between; align-items: center; gap: 0.75rem; width: 100%; min-height: 2.75rem; padding: 0.625rem; border: 0; background: none; color: inherit; font: inherit; text-align: left; text-decoration: none; cursor: pointer; }
+  .option:hover, .option:focus-visible, .size-options a:hover, .size-options a:focus-visible { background: color-mix(in srgb, var(--deep-green) 7%, transparent); }
+  .option:focus-visible, .size-options a:focus-visible { outline-offset: -2px; }
+  .detail { display: block; margin-top: 0.125rem; font-size: var(--size-annotation-small); }
+  summary { list-style: none; }
+  summary::-webkit-details-marker { display: none; }
+  details[open] summary .chevron { transform: rotate(180deg); }
+  .sizes { display: grid; gap: 0.75rem; padding: 0.5rem 0.625rem 0.75rem; }
+  .sizes p { font-size: var(--size-annotation-small); }
+  .size-options { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0.25rem; }
+  .size-options a { display: grid; place-items: center; min-height: 2.25rem; border: 1px solid var(--rule); text-decoration: none; }
+  .copy-option { margin-top: 0.375rem; padding-top: 0.375rem; border-top: 1px solid var(--rule); }
+  .copy-option button { cursor: copy; }
+  .copy-option button:disabled { opacity: 0.5; cursor: wait; }
+  .copy-error { padding: 0.625rem; line-height: 1.4; }
+  [hidden] { display: none !important; }
+</style>

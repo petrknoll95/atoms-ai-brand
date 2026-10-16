@@ -33,7 +33,7 @@ and `base` to `'/'`.
 | Illustration | Concept drawings and linework, recolorable, as SVG or PNG |
 | Examples | Application mockups |
 | Tools | `/tools/`: the pattern generator, with a Tweakpane panel (structure, colorway, density, size, rotation, scale, position, PNG export, shareable link), and the looping mark reveal with four colorways, an export frame, logo size and video export (MP4 or WebM, four aspect ratios, 720p to 4K) |
-| Assets | `/assets/`: 128 logo exports with format/size controls and full or per-logo ZIPs, plus the font library with individual and category downloads |
+| Assets | `/assets/`: 128 logo exports with a Download menu on each color variant, bitmap sizes, Copy SVG and full or per-logo ZIPs, plus the font library with individual and category downloads |
 | Skills | `/skills/`: a compact library linking to one page per skill, with formatted and source previews, clipboard copy, individual Markdown downloads and a ZIP with standard skill folders |
 
 The UI chrome uses two type sizes (display 32 px Founders Grotesk, annotation 14 px PP Neue Montreal) and two text colors (`--fg` Deep green, `--muted` Graphite) on white.

@@ -1,111 +1,48 @@
 ---
 import { withBase } from '../data/base';
-import { logoColorways, logoFormats, logoSizes, type LogoVariant } from '../data/logoExports';
+import { logoColorways, type LogoVariant } from '../data/logoExports';
 import manifest from '../../public/logos/manifest.json';
+import LogoDownloadMenu from './LogoDownloadMenu.astro';
 
 interface Props { variant: LogoVariant }
 const { variant } = Astro.props;
 const files = manifest.files.filter((file) => file.variant === variant.id);
-const initial = (ink: string) => files.find((file) => file.inkToken === ink && file.format === 'svg')!;
-const label = (format: string) => `${format.toUpperCase()}${format === 'jpg' ? ' · Background' : ' · Transparent'}`;
 ---
 
-<section class="logo-group" data-logo-downloads aria-labelledby={`${variant.id}-downloads-title`}>
+<section class="logo-group" aria-labelledby={`${variant.id}-downloads-title`}>
   <div class="group-heading">
     <h3 class="display" id={`${variant.id}-downloads-title`}>{variant.name}</h3>
     <a class="btn" href={withBase(`/assets/logos/${variant.id}.zip`)} download={`atomsai-${variant.id}.zip`}>Download {variant.name.toLowerCase()} set ↓</a>
   </div>
-  <div class="controls" data-logo-controls hidden>
-    <label>Format<select data-logo-format>{logoFormats.map((format) => <option value={format}>{label(format)}</option>)}</select></label>
-    <label>Width<select data-logo-size disabled>{logoSizes.map((width) => <option value={width} selected={width === 1024}>{width} px</option>)}</select></label>
-  </div>
   <ul class="logo-grid">
     {logoColorways.map(({ ink, background }) => {
-      const file = initial(ink.token);
+      const colorFiles = files.filter((file) => file.inkToken === ink.token);
+      const svg = colorFiles.find((file) => file.format === 'svg')!;
       return (
-        <li class="logo-card" data-logo-card data-ink={ink.token} data-ink-name={ink.name} data-background-name={background.name}>
-          <div class="preview" data-logo-preview data-ink={ink.token} style={`--surface: ${background.hex}`}>
-            <img src={withBase(`/logos/${file.path}`)} alt={`${variant.name}, ${ink.name}`} width={variant.id === 'logotype' ? 1132 : 440} height={variant.id === 'logotype' ? 200 : 400} loading="lazy" data-logo-image />
+        <li class="logo-card">
+          <div class="preview" data-ink={ink.token}>
+            <img src={withBase(`/logos/${svg.path}`)} alt={`${variant.name}, ${ink.name}`} width={variant.id === 'logotype' ? 1132 : 440} height={variant.id === 'logotype' ? 200 : 400} loading="lazy" />
           </div>
           <div class="card-meta">
-            <div class="description">
-              <p data-logo-label>{ink.name}</p>
-              <p class="muted" data-logo-meta>SVG · Vector</p>
-            </div>
-            <a class="btn" href={withBase(`/logos/${file.path}`)} download={file.filename} aria-label={`Download ${variant.name}, ${ink.name}, SVG`} data-logo-download>SVG ↓</a>
+            <p>{ink.name}</p>
+            <LogoDownloadMenu files={colorFiles} backgroundName={background.name} />
           </div>
         </li>
       );
     })}
   </ul>
-  <p class="muted note" data-logo-note aria-live="polite">Transparent artwork. Add the required clear space in your layout.</p>
-  <noscript><p class="muted">Download the set above for all bitmap formats and sizes.</p></noscript>
-  <script type="application/json" data-logo-files set:html={JSON.stringify(files.map((file) => ({ ...file, url: withBase(`/logos/${file.path}`) }))).replaceAll('<', '\\u003c')} />
+  <p class="muted note">Transparent artwork. Add the required clear space in your layout.</p>
 </section>
-
-<script>
-  interface LogoFile {
-    inkToken: string;
-    format: string;
-    width: number | null;
-    height: number | null;
-    filename: string;
-    name: string;
-    url: string;
-  }
-  document.querySelectorAll<HTMLElement>('[data-logo-downloads]').forEach((group) => {
-    const files: LogoFile[] = JSON.parse(group.querySelector('[data-logo-files]')!.textContent!);
-    const format = group.querySelector<HTMLSelectElement>('[data-logo-format]')!;
-    const size = group.querySelector<HTMLSelectElement>('[data-logo-size]')!;
-    const cards = [...group.querySelectorAll<HTMLElement>('[data-logo-card]')];
-    const update = () => {
-      const vector = format.value === 'svg';
-      const opaque = format.value === 'jpg';
-      size.disabled = vector;
-      cards.forEach((card) => {
-        const file = files.find((file) => file.inkToken === card.dataset.ink && file.format === format.value && file.width === (vector ? null : Number(size.value)))!;
-        const preview = files.find((file) => file.inkToken === card.dataset.ink && file.format === format.value && file.width === (vector ? null : 512))!;
-        const link = card.querySelector<HTMLAnchorElement>('[data-logo-download]')!;
-        const image = card.querySelector<HTMLImageElement>('[data-logo-image]')!;
-        const colorway = opaque ? `${card.dataset.inkName} on ${card.dataset.backgroundName}` : card.dataset.inkName!;
-        link.href = file.url;
-        link.download = file.filename;
-        link.textContent = `${file.format.toUpperCase()} ↓`;
-        link.setAttribute('aria-label', `Download ${file.name}, ${colorway}, ${file.format.toUpperCase()}${vector ? '' : `, ${file.width} pixels wide`}`);
-        image.src = preview.url;
-        image.alt = `${file.name}, ${colorway}`;
-        card.querySelector('[data-logo-preview]')!.classList.toggle('opaque', opaque);
-        card.querySelector('[data-logo-label]')!.textContent = colorway;
-        card.querySelector('[data-logo-meta]')!.textContent = vector ? 'SVG · Vector' : `${file.format.toUpperCase()} · ${file.width} × ${file.height} px`;
-      });
-      group.querySelector('[data-logo-note]')!.textContent = opaque
-        ? 'Background includes the required clear space. Width refers to the whole canvas.'
-        : 'Transparent artwork. Add the required clear space in your layout.';
-    };
-    format.addEventListener('change', update);
-    size.addEventListener('change', update);
-    update();
-    group.querySelector<HTMLElement>('[data-logo-controls]')!.hidden = false;
-  });
-</script>
 
 <style>
   .logo-group { container-type: inline-size; display: grid; gap: 1.5rem; }
   .group-heading { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
-  .controls { display: flex; gap: 1rem; flex-wrap: wrap; }
-  .controls label { display: flex; align-items: center; gap: 0.75rem; color: var(--muted); }
-  select { min-height: 2.25rem; padding: 0.4rem 1.75rem 0.4rem 0.75rem; border: 1px solid var(--rule); border-radius: 0; color: var(--fg); background: var(--white); font: inherit; }
-  select:disabled { opacity: 0.45; }
   .logo-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 2rem 1.25rem; }
   @container (min-width: 28rem) { .logo-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
   .logo-card { min-width: 0; display: grid; gap: 1rem; align-content: start; }
   .preview { --check-base: #f7f7f7; --check: #ededed; display: grid; place-items: center; height: 12rem; padding: 2rem; background-color: var(--check-base); background-image: conic-gradient(var(--check) 25%, transparent 0 50%, var(--check) 0 75%, transparent 0); background-size: 16px 16px; box-shadow: inset 0 0 0 1px var(--rule); }
   .preview[data-ink='white'], .preview[data-ink='cream'] { --check-base: #303c37; --check: #3b4742; }
   .preview img { display: block; width: 100%; height: 100%; max-height: 8rem; object-fit: contain; }
-  .preview.opaque { padding: 0; background: var(--surface); }
-  .preview.opaque img { max-height: 100%; }
-  .card-meta { display: flex; align-items: flex-end; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem; }
-  .description { display: grid; gap: 0.5rem; }
+  .card-meta { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem; }
   .note { line-height: 1.4; }
-  [hidden] { display: none !important; }
 </style>
