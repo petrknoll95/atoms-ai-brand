@@ -12,15 +12,24 @@ const dist = join(root, 'dist');
 const read = (path) => readFile(path, 'utf8');
 const manifest = JSON.parse(await read(join(dist, 'assets/brand/manifest.json')));
 const site = new URL(manifest.guidelines);
-const page = await read(join(dist, 'skills/index.html'));
+const skillNames = ['atomsai-brand', 'atomsai-icons'];
+const pages = new Map(await Promise.all(['skills/', ...skillNames.map((name) => `skills/${name}/`)]
+  .map(async (path) => [path, await read(join(dist, path, 'index.html'))])));
+const library = pages.get('skills/');
+assert(!library.includes('data-skill-source'), 'Library should link to separate skill pages');
 const archive = unzipSync(await readFile(join(dist, 'skills/atomsai-skills.zip')));
-const ids = [...page.matchAll(/\bid="([^"]+)"/g)].map((m) => m[1]);
-assert.equal(new Set(ids).size, ids.length, 'Skills page contains duplicate IDs');
 const decode = (text) => text.replace(/&(amp|lt|gt|quot|#39|#x27);/g, (entity) => ({
   '&amp;': '&', '&lt;': '<', '&gt;': '>', '&quot;': '"', '&#39;': "'", '&#x27;': "'",
 })[entity]);
-const copyPayloads = [...page.matchAll(/<textarea\b[^>]*data-skill-source[^>]*>([\s\S]*?)<\/textarea>/g)]
-  .map((m) => decode(m[1]));
+const copyPayloads = [];
+for (const [path, page] of pages) {
+  const ids = [...page.matchAll(/\bid="([^"]+)"/g)].map((m) => m[1]);
+  assert.equal(new Set(ids).size, ids.length, `${path} contains duplicate IDs`);
+  const payloads = [...page.matchAll(/<textarea\b[^>]*data-skill-source[^>]*>([\s\S]*?)<\/textarea>/g)]
+    .map((m) => decode(m[1]));
+  if (path !== 'skills/') assert.equal(payloads.length, 1, `${path} should contain one skill`);
+  copyPayloads.push(...payloads);
+}
 const checkedUrls = new Set();
 
 async function checkUrl(href) {
@@ -41,7 +50,6 @@ async function checkUrl(href) {
   }
 }
 
-const skillNames = ['atomsai-brand', 'atomsai-icons'];
 const delivered = {};
 for (const name of skillNames) {
   const source = await read(join(root, 'skills', name, 'SKILL.md'));
@@ -56,6 +64,8 @@ for (const name of skillNames) {
   assert.equal(markdown, source.replaceAll('https://petrknoll95.github.io/atoms-ai-brand/', site.href));
   assert.equal(strFromU8(archive[`${name}/SKILL.md`]), markdown, `ZIP differs from Markdown: ${name}`);
   assert(copyPayloads.includes(markdown), `Clipboard payload differs from download: ${name}`);
+  assert(library.includes(`href="${site.pathname}skills/${name}/"`), `Missing library link: ${name}`);
+  await checkUrl(new URL(`skills/${name}/`, site).href);
   assert(!/\{\{[^}]+\}\}|\bTODO\b|localhost:|127\.0\.0\.1/.test(markdown), `Unfinished or local-only content: ${name}`);
   for (const match of markdown.matchAll(/\]\((https?:\/\/[^\s)]+)\)/g)) await checkUrl(match[1]);
   delivered[name] = markdown;
@@ -101,8 +111,10 @@ for (const asset of manifest.assets) {
 }
 await checkUrl(manifest.tokens);
 // Check navigation, raw downloads and the HTML preview's source links as delivered.
-for (const match of page.matchAll(/\bhref="([^"]+)"/g)) {
-  const href = decode(match[1]);
-  await checkUrl(href.startsWith('#') ? new URL(`skills/${href}`, site).href : href);
+pages.set('', await read(join(dist, 'index.html')));
+for (const [path, page] of pages) {
+  for (const match of page.matchAll(/\bhref="([^"]+)"/g)) {
+    await checkUrl(new URL(decode(match[1]), new URL(path, site)).href);
+  }
 }
 console.log(`Verified ${skillNames.length} skills, ${manifest.palette.length} colors, ${manifest.themes.length} themes, 15 icon masters, ${manifest.assets.length} assets, ZIP/copy parity and ${checkedUrls.size} local links.`);

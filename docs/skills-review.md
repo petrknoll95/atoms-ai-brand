@@ -29,7 +29,7 @@ Reviewed 16 October 2026 against the repository's guideline pages, shared data, 
 
 1. Author two ordinary, self-contained `skills/<name>/SKILL.md` files with portable YAML metadata, core rules first, task-specific sections, real source links and final checks. No vendor-specific tool requirements or install scripts.
 2. Publish the existing SVG masters through static, stable URLs. Generate the asset manifest and exact color/gradient/theme data from the existing modules.
-3. Add Skills to the existing navigation and contents. Each skill has a visual card, expandable formatted preview, raw Markdown view, copy action and `.md` download. Offer a ZIP with the standard folder structure.
+3. Add Skills to the existing navigation and contents. The library starts directly with two linked cards. Each skill has its own `/skills/<name>/` page with an open formatted preview, raw Markdown view, copy action and `.md` download. Offer a ZIP with the standard folder structure.
 4. Use the same source for preview, clipboard and download. Rewrite the configured production URL in generated delivery files when the deployment origin/base changes.
 5. Verify type checking and static build; validate frontmatter, palette/geometry fidelity, all local links and anchors, download equality, manifest targets, and SVG parsing. Exercise copy, preview toggles, downloads and responsive layout in the browser.
 
@@ -42,9 +42,9 @@ The [Agent Skills specification](https://agentskills.io/specification) defines t
 - Both source files pass the skill frontmatter validator.
 - `npm run check`: zero errors and warnings; one existing deprecation hint for the shared clipboard fallback.
 - `npm run build`: successful static build, with no build warnings.
-- `npm run check:skills`: two skills, 18 palette values, nine themes, six combinations, 15 icon masters, 55 downloadable assets and 116 local URLs/anchors verified. Source, clipboard payload, individual download and ZIP entries match.
+- `npm run check:skills`: two skills, 18 palette values, nine themes, six combinations, 15 icon masters, 55 downloadable assets and 114 local URLs/anchors verified. Source, clipboard payload, individual download and ZIP entries match.
 - All 51 generated SVGs parse as XML with an SVG namespace and viewBox.
-- Browser checks at desktop width and 375 × 812: previews expand, Preview/Markdown tabs work with keyboard arrows and Home, copy actions report success, and the mobile page has no horizontal overflow with an open preview. No browser warnings or errors were recorded.
+- Browser checks at desktop width and 375 × 812: library cards and sidebar links open separate skill pages, each preview is open by default, Preview/Markdown tabs and copy actions work, and both the library and detail pages have no horizontal overflow. Keyboard arrow and Home controls were also verified during initial implementation. No browser warnings or errors were recorded.
 - Both `.md` files and the ZIP downloaded through the actual page controls and match the built files byte for byte.
 
 Validation used the production build served locally. The new public skill and asset URLs become available when this change is deployed; no production deployment was performed as part of implementation.

@@ -8,14 +8,29 @@ import { withBase } from '../data/base';
 interface Props {
   slug: string;
   description?: string;
+  pageTitle?: string;
   /** Section hero (number + title on Deep green). The Intro uses its cover instead. */
   hero?: boolean;
 }
 
-const { slug, description = 'AtomsAI brand guidelines and asset library.', hero = true } = Astro.props;
+const { slug, description = 'AtomsAI brand guidelines and asset library.', pageTitle, hero = true } = Astro.props;
 const current = section(slug);
 const number = sectionNumber(slug);
-const title = slug === 'intro' ? 'AtomsAI Brand' : `${current.title} — AtomsAI Brand`;
+const title = pageTitle ? `${pageTitle} — AtomsAI Brand` : slug === 'intro' ? 'AtomsAI Brand' : `${current.title} — AtomsAI Brand`;
+
+// Self-hosted brand fonts from public/fonts. Declared here rather than in global.css so the URLs
+// carry the base path: Vite only rewrites root-absolute CSS URLs in the build, not in dev.
+const fontFaces = [
+  ['Founders Grotesk', 'FoundersGrotesk-Regular', 400],
+  ['Founders Grotesk', 'FoundersGrotesk-Medium', 500],
+  ['PP Neue Montreal', 'PPNeueMontreal-Regular', 400],
+  ['PP Neue Montreal', 'PPNeueMontreal-Medium', 500],
+]
+  .map(
+    ([family, file, weight]) =>
+      `@font-face { font-family: '${family}'; src: url('${withBase(`/fonts/${file}.woff2`)}') format('woff2'); font-weight: ${weight}; font-style: normal; font-display: swap; }`,
+  )
+  .join('\n');
 ---
 
 <!doctype html>
@@ -30,6 +45,7 @@ const title = slug === 'intro' ? 'AtomsAI Brand' : `${current.title} — AtomsAI
     <link rel="preload" href={withBase('/fonts/PPNeueMontreal-Regular.woff2')} as="font" type="font/woff2" crossorigin />
     <link rel="preload" href={withBase('/fonts/FoundersGrotesk-Regular.woff2')} as="font" type="font/woff2" crossorigin />
     <link rel="stylesheet" href={withBase('/tokens.css')} />
+    <style is:inline set:html={fontFaces} />
   </head>
   <body>
     <div class="shell">

@@ -1,63 +1,40 @@
 ---
 import Guide from '../../layouts/Guide.astro';
-import Sub from '../../components/Sub.astro';
-import SkillCard from '../../components/SkillCard.astro';
+import SkillArtwork from '../../components/SkillArtwork.astro';
 import { skills } from '../../data/skills';
+import { icon } from '../../data/icons';
 import { withBase } from '../../data/base';
 ---
 
-<Guide slug="skills" description="Give your agent the AtomsAI brand. Browse, copy or download skills for brand consistency and SVG icon creation.">
-  <Sub id="library" title="Library">
-    <Fragment slot="text">
-      <p class="intro">The brand, ready for your agent.</p>
-      <p>Two skills turn these guidelines into practical instructions for the tools you work with. Each includes the rules, references and asset links your agent needs.</p>
-      <p class="muted">Read the preview, copy the full Markdown, or download a file to use in your own workflow.</p>
-    </Fragment>
-    <div class="library-bar">
-      <div class="jump-links">
-        {skills.map((skill) => <a href={`#${skill.slug}`}>{skill.title} ↗</a>)}
-      </div>
-      <a class="btn" href={withBase('/skills/atomsai-skills.zip')} download="atomsai-skills.zip">Download both .zip ↓</a>
-    </div>
-  </Sub>
-
-  {skills.map((skill) => (
-    <Sub id={skill.slug} title={skill.title} split>
-      <Fragment slot="text">
-        <p>{skill.summary}</p>
-        <p class="muted">One self-contained Markdown file. No specific app or agent required.</p>
-      </Fragment>
-      <SkillCard skill={skill} />
-    </Sub>
-  ))}
-
-  <Sub id="using-skills" title="How to use">
-    <Fragment slot="text">
-      <p>Choose the skill that matches your task. Both are ordinary Markdown, so you can use them as a skill, a project reference or a chat attachment.</p>
-    </Fragment>
-    <div class="usage">
-      <ol class="steps">
-        <li><span class="muted">01</span><div><p>Choose a skill.</p><p class="muted">Use AtomsAI brand for a complete branded deliverable. Use Icon creation to extend the SVG icon set.</p></div></li>
-        <li><span class="muted">02</span><div><p>Add it to your agent.</p><p class="muted">Attach the .md file or paste its contents into your project instructions. For agents that support skills, use the folders in the ZIP, or save the file as SKILL.md inside a folder matching its name.</p></div></li>
-        <li><span class="muted">03</span><div><p>Give it a brief.</p><p class="muted">Describe what you need, the format and the audience. Ask your agent to follow the skill and use the linked artwork. Download access is needed to fetch assets; the core instructions also work offline.</p></div></li>
-      </ol>
-      <div class="examples">
-        <p class="muted">Try a brief</p>
-        {skills.map((skill) => <blockquote>{skill.example}</blockquote>)}
-      </div>
-      <p class="muted">Packaged in the <a href="https://agentskills.io/specification" target="_blank" rel="noopener">Agent Skills format</a>. Installation and automatic discovery depend on your agent; the Markdown itself is portable.</p>
-    </div>
-  </Sub>
+<Guide slug="skills" hero={false} description="Browse AtomsAI skills for brand consistency and SVG icon creation.">
+  <header class="library-header">
+    <h1 class="display">Skills</h1>
+    <a class="btn" href={withBase('/skills/atomsai-skills.zip')} download="atomsai-skills.zip">Download both .zip ↓</a>
+  </header>
+  <div class="library">
+    {skills.map((skill) => (
+      <a class="library-item" href={skill.href} aria-labelledby={`${skill.slug}-title`}>
+        <SkillArtwork slug={skill.slug} />
+        <div class="item-body">
+          <div class="item-heading">
+            <h2 class="display" id={`${skill.slug}-title`}>{skill.title}</h2>
+            <span class="arrow" set:html={icon('arrow-northeast')} aria-hidden="true" />
+          </div>
+          <p class="muted">{skill.summary}</p>
+        </div>
+      </a>
+    ))}
+  </div>
 </Guide>
 
 <style>
-  .intro { font-family: var(--font-display); font-size: var(--size-display); line-height: 1; letter-spacing: -0.015em; }
-  .library-bar { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1.5rem; }
-  .jump-links { display: flex; flex-wrap: wrap; gap: 0.75rem 1.5rem; }
-  .usage { display: grid; gap: 2rem; max-width: 48rem; }
-  .steps { display: grid; gap: 1.5rem; }
-  .steps li { display: grid; grid-template-columns: 2rem minmax(0, 1fr); gap: 1rem; }
-  .steps li div { display: grid; gap: 0.625rem; }
-  .examples { display: grid; gap: 1rem; }
-  blockquote { margin: 0; padding: 1.25rem; background: var(--cream); line-height: 1.5; }
+  .library-header { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem; margin-bottom: 2rem; }
+  .library { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem; }
+  .library-item { border: 1px solid var(--rule); color: var(--fg); text-decoration: none; min-width: 0; }
+  .library-item:hover { border-color: var(--fg); }
+  .item-body { padding: 1.5rem; display: grid; gap: 1rem; }
+  .item-heading { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+  .arrow { width: 1.5rem; flex: none; }
+  .arrow :global(svg) { display: block; width: 100%; height: auto; }
+  @media (max-width: 1100px) { .library { grid-template-columns: minmax(0, 1fr); } }
 </style>

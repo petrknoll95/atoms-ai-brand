@@ -67,39 +67,26 @@ const ink = (key: ColorKey) =>
           {block.keys.map((key) => {
             const c = colors[key];
             const [r, g, b] = rgb(c.hex);
-            const cmyk = c.cmyk ? `${c.cmyk[0]} ${c.cmyk[1]} ${c.cmyk[2]} ${c.cmyk[3]}` : '';
+            const values = [
+              { label: 'HEX', shown: bare(c.hex), copy: c.hex },
+              { label: 'RGB', shown: rgbString(c.hex), copy: `rgb(${r}, ${g}, ${b})` },
+              ...(c.cmyk ? [{ label: 'CMYK', shown: c.cmyk.join(' '), copy: `C${c.cmyk[0]} M${c.cmyk[1]} Y${c.cmyk[2]} K${c.cmyk[3]}` }] : []),
+              { label: 'CSS', shown: `--${c.token}`, copy: `var(--${c.token})` },
+            ];
             return (
               <div class="role">
                 <Swatch color={key} class="role-chip" />
                 <dl class="specs">
-                  <dt class="muted">HEX</dt>
-                  <dd>
-                    <button type="button" class="value" data-copy={c.hex}>
-                      {bare(c.hex)}
-                    </button>
-                  </dd>
-                  <dt class="muted">RGB</dt>
-                  <dd>
-                    <button type="button" class="value" data-copy={`rgb(${r}, ${g}, ${b})`}>
-                      {rgbString(c.hex)}
-                    </button>
-                  </dd>
-                  {c.cmyk && (
-                    <>
-                      <dt class="muted">CMYK</dt>
+                  {values.map((v) => (
+                    <div>
+                      <dt class="muted">{v.label}</dt>
                       <dd>
-                        <button type="button" class="value" data-copy={`C${c.cmyk[0]} M${c.cmyk[1]} Y${c.cmyk[2]} K${c.cmyk[3]}`}>
-                          {cmyk}
+                        <button type="button" class="value" data-copy={v.copy}>
+                          {v.shown}
                         </button>
                       </dd>
-                    </>
-                  )}
-                  <dt class="muted">CSS</dt>
-                  <dd>
-                    <button type="button" class="value" data-copy={`var(--${c.token})`}>
-                      --{c.token}
-                    </button>
-                  </dd>
+                    </div>
+                  ))}
                 </dl>
               </div>
             );
@@ -248,11 +235,21 @@ const ink = (key: ColorKey) =>
     height: clamp(11rem, 22vw, 17rem);
   }
 
+  /* The values below each swatch, a step smaller than annotations, ruled between rows. */
   .specs {
+    margin-top: 0.25rem;
+    font-size: var(--size-annotation-small);
+  }
+
+  .specs > div {
     display: grid;
     grid-template-columns: 3.5rem 1fr;
-    gap: 0.625rem 0.5rem;
-    margin-top: 0.75rem;
+    gap: 0.5rem;
+    padding-block: 0.625rem;
+  }
+
+  .specs > div + div {
+    border-top: 1px solid var(--rule);
   }
 
   .value {
@@ -262,7 +259,7 @@ const ink = (key: ColorKey) =>
     padding: 0;
     border: 0;
     background: none;
-    font-size: var(--size-annotation);
+    font-size: inherit;
     text-align: left;
     cursor: copy;
   }

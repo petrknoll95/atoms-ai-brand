@@ -3,6 +3,8 @@ import { withBase } from './base';
 export interface SubSection {
   id: string;
   title: string;
+  /** Separate pages can appear under a section alongside in-page anchors. */
+  href?: string;
   /** The section number shown on the page (from the Figma slides, so not always in order). */
   number?: string;
 }
@@ -90,13 +92,21 @@ export const sections: Section[] = [
   },
 ];
 
-/** Working tools and the asset hub, listed apart from the numbered guideline sections. */
+/** Tools, the asset hub and the skills: listed apart in the sidebar, numbered on from the guidelines. */
 export const tools: Section[] = [
-  { slug: 'tools', title: 'Tools', href: withBase('/tools/'), subs: [s('pattern-generator', 'Pattern generator'), s('mark-reveal', 'Mark reveal')] },
-  { slug: 'assets', title: 'Assets', href: withBase('/assets/'), subs: [s('fonts', 'Fonts')] },
+  {
+    slug: 'tools',
+    title: 'Tools',
+    href: withBase('/tools/'),
+    subs: [s('pattern-generator', 'Pattern generator', '9.1'), s('mark-reveal', 'Mark reveal', '9.2')],
+  },
+  { slug: 'assets', title: 'Assets', href: withBase('/assets/'), subs: [s('fonts', 'Fonts', '10.1')] },
   {
     slug: 'skills', title: 'Skills', href: withBase('/skills/'),
-    subs: [s('library', 'Library'), s('atomsai-brand', 'AtomsAI brand'), s('atomsai-icons', 'Icon creation'), s('using-skills', 'How to use')],
+    subs: [
+      { id: 'atomsai-brand', title: 'AtomsAI brand', href: withBase('/skills/atomsai-brand/') },
+      { id: 'atomsai-icons', title: 'Icon creation', href: withBase('/skills/atomsai-icons/') },
+    ],
   },
 ];
 
@@ -106,8 +116,8 @@ export const section = (slug: string) => {
   return found;
 };
 
-/** 1-based position among the guideline sections; empty for tools. */
+/** 1-based position across the guideline sections, then tools, assets and skills. */
 export const sectionNumber = (slug: string) => {
-  const index = sections.findIndex((x) => x.slug === slug);
+  const index = [...sections, ...tools].findIndex((x) => x.slug === slug);
   return index < 0 ? '' : String(index + 1);
 };

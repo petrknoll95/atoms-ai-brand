@@ -25,7 +25,7 @@ const { current } = Astro.props;
             const active = s.slug === current;
             return (
               <li class:list={['section', { active, open: active }]} data-section>
-                <a href={s.href} aria-current={active ? 'page' : undefined} data-section-link>
+                <a href={s.href} aria-current={active && Astro.url.pathname === s.href ? 'page' : undefined} data-section-link>
                   {s.title}
                 </a>
                 <div class="subs-wrap">
@@ -33,7 +33,11 @@ const { current } = Astro.props;
                     <ol class="subs">
                       {s.subs.map((sub) => (
                         <li>
-                          <a href={active ? `#${sub.id}` : `${s.href}#${sub.id}`} data-spy={active ? sub.id : undefined}>
+                          <a
+                            href={sub.href ?? (active ? `#${sub.id}` : `${s.href}#${sub.id}`)}
+                            aria-current={sub.href === Astro.url.pathname ? 'page' : undefined}
+                            data-spy={active && !sub.href ? sub.id : undefined}
+                          >
                             {sub.title}
                           </a>
                         </li>

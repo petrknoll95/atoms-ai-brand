@@ -19,16 +19,14 @@ const catalog = [
   {
     slug: 'atomsai-brand',
     title: 'AtomsAI brand',
-    summary: 'The complete brand system, ready for your agent. From the first headline to the final export.',
+    summary: 'Logo, color, typography, imagery, motion and voice.',
     covers: ['Identity & voice', 'Logo', 'Color', 'Typography', 'Patterns', 'Illustration', 'Motion'],
-    example: 'Use the AtomsAI brand skill to create a client proposal deck. Follow the logo, color and typography rules, and use the linked assets.',
   },
   {
     slug: 'atomsai-icons',
     title: 'Icon creation',
-    summary: 'Extend the icon library with the same precise strokes, sharp corners and deliberate open gaps.',
+    summary: 'Grid, strokes, open gaps and SVG construction.',
     covers: ['24 px grid', 'Two weights', 'Open gaps', 'SVG examples', 'Geometry', 'Export checks'],
-    example: 'Use the AtomsAI icon creation skill to draw a download icon. Deliver editable Regular and Medium SVGs and compare them with the existing arrow icons.',
   },
 ] as const;
 
@@ -45,13 +43,14 @@ export const skills = catalog.map((entry) => {
     ...document.frontmatter,
     markdown,
     bytes: new TextEncoder().encode(markdown).length,
+    href: withBase(`/skills/${entry.slug}/`),
     download: withBase(`/skills/${entry.slug}/SKILL.md`),
     filename: `${entry.slug}.md`,
     // The trusted, repository-owned Markdown is compiled by Astro at build time. No browser
-    // Markdown parser or HTML from uploads is involved. Scope heading IDs across both previews.
+    // Markdown parser or HTML from uploads is involved. Nest headings below the page title.
     async previewHtml() {
       return forPublication(await document.compiledContent())
-        .replace(/(<\/?h)([1-6])(?=[\s>])/g, (_, tag, level) => `${tag}${Math.min(6, Number(level) + 2)}`)
+        .replace(/(<\/?h)([1-6])(?=[\s>])/g, (_, tag, level) => `${tag}${Math.min(6, Number(level) + 1)}`)
         .replace(/\bid="([^"]+)"/g, `id="${entry.slug}-$1"`)
         .replace(/href="#([^"]+)"/g, `href="#${entry.slug}-$1"`)
         .replace(/<table>/g, '<div class="table-scroll" tabindex="0" role="region" aria-label="Skill reference table"><table>')

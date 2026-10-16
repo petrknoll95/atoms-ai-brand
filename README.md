@@ -34,7 +34,7 @@ and `base` to `'/'`.
 | Examples | Application mockups |
 | Tools | `/tools/`: the pattern generator, with a Tweakpane panel (structure, colorway, density, size, rotation, scale, position, PNG export, shareable link), and the looping mark reveal with four colorways, an export frame, logo size and video export (MP4 or WebM, four aspect ratios, 720p to 4K) |
 | Assets | `/assets/`: downloadable files by category, each with a preview and a download, and a "Download all" zip built per category at build time (`src/pages/assets/[category].zip.ts`). Fonts for now; add categories in `src/data/downloads.ts` |
-| Skills | `/skills/`: two portable agent skills, with formatted and source previews, clipboard copy, individual Markdown downloads and a ZIP with standard skill folders |
+| Skills | `/skills/`: a compact library linking to one page per skill, with formatted and source previews, clipboard copy, individual Markdown downloads and a ZIP with standard skill folders |
 
 The UI chrome uses two type sizes (display 32 px Founders Grotesk, annotation 14 px PP Neue Montreal) and two text colors (`--fg` Deep green, `--muted` Graphite) on white.
 
@@ -59,7 +59,7 @@ Colors are available as CSS custom properties at `/tokens.css` (`--deep-green`, 
 
 `skills/atomsai-brand/SKILL.md` covers the full brand system; `skills/atomsai-icons/SKILL.md` covers the icon style, measured master geometry and SVG production. Both are self-contained Markdown with portable `name` and `description` frontmatter. They can be installed in a host's skills directory or used as ordinary instructions/attachments. No vendor-specific tools are required.
 
-The Skills page, clipboard payload, `/skills/<name>/SKILL.md` endpoints and `/skills/atomsai-skills.zip` all use these same source files. Source files contain the current production links; generated previews/downloads automatically rewrite that origin and base from Astro's `site`/`base` settings. Add new skills to `src/data/skills.ts` and the Skills subsection list in `src/data/nav.ts`.
+The dedicated `/skills/<name>/` pages, clipboard payload, `/skills/<name>/SKILL.md` endpoints and `/skills/atomsai-skills.zip` all use these same source files. Source files contain the current production links; generated previews/downloads automatically rewrite that origin and base from Astro's `site`/`base` settings. Add new skills to `src/data/skills.ts` and the Skills subsection list in `src/data/nav.ts`.
 
 Agents can fetch artwork without operating browser buttons: `/assets/brand/manifest.json` lists stable SVG/font URLs and current palette, theme, combination and gradient data. SVG routes are built from the original masters by `src/data/brandDownloads.ts`; there is no duplicate artwork directory. Fonts retain the asset library's AtomsAI-only usage restriction.
 

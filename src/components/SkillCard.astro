@@ -1,28 +1,15 @@
 ---
 import type { BrandSkill } from '../data/skills';
-import { logotypeSvg } from '../data/logos';
+import SkillArtwork from './SkillArtwork.astro';
 import { icon } from '../data/icons';
 
 interface Props { skill: BrandSkill }
 const { skill } = Astro.props;
 const html = await skill.previewHtml();
-const isBrand = skill.slug === 'atomsai-brand';
-const samples = ['arrow-northeast', 'plus', 'search', 'filter', 'close', 'chevron-right'];
 ---
 
 <article class="skill-card" data-skill-card aria-label={`${skill.title} skill`}>
-  <div class:list={['art', { 'art-brand': isBrand, 'art-icons': !isBrand }]} aria-hidden="true">
-    {
-      isBrand ? (
-        <>
-          <span class="brand-art" set:html={logotypeSvg} />
-          <span class="palette"><i /><i /><i /><i /></span>
-        </>
-      ) : (
-        samples.map((name) => <span class="icon-art" set:html={icon(name)} />)
-      )
-    }
-  </div>
+  <SkillArtwork slug={skill.slug} />
   <div class="card-body">
     <div class="file-row">
       <p class="filename">{skill.slug} / SKILL.md</p>
@@ -40,7 +27,7 @@ const samples = ['arrow-northeast', 'plus', 'search', 'filter', 'close', 'chevro
     </div>
   </div>
 
-  <details class="preview" data-skill-preview>
+  <details class="preview" data-skill-preview open>
     <summary>
       <span>View skill <span class="muted">— formatted Markdown</span></span>
       <span class="disclosure" set:html={icon('chevron-down')} aria-hidden="true" />
@@ -119,18 +106,6 @@ const samples = ['arrow-northeast', 'plus', 'search', 'filter', 'close', 'chevro
 
 <style>
   .skill-card { border: 1px solid var(--rule); min-width: 0; }
-  .art { min-height: 10rem; padding: 2rem; background: var(--cream); color: var(--deep-green); }
-  .art-brand { display: flex; justify-content: space-between; align-items: center; gap: 2rem; }
-  .brand-art { width: min(62%, 20rem); }
-  .brand-art :global(svg) { width: 100%; height: auto; }
-  .palette { display: flex; align-self: stretch; width: 5rem; }
-  .palette i { flex: 1; background: var(--deep-green); }
-  .palette i:nth-child(2) { background: var(--forest-green); }
-  .palette i:nth-child(3) { background: var(--sage-tint); }
-  .palette i:nth-child(4) { background: var(--iris); }
-  .art-icons { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); align-items: center; gap: 1rem; }
-  .icon-art { display: grid; place-items: center; }
-  .icon-art :global(svg) { width: 3rem; height: 3rem; }
   .card-body { display: grid; gap: 1.25rem; padding: 1.5rem; }
   .file-row { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem 1rem; }
   .filename { overflow-wrap: anywhere; }
@@ -146,16 +121,16 @@ const samples = ['arrow-northeast', 'plus', 'search', 'filter', 'close', 'chevro
   details[open] .disclosure { rotate: 180deg; }
   .view-bar { display: flex; gap: 0.5rem; padding: 0 1.5rem 1.25rem; }
   .view-bar [aria-selected='true'] { background: var(--deep-green); color: var(--cream); border-color: var(--deep-green); }
-  .reader { max-height: 42rem; overflow: auto; padding: clamp(1rem, 3vw, 2rem); border-top: 1px solid var(--rule); scrollbar-gutter: stable; }
+  .reader { overflow-x: auto; padding: clamp(1rem, 3vw, 2rem); border-top: 1px solid var(--rule); scrollbar-gutter: stable; }
   .reader:focus-visible { outline-offset: -3px; }
   .reader, .reader :global(*) { text-box: normal; }
   .frontmatter { display: grid; grid-template-columns: 5rem minmax(0, 1fr); gap: 0.5rem 1rem; padding-bottom: 1.5rem; margin-bottom: 2rem; border-bottom: 1px solid var(--rule); }
   .frontmatter dt { color: var(--muted); }
   .frontmatter dd { overflow-wrap: anywhere; }
   .markdown { line-height: 1.6; overflow-wrap: anywhere; }
-  .markdown :global(h3), .markdown :global(h4), .markdown :global(h5), .markdown :global(h6) { font-family: var(--font-display); font-size: var(--size-display); font-weight: 400; letter-spacing: -0.015em; line-height: 1; margin: 2.5rem 0 1.25rem; }
-  .markdown :global(h3:first-child) { margin-top: 0; }
-  .markdown :global(h5), .markdown :global(h6) { font-family: var(--font-text); font-size: var(--size-annotation); font-weight: 500; letter-spacing: 0; line-height: 1.4; margin-top: 1.75rem; }
+  .markdown :global(h2), .markdown :global(h3), .markdown :global(h4), .markdown :global(h5), .markdown :global(h6) { font-family: var(--font-display); font-size: var(--size-display); font-weight: 400; letter-spacing: -0.015em; line-height: 1; margin: 2.5rem 0 1.25rem; }
+  .markdown :global(h2:first-child) { margin-top: 0; }
+  .markdown :global(h4), .markdown :global(h5), .markdown :global(h6) { font-family: var(--font-text); font-size: var(--size-annotation); font-weight: 500; letter-spacing: 0; line-height: 1.4; margin-top: 1.75rem; }
   .markdown :global(p), .markdown :global(ul), .markdown :global(ol), .markdown :global(pre), .markdown :global(.table-scroll) { margin-bottom: 1.25rem; }
   .markdown :global(ul), .markdown :global(ol) { padding-left: 1.5rem; }
   .markdown :global(ul) { list-style: disc; }
@@ -174,9 +149,6 @@ const samples = ['arrow-northeast', 'plus', 'search', 'filter', 'close', 'chevro
   /* Scoped layout rules must not override the native hidden attribute. */
   [hidden] { display: none !important; }
   @media (max-width: 600px) {
-    .art { padding: 1.5rem; min-height: 8rem; }
-    .art-icons { grid-template-columns: repeat(3, minmax(0, 1fr)); row-gap: 1.25rem; }
-    .icon-art :global(svg) { width: 2rem; height: 2rem; }
     .card-body, summary { padding: 1rem; }
     summary .muted { display: none; }
     .view-bar { padding-inline: 1rem; }

@@ -1,37 +1,9 @@
-/* Brand fonts — self-hosted from public/fonts */
-@font-face {
-  font-family: 'Founders Grotesk';
-  src: url('/fonts/FoundersGrotesk-Regular.woff2') format('woff2');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Founders Grotesk';
-  src: url('/fonts/FoundersGrotesk-Medium.woff2') format('woff2');
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'PP Neue Montreal';
-  src: url('/fonts/PPNeueMontreal-Regular.woff2') format('woff2');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'PP Neue Montreal';
-  src: url('/fonts/PPNeueMontreal-Medium.woff2') format('woff2');
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
+/* Brand fonts: declared in layouts/Guide.astro, so their URLs carry the base path in dev too. */
 
 /*
-  Shell tokens. The UI chrome uses exactly two sizes and two text colors:
-  display / annotation, foreground / muted. Brand specimens are content and
-  may use any brand value they need.
+  Shell tokens. The UI chrome uses three sizes and two text colors:
+  display / annotation / annotation-small (dense values, like the color specs),
+  foreground / muted. Brand specimens are content and may use any brand value they need.
 */
 :root {
   --fg: var(--deep-green);
@@ -43,6 +15,7 @@
   --font-text: 'PP Neue Montreal', 'Helvetica Neue', Arial, sans-serif;
   --size-display: 2rem;
   --size-annotation: 0.875rem;
+  --size-annotation-small: 0.75rem;
 
   --sidebar: 15rem;
   --gutter: clamp(1rem, 3vw, 2.5rem);

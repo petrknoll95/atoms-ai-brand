@@ -5,11 +5,10 @@ import Cover from '../components/Cover.astro';
 import PageLink from '../components/PageLink.astro';
 import { sections, tools } from '../data/nav';
 
-// Contents: every guideline section numbered from 02, then the tools, unnumbered.
-const rows = [
-  ...sections.filter((x) => x.slug !== 'intro').map((x, i) => ({ ...x, number: String(i + 2).padStart(2, '0') })),
-  ...tools.map((x) => ({ ...x, number: '' })),
-];
+// Contents: every section after the intro, numbered from 02, tools, assets and skills included.
+const rows = [...sections, ...tools]
+  .filter((x) => x.slug !== 'intro')
+  .map((x, i) => ({ ...x, number: String(i + 2).padStart(2, '0') }));
 ---
 
 <Guide slug="intro" hero={false}>
@@ -47,7 +46,7 @@ const rows = [
             <ul class="row-list">
               {row.subs.map((sub) => (
                 <li>
-                  <a href={`${row.href}#${sub.id}`}>
+                  <a href={sub.href ?? `${row.href}#${sub.id}`}>
                     <span>{sub.title}</span>
                     {sub.number && <span class="muted">{sub.number}</span>}
                   </a>
