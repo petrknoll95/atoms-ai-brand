@@ -34,9 +34,14 @@ export async function copyText(text: string) {
     area.style.position = 'fixed';
     area.style.opacity = '0';
     document.body.append(area);
-    area.select();
-    document.execCommand('copy');
-    area.remove();
+    const focused = document.activeElement;
+    try {
+      area.select();
+      if (!document.execCommand('copy')) throw new Error('Clipboard is unavailable.');
+    } finally {
+      area.remove();
+      if (focused instanceof HTMLElement) focused.focus({ preventScroll: true });
+    }
   }
 }
 

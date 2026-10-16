@@ -1,0 +1,186 @@
+---
+import type { BrandSkill } from '../data/skills';
+import { logotypeSvg } from '../data/logos';
+import { icon } from '../data/icons';
+
+interface Props { skill: BrandSkill }
+const { skill } = Astro.props;
+const html = await skill.previewHtml();
+const isBrand = skill.slug === 'atomsai-brand';
+const samples = ['arrow-northeast', 'plus', 'search', 'filter', 'close', 'chevron-right'];
+---
+
+<article class="skill-card" data-skill-card aria-label={`${skill.title} skill`}>
+  <div class:list={['art', { 'art-brand': isBrand, 'art-icons': !isBrand }]} aria-hidden="true">
+    {
+      isBrand ? (
+        <>
+          <span class="brand-art" set:html={logotypeSvg} />
+          <span class="palette"><i /><i /><i /><i /></span>
+        </>
+      ) : (
+        samples.map((name) => <span class="icon-art" set:html={icon(name)} />)
+      )
+    }
+  </div>
+  <div class="card-body">
+    <div class="file-row">
+      <p class="filename">{skill.slug} / SKILL.md</p>
+      <p class="muted">{(skill.bytes / 1024).toFixed(1)} KB · v{skill.metadata.version}</p>
+    </div>
+    <ul class="covers" aria-label="Included topics">
+      {skill.covers.map((topic) => <li>{topic}</li>)}
+    </ul>
+    <div class="actions">
+      <div class="btn-row">
+        <button class="btn" type="button" data-copy-skill hidden aria-label={`Copy ${skill.title} Markdown`}>Copy to clipboard</button>
+        <a class="btn" href={skill.download} download={skill.filename} aria-label={`Download ${skill.title} as Markdown`}>Download .md ↓</a>
+      </div>
+      <p class="copy-status muted" role="status" aria-live="polite" data-skill-status></p>
+    </div>
+  </div>
+
+  <details class="preview" data-skill-preview>
+    <summary>
+      <span>View skill <span class="muted">— formatted Markdown</span></span>
+      <span class="disclosure" set:html={icon('chevron-down')} aria-hidden="true" />
+    </summary>
+    <div class="view-bar" role="tablist" aria-label={`${skill.title} view`} data-skill-tabs hidden>
+      <button class="btn" type="button" role="tab" id={`${skill.slug}-preview-tab`} aria-controls={`${skill.slug}-preview-panel`} aria-selected="true" data-skill-tab="preview">Preview</button>
+      <button class="btn" type="button" role="tab" id={`${skill.slug}-source-tab`} aria-controls={`${skill.slug}-source-panel`} aria-selected="false" tabindex="-1" data-skill-tab="source">Markdown</button>
+    </div>
+    <div class="reader markdown" id={`${skill.slug}-preview-panel`} tabindex="0" role="region" aria-label={`${skill.title} formatted preview`} data-skill-panel="preview">
+      <dl class="frontmatter">
+        <dt>Name</dt><dd>{skill.name}</dd>
+        <dt>Use when</dt><dd>{skill.description}</dd>
+        <dt>Version</dt><dd>{skill.metadata.version} · Reviewed {skill.metadata.reviewed}</dd>
+      </dl>
+      <div set:html={html} />
+    </div>
+    <div class="reader source" id={`${skill.slug}-source-panel`} tabindex="0" role="region" aria-label={`${skill.title} Markdown source`} data-skill-panel="source" hidden>
+      <pre><code>{skill.markdown}</code></pre>
+    </div>
+  </details>
+  <textarea hidden readonly aria-label={`${skill.title} copy source`} data-skill-source>{skill.markdown}</textarea>
+</article>
+
+<script>
+  import { copyText } from '../scripts/svg';
+
+  document.querySelectorAll<HTMLElement>('[data-skill-card]').forEach((card) => {
+    const copy = card.querySelector<HTMLButtonElement>('[data-copy-skill]')!;
+    const source = card.querySelector<HTMLTextAreaElement>('[data-skill-source]')!;
+    const status = card.querySelector<HTMLElement>('[data-skill-status]')!;
+    const tabs = [...card.querySelectorAll<HTMLButtonElement>('[data-skill-tab]')];
+    const panels = [...card.querySelectorAll<HTMLElement>('[data-skill-panel]')];
+    copy.hidden = false;
+    card.querySelector<HTMLElement>('[data-skill-tabs]')!.hidden = false;
+    panels.forEach((panel, index) => {
+      panel.setAttribute('role', 'tabpanel');
+      panel.setAttribute('aria-labelledby', tabs[index].id);
+    });
+
+    copy.addEventListener('click', async () => {
+      copy.disabled = true;
+      try {
+        await copyText(source.value);
+        status.textContent = 'Markdown copied. Ready for your agent.';
+      } catch {
+        status.textContent = 'Couldn’t copy. Download the .md file or select the Markdown text.';
+      } finally {
+        copy.disabled = false;
+      }
+    });
+
+    const select = (tab: HTMLButtonElement) => {
+      tabs.forEach((item) => {
+        const active = item === tab;
+        item.setAttribute('aria-selected', String(active));
+        item.tabIndex = active ? 0 : -1;
+      });
+      panels.forEach((panel) => { panel.hidden = panel.dataset.skillPanel !== tab.dataset.skillTab; });
+    };
+    tabs.forEach((tab, index) => {
+      tab.addEventListener('click', () => select(tab));
+      tab.addEventListener('keydown', (event) => {
+        let next: number;
+        if (event.key === 'ArrowRight') next = (index + 1) % tabs.length;
+        else if (event.key === 'ArrowLeft') next = (index + tabs.length - 1) % tabs.length;
+        else if (event.key === 'Home') next = 0;
+        else if (event.key === 'End') next = tabs.length - 1;
+        else return;
+        event.preventDefault();
+        select(tabs[next]);
+        tabs[next].focus();
+      });
+    });
+  });
+</script>
+
+<style>
+  .skill-card { border: 1px solid var(--rule); min-width: 0; }
+  .art { min-height: 10rem; padding: 2rem; background: var(--cream); color: var(--deep-green); }
+  .art-brand { display: flex; justify-content: space-between; align-items: center; gap: 2rem; }
+  .brand-art { width: min(62%, 20rem); }
+  .brand-art :global(svg) { width: 100%; height: auto; }
+  .palette { display: flex; align-self: stretch; width: 5rem; }
+  .palette i { flex: 1; background: var(--deep-green); }
+  .palette i:nth-child(2) { background: var(--forest-green); }
+  .palette i:nth-child(3) { background: var(--sage-tint); }
+  .palette i:nth-child(4) { background: var(--iris); }
+  .art-icons { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); align-items: center; gap: 1rem; }
+  .icon-art { display: grid; place-items: center; }
+  .icon-art :global(svg) { width: 3rem; height: 3rem; }
+  .card-body { display: grid; gap: 1.25rem; padding: 1.5rem; }
+  .file-row { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem 1rem; }
+  .filename { overflow-wrap: anywhere; }
+  .covers { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; color: var(--muted); }
+  .actions { display: grid; gap: 0.75rem; }
+  .copy-status:empty { display: none; }
+  .preview { border-top: 1px solid var(--rule); }
+  summary { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: 1.25rem 1.5rem; cursor: pointer; list-style: none; }
+  summary::-webkit-details-marker { display: none; }
+  summary:hover { background: var(--paper); }
+  .disclosure { width: 1.25rem; flex: none; }
+  .disclosure :global(svg) { width: 100%; height: auto; }
+  details[open] .disclosure { rotate: 180deg; }
+  .view-bar { display: flex; gap: 0.5rem; padding: 0 1.5rem 1.25rem; }
+  .view-bar [aria-selected='true'] { background: var(--deep-green); color: var(--cream); border-color: var(--deep-green); }
+  .reader { max-height: 42rem; overflow: auto; padding: clamp(1rem, 3vw, 2rem); border-top: 1px solid var(--rule); scrollbar-gutter: stable; }
+  .reader:focus-visible { outline-offset: -3px; }
+  .reader, .reader :global(*) { text-box: normal; }
+  .frontmatter { display: grid; grid-template-columns: 5rem minmax(0, 1fr); gap: 0.5rem 1rem; padding-bottom: 1.5rem; margin-bottom: 2rem; border-bottom: 1px solid var(--rule); }
+  .frontmatter dt { color: var(--muted); }
+  .frontmatter dd { overflow-wrap: anywhere; }
+  .markdown { line-height: 1.6; overflow-wrap: anywhere; }
+  .markdown :global(h3), .markdown :global(h4), .markdown :global(h5), .markdown :global(h6) { font-family: var(--font-display); font-size: var(--size-display); font-weight: 400; letter-spacing: -0.015em; line-height: 1; margin: 2.5rem 0 1.25rem; }
+  .markdown :global(h3:first-child) { margin-top: 0; }
+  .markdown :global(h5), .markdown :global(h6) { font-family: var(--font-text); font-size: var(--size-annotation); font-weight: 500; letter-spacing: 0; line-height: 1.4; margin-top: 1.75rem; }
+  .markdown :global(p), .markdown :global(ul), .markdown :global(ol), .markdown :global(pre), .markdown :global(.table-scroll) { margin-bottom: 1.25rem; }
+  .markdown :global(ul), .markdown :global(ol) { padding-left: 1.5rem; }
+  .markdown :global(ul) { list-style: disc; }
+  .markdown :global(ol) { list-style: decimal; }
+  .markdown :global(li + li) { margin-top: 0.5rem; }
+  .markdown :global(strong) { font-weight: 500; }
+  .markdown :global(.table-scroll) { overflow-x: auto; }
+  .markdown :global(table) { width: 100%; border-collapse: collapse; font-size: inherit; }
+  .markdown :global(th), .markdown :global(td) { padding: 0.75rem; text-align: left; vertical-align: top; border-bottom: 1px solid var(--rule); min-width: 8rem; }
+  .markdown :global(th) { font-weight: 500; background: var(--cream); }
+  .markdown :global(pre) { overflow-x: auto; padding: 1rem; border: 1px solid var(--rule); }
+  .markdown :global(code), .source code { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; font-size: 0.875em; }
+  .markdown :global(pre), .markdown :global(pre span) { background: var(--paper) !important; color: var(--fg) !important; }
+  .markdown :global(pre code) { white-space: pre; }
+  .source pre { margin: 0; white-space: pre-wrap; overflow-wrap: anywhere; line-height: 1.6; }
+  /* Scoped layout rules must not override the native hidden attribute. */
+  [hidden] { display: none !important; }
+  @media (max-width: 600px) {
+    .art { padding: 1.5rem; min-height: 8rem; }
+    .art-icons { grid-template-columns: repeat(3, minmax(0, 1fr)); row-gap: 1.25rem; }
+    .icon-art :global(svg) { width: 2rem; height: 2rem; }
+    .card-body, summary { padding: 1rem; }
+    summary .muted { display: none; }
+    .view-bar { padding-inline: 1rem; }
+    .frontmatter { grid-template-columns: minmax(0, 1fr); }
+    .frontmatter dd + dt { margin-top: 0.5rem; }
+  }
+</style>

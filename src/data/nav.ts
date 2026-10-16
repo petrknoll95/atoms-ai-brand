@@ -94,6 +94,10 @@ export const sections: Section[] = [
 export const tools: Section[] = [
   { slug: 'tools', title: 'Tools', href: withBase('/tools/'), subs: [s('pattern-generator', 'Pattern generator'), s('mark-reveal', 'Mark reveal')] },
   { slug: 'assets', title: 'Assets', href: withBase('/assets/'), subs: [s('fonts', 'Fonts')] },
+  {
+    slug: 'skills', title: 'Skills', href: withBase('/skills/'),
+    subs: [s('library', 'Library'), s('atomsai-brand', 'AtomsAI brand'), s('atomsai-icons', 'Icon creation'), s('using-skills', 'How to use')],
+  },
 ];
 
 export const section = (slug: string) => {
