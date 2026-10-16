@@ -4,6 +4,7 @@ import PageLink from '../components/PageLink.astro';
 import Sidebar from '../components/Sidebar.astro';
 import { section, sectionNumber } from '../data/nav';
 import { withBase } from '../data/base';
+import { faviconLinks } from '../data/favicon';
 
 interface Props {
   slug: string;
@@ -44,7 +45,7 @@ const fontFaces = [
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="robots" content="noindex, nofollow" />
-    <link rel="icon" href={withBase('/favicon.svg')} type="image/svg+xml" />
+    {faviconLinks.map(({ file, ...attributes }) => <link {...attributes} href={withBase(file)} />)}
     <link rel="preload" href={withBase('/fonts/PPNeueMontreal-Regular.woff2')} as="font" type="font/woff2" crossorigin />
     <link rel="preload" href={withBase('/fonts/FoundersGrotesk-Regular.woff2')} as="font" type="font/woff2" crossorigin />
     <link rel="stylesheet" href={withBase('/tokens.css')} />

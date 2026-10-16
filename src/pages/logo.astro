@@ -5,6 +5,7 @@ import AppIconGuides from '../components/AppIconGuides.astro';
 import AssetCard from '../components/AssetCard.astro';
 import ClearSpace from '../components/ClearSpace.astro';
 import Figure from '../components/Figure.astro';
+import FaviconSpecimen from '../components/FaviconSpecimen.astro';
 import LockupKerning from '../components/LockupKerning.astro';
 import LockupRatios from '../components/LockupRatios.astro';
 import MarkConstruction from '../components/MarkConstruction.astro';
@@ -136,6 +137,16 @@ const capHeightRatio = Math.round(((lockup.baseline - lockup.capTop) / lockup.he
       <Figure tone="plain"><AppIconGuides shape="square" /></Figure>
       <Figure tone="plain"><AppIconGuides shape="circle" /></Figure>
     </div>
+  </Sub>
+
+  <Sub id="favicon" title="Favicon" number="2.12">
+    <Fragment slot="text">
+      <p>Choose a full-size mark on a transparent canvas, or a Cream mark on a solid Deep green background.</p>
+      <p>The transparent mark fills the canvas width and stays centered vertically without changing its proportions. Use Deep green on light surfaces and Cream on dark surfaces. The background version keeps the app icon’s 60% mark width and is the default on this site.</p>
+      <p>Use the SVG where supported, with the ICO as a fallback. The supplied PNGs are drawn at their final pixel sizes. Use the opaque 180 px touch icon for Apple home-screen bookmarks.</p>
+      <p>Never use the full logotype, add lettering or crop the mark to fill the square.</p>
+    </Fragment>
+    <FaviconSpecimen />
   </Sub>
 
   <Sub id="name-in-copy" title="Name in copy" number="2.10">
