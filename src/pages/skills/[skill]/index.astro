@@ -3,7 +3,7 @@ import type { GetStaticPaths } from 'astro';
 import Guide from '../../../layouts/Guide.astro';
 import SkillCard from '../../../components/SkillCard.astro';
 import { skills, type BrandSkill } from '../../../data/skills';
-import { withBase } from '../../../data/base';
+import { sectionNumber } from '../../../data/nav';
 
 export const getStaticPaths = (() => skills.map((skill) => ({
   params: { skill: skill.slug }, props: { skill },
@@ -11,21 +11,10 @@ export const getStaticPaths = (() => skills.map((skill) => ({
 
 interface Props { skill: BrandSkill }
 const { skill } = Astro.props;
+// Skills is a numbered section; each skill page is numbered within it (11.1, 11.2).
+const number = `${sectionNumber('skills')}.${skills.findIndex((s) => s.slug === skill.slug) + 1}`;
 ---
 
-<Guide slug="skills" pageTitle={skill.title} hero={false} description={skill.description}>
-  <div class="skill-page">
-    <header class="skill-header">
-      <a class="back" href={withBase('/skills/')}>← Skills</a>
-      <h1 class="display">{skill.title}</h1>
-      <p class="muted">{skill.summary}</p>
-    </header>
-    <SkillCard skill={skill} />
-  </div>
+<Guide slug="skills" pageTitle={skill.title} number={number} description={skill.description}>
+  <SkillCard skill={skill} />
 </Guide>
-
-<style>
-  .skill-page { max-width: 60rem; }
-  .skill-header { display: grid; gap: 1rem; margin-bottom: 2rem; }
-  .back { justify-self: start; margin-bottom: 0.5rem; color: var(--muted); }
-</style>

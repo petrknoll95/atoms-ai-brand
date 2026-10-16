@@ -18,13 +18,13 @@ const forPublication = (text: string) => text.replaceAll(sourceOrigin, published
 const catalog = [
   {
     slug: 'atomsai-brand',
-    title: 'AtomsAI brand',
+    title: 'Brand Skill',
     summary: 'Logo, color, typography, imagery, motion and voice.',
     covers: ['Identity & voice', 'Logo', 'Color', 'Typography', 'Patterns', 'Illustration', 'Motion'],
   },
   {
     slug: 'atomsai-icons',
-    title: 'Icon creation',
+    title: 'Icon Skill',
     summary: 'Grid, strokes, open gaps and SVG construction.',
     covers: ['24 px grid', 'Two weights', 'Open gaps', 'SVG examples', 'Geometry', 'Export checks'],
   },
@@ -47,10 +47,10 @@ export const skills = catalog.map((entry) => {
     download: withBase(`/skills/${entry.slug}/SKILL.md`),
     filename: `${entry.slug}.md`,
     // The trusted, repository-owned Markdown is compiled by Astro at build time. No browser
-    // Markdown parser or HTML from uploads is involved. Nest headings below the page title.
+    // Markdown parser or HTML from uploads is involved. Nest headings below the page and section titles.
     async previewHtml() {
       return forPublication(await document.compiledContent())
-        .replace(/(<\/?h)([1-6])(?=[\s>])/g, (_, tag, level) => `${tag}${Math.min(6, Number(level) + 1)}`)
+        .replace(/(<\/?h)([1-6])(?=[\s>])/g, (_, tag, level) => `${tag}${Math.min(6, Number(level) + 2)}`)
         .replace(/\bid="([^"]+)"/g, `id="${entry.slug}-$1"`)
         .replace(/href="#([^"]+)"/g, `href="#${entry.slug}-$1"`)
         .replace(/<table>/g, '<div class="table-scroll" tabindex="0" role="region" aria-label="Skill reference table"><table>')

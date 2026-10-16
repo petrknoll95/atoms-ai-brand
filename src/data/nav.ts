@@ -104,8 +104,8 @@ export const tools: Section[] = [
   {
     slug: 'skills', title: 'Skills', href: withBase('/skills/'),
     subs: [
-      { id: 'atomsai-brand', title: 'AtomsAI brand', href: withBase('/skills/atomsai-brand/') },
-      { id: 'atomsai-icons', title: 'Icon creation', href: withBase('/skills/atomsai-icons/') },
+      { id: 'atomsai-brand', title: 'Brand Skill', number: '11.1', href: withBase('/skills/atomsai-brand/') },
+      { id: 'atomsai-icons', title: 'Icon Skill', number: '11.2', href: withBase('/skills/atomsai-icons/') },
     ],
   },
 ];

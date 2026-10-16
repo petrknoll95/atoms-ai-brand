@@ -8,14 +8,17 @@ import { withBase } from '../data/base';
 interface Props {
   slug: string;
   description?: string;
+  /** A page inside a section (a single skill): its title, for the hero and the window title. */
   pageTitle?: string;
+  /** Overrides the section number in the hero (e.g. 11.1 for a page inside Skills). */
+  number?: string;
   /** Section hero (number + title on Deep green). The Intro uses its cover instead. */
   hero?: boolean;
 }
 
-const { slug, description = 'AtomsAI brand guidelines and asset library.', pageTitle, hero = true } = Astro.props;
+const { slug, description = 'AtomsAI brand guidelines and asset library.', pageTitle, number: pageNumber, hero = true } = Astro.props;
 const current = section(slug);
-const number = sectionNumber(slug);
+const number = pageNumber ?? sectionNumber(slug);
 const title = pageTitle ? `${pageTitle} — AtomsAI Brand` : slug === 'intro' ? 'AtomsAI Brand' : `${current.title} — AtomsAI Brand`;
 
 // Self-hosted brand fonts from public/fonts. Declared here rather than in global.css so the URLs
@@ -59,7 +62,7 @@ const fontFaces = [
                   {number.padStart(2, '0')}
                 </p>
               )}
-              <h1 class="hero-text">{current.title}</h1>
+              <h1 class="hero-text">{pageTitle ?? current.title}</h1>
             </header>
           )
         }
