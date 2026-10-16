@@ -38,7 +38,7 @@ const ink = (key: ColorKey) =>
   <Sub id="palette" title="Palette" number="3.1">
     <Fragment slot="text">
       <p>A forest-led palette. Deep green grounds the brand, cream gives it air, and iris adds a single, deliberate accent.</p>
-      <p class="muted">Click any color to copy its hex value.</p>
+      <p class="muted">Open the menu on any color to copy its HEX, RGB, CMYK or CSS value.</p>
       <div class="btn-row">
         <button class="btn" type="button" data-copy={tokensCss()} data-copy-message="CSS variables copied">Copy CSS variables</button>
         <a class="btn" href={withBase('/tokens.css')} download="atomsai-colors.css">Download .css</a>
@@ -297,13 +297,17 @@ const ink = (key: ColorKey) =>
 
   .combo :global(.swatch) {
     min-height: 0;
-    flex-direction: row;
-    align-items: start;
   }
 
+  /* The thin accent band: name and menu centered in it. */
   .combo :global(.combo-accent) {
-    padding-block: 0.25rem;
-    align-items: center;
+    justify-content: center;
+    padding-block: 0;
+  }
+
+  .combo :global(.combo-accent .menu-button) {
+    top: 50%;
+    translate: 0 -50%;
   }
 
   .combo-num {
