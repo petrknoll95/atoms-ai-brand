@@ -1,0 +1,52 @@
+---
+import Base from '../layouts/Base.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import Hero from '../components/Hero.astro';
+---
+
+<Base title="AtomsAI — Hero prototype">
+  <SiteHeader />
+  <main>
+    <Hero />
+    <!--
+      Next section: not designed yet, so its content is empty. It sits pinned over the hero for the
+      whole scroll track, clipped to the field's centre dot; the dive ends inside that dot, which
+      grows into this section. Its content fades in (--reveal) as the dot fills the screen.
+    -->
+    <section class="next" id="next" data-next aria-label="Next section">
+      <div class="next__content"></div>
+    </section>
+  </main>
+</Base>
+
+<script>
+  import { mountHeroField } from '../scripts/hero-field';
+
+  const track = document.querySelector<HTMLElement>('[data-hero]');
+  const stage = track?.querySelector<HTMLElement>('[data-hero-field]');
+  const content = track?.querySelector<HTMLElement>('[data-hero-content]');
+  const next = document.querySelector<HTMLElement>('[data-next]');
+  const header = document.querySelector<HTMLElement>('[data-site-header]');
+  if (track && stage && content && next) mountHeroField({ track, stage, content, next, header });
+</script>
+
+<style>
+  /* In the dots' colour. Sticky to the bottom with a −100svh margin, so it covers the viewport for
+     the whole hero track and lands exactly in place when the track ends. Hidden until the script
+     clips it to the dot. */
+  .next {
+    position: sticky;
+    bottom: 0;
+    z-index: 1;
+    height: 100svh;
+    margin-top: -100svh;
+    background: var(--color-deep-green);
+    color: var(--color-cream);
+    clip-path: circle(0 at 50% 50%);
+  }
+
+  .next__content {
+    height: 100%;
+    opacity: var(--reveal, 0);
+  }
+</style>

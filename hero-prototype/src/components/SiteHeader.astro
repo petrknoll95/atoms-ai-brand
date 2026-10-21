@@ -1,0 +1,195 @@
+---
+// Figma: Site header (127:4888). Fixed over the page; its cream background fades out over the
+// bottom 80 px (the Figma luminance mask) so the dot field shows through beneath the nav.
+//
+// Over the deep-green next section the header goes dark: its backdrop turns deep green inside the
+// same growing dot as that section (--reveal-x / -y / -r, set by scripts/hero-field.ts), and each
+// [data-tone-target] item switches to data-tone="dark" once the dot covers it. The logo and icons
+// are the Figma SVGs used as masks, so they take the item's colour.
+
+const links = [
+  { label: 'Applications', dropdown: true },
+  { label: 'Infrastructure', dropdown: true },
+  { label: 'AI Services', dropdown: false },
+  { label: 'Industries', dropdown: true },
+  { label: 'Company', dropdown: false },
+];
+---
+
+<header class="site-header" data-site-header>
+  <div class="site-header__start">
+    <a class="site-header__logo" href="/" aria-label="AtomsAI home" data-tone-target>
+      <span class="logo" aria-hidden="true"></span>
+    </a>
+    <nav class="site-header__nav" aria-label="Main">
+      {
+        links.map((link) => (
+          <a class="nav-link" href="#" data-tone-target>
+            {link.label}
+            {link.dropdown && (
+              <span class="nav-link__icon" aria-hidden="true">
+                <span class="icon icon--chevron" />
+              </span>
+            )}
+          </a>
+        ))
+      }
+    </nav>
+  </div>
+  <div class="site-header__end">
+    <a class="button button--primary" href="#" data-tone-target>Get Started</a>
+    <button class="button button--primary button--icon" type="button" aria-label="Menu" data-tone-target>
+      <span class="menu-icon" aria-hidden="true">
+        <span class="icon icon--menu"></span>
+      </span>
+    </button>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: fixed;
+    inset: 0 0 auto;
+    z-index: 10;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    height: var(--header-height);
+    padding: 0 var(--gutter-end) 0 var(--gutter-start);
+  }
+
+  /* One layer, so cream never shows through the deep green where the two meet in the fade. */
+  .site-header {
+    --reveal-x: 50%;
+    --reveal-y: 50%;
+    --reveal-r: 0px;
+  }
+
+  .site-header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: radial-gradient(
+      circle var(--reveal-r) at var(--reveal-x) var(--reveal-y),
+      var(--color-deep-green) calc(var(--reveal-r) - 0.5px),
+      var(--color-background) calc(var(--reveal-r) + 0.5px)
+    );
+    mask-image: linear-gradient(to bottom, #000 20%, transparent);
+  }
+
+  .site-header__start {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    margin-top: 36px;
+  }
+
+  .site-header__logo {
+    display: block;
+    border-radius: 4px;
+  }
+
+  /* Figma Logo/Logotype at 24 px, in the logo token. */
+  .logo {
+    display: block;
+    width: 135.84px;
+    height: 24px;
+    background: var(--color-logo);
+    mask: url('/images/logo.svg') center / 100% 100% no-repeat;
+    transition: background-color 250ms ease;
+  }
+
+  .site-header__nav {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .nav-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 6px;
+    border-radius: 6px;
+    color: var(--color-foreground);
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.4;
+    white-space: nowrap;
+    text-decoration: none;
+    transition:
+      background-color 150ms ease,
+      color 250ms ease;
+  }
+
+  .nav-link:hover {
+    background: color-mix(in srgb, var(--color-foreground) var(--state-hover), transparent);
+  }
+
+  .nav-link:active {
+    background: color-mix(in srgb, var(--color-foreground) var(--state-pressed), transparent);
+  }
+
+  .nav-link:focus-visible,
+  .site-header__logo:focus-visible {
+    outline: 2px solid var(--color-ring);
+    outline-offset: 2px;
+  }
+
+  .nav-link__icon,
+  .menu-icon {
+    display: grid;
+    place-items: center;
+    width: 16px;
+    height: 16px;
+  }
+
+  .icon {
+    display: block;
+    background: currentColor;
+    mask-position: center;
+    mask-size: 100% 100%;
+    mask-repeat: no-repeat;
+  }
+
+  .icon--chevron {
+    width: 13.5px;
+    height: 8px;
+    mask-image: url('/images/chevron-down.svg');
+  }
+
+  .icon--menu {
+    width: 14px;
+    height: 8px;
+    mask-image: url('/images/menu.svg');
+  }
+
+  .site-header__end {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 28px;
+  }
+
+  @media (max-width: 999px) {
+    .site-header__nav {
+      display: none;
+    }
+  }
+
+  @media (max-width: 599px) {
+    .site-header {
+      --header-height: 84px;
+      padding: 0 16px;
+    }
+
+    .site-header__start {
+      margin-top: 30px;
+    }
+
+    .site-header__end {
+      margin-top: 20px;
+    }
+  }
+</style>

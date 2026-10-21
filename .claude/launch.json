@@ -24,6 +24,20 @@
         "4330"
       ],
       "port": 4330
+    },
+    {
+      "name": "hero-prototype",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "run",
+        "dev",
+        "--prefix",
+        "hero-prototype",
+        "--",
+        "--port",
+        "4340"
+      ],
+      "port": 4340
     }
   ]
 }

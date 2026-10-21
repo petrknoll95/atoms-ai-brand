@@ -1,0 +1,125 @@
+---
+// Figma: Concept A (127:5111). Frame 01 is the field on load, 02 the settled rings.
+//
+// The hero is a scroll track: its stage sticks to the viewport while the page scrolls through
+// --scroll-length. The first 42% of that scroll organises the nebula into rings, the rest dives
+// into their centre dot, which grows into the next section (see scripts/hero-field.ts; the page
+// mounts it).
+---
+
+<section class="hero" data-hero>
+  <div class="hero__stage">
+    <div class="hero__field" data-hero-field aria-hidden="true"></div>
+    <div class="hero__content" data-hero-content>
+      <div class="hero__row">
+        <h1 class="hero__title">Powerful AI. Built for real use.</h1>
+        <a class="button button--secondary" href="#">Explore applications</a>
+      </div>
+      <p class="hero__lead">
+        Applications for everyday work. Models and infrastructure to build on. Custom engineering for the problems
+        that need more.
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    --scroll-length: 380svh;
+    position: relative;
+    height: calc(100svh + var(--scroll-length));
+  }
+
+  .hero__stage {
+    position: sticky;
+    top: 0;
+    height: 100svh;
+    overflow: hidden;
+  }
+
+  .hero__field {
+    position: absolute;
+    inset: 0;
+  }
+
+  .hero__field :global(canvas) {
+    display: block;
+  }
+
+  .hero__content {
+    position: absolute;
+    inset: 0;
+    will-change: opacity, transform;
+  }
+
+  .hero__content[data-hidden] {
+    visibility: hidden;
+  }
+
+  /* Figma "Frame 5": headline and button on one row, centred on the frame's midline. */
+  .hero__row {
+    position: absolute;
+    top: 50%;
+    left: var(--gutter-start);
+    right: var(--gutter-end);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    transform: translateY(-50%);
+  }
+
+  /* Display/6xl: Founders Grotesk Regular, 60 / 95%, −1.5%, box trimmed to cap height. */
+  .hero__title {
+    font-family: var(--font-display);
+    font-size: var(--text-6xl);
+    font-weight: var(--font-weight-normal);
+    line-height: 0.95;
+    letter-spacing: var(--tracking-tight);
+    white-space: nowrap;
+    text-wrap: balance;
+    text-box: trim-both cap alphabetic;
+  }
+
+  /* Body/base in muted-foreground, 40 px off the bottom edge. The Figma box is 441 px, but the
+     browser sets this face ~1% wider than Figma, so 446 px keeps Figma's break after "build". */
+  .hero__lead {
+    position: absolute;
+    left: var(--gutter-start);
+    bottom: 40px;
+    width: 446px;
+    max-width: calc(100% - var(--gutter-start) - var(--gutter-end));
+    color: var(--color-muted-foreground);
+    font-size: var(--text-base);
+    line-height: 1.4;
+  }
+
+  @media (max-width: 899px) {
+    .hero__row {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 28px;
+    }
+
+    .hero__title {
+      font-size: var(--text-5xl);
+      white-space: normal;
+    }
+  }
+
+  @media (max-width: 599px) {
+    .hero__content {
+      --gutter-start: 16px;
+      --gutter-end: 16px;
+    }
+
+    .hero__title {
+      font-size: var(--text-4xl);
+      line-height: 1;
+    }
+
+    .hero__lead {
+      bottom: 24px;
+    }
+  }
+</style>

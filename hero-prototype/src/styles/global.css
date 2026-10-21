@@ -1,0 +1,181 @@
+/*
+  Tokens: the Forest Light mode of the website theme (docs/website/tailwind-theme.css in the brand
+  repo, mirrored from the "AtomsAI — Website" Figma file). Same names, plain CSS, no Tailwind.
+*/
+:root {
+  --color-deep-green: #27433b;
+  --color-forest-green: #42665a;
+  --color-stone: #c7cdba;
+  --color-cream: #f6f1e8;
+
+  --color-background: var(--color-cream);
+  --color-foreground: var(--color-deep-green);
+  --color-muted-foreground: var(--color-forest-green);
+  --color-primary: var(--color-deep-green);
+  --color-primary-foreground: var(--color-cream);
+  --color-secondary: color-mix(in srgb, var(--color-stone) 40%, var(--color-cream));
+  --color-secondary-foreground: var(--color-deep-green);
+  --color-ring: var(--color-deep-green);
+  /* Logo: approved colourways only (Deep green on light, Cream on dark). */
+  --color-logo: var(--color-deep-green);
+
+  --state-hover: 8%;
+  --state-pressed: 16%;
+  --color-primary-hover: color-mix(in srgb, var(--color-primary), var(--color-primary-foreground) var(--state-hover));
+  --color-primary-pressed: color-mix(in srgb, var(--color-primary), var(--color-primary-foreground) var(--state-pressed));
+  --color-secondary-hover: color-mix(in srgb, var(--color-secondary), var(--color-secondary-foreground) var(--state-hover));
+  --color-secondary-pressed: color-mix(in srgb, var(--color-secondary), var(--color-secondary-foreground) var(--state-pressed));
+
+  --font-sans: 'PP Neue Montreal', 'Helvetica Neue', Arial, sans-serif;
+  --font-display: 'Founders Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-4xl: 2.25rem;
+  --text-5xl: 3rem;
+  --text-6xl: 3.75rem;
+  --tracking-tight: -0.015em;
+
+  /* Page gutters from the Figma frame (1600 wide): 40 px left, 28 px right. */
+  --gutter-start: 40px;
+  --gutter-end: 28px;
+  --header-height: 100px;
+}
+
+/* Dark tone, for elements over the deep-green next section: cream on deep green (the Forest Dark
+   roles on a deep-green surface). The state mixes are redeclared so they use these colours. */
+[data-tone='dark'] {
+  --color-background: var(--color-deep-green);
+  --color-foreground: var(--color-cream);
+  --color-primary: var(--color-cream);
+  --color-primary-foreground: var(--color-deep-green);
+  --color-ring: var(--color-cream);
+  --color-logo: var(--color-cream);
+  --color-primary-hover: color-mix(in srgb, var(--color-primary), var(--color-primary-foreground) var(--state-hover));
+  --color-primary-pressed: color-mix(in srgb, var(--color-primary), var(--color-primary-foreground) var(--state-pressed));
+}
+
+@font-face {
+  font-family: 'Founders Grotesk';
+  src: url('/fonts/FoundersGrotesk-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PP Neue Montreal';
+  src: url('/fonts/PPNeueMontreal-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PP Neue Montreal';
+  src: url('/fonts/PPNeueMontreal-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans);
+  font-weight: var(--font-weight-normal);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  margin: 0;
+  background: var(--color-background);
+}
+
+p,
+h1 {
+  margin: 0;
+}
+
+img {
+  display: block;
+}
+
+/* Pill buttons (Figma: Button/Medium, h-11 px-5 gap-2 text-sm rounded-full font-medium).
+   Never underlined, in any style or state. */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 44px;
+  padding: 0 20px;
+  border: 0;
+  border-radius: 9999px;
+  font: inherit;
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.4;
+  white-space: nowrap;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background-color 150ms ease,
+    color 250ms ease;
+}
+
+.button:focus-visible {
+  outline: 2px solid var(--color-ring);
+  outline-offset: 2px;
+}
+
+.button--primary {
+  background: var(--color-primary);
+  color: var(--color-primary-foreground);
+}
+
+.button--primary:hover {
+  background: var(--color-primary-hover);
+}
+
+.button--primary:active {
+  background: var(--color-primary-pressed);
+}
+
+.button--secondary {
+  background: var(--color-secondary);
+  color: var(--color-secondary-foreground);
+}
+
+.button--secondary:hover {
+  background: var(--color-secondary-hover);
+}
+
+.button--secondary:active {
+  background: var(--color-secondary-pressed);
+}
+
+.button--icon {
+  width: 44px;
+  padding: 0;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
