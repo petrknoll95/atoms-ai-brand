@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import PageLink from '../components/PageLink.astro';
 import Sidebar from '../components/Sidebar.astro';
+import Feedback from '../components/Feedback.astro';
 import { section, sectionNumber } from '../data/nav';
 import { withBase } from '../data/base';
 import { faviconLinks } from '../data/favicon';
@@ -71,6 +72,7 @@ const fontFaces = [
         <slot />
       </main>
     </div>
+    <Feedback />
     <p class="toast" role="status" aria-live="polite" data-toast></p>
     <script>
       import '../scripts/actions';

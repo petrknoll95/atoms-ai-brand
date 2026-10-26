@@ -1,0 +1,54 @@
+<div class="feedback" data-feedback>
+  <p id="feedback-help" hidden data-feedback-help>
+    Choose Comment, then click anywhere.<br />
+    Feedback is shared with everyone viewing these guidelines.
+  </p>
+  <button type="button" aria-expanded="false" aria-describedby="feedback-help" data-feedback-toggle>
+    Feedback
+  </button>
+  <p role="status" aria-live="polite" hidden data-feedback-status></p>
+  <button type="button" hidden data-feedback-retry>Retry saving</button>
+</div>
+
+<script>
+  import '../scripts/feedback';
+</script>
+
+<style>
+  .feedback {
+    position: fixed;
+    left: calc(var(--sidebar) + 1rem);
+    bottom: 5.5rem;
+    z-index: 10002;
+    display: grid;
+    justify-items: start;
+    gap: 0.5rem;
+    max-width: min(22rem, calc(100vw - 2rem));
+    font: 0.75rem/1.4 var(--font-text);
+  }
+  .feedback p {
+    margin: 0;
+    padding: 0.75rem;
+    background: var(--bg);
+    color: var(--fg);
+    border: 1px solid var(--rule);
+    border-radius: 0.5rem;
+  }
+  .feedback button {
+    min-height: 44px;
+    padding: 0.65rem 1rem;
+    border: 1px solid var(--deep-green);
+    border-radius: 999px;
+    background: var(--cream);
+    color: var(--deep-green);
+    font: inherit;
+    cursor: pointer;
+  }
+  .feedback button:focus-visible {
+    outline: 2px solid var(--deep-green);
+    outline-offset: 3px;
+  }
+  .feedback button:disabled { cursor: wait; opacity: 0.6; }
+  @media (max-width: 900px) { .feedback { left: 1rem; } }
+  .feedback[hidden], .feedback [hidden] { display: none; }
+</style>

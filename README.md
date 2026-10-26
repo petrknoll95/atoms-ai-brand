@@ -105,3 +105,10 @@ The renderer in `src/scripts/pattern-renderer.ts` reproduces the Figma pattern c
 ## Fonts
 
 Founders Grotesk (Klim Type Foundry) and PP Neue Montreal (Pangram Pangram) are commercial typefaces. Self-hosting them on a public site requires web licenses from both foundries. Keep this repository and any deployment private until those licenses are confirmed.
+
+## Page feedback
+
+Choose **Feedback** on any guideline page to pin a shared comment to text, artwork,
+or another visual element. No account or login screen is required. Comments and
+replies sync through Firebase; they are visible to other visitors. See
+[feedback setup and verification](firebase/README.md).

@@ -10,16 +10,21 @@
     "check": "astro check",
     "check:skills": "node scripts/check-skills.mjs",
     "assets:logos": "node --experimental-strip-types scripts/generate-logo-assets.mjs",
-    "check:logos": "node --experimental-strip-types scripts/check-logo-assets.mjs"
+    "check:logos": "node --experimental-strip-types scripts/check-logo-assets.mjs",
+    "test:feedback": "playwright test",
+    "test:feedback-rules": "node scripts/check-feedback-rules.mjs"
   },
   "dependencies": {
     "astro": "^7.3.8",
     "fflate": "0.8.3",
+    "firebase": "^13.1.0",
     "mediabunny": "1.61.1",
+    "pindrop.js": "0.1.30",
     "tweakpane": "4.0.5"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
+    "@playwright/test": "^1.64.1",
     "@tweakpane/core": "2.0.5",
     "@types/node": "22.20.5",
     "sharp": "0.35.5",
