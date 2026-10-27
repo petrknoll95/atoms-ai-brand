@@ -15,6 +15,16 @@ not verified identity. Clearing browser storage loses ownership of past comments
 The public web app config lives in `src/data/firebase.ts`. It is not a server secret.
 Never add an Admin SDK key or service-account credential to the client.
 
+The Google Cloud browser key was reviewed on 2026-10-27 and restricted to
+Cloud Firestore API, Identity Toolkit API, and Token Service API. Do not add
+Generative Language or unrelated APIs to this public key. API restrictions are
+managed in Google Cloud Console, separately from this repository. Application
+(referrer) restrictions and App Check are not currently configured; Firestore
+rules remain the data authorization boundary. See
+[Firebase API key guidance](https://firebase.google.com/docs/projects/api-keys).
+GitHub secret-scanning alert #1 identifies this intentional public Firebase
+client identifier, not a server credential.
+
 ## Data and access
 
 - `pages/{encoded pathname}/comments/{commentId}`: one document per pin.
