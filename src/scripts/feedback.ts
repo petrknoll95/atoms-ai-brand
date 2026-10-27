@@ -19,6 +19,9 @@ function setStatus(message: string, failed = false) {
 function syncVisibility() {
   const root = document.getElementById('pindrop-web-root');
   const open = !!root && root.style.display !== 'none';
+  // Pindrop hides pins in pointer mode by default; keep existing threads discoverable.
+  const pins = document.getElementById('pindrop-web-pins');
+  if (pins) pins.style.display = open ? '' : 'none';
   button?.setAttribute('aria-expanded', String(open));
   if (button) button.textContent = open ? 'Close feedback' : 'Feedback';
   if (help) help.hidden = !open || mode !== 'view';

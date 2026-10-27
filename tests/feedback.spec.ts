@@ -43,6 +43,16 @@ test('two guests share pins and replies without signing in', async ({ browser })
   await a.getByRole('button', { name: /Review mode/ }).click();
   await a.locator('#pindrop-web-root').getByText(marker, { exact:true }).click();
   await expect(a.locator('#pindrop-web-root').getByText('Second guest reply', {exact:true})).toBeVisible();
+  await a.getByRole('button', { name: 'View mode — interact with prototype', exact:true }).click();
+  const pin = a.locator('#pindrop-web-pins > [data-comment-id]').filter({ visible:true }).first();
+  await expect(pin).toBeVisible();
+  await expect(a.locator('#pindrop-web-overlay')).toBeHidden();
+  await pin.click();
+  await expect(a.getByPlaceholder('Reply...')).toBeVisible();
+  await a.getByRole('button',{name:'Close feedback',exact:true}).click();
+  await expect(a.locator('#pindrop-web-pins')).toBeHidden();
+  await a.getByRole('button',{name:'Feedback',exact:true}).click();
+  await expect(pin).toBeVisible();
   await a.getByRole('button',{name:'Close feedback',exact:true}).click();
   await a.goto('color/');
   await a.getByRole('button',{name:'Feedback',exact:true}).click();
