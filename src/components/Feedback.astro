@@ -17,11 +17,11 @@
 <style>
   .feedback {
     position: fixed;
-    left: calc(var(--sidebar) + 1rem);
-    bottom: 5.5rem;
+    right: max(1.5rem, env(safe-area-inset-right));
+    bottom: calc(1.5rem + env(safe-area-inset-bottom));
     z-index: 10002;
     display: grid;
-    justify-items: start;
+    justify-items: end;
     gap: 0.5rem;
     max-width: min(22rem, calc(100vw - 2rem));
     font: 0.75rem/1.4 var(--font-text);
@@ -49,6 +49,15 @@
     outline-offset: 3px;
   }
   .feedback button:disabled { cursor: wait; opacity: 0.6; }
-  @media (max-width: 900px) { .feedback { left: 1rem; } }
+  [data-feedback-toggle] { order: 1; }
+  @media (max-width: 600px) {
+    .feedback {
+      right: max(1rem, env(safe-area-inset-right));
+      bottom: calc(1rem + env(safe-area-inset-bottom));
+    }
+    .feedback:has([aria-expanded="true"]) {
+      bottom: calc(5.5rem + env(safe-area-inset-bottom));
+    }
+  }
   .feedback[hidden], .feedback [hidden] { display: none; }
 </style>
