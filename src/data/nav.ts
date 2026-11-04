@@ -46,6 +46,7 @@ export const sections: Section[] = [
       s('accent', 'Accent', '3.4'),
       s('shades', 'Shades', '3.5'),
       s('neutrals', 'Neutrals', '3.6'),
+      s('true-greys', 'True greys', '3.6.1'),
       s('combinations', 'Combinations', '3.7'),
       s('gradients', 'Gradients', '3.8'),
       s('themes', 'Themes', '3.9'),

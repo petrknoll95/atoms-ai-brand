@@ -76,6 +76,11 @@ Use these exact sRGB values. Token names are also the CSS custom properties in t
 | iris | #8C78B0 | 140, 120, 176 |
 | iris-tint | #D8CDE5 | 216, 205, 229 |
 | black | #000000 | 0, 0, 0 |
+| grey-5 | #292929 | 41, 41, 41 |
+| grey-4 | #4E4E4E | 78, 78, 78 |
+| grey-3 | #777777 | 119, 119, 119 |
+| grey-2 | #A2A2A2 | 162, 162, 162 |
+| grey-1 | #D0D0D0 | 208, 208, 208 |
 | white | #FFFFFF | 255, 255, 255 |
 
 Published print values, in **C/M/Y/K percentages**: Deep green 42/0/12/74; Cream 0/2/6/4; Forest green 35/0/12/60; Sage tint 14/0/13/33; Stone 3/0/9/20; Iris 20/32/0/31; Iris tint 6/10/0/10; Iris shade 17/28/0/65. No CMYK values are specified for the remaining tokens. Do not present a calculated conversion or guessed Pantone number as official; use the printer's required profile for production conversion.
@@ -84,6 +89,7 @@ Published print values, in **C/M/Y/K percentages**: Deep green 42/0/12/74; Cream
 
 - Forest ramp, dark to light: Forest shade → Deep green → Forest green → Sage → Sage tint → Stone → Cream.
 - Neutral ramp, dark to light: Forest shade → Charcoal → Graphite → Slate → Ash → Mist → Paper.
+- True-grey ramp for UI and ordered data, dark to light: Black → Grey 5 → Grey 4 → Grey 3 → Grey 2 → Grey 1 → White.
 - Use ramps to express hierarchy, states and data. Do not imply that every neighboring pair is suitable for readable text.
 
 Approved combinations use roughly **60% lead / 30% support / 10% accent** by visual area, not a rigid pixel quota:

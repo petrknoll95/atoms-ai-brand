@@ -107,10 +107,19 @@ const ink = (key: ColorKey) =>
 
   <Sub id="neutrals" title="Neutrals" number="3.6">
     <Fragment slot="text">
-      <p>Forest – Neutral. Seven steps from forest shade to neutral white. Use the ramp for hierarchy, interface states and data visualization.</p>
+      <p>Forest shade to Paper. Use these green-tinted neutrals for brand surfaces and editorial layouts.</p>
     </Fragment>
     <div class="ramp">
       {ramps.neutrals.map((key) => <Swatch color={key} />)}
+    </div>
+  </Sub>
+
+  <Sub id="true-greys" title="True greys" number="3.6.1">
+    <Fragment slot="text">
+      <p>Black to White in seven steps. Use dark greys for labels, light greys for dividers and surfaces, and the full scale for ordered data.</p>
+    </Fragment>
+    <div class="ramp">
+      {ramps.trueGreys.map((key) => <Swatch color={key} />)}
     </div>
   </Sub>
 

@@ -30,6 +30,11 @@ const palette = {
   iris: { token: 'iris', name: 'Iris', hex: '#8C78B0', group: 'iris', cmyk: [20, 32, 0, 31] },
   irisTint: { token: 'iris-tint', name: 'Iris tint', hex: '#D8CDE5', group: 'iris', cmyk: [6, 10, 0, 10] },
   black: { token: 'black', name: 'Black', hex: '#000000', group: 'mono' },
+  grey5: { token: 'grey-5', name: 'Grey 5', hex: '#292929', group: 'mono' },
+  grey4: { token: 'grey-4', name: 'Grey 4', hex: '#4E4E4E', group: 'mono' },
+  grey3: { token: 'grey-3', name: 'Grey 3', hex: '#777777', group: 'mono' },
+  grey2: { token: 'grey-2', name: 'Grey 2', hex: '#A2A2A2', group: 'mono' },
+  grey1: { token: 'grey-1', name: 'Grey 1', hex: '#D0D0D0', group: 'mono' },
   white: { token: 'white', name: 'White', hex: '#FFFFFF', group: 'mono' },
 } satisfies Record<string, BrandColor>;
 
@@ -84,6 +89,7 @@ export const roles = {
 
 export const ramps = {
   shades: ['forestShade', 'deepGreen', 'forestGreen', 'sage', 'sageTint', 'stone', 'cream'] as ColorKey[],
+  trueGreys: ['black', 'grey5', 'grey4', 'grey3', 'grey2', 'grey1', 'white'] as ColorKey[],
   neutrals: ['forestShade', 'charcoal', 'graphite', 'slate', 'ash', 'mist', 'paper'] as ColorKey[],
 };
 
