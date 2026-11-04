@@ -13,25 +13,25 @@ const faces = [
 
 const comparisons = [
   {
-    role: 'Headline · Regular', weight: 400, leading: 43.2, copy: 'The future isn’t imagined. It’s built.',
+    role: 'Headline · Regular', leading: 43.2, copy: 'The future isn’t imagined. It’s built.',
     fonts: [
-      { name: 'Founders Grotesk', size: '48pt', tracking: '−1.5%', spacing: '-0.015em' },
-      { name: 'Chivo', size: '41pt', tracking: '−4%', spacing: '-0.04em' },
+      { name: 'Founders Grotesk', weight: 400, styleName: 'Regular', size: '48pt', tracking: '−1.5%', spacing: '-0.015em' },
+      { name: 'Chivo', weight: 400, styleName: 'Regular', size: '41pt', tracking: '−4%', spacing: '-0.04em' },
     ],
   },
   {
-    role: 'Headline · Medium', weight: 500, leading: 43.2, copy: 'Your competitors are automating.',
+    role: 'Headline · Medium', leading: 43.2, copy: 'Your competitors are automating.',
     fonts: [
-      { name: 'Founders Grotesk', size: '48pt', tracking: '−1.5%', spacing: '-0.015em' },
-      { name: 'Chivo', size: '41.5pt', tracking: '−2.5%', spacing: '-0.025em' },
+      { name: 'Founders Grotesk', weight: 500, styleName: 'Medium', size: '48pt', tracking: '−1.5%', spacing: '-0.015em' },
+      { name: 'Chivo', weight: 600, styleName: 'Semibold', size: '41.5pt', tracking: '−2.5%', spacing: '-0.025em' },
     ],
   },
   {
-    role: 'Body · Regular', weight: 400, leading: 16.8,
+    role: 'Body · Regular', leading: 16.8,
     copy: 'Our engineers embed with your team and ship AI agents into the workflows you already run.',
     fonts: [
-      { name: 'PP Neue Montreal', size: '12pt', tracking: 'Normal', spacing: 'normal' },
-      { name: 'Inter', size: '11.25pt', tracking: '−2%', spacing: '-0.02em' },
+      { name: 'PP Neue Montreal', weight: 400, styleName: 'Regular', size: '12pt', tracking: 'Normal', spacing: 'normal' },
+      { name: 'Inter', weight: 400, styleName: 'Regular', size: '11.25pt', tracking: '−2%', spacing: '-0.02em' },
     ],
   },
 ];
@@ -181,17 +181,17 @@ const charset = [
     </Fragment>
     <div class="scale workspace-comparisons">
       <p class="muted" id="font-comparison">Edit either sample to compare.</p>
-      {comparisons.map(({ role, weight, leading, copy, fonts }) => (
+      {comparisons.map(({ role, leading, copy, fonts }) => (
         <div class:list={['font-pair', { 'body-pair': role === 'Body · Regular' }]} data-font-pair>
           <h3>{role}</h3>
-          {fonts.map(({ name, size, tracking, spacing }) => (
+          {fonts.map(({ name, weight, styleName, size, tracking, spacing }) => (
             <figure>
               <p contenteditable="plaintext-only" spellcheck="false" aria-label={`${name} ${role} sample`}
                 style={{ fontFamily: `'${name}', sans-serif`, fontSize: size, fontWeight: weight,
                   letterSpacing: spacing, lineHeight: `${leading}pt` }}>
                 {copy}
               </p>
-              <figcaption class="muted">{name} — {size.replace('pt', ' pt')} type · {leading} pt leading · {tracking} tracking</figcaption>
+              <figcaption class="muted">{name} {styleName} — {size.replace('pt', ' pt')} type · {leading} pt leading · {tracking} tracking</figcaption>
             </figure>
           ))}
         </div>
