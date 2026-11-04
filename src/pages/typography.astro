@@ -1,11 +1,39 @@
 ---
+import '../styles/workspace-fonts.css';
 import Guide from '../layouts/Guide.astro';
 import Sub from '../components/Sub.astro';
+import chivoLicense from '../assets/workspace-fonts/chivo-OFL.txt?url';
+import interLicense from '../assets/workspace-fonts/inter-OFL.txt?url';
 
 const faces = [
   { name: 'Founders Grotesk Regular', role: 'Primary — Display', family: 'var(--font-display)', weight: 400 },
   { name: 'Founders Grotesk Medium', role: 'Primary — Emphasis', family: 'var(--font-display)', weight: 500 },
   { name: 'PP Neue Montreal Regular', role: 'Body', family: 'var(--font-text)', weight: 400 },
+];
+
+const comparisons = [
+  {
+    role: 'Headline · Regular', weight: 400, leading: 43.2, copy: 'The future isn’t imagined. It’s built.',
+    fonts: [
+      { name: 'Founders Grotesk', size: '48pt', tracking: '−1.5%', spacing: '-0.015em' },
+      { name: 'Chivo', size: '41pt', tracking: '−4%', spacing: '-0.04em' },
+    ],
+  },
+  {
+    role: 'Headline · Medium', weight: 500, leading: 43.2, copy: 'Your competitors are automating.',
+    fonts: [
+      { name: 'Founders Grotesk', size: '48pt', tracking: '−1.5%', spacing: '-0.015em' },
+      { name: 'Chivo', size: '41.5pt', tracking: '−2.5%', spacing: '-0.025em' },
+    ],
+  },
+  {
+    role: 'Body · Regular', weight: 400, leading: 16.8,
+    copy: 'Our engineers embed with your team and ship AI agents into the workflows you already run.',
+    fonts: [
+      { name: 'PP Neue Montreal', size: '12pt', tracking: 'Normal', spacing: 'normal' },
+      { name: 'Inter', size: '11.25pt', tracking: '−2%', spacing: '-0.02em' },
+    ],
+  },
 ];
 
 const charset = [
@@ -82,7 +110,7 @@ const charset = [
       </p>
       <p>
         As type gets larger, tighten the line-height. As it gets smaller, open it up so the eye has room to rest.
-        Display sits at 100%, lead text at 130% and body text at 140%.
+        Use 90–100% leading for headlines. The specimens below use 90% for display, 120% for the lead and 140% for body text.
       </p>
     </Fragment>
     <div class="scale">
@@ -147,9 +175,64 @@ const charset = [
       <figcaption class="muted">Founders Grotesk Regular — leading 90% — tracking −15 — sentence case</figcaption>
     </figure>
   </Sub>
+  <Sub id="google-workspace" title="Google Workspace alternatives" number="5.6">
+    <Fragment slot="text">
+      <p>Use Chivo for headlines and Inter for body text in shared slides and documents.</p>
+    </Fragment>
+    <div class="scale workspace-comparisons">
+      <p class="muted" id="font-comparison">Edit either sample to compare.</p>
+      {comparisons.map(({ role, weight, leading, copy, fonts }) => (
+        <div class:list={['font-pair', { 'body-pair': role === 'Body · Regular' }]} data-font-pair>
+          <h3>{role}</h3>
+          {fonts.map(({ name, size, tracking, spacing }) => (
+            <figure>
+              <p contenteditable="plaintext-only" spellcheck="false" aria-label={`${name} ${role} sample`}
+                style={{ fontFamily: `'${name}', sans-serif`, fontSize: size, fontWeight: weight,
+                  letterSpacing: spacing, lineHeight: `${leading}pt` }}>
+                {copy}
+              </p>
+              <figcaption class="muted">{name} — {size.replace('pt', ' pt')} type · {leading} pt leading · {tracking} tracking</figcaption>
+            </figure>
+          ))}
+        </div>
+      ))}
+      <p><a href="https://fonts.google.com/specimen/Chivo">Get Chivo</a> · <a href={chivoLicense}>Chivo license</a><br />
+        <a href="https://fonts.google.com/specimen/Inter">Get Inter</a> · <a href={interLicense}>Inter license</a></p>
+    </div>
+  </Sub>
 </Guide>
 
+<script>
+  for (const pair of document.querySelectorAll('[data-font-pair]')) {
+    const samples = pair.querySelectorAll<HTMLElement>('[contenteditable]');
+    for (const sample of samples) {
+      sample.addEventListener('input', () => {
+        for (const peer of samples) {
+          if (peer !== sample) peer.innerText = sample.innerText;
+        }
+      });
+    }
+  }
+</script>
+
 <style>
+  .scale.workspace-comparisons {
+    gap: clamp(3rem, 5vw, 5rem);
+  }
+
+  .font-pair {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: clamp(2.25rem, 4vw, 4rem) 1.5rem;
+    border-top: 1px solid var(--rule);
+    padding-top: clamp(1.5rem, 2.5vw, 2.5rem);
+  }
+
+  .body-pair { grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr)); }
+  .font-pair h3 { grid-column: 1 / -1; }
+  .font-pair figure { align-content: start; }
+  .font-pair p { padding-bottom: 0.22em; overflow-wrap: anywhere; }
+
   [contenteditable] {
     outline: none;
     border-radius: 2px;

@@ -138,6 +138,8 @@ Preview: [palette, combinations and themes](https://petrknoll95.github.io/atoms-
 - The guideline website itself uses 32 px Founders Grotesk and 14 px PP Neue Montreal for its shell. Do not limit a slide, poster or product to those two sizes.
 - Use the actual font files and real weights rather than synthetic bold. WOFF2 files are supplied for web use. Desktop applications may need licensed desktop-format fonts; if unsupported, report the limitation and agree a substitute instead of silently calling a fallback on-brand.
 
+For shared slides and documents, use Chivo and Inter as the approved free alternatives. Replace a 48 pt Founders Grotesk headline with 41 pt Chivo Regular at −4% total tracking or 41.5 pt Chivo Medium at −2.5%. Check wrapping where tracking controls are unavailable. Match the primary font’s baseline spacing in both columns. For a 48 pt Founders headline at 90% leading, use 43.2 pt leading for both families. For 12 pt PP Neue Montreal Regular at 140% leading, use 11.25 pt Inter Regular at −2% tracking and the same 16.8 pt leading.
+
 Preview: [editable type specimens](https://petrknoll95.github.io/atoms-ai-brand/typography/). [Font library](https://petrknoll95.github.io/atoms-ai-brand/assets/#fonts): the site's notice limits these files to AtomsAI work.
 
 ## Icons

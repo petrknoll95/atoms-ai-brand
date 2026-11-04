@@ -31,7 +31,7 @@ const font = (name: string, file: string, family: string, weight: number): Downl
 export const downloadCategories: DownloadCategory[] = [
   {
     id: 'fonts',
-    title: 'Fonts',
+    title: 'Brand Fonts',
     description: 'Founders Grotesk for headlines and display type, PP Neue Montreal for body text, in Regular and Medium.',
     zip: 'atomsai-fonts.zip',
     items: [

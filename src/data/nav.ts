@@ -60,6 +60,7 @@ export const sections: Section[] = [
       s('character-set', 'Character set', '5.3'),
       s('scale', 'Scale & line-height', '5.4'),
       s('headlines', 'Headlines', '5.5'),
+      s('google-workspace', 'Google Workspace alternatives', '5.6'),
     ],
   },
   {
@@ -101,7 +102,7 @@ export const tools: Section[] = [
     href: withBase('/tools/'),
     subs: [s('pattern-generator', 'Pattern generator', '9.1'), s('mark-reveal', 'Mark reveal', '9.2')],
   },
-  { slug: 'assets', title: 'Assets', href: withBase('/assets/'), subs: [s('logos', 'Logos', '10.1'), s('fonts', 'Fonts', '10.2')] },
+  { slug: 'assets', title: 'Assets', href: withBase('/assets/'), subs: [s('logos', 'Logos', '10.1'), s('fonts', 'Brand Fonts', '10.2'), s('google-fonts', 'Google Fonts', '10.3')] },
   {
     slug: 'skills', title: 'Skills', href: withBase('/skills/'),
     subs: [
