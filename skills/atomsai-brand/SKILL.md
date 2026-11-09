@@ -51,7 +51,7 @@ Preview: [logo rules and diagrams](https://petrknoll95.github.io/atoms-ai-brand/
 
 ## Color
 
-Deep green and Cream are primary and should carry most surfaces, type and layouts. Forest green, Sage tint and Stone support them. Iris is the single accent family; use it sparingly, alongside Forest. Neutral colors support documents, interfaces and dense information.
+Deep green and Cream are primary. Forest green, Sage tint and Stone support them. The only accent colors are Iris Dark, Iris, Iris Light, Crimson, Orange and Apricot. Use Iris or Orange for focal elements, Iris Dark or Crimson for depth, and Iris Light or Apricot for light surfaces. Choose one accent family per layout, with focal accents near 10% of Forest-led compositions. Use Black labels on Iris and Orange CTAs, Iris Dark text on Iris Light, and Crimson text on Apricot. Neutral colors support documents, interfaces and dense information.
 
 ### Complete palette
 
@@ -72,18 +72,65 @@ Use these exact sRGB values. Token names are also the CSS custom properties in t
 | ash | #A7AAA9 | 167, 170, 169 |
 | mist | #D0D1D1 | 208, 209, 209 |
 | paper | #FAFAFA | 250, 250, 250 |
-| iris-shade | #493F58 | 73, 63, 88 |
-| iris | #8C78B0 | 140, 120, 176 |
-| iris-tint | #D8CDE5 | 216, 205, 229 |
+| iris-dark | #514264 | 81, 66, 100 |
+| iris | #927BB8 | 146, 123, 184 |
+| iris-light | #D5C6EB | 213, 198, 235 |
+| crimson | #A20000 | 162, 0, 0 |
+| orange | #FF5600 | 255, 86, 0 |
+| apricot | #F9C085 | 249, 192, 133 |
 | black | #000000 | 0, 0, 0 |
+| grey-5 | #292929 | 41, 41, 41 |
+| grey-4 | #4E4E4E | 78, 78, 78 |
+| grey-3 | #777777 | 119, 119, 119 |
+| grey-2 | #A2A2A2 | 162, 162, 162 |
+| grey-1 | #D0D0D0 | 208, 208, 208 |
 | white | #FFFFFF | 255, 255, 255 |
 
-Published print values, in **C/M/Y/K percentages**: Deep green 42/0/12/74; Cream 0/2/6/4; Forest green 35/0/12/60; Sage tint 14/0/13/33; Stone 3/0/9/20; Iris 20/32/0/31; Iris tint 6/10/0/10; Iris shade 17/28/0/65. No CMYK values are specified for the remaining tokens. Do not present a calculated conversion or guessed Pantone number as official; use the printer's required profile for production conversion.
+Published print values, in **C/M/Y/K percentages**: Deep green 42/0/12/74; Cream 0/2/6/4; Forest green 35/0/12/60; Sage tint 14/0/13/33; Stone 3/0/9/20. No CMYK values are specified for the remaining tokens. Do not present a calculated conversion or guessed Pantone number as official; use the printer's required profile for production conversion.
+
+### Pantone shortlist
+
+These are screen-based **coated** matches. Physical proof is required before production. Keep digital HEX values unchanged. Paper stock means the substrate supplies the color; it is not a Pantone ink. No uncoated selections are approved. Forest shade is not shortlisted.
+
+| Token | Coated shortlist |
+| --- | --- |
+| deep-green | PANTONE 560 C |
+| forest-green | PANTONE 5545 C |
+| sage | PANTONE 5555 C |
+| sage-tint | PANTONE 5635 C |
+| stone | PANTONE 5665 C |
+| cream | Paper stock |
+| charcoal | PANTONE 560 C |
+| slate | PANTONE 423 C |
+| graphite | PANTONE 445 C |
+| ash | PANTONE 422 C |
+| mist | PANTONE 427 C |
+| paper | Paper stock |
+| iris-dark | PANTONE 7447 C |
+| iris | PANTONE 2577 C |
+| iris-light | PANTONE 263 C |
+| crimson | PANTONE 484 C |
+| orange | PANTONE 165 C |
+| apricot | PANTONE 713 C |
+| black | PANTONE BLACK 6 C |
+| grey-5 | PANTONE 426 C |
+| grey-4 | PANTONE 7540 C |
+| grey-3 | PANTONE COOL GRAY 9 C |
+| grey-2 | PANTONE COOL GRAY 6 C |
+| grey-1 | PANTONE COOL GRAY 2 C |
+| white | Paper stock |
+
+[Download the supplied shortlist](https://petrknoll95.github.io/atoms-ai-brand/atomsai-pantone-shortlist.json). Preserve its reference metadata and proof status when handing it to a printer.
+
+### Accent stacking
+
+Stack dark, mid and light tones within one family: Iris Dark → Iris → Iris Light or Crimson → Orange → Apricot. Use opaque fills and clean edges. Keep the lightest layer on top.
 
 ### Ramps and combinations
 
 - Forest ramp, dark to light: Forest shade → Deep green → Forest green → Sage → Sage tint → Stone → Cream.
 - Neutral ramp, dark to light: Forest shade → Charcoal → Graphite → Slate → Ash → Mist → Paper.
+- True-grey ramp for UI and ordered data, dark to light: Black → Grey 5 → Grey 4 → Grey 3 → Grey 2 → Grey 1 → White.
 - Use ramps to express hierarchy, states and data. Do not imply that every neighboring pair is suitable for readable text.
 
 Approved combinations use roughly **60% lead / 30% support / 10% accent** by visual area, not a rigid pixel quota:
@@ -94,10 +141,12 @@ Approved combinations use roughly **60% lead / 30% support / 10% accent** by vis
 | Forest green | Paper | Graphite |
 | Stone | Forest shade | Sage |
 | Cream | Sage tint | Forest green |
-| Iris shade | Iris | Iris tint |
+| Iris Dark | Iris Light | Iris |
+| Crimson | Apricot | Orange |
 | Deep green | Cream | Iris |
+| Deep green | Cream | Orange |
 
-The Iris combination is an occasional accent composition, not a replacement for the default Forest identity.
+Purple and orange family combinations are occasional accent compositions. Forest remains the default identity.
 
 ### Foreground/background themes
 
@@ -109,15 +158,18 @@ The Iris combination is an occasional accent composition, not a replacement for 
 | Neutral Light | paper | forest-shade |
 | Neutral Mid | slate | forest-shade |
 | Neutral Dark | charcoal | paper |
-| Iris Light | iris-tint | iris-shade |
-| Iris Mid | iris | forest-shade |
-| Iris Dark | iris-shade | iris-tint |
+| Iris Light | iris-light | iris-dark |
+| Iris Mid | iris | black |
+| Iris Dark | iris-dark | iris-light |
+| Orange Light | apricot | crimson |
+| Orange Mid | orange | black |
+| Orange Dark | crimson | apricot |
 
-Use Forest by default; Neutral for quieter document and data layouts; Iris sparingly. Check contrast for the actual text, size and surface rather than assuming a named theme passes every use. Target at least 4.5:1 for normal text and 3:1 for large text and essential interface graphics. Neutral Mid (4.35:1) and Iris Mid (4.24:1) are unsuitable for normal-sized text; choose a passing Light/Dark pair instead. Text over patterns needs checking against the local background throughout the text area.
+Use Forest by default; Neutral for quieter document and data layouts; Iris and Orange themes for occasional backgrounds. Check contrast for the actual text, size and surface rather than assuming a named theme passes every use. Target at least 4.5:1 for normal text and 3:1 for large text and essential interface graphics. Neutral Mid (4.35:1) is unsuitable for normal-sized text; choose a passing Light/Dark pair instead. Text over patterns needs checking against the local background throughout the text area.
 
 ### Gradients
 
-Use soft vertical blends as quiet backgrounds or pattern bases. The eight published recipes are Forest shade → Forest green, Cream → Stone, Forest shade → Iris, Iris tint → Iris shade, Forest shade → Cream, Forest green → Stone, Iris → Iris tint, and Sage tint → Deep green.
+Use soft vertical blends as quiet backgrounds or pattern bases. The eight published recipes are Forest shade → Forest green, Cream → Stone, Forest shade → Iris, Iris Light → Iris Dark, Forest shade → Cream, Forest green → Stone, Iris → Iris Light, and Sage tint → Deep green.
 
 Retrieve the exact eased stops and CSS from the `gradients` field of the [asset and token manifest](https://petrknoll95.github.io/atoms-ai-brand/assets/brand/manifest.json), or copy them from the [gradient previews](https://petrknoll95.github.io/atoms-ai-brand/color/#gradients). The labels describe the recipes; do not replace their sampled stops with a guessed two-stop blend. Intermediate blended values are part of the recipe, not extra brand tokens.
 
@@ -137,6 +189,8 @@ Preview: [palette, combinations and themes](https://petrknoll95.github.io/atoms-
 - Use default character forms. Use tabular figures for tables and data, and verify required language glyphs in the output.
 - The guideline website itself uses 32 px Founders Grotesk and 14 px PP Neue Montreal for its shell. Do not limit a slide, poster or product to those two sizes.
 - Use the actual font files and real weights rather than synthetic bold. WOFF2 files are supplied for web use. Desktop applications may need licensed desktop-format fonts; if unsupported, report the limitation and agree a substitute instead of silently calling a fallback on-brand.
+
+For shared slides and documents, use Chivo and Inter as the approved free alternatives. Replace a 48 pt Founders Grotesk headline with 41 pt Chivo Regular at −4% total tracking or 41.5 pt Chivo Semibold (600) at −2.5%. Check wrapping where tracking controls are unavailable. Match the primary font’s baseline spacing in both columns. For a 48 pt Founders headline at 90% leading, use 43.2 pt leading for both families. For 12 pt PP Neue Montreal Regular at 140% leading, use 11.25 pt Inter Regular at −2% tracking and the same 16.8 pt leading.
 
 Preview: [editable type specimens](https://petrknoll95.github.io/atoms-ai-brand/typography/). [Font library](https://petrknoll95.github.io/atoms-ai-brand/assets/#fonts): the site's notice limits these files to AtomsAI work.
 
@@ -178,6 +232,10 @@ Two related modes have different fill behavior:
 
 The illustration masters use 1.5-unit lines in their own approximately 250–280-unit viewBoxes. This is not the icon system's 1.5 units on a 24-unit grid. Preserve each artwork's aspect ratio, line proportions and viewBox, including non-zero origins.
 
+Use one lead illustration per slide, hero or editorial layout. A feature grid may contain up to three, one per card. Apply this limit per section on long pages. Use one illustration mode per group and clear space of at least one eighth of the artwork width.
+
+Minimum digital frame width is 192 px for simple isometric objects and 280 px for concepts or dense detail. Scale the master stroke with the artwork. Rendered stroke = 1.5 × display width / viewBox width. For the 280-unit Focus master, widths of 192, 280, 420 and 560 px yield strokes of 1.03, 1.50, 2.25 and 3.00 px. At final size, keep lines at least 1 px and visible gaps at least 2 px. Enlarge drawings that fail this check. Use icons below the minimum sizes and proof print work at final physical size.
+
 Preview and color exports: [illustration](https://petrknoll95.github.io/atoms-ai-brand/illustration/).
 
 ## Motion and composition
@@ -214,7 +272,7 @@ The manifest includes all 15 icons in both weights, all nine illustrations and t
 
 - Correct spelling and voice; no invented claims or leftover mockup content.
 - Master logo, correct colors, aspect ratio, alignment, clear space and minimum size.
-- Exact palette, restrained Iris, readable foreground/background pairs and pattern placement.
+- Exact palette, restrained purple and orange accents, readable foreground/background pairs and pattern placement.
 - Correct families and real weights; sentence-case headlines, tracking and leading; no clipped or overflowing text.
 - Consistent icon stroke, sharp joins, flush caps, open gaps and label alignment.
 - One pattern structure; no distortion; correct illustration fill behavior.

@@ -1,0 +1,18 @@
+---
+import Guide from '../../layouts/Guide.astro';
+import AnimatedPatterns from '../../components/AnimatedPatterns.astro';
+---
+
+<Guide slug="tools" pageTitle="Animated patterns" number="9.3" description="Replay the AtomsAI website’s animated patterns and copy their component settings.">
+  <section aria-label="Animated pattern tool">
+    <div class="intro prose">
+      <p>Light Tide moves through the linear patterns. Expanding Waves carries concentric rings outward in an endless loop. Both keep the original palette.</p>
+      <p class="muted">Choose a pattern, replay its movement, or pause on a frame. Copy the component name or its configured snippet for the website.</p>
+    </div>
+    <AnimatedPatterns />
+  </section>
+</Guide>
+
+<style>
+  .intro { max-width: 40rem; margin: 2rem 0; }
+</style>

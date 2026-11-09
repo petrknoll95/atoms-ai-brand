@@ -1,6 +1,8 @@
 ---
 import Guide from '../layouts/Guide.astro';
 import Sub from '../components/Sub.astro';
+import Figure from '../components/Figure.astro';
+import { withBase } from '../data/base';
 import AssetCard from '../components/AssetCard.astro';
 import { colors } from '../data/colors';
 import type { ColorOption } from '../data/assets';
@@ -78,9 +80,110 @@ const linework: ColorOption[] = [
       }
     </div>
   </Sub>
+  <Sub id="usage-limits" title="Usage limits" number="7.3">
+    <Fragment slot="text">
+      <p>Use one lead illustration per slide, hero or editorial layout. In a feature grid, use up to three illustrations, with one per card. On a long page, apply this limit to each section.</p>
+      <p>Keep one idea and one illustration mode per group. Leave clear space of at least one eighth of the artwork width around each drawing. Place copy outside this space.</p>
+    </Fragment>
+    <div class="usage-pair">
+      <Figure caption="Do — one centered object with space for its caption.">
+        <div class="layout-example">
+          <div class="example-art" set:html={svg('focus').replaceAll('SURFACE', colors.cream.hex)} />
+          <p>Focus on the work that matters.</p>
+        </div>
+      </Figure>
+      <Figure caption="Don’t — several unrelated objects competing inside one card.">
+        <div class="layout-example crowded">
+          <div class="example-art" set:html={svg('focus').replaceAll('SURFACE', colors.cream.hex)} />
+          <div class="extra-art" set:html={svg('scale').replaceAll('SURFACE', colors.cream.hex)} />
+          <div class="extra-art second" set:html={svg('modular').replaceAll('SURFACE', colors.cream.hex)} />
+          <p>Focus on the work that matters.</p>
+        </div>
+      </Figure>
+    </div>
+  </Sub>
+
+  <Sub id="size-stroke" title="Size & stroke" number="7.4">
+    <Fragment slot="text">
+      <p>Measure the full artwork frame at its final display size. Simple isometric objects start at 192 px wide. Concept drawings and objects with dense internal detail start at 280 px. Below these sizes, use an <a href={withBase('/icons/')}>icon</a>.</p>
+      <p>Scale artwork and strokes together. Keep the existing 1.5-unit master stroke. The samples below use the 280-unit Focus master. For another master, divide its final width by its viewBox width, then multiply by 1.5 to find its rendered stroke.</p>
+      <p>Check at 100% on the target screen. Keep lines at least 1 px thick and the smallest visible gap at least 2 px. Increase the artwork size if its details merge. For print, proof at the final physical size.</p>
+    </Fragment>
+    <div class="size-specimens">
+      {[192, 280, 420, 560].map((width) => (
+        <Figure tone="plain" caption={`${width} px frame · ${(width / 280 * 1.5).toFixed(2)} px stroke`}>
+          <div class="size-scroll">
+            <div class="sized-art" style={`width: ${width}px`} set:html={svg('focus').replaceAll('SURFACE', colors.white.hex)} />
+          </div>
+        </Figure>
+      ))}
+    </div>
+    <p class="muted">Samples display at their labelled sizes. Scroll horizontally on smaller screens.</p>
+  </Sub>
+
+  <Sub id="readability" title="Readability" number="7.5">
+    <div class="usage-pair">
+      <Figure caption="Do — keep concept drawings at 280 px or larger.">
+        <div class="detail-example">
+          <div style="width: 280px" set:html={svg('full-visibility')} />
+        </div>
+      </Figure>
+      <Figure caption="Don’t — shrink a detailed drawing into an icon slot.">
+        <div class="detail-example">
+          <div style="width: 64px" set:html={svg('full-visibility')} />
+        </div>
+      </Figure>
+      <Figure caption="Do — preserve stroke proportions as the object scales.">
+        <div class="detail-example">
+          <div style="width: 192px" set:html={svg('focus').replaceAll('SURFACE', colors.white.hex)} />
+        </div>
+      </Figure>
+      <Figure caption="Don’t — thicken the stroke until interior gaps close.">
+        <div class="detail-example">
+          <div style="width: 192px" set:html={svg('focus').replaceAll('SURFACE', colors.white.hex).replaceAll('stroke-width="1.5"', 'stroke-width="8"')} />
+        </div>
+      </Figure>
+    </div>
+  </Sub>
 </Guide>
 
 <style>
+  .usage-pair {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 3rem 1.25rem;
+  }
+
+  .layout-example {
+    position: relative;
+    display: grid;
+    place-items: center;
+    gap: 2rem;
+    padding: 3rem 2rem;
+    background: var(--cream);
+    color: var(--deep-green);
+  }
+
+  .example-art { width: 192px; max-width: 100%; }
+  .extra-art { position: absolute; width: 160px; top: 1rem; left: 0.5rem; }
+  .extra-art.second { top: 6rem; left: auto; right: 0.5rem; }
+  .size-specimens { display: grid; gap: 3rem; margin-bottom: 2rem; }
+  .size-scroll { overflow-x: auto; background: var(--white); }
+  .sized-art { flex-shrink: 0; color: var(--deep-green); }
+  .detail-example {
+    display: grid;
+    place-items: center;
+    min-height: 352px;
+    padding: 2rem;
+    overflow-x: auto;
+    color: var(--deep-green);
+    background: var(--white);
+  }
+
+  @media (max-width: 760px) {
+    .usage-pair { grid-template-columns: minmax(0, 1fr); }
+  }
+
   .grid {
     display: grid;
     gap: 2rem 1.25rem;

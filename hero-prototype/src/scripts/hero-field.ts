@@ -3,21 +3,16 @@
 // 1. On load the dots fade in as a chaotic nebula (Figma frame 01). It is resampled from frame 01's
 //    own dot coordinates (src/data/nebula-01.json) along their local filaments, plus extra clumps
 //    in random orientations so nothing lines up around the centre.
-//    The cloud is 3D (dots sit off the disc plane, coherently by clump) and tumbles slowly.
-//    The first part of the scroll turns it into concentric rings around a dense core (frame 02),
-//    the way debris settles into orbits. Each nebula dot is paired with a ring dot by optimal
-//    transport in polar coordinates: radius rank first, then angle within each ring. Then, in
-//    three acts that overlap dot by dot:
-//    - Infall: the cloud collapses toward the core while it spins up. Differential rotation (inner
-//      rings wind further) shears clumps into spiral arms.
-//    - The swing: the field tilts away (with a little yaw), flattening into a disc seen at an
-//      angle, then comes back face-on as the arms tighten.
-//    - Lock-in: each dot spreads out to its ring with an overshoot and pulses as it locks, inner
-//      rings first, so the pulse ripples outward.
-//    Turbulence peaks mid-way, timing varies smoothly across the cloud so clumps move as units, and
-//    moving dots are drawn as motion-blur streaks. It is a pure function of the playhead, so it
-//    scrubs both ways. The playhead follows the scroll with a speed cap, so a fast flick still
-//    plays the transition over a few seconds.
+//    The first part of the scroll rearranges it into concentric rings around a dense core
+//    (frame 02). Every dot takes the shortest path: a straight line to its slot. The pairing of
+//    nebula dots with slots minimises the total squared travel (optimal transport). It starts in
+//    polar coordinates (radius rank, then angle within each ring) and is refined by swapping pairs
+//    whenever that shortens them, which also untangles crossing paths. Timing varies smoothly
+//    across the cloud, inner rings first, so neighbouring dots move together.
+//    The rings turn with the scroll, alternate rings in opposite directions, like swarms. Each dot
+//    runs a little faster or slower than its ring and drifts in and out, so groups loosen and
+//    regroup. Everything is a pure function of the playhead (the scroll position with a short
+//    glide), so it scrubs both ways at the reader's pace.
 // 2. The rest of the scroll flies the camera into the core. Every dot has a depth (outer rings near,
 //    the core far), so the rings stream outward past the camera with parallax. The hero copy fades
 //    out over the first part of the dive.
@@ -123,17 +118,8 @@ export const CONFIG = {
      * (about 29% of on-screen dots within 100 px) but lumpy rather than a smooth blob.
      */
     coreClumps: { share: 0.05, radius: 70, sigma: [4, 12] as [number, number] },
-    /** Slow differential rotation while the nebula waits (rad/s at the centre). */
-    drift: 0.05,
     /** Idle shimmer while waiting: noise displacement (design px) and how fast it evolves. */
     shimmer: { amplitude: 3, rate: 0.12 },
-    /**
-     * The nebula is a 3D cloud. Each dot sits off the disc plane by amount × its radius × a smooth
-     * noise over the cloud (so clumps keep together in depth), plus jitter (design px).
-     */
-    depth: { amount: 0.55, scale: 300, jitter: 14 },
-    /** While it waits, the cloud tumbles slowly so its depth reads (rad, and rad/s). */
-    tumble: { yaw: 0.16, pitch: 0.07, rate: 0.21 },
   },
   /** Seconds for the nebula to fade in on load. */
   fadeIn: 0.7,
@@ -143,22 +129,19 @@ export const CONFIG = {
     /** The nebula has become rings by this much of the track; the dive takes the rest. */
     organizeEnd: 0.42,
     /**
-     * The sequence follows a playhead, not the raw scroll position: a critically damped spring
-     * toward it (stiffness, 1/s²), with speed capped so each phase takes at least this many seconds
-     * however fast the page is scrolled, and acceleration capped so it eases into that speed.
+     * The sequence is scrubbed: it maps to the scroll position. The playhead only eases toward it
+     * at this rate (1/s; about 0.1 s to catch up) so wheel notches glide instead of stepping.
      */
-    stiffness: 26,
-    minSeconds: { organize: 3.6, dive: 2.4 },
-    /** Seconds to reach the capped speed. */
-    rampSeconds: 0.45,
+    smoothing: 14,
   },
 
   // ----- Organise: nebula to rings, over the first part of the scroll -----
   organize: {
     /**
-     * Each dot moves over `duration` of the phase. Inner rings start first (`radialDelay`), then a
-     * smooth noise over the nebula (`clumpDelay`) so neighbouring dots, and so whole clumps, set off
-     * together. Delays and duration add up to 1 so every dot lands by the phase's end.
+     * Each dot moves in a straight line to its slot over `duration` of the phase, easing in and
+     * out. Inner rings start first (`radialDelay`), then a smooth noise over the nebula
+     * (`clumpDelay`) so neighbouring dots, and so whole clumps, set off together. Delays and
+     * duration add up to 1 so every dot lands by the phase's end.
      */
     duration: 0.68,
     radialDelay: 0.18,
@@ -166,46 +149,33 @@ export const CONFIG = {
     /** Scale (design px) of the timing noise: about the size of a clump. */
     clumpScale: 260,
     /**
-     * Differential rotation: a ring at radius r winds amount × (450 / r) ^ power radians on the way
-     * in (Keplerian shear is power 1.5), up to maxWind. Inner rings turn further, so clumps spanning
-     * several rings shear into spiral arms.
+     * Refining the pairing: up to `passes` sweeps of pair swaps, each slot checked against the
+     * slots within a `cell` px grid cell of itself and of its nebula dot.
      */
-    wind: { amount: 1.15, power: 1, maxWind: 6.6 },
-    /**
-     * Act 1, infall: over the first part of its move each dot's radius pulls in to `amount` of
-     * itself, so the cloud collapses toward the core as it spins up.
-     */
-    infall: { amount: 0.5, end: 0.4 },
-    /**
-     * Act 2, the swing: the whole field tilts away about its horizontal axis (and yaws a little)
-     * while the disc forms, then comes back face-on: sin(π × progress through `range`) × the
-     * maximum, in rad. `focal` is the perspective of that view (design px).
-     */
-    swing: { tilt: 0.95, yaw: 0.32, range: [0.03, 0.9] as [number, number], focal: 1500 },
-    /** Dots flatten from the cloud into the disc over this first part of their move. */
-    flatten: 0.72,
-    /**
-     * Act 3, lock-in: from `spreadStart` of its move a dot's radius spreads out to its ring,
-     * anticipating and overshooting (easeInOutBack strength). As it locks it pulses: bigger and
-     * darker over `at` of its move. Inner rings lock first, so the pulse ripples outward.
-     */
-    spreadStart: 0.3,
-    overshoot: 0.9,
-    lockPulse: { size: 0.9, shade: 0.45, at: [0.8, 1] as [number, number] },
-    /** Moving dots draw slightly darker, by this much at the middle of their move. */
-    transitShade: 0.3,
-    /** Dots slide along their ring into their exact slot over this last part of their move. */
-    slotSlide: [0.6, 1] as [number, number],
-    /** Turbulence: noise displacement (design px) peaking mid-move, its scale, and how much it evolves. */
-    turbulence: { amplitude: 30, scale: 150, evolve: 2.6 },
+    refine: { passes: 10, cell: 40 },
     /**
      * Motion blur: moving dots are drawn as streaks covering this many seconds of their motion
-     * (about a 180° shutter at 60 fps; longer smears the swirl into hair).
+     * (under half a frame at 60 fps: a hint of speed). A fast flick can move the playhead a long
+     * way per frame, so a streak never spans more than `maxBlur` of the track.
      */
-    shutter: 0.012,
+    shutter: 0.007,
+    maxBlur: 0.0017,
   },
-  /** Idle rotation of the settled rings, rad/s (alternating direction ring to ring). */
-  idleSpin: 0.014,
+
+  // ----- Swarm: the rings turn with the scroll -----
+  swarm: {
+    /**
+     * Each ring turns this far (rad) over the whole track, alternating direction ring to ring
+     * (and band to band in the core). It is scaled by (450 / r) ^ 0.5, capped at 2×, so inner rings
+     * turn further, and by 0.75–1.25 per ring.
+     */
+    turn: 1.6,
+    /** Each dot turns up to ±spread faster or slower than its ring, so groups loosen and regroup. */
+    spread: 0.1,
+    /** And drifts in and out by up to `wobble` design px, `waves` times over the track. */
+    wobble: 4,
+    waves: 5,
+  },
 
   // ----- Dive -----
   dive: {
@@ -271,39 +241,25 @@ interface Mount {
   header: HTMLElement | null;
 }
 
-/** A view of the field: tilt about its horizontal axis and yaw about its vertical one. */
-interface View {
-  active: boolean;
-  cosT: number;
-  sinT: number;
-  cosY: number;
-  sinY: number;
-}
-
-/** A dot's placement: position (design px from the centre), perspective scale, own progress. */
+/** A dot's placement: position (design px from the centre) and its own organise progress. */
 interface Spot {
   x: number;
   y: number;
-  s: number;
   e: number;
 }
 
 interface Field {
   count: number;
-  /** Settled polar position (design px, rad). */
+  /** Settled polar position at the top of the track (design px, rad). */
   ringRadius: Float32Array;
   ringAngle: Float32Array;
-  /** Nebula polar position. */
-  nebulaRadius: Float32Array;
-  nebulaAngle: Float32Array;
-  /** How far the dot sits off the disc plane in the nebula (design px); 0 once settled. */
-  thickness: Float32Array;
-  /** Differential rotation on the way in (rad), shared by a ring's dots. */
-  wind: Float32Array;
-  /** The final slide along the ring into the dot's slot: ring angle − (nebula angle + wind). */
-  turn: Float32Array;
-  /** Idle spin of the dot's ring, rad/s. */
-  spin: Float32Array;
+  /** How far the dot turns over the whole track (rad): its ring's turn, ± its own spread. */
+  rate: Float32Array;
+  /** Phase of the dot's in-and-out drift (rad). */
+  phase: Float32Array;
+  /** Nebula position (design px from the centre). */
+  nebulaX: Float32Array;
+  nebulaY: Float32Array;
   /** When the dot starts moving, as a fraction of the organise phase. */
   delay: Float32Array;
   /** Depth: 1 = the outer ring. */
@@ -318,13 +274,6 @@ const smoothstep = (a: number, b: number, v: number) => {
   return t * t * (3 - 2 * t);
 };
 const smootherstep = (t: number) => t * t * t * (t * (t * 6 - 15) + 10);
-/** Eases in and out, backing off a little at the start and overshooting a little at the end. */
-const easeInOutBack = (t: number, strength: number) => {
-  const c = strength * 1.525;
-  return t < 0.5
-    ? ((2 * t) ** 2 * ((c + 1) * 2 * t - c)) / 2
-    : ((2 * t - 2) ** 2 * ((c + 1) * (2 * t - 2) + c) + 2) / 2;
-};
 const wrapAngle = (a: number) => a - TAU * Math.round(a / TAU);
 const positiveAngle = (a: number) => ((a % TAU) + TAU) % TAU;
 
@@ -333,10 +282,10 @@ const layout = (w: number, h: number) => {
   const centre = w < CONFIG.narrow.maxWidth ? CONFIG.narrow.centre : CONFIG.centre;
   return { cx: w * centre.x, cy: h * centre.y, scale: Math.hypot(w, h) / DESIGN_DIAGONAL };
 };
-/** The turbulence grid, in design px around the centre: half the noise's feature size per cell. */
+/** The shimmer's flow grid, in design px around the centre: half the noise's feature size per cell. */
 const FLOW = (() => {
-  const cell = 75, halfWidth = 1275, halfHeight = 825;
-  return { cell, halfWidth, halfHeight, cols: (2 * halfWidth) / cell + 1, rows: (2 * halfHeight) / cell + 1 };
+  const cell = 75, halfWidth = 1275, halfHeight = 825, scale = 150;
+  return { cell, halfWidth, halfHeight, scale, cols: (2 * halfWidth) / cell + 1, rows: (2 * halfHeight) / cell + 1 };
 })();
 const depthAt = (r: number) => (CONFIG.rings[CONFIG.rings.length - 1].r / Math.max(r, 60)) ** CONFIG.dive.depthPower;
 
@@ -388,15 +337,16 @@ function build(p: p5): Field {
   p.noiseSeed(CONFIG.seed);
   p.noiseDetail(2, 0.5);
   const organize = CONFIG.organize;
+  const swarm = CONFIG.swarm;
 
   // ----- Settled targets: ring slots kept after dropout, then the core. `group` ties dots that are
-  // matched together by angle: one ring, or one radius band of the core.
+  // matched together by angle and turn together: one ring, or one radius band of the core.
   interface Target {
     a: number;
     r: number;
     z: number;
-    spin: number;
     group: number;
+    rate: number;
   }
   const targets: Target[] = [];
   const allRings = [...CONFIG.rings, ...CONFIG.outerRings.map((r) => ({ r, fill: 1 }))];
@@ -404,7 +354,6 @@ function build(p: p5): Field {
     const slots = Math.round((TAU * ring.r) / CONFIG.slotSpacing);
     const keep = (CONFIG.density.base + CONFIG.density.perRadius / ring.r) * CONFIG.slotSpacing * ring.fill;
     const phase = p.random(TAU);
-    const spinRate = (i % 2 ? 1 : -1) * CONFIG.idleSpin * (0.7 + 0.6 * p.random());
     const z = depthAt(ring.r);
     for (let k = 0; k < slots; k++) {
       const a = phase + (k / slots) * TAU;
@@ -417,8 +366,8 @@ function build(p: p5): Field {
         a,
         r: ring.r + bend + p.randomGaussian(0, CONFIG.thickness),
         z: z * (1 + p.randomGaussian(0, CONFIG.dive.depthJitter)),
-        spin: spinRate,
         group: i,
+        rate: 0,
       });
     }
   });
@@ -427,7 +376,6 @@ function build(p: p5): Field {
   // sit well behind it, apart from its few peers at the same depth.
   const core = CONFIG.core;
   const coreDepth = depthAt(core.discRadius);
-  const coreSpin = CONFIG.idleSpin * 1.6;
   const addCore = (count: number, radius: () => number) => {
     for (let k = 0; k < count; k++) {
       let r;
@@ -437,7 +385,7 @@ function build(p: p5): Field {
         r < CONFIG.dive.axisClear
           ? coreDepth * (1.12 + p.random(0.28))
           : coreDepth * (1 + Math.max(-0.3, Math.min(0.3, p.randomGaussian(0, CONFIG.dive.coreDepthJitter))));
-      targets.push({ a: p.random(TAU), r, z, spin: coreSpin, group: -1 });
+      targets.push({ a: p.random(TAU), r, z, group: -1, rate: 0 });
     }
   };
   addCore(core.disc, () => core.discRadius * Math.sqrt(p.random()) + p.randomGaussian(0, 6));
@@ -456,24 +404,39 @@ function build(p: p5): Field {
     if (placed.some((q) => Math.hypot(q.x - x, q.y - y) < clearance)) continue;
     placed.push({ x, y });
     // Even 1% deeper would leave a peer at half the centre dot's size by the end, so keep them close.
-    targets.push({ a, r, z: coreDepth * (1 + p.random(0.003)), spin: coreSpin, group: -1 });
+    targets.push({ a, r, z: coreDepth * (1 + p.random(0.003)), group: -1, rate: 0 });
   }
 
-  // The core is matched in radius bands of about 120 dots, like thin rings.
+  // The core is matched and turned in radius bands of about 120 dots, like thin rings.
   targets
     .filter((t) => t.group < 0)
     .sort((a, b) => a.r - b.r)
     .forEach((t, k) => (t.group = allRings.length + Math.floor(k / 120)));
 
+  // The swarm: each group turns over the track, alternating direction, inner groups further; each
+  // dot a little faster or slower than its group.
+  const groupRates = new Map<number, number>();
+  for (const t of targets) {
+    if (!groupRates.has(t.group)) {
+      const radius = t.group < allRings.length ? allRings[t.group].r : Math.max(t.r, 20);
+      const reach = Math.min(2, (450 / radius) ** 0.5);
+      groupRates.set(t.group, (t.group % 2 ? 1 : -1) * swarm.turn * reach * (0.75 + 0.5 * p.random()));
+    }
+    t.rate = groupRates.get(t.group)! * (1 + swarm.spread * p.random(-1, 1));
+  }
+
   const count = targets.length;
   const sources = nebulaPoints(p, count);
   const sourceRadius = sources.map((s) => Math.hypot(s.x, s.y));
   const sourceAngle = sources.map((s) => Math.atan2(s.y, s.x));
+  // Slots turn with the scroll, so pair against where they are half-way through the organise phase.
+  const mid = CONFIG.scroll.organizeEnd * 0.5;
+  const midAngle = targets.map((t) => t.a + t.rate * mid);
 
-  // ----- Matching: optimal transport in polar coordinates. Radius first (1D, so pairing by rank
-  // is optimal): the k-th closest nebula dot goes to the k-th closest slot, which decides each
-  // dot's ring. Then angle within each ring (1D on a circle): nebula dots in order of where the
-  // winding brings them, slots in order, paired with the cyclic shift that moves them least.
+  // ----- Pairing: optimal transport, minimising total squared straight-line travel.
+  // Start in polar coordinates. Radius first (1D, so pairing by rank is optimal): the k-th closest
+  // nebula dot goes to the k-th closest slot. Then angle within each ring (1D on a circle): nebula
+  // dots and slots in angular order, paired with the cyclic shift that moves them least.
   const byTargetRadius = targets.map((_, i) => i).sort((i, j) => targets[i].r - targets[j].r);
   const bySourceRadius = sources.map((_, i) => i).sort((i, j) => sourceRadius[i] - sourceRadius[j]);
   const groups = new Map<number, { t: number[]; s: number[] }>();
@@ -484,48 +447,75 @@ function build(p: p5): Field {
     entry.s.push(bySourceRadius[k]);
   });
 
-  const { wind: windConfig } = organize;
   const source = new Int32Array(count);
-  const wind = new Float32Array(count);
   for (const { t, s } of groups.values()) {
-    const meanRadius = t.reduce((sum, i) => sum + targets[i].r, 0) / t.length;
-    const w = Math.min(windConfig.maxWind, windConfig.amount * (450 / Math.max(meanRadius, 40)) ** windConfig.power);
-    const arrivals = s.map((i) => ({ i, a: positiveAngle(sourceAngle[i] + w) })).sort((a, b) => a.a - b.a);
-    const slots = t.map((i) => ({ i, a: positiveAngle(targets[i].a) })).sort((a, b) => a.a - b.a);
+    const from = s.map((i) => ({ i, a: positiveAngle(sourceAngle[i]) })).sort((a, b) => a.a - b.a);
+    const to = t.map((i) => ({ i, a: positiveAngle(midAngle[i]) })).sort((a, b) => a.a - b.a);
     const n = t.length;
     let best = 0, bestCost = Infinity;
     for (let shift = 0; shift < n; shift++) {
       let cost = 0;
-      for (let j = 0; j < n && cost < bestCost; j++) cost += wrapAngle(slots[(j + shift) % n].a - arrivals[j].a) ** 2;
+      for (let j = 0; j < n && cost < bestCost; j++) cost += wrapAngle(to[(j + shift) % n].a - from[j].a) ** 2;
       if (cost < bestCost) {
         bestCost = cost;
         best = shift;
       }
     }
-    for (let j = 0; j < n; j++) {
-      const ti = slots[(j + best) % n].i;
-      source[ti] = arrivals[j].i;
-      wind[ti] = w;
-    }
+    for (let j = 0; j < n; j++) source[to[(j + best) % n].i] = from[j].i;
   }
 
-  // ----- Per dot: where it starts, the slide into its slot, and when it sets off. The timing
-  // noise is sampled where the dot starts, so a clump sets off together.
+  // Then refine in the plane: swap the nebula dots of two slots whenever that shortens their summed
+  // squared distance (2-opt on the pairing), checking slots near each slot and near its nebula dot.
+  // With squared distances, a swap that untangles two crossing paths always shortens them.
+  const tx = Float32Array.from(targets, (t, i) => Math.cos(midAngle[i]) * t.r);
+  const ty = Float32Array.from(targets, (t, i) => Math.sin(midAngle[i]) * t.r);
+  const sx = Float32Array.from(sources, (s) => s.x);
+  const sy = Float32Array.from(sources, (s) => s.y);
+  const { cell, passes } = organize.refine;
+  const cellKey = (gx: number, gy: number) => (gx + 1000) * 4000 + (gy + 1000);
+  const buckets = new Map<number, number[]>();
+  for (let i = 0; i < count; i++) {
+    const key = cellKey(Math.floor(tx[i] / cell), Math.floor(ty[i] / cell));
+    (buckets.get(key) ?? buckets.set(key, []).get(key)!).push(i);
+  }
+  const cost = (t: number, s: number) => (tx[t] - sx[s]) ** 2 + (ty[t] - sy[s]) ** 2;
+  for (let pass = 0; pass < passes; pass++) {
+    let swaps = 0;
+    for (let i = 0; i < count; i++) {
+      const around = [tx[i], ty[i], sx[source[i]], sy[source[i]]];
+      for (let c = 0; c < 4; c += 2) {
+        const gx = Math.floor(around[c] / cell), gy = Math.floor(around[c + 1] / cell);
+        for (let dx = -1; dx <= 1; dx++) {
+          for (let dy = -1; dy <= 1; dy++) {
+            const list = buckets.get(cellKey(gx + dx, gy + dy));
+            if (!list) continue;
+            for (const j of list) {
+              if (j === i) continue;
+              const si = source[i], sj = source[j];
+              if (cost(i, sj) + cost(j, si) < cost(i, si) + cost(j, sj) - 1e-3) {
+                source[i] = sj;
+                source[j] = si;
+                swaps++;
+              }
+            }
+          }
+        }
+      }
+    }
+    if (swaps < count * 0.002) break;
+  }
+
+  // ----- Per dot: where it starts and when it sets off. The timing noise is sampled where the dot
+  // starts, so a clump sets off together.
   const lastRing = CONFIG.rings[CONFIG.rings.length - 1].r;
-  const turn = new Float32Array(count);
   const delay = new Float32Array(count);
-  const nebulaRadius = new Float32Array(count);
-  const nebulaAngle = new Float32Array(count);
-  const thickness = new Float32Array(count);
-  const { depth: cloud } = CONFIG.nebula;
+  const nebulaX = new Float32Array(count);
+  const nebulaY = new Float32Array(count);
   for (let i = 0; i < count; i++) {
     const s = source[i];
-    nebulaRadius[i] = sourceRadius[s];
-    nebulaAngle[i] = sourceAngle[s];
-    const coherent = (p.noise(sources[s].x / cloud.scale + 50, sources[s].y / cloud.scale + 80) - 0.5) * 4;
-    thickness[i] = cloud.amount * sourceRadius[s] * coherent + p.randomGaussian(0, cloud.jitter);
-    turn[i] = wrapAngle(targets[i].a - (sourceAngle[s] + wind[i]));
-    const clump = clamp01((p.noise(sources[s].x / organize.clumpScale + 300, sources[s].y / organize.clumpScale + 300) - 0.25) / 0.5);
+    nebulaX[i] = sx[s];
+    nebulaY[i] = sy[s];
+    const clump = clamp01((p.noise(sx[s] / organize.clumpScale + 300, sy[s] / organize.clumpScale + 300) - 0.25) / 0.5);
     delay[i] = organize.radialDelay * Math.min(1, targets[i].r / lastRing) + organize.clumpDelay * clump;
   }
 
@@ -533,12 +523,10 @@ function build(p: p5): Field {
     count,
     ringRadius: Float32Array.from(targets, (t) => t.r),
     ringAngle: Float32Array.from(targets, (t) => t.a),
-    nebulaRadius,
-    nebulaAngle,
-    thickness,
-    wind,
-    turn,
-    spin: Float32Array.from(targets, (t) => t.spin),
+    rate: Float32Array.from(targets, (t) => t.rate),
+    phase: Float32Array.from(targets, () => p.random(TAU)),
+    nebulaX,
+    nebulaY,
     delay,
     depth: Float32Array.from(targets, (t) => t.z),
     targetDepth: coreDepth,
@@ -598,29 +586,15 @@ export function mountHeroField({ track, stage, content, next, header }: Mount) {
   };
 
   /**
-   * Moves the playhead toward the scroll position: a critically damped spring, with its speed
-   * capped per phase (blended across the boundary) and its acceleration capped so it ramps up.
-   * Past the end of the track, or under reduced motion, it follows the scroll directly.
+   * Eases the playhead toward the scroll position (scrubbing, with a short glide) and records how
+   * fast it moved, for the motion blur. Under reduced motion it follows the scroll directly.
    */
   const advance = (dt: number, still: boolean) => {
-    const { organizeEnd: end, stiffness, minSeconds, rampSeconds } = CONFIG.scroll;
-    const pastTrack = track.getBoundingClientRect().bottom < window.innerHeight - 1;
-    if (still || pastTrack) {
-      playhead = progress;
-      velocity = 0;
-      return;
-    }
-    const mix = smoothstep(end - 0.03, end + 0.03, playhead);
-    const cap = (end / minSeconds.organize) * (1 - mix) + ((1 - end) / minSeconds.dive) * mix;
-    const pull = stiffness * (progress - playhead) - 2 * Math.sqrt(stiffness) * velocity;
-    const maxAccel = cap / rampSeconds;
-    velocity += Math.max(-maxAccel, Math.min(maxAccel, pull)) * dt;
-    velocity = Math.max(-cap, Math.min(cap, velocity));
-    playhead = clamp01(playhead + velocity * dt);
-    if (Math.abs(progress - playhead) < 1e-4 && Math.abs(velocity) < 1e-3) {
-      playhead = progress;
-      velocity = 0;
-    }
+    const before = playhead;
+    if (still) playhead = progress;
+    else playhead += (progress - playhead) * (1 - Math.exp(-dt * CONFIG.scroll.smoothing));
+    if (Math.abs(progress - playhead) < 1e-4) playhead = progress;
+    velocity = dt > 0 ? (playhead - before) / dt : 0;
   };
 
   const applyCopy = (dive: number) => {
@@ -630,11 +604,9 @@ export function mountHeroField({ track, stage, content, next, header }: Mount) {
     content.toggleAttribute('data-hidden', fade >= 1);
   };
 
-  /** Scratch for the per-dot placement: the current view and position, and the blur's. */
-  const viewNow: View = { active: false, cosT: 1, sinT: 0, cosY: 1, sinY: 0 };
-  const viewLag: View = { active: false, cosT: 1, sinT: 0, cosY: 1, sinY: 0 };
-  const here: Spot = { x: 0, y: 0, s: 1, e: 0 };
-  const then: Spot = { x: 0, y: 0, s: 1, e: 0 };
+  /** Scratch for the per-dot placement: now, and for the motion blur. */
+  const here: Spot = { x: 0, y: 0, e: 0 };
+  const then: Spot = { x: 0, y: 0, e: 0 };
   const flowX = new Float32Array(FLOW.cols * FLOW.rows);
   const flowY = new Float32Array(FLOW.cols * FLOW.rows);
 
@@ -694,7 +666,9 @@ export function mountHeroField({ track, stage, content, next, header }: Mount) {
     p.setup = () => {
       p.createCanvas(stage.clientWidth, stage.clientHeight);
       p.pixelDensity(Math.min(2, window.devicePixelRatio || 1));
+      const built = performance.now();
       field = build(p);
+      if (import.meta.env.DEV) console.info(`hero field: ${field.count} dots built in ${Math.round(performance.now() - built)} ms`);
       progress = playhead = readProgress();
       applyCopy(phases(playhead).dive);
       start = p.millis();
@@ -754,21 +728,21 @@ export function mountHeroField({ track, stage, content, next, header }: Mount) {
       const stillFade = still ? 1 - smoothstep(0, 0.4, phase.dive) : 1;
 
       const organize = CONFIG.organize;
-      const { turbulence, swing, infall, lockPulse } = organize;
+      const swarm = CONFIG.swarm;
       const neb = CONFIG.nebula;
       const fadeIn = still ? 1 : clamp01(clock / CONFIG.fadeIn);
-      const spinTime = still ? 0 : clock;
+      // The swarm turns with the scroll (not under reduced motion).
+      const turned = still ? 0 : playhead;
 
-      // Turbulence and shimmer act until every dot has settled. Their flow field is sampled on a
-      // coarse grid once per frame (Perlin noise per dot was most of the frame time); it evolves
-      // with the scroll through the organise phase and, slowly, with time.
-      const stirring = !still && phase.organize < 1;
-      if (stirring) {
-        const t = phase.organize * turbulence.evolve + clock * neb.shimmer.rate;
+      // The waiting nebula shimmers until every dot has left. The shimmer's flow field is sampled on
+      // a coarse grid once per frame and looked up per dot.
+      const shimmering = !still && phase.organize < 1;
+      if (shimmering) {
+        const t = clock * neb.shimmer.rate;
         for (let row = 0, k = 0; row < FLOW.rows; row++) {
-          const v = (row * FLOW.cell - FLOW.halfHeight) / turbulence.scale;
+          const v = (row * FLOW.cell - FLOW.halfHeight) / FLOW.scale;
           for (let col = 0; col < FLOW.cols; col++, k++) {
-            const u = (col * FLOW.cell - FLOW.halfWidth) / turbulence.scale;
+            const u = (col * FLOW.cell - FLOW.halfWidth) / FLOW.scale;
             // Two octaves of Perlin noise sit mostly within 0.25–0.75, so ×4 maps them to about ±1.
             flowX[k] = (p.noise(u + 7.3, v, t) - 0.5) * 4;
             flowY[k] = (p.noise(u, v + 3.7, t + 19) - 0.5) * 4;
@@ -777,79 +751,45 @@ export function mountHeroField({ track, stage, content, next, header }: Mount) {
       }
 
       /**
-       * The view of the field at organise progress o: the swing (tilt away and back, with a little
-       * yaw) while the disc forms, plus the slow tumble while the nebula waits.
+       * Where dot i is at organise progress o with the swarm turned to track progress t (design px
+       * from the centre), and its own progress e. Its slot turns with the swarm; the dot moves in a
+       * straight line from its nebula position toward it, easing in and out.
        */
-      const view = (o: number, out: View) => {
-        const swung = still ? 0 : Math.sin(Math.PI * smoothstep(swing.range[0], swing.range[1], o));
-        const idle = still ? 0 : 1 - smoothstep(0, 0.12, o);
-        const tilt = swing.tilt * swung + neb.tumble.pitch * Math.sin(clock * neb.tumble.rate * 0.7 + 1) * idle;
-        const yaw = swing.yaw * swung + neb.tumble.yaw * Math.sin(clock * neb.tumble.rate) * idle;
-        out.active = Math.abs(tilt) > 1e-5 || Math.abs(yaw) > 1e-5;
-        out.cosT = Math.cos(tilt);
-        out.sinT = Math.sin(tilt);
-        out.cosY = Math.cos(yaw);
-        out.sinY = Math.sin(yaw);
-      };
-
-      /**
-       * Where dot i is at organise progress o, seen through view v (design px from the centre),
-       * with its perspective scale and its own progress e. Its path:
-       * - winds round the centre (inner rings further), the nebula's idle drift handing over to
-       *   the ring's idle spin;
-       * - falls in toward the core, then spreads out to its ring with anticipation and overshoot,
-       *   sliding into its exact slot at the end;
-       * - is stirred by turbulence that peaks mid-way (and a faint shimmer while waiting);
-       * - flattens from the 3D cloud into the disc, which the view tilts and turns. Perspective
-       *   applies only to the change from face-on, so the waiting nebula matches frame 01.
-       */
-      const place = (i: number, o: number, v: View, out: Spot) => {
+      const place = (i: number, o: number, t: number, out: Spot) => {
         const e = still ? 1 : clamp01((o - f.delay[i]) / organize.duration);
-        const wound = smootherstep(e);
-        const angle =
-          f.nebulaAngle[i] +
-          neb.drift * (1 - Math.min(1, f.nebulaRadius[i] / 1400)) * spinTime * (1 - wound) +
-          (f.wind[i] + f.spin[i] * spinTime) * wound +
-          f.turn[i] * smoothstep(organize.slotSlide[0], organize.slotSlide[1], e);
-        const fallen = f.nebulaRadius[i] * (1 - (1 - infall.amount) * smoothstep(0, infall.end, e));
-        const radius =
-          fallen + (f.ringRadius[i] - fallen) * easeInOutBack(smoothstep(organize.spreadStart, 1, e), organize.overshoot);
-        let x = Math.cos(angle) * radius;
-        let y = Math.sin(angle) * radius;
-        const stir = stirring ? turbulence.amplitude * Math.sin(Math.PI * e) ** 2 + neb.shimmer.amplitude * (1 - e) : 0;
-        if (stir > 0.25) {
-          // Bilinear lookup in this frame's flow grid.
-          const gx = Math.min(FLOW.cols - 1.001, Math.max(0, (x + FLOW.halfWidth) / FLOW.cell));
-          const gy = Math.min(FLOW.rows - 1.001, Math.max(0, (y + FLOW.halfHeight) / FLOW.cell));
-          const ix = gx | 0, iy = gy | 0;
-          const fx = gx - ix, fy = gy - iy;
-          const k = iy * FLOW.cols + ix;
-          const k2 = k + FLOW.cols;
-          x += stir * ((flowX[k] * (1 - fx) + flowX[k + 1] * fx) * (1 - fy) + (flowX[k2] * (1 - fx) + flowX[k2 + 1] * fx) * fy);
-          y += stir * ((flowY[k] * (1 - fx) + flowY[k + 1] * fx) * (1 - fy) + (flowY[k2] * (1 - fx) + flowY[k2 + 1] * fx) * fy);
-        }
-        let s = 1;
-        if (v.active) {
-          const off = f.thickness[i] * (1 - smoothstep(0, organize.flatten, e));
-          const x1 = x * v.cosY + off * v.sinY;
-          const d1 = -x * v.sinY + off * v.cosY;
-          const y2 = y * v.cosT - d1 * v.sinT;
-          const d2 = y * v.sinT + d1 * v.cosT;
-          s = swing.focal / Math.max(swing.focal * 0.2, swing.focal + d2 - off);
-          x = x1 * s;
-          y = y2 * s;
+        const a = f.ringAngle[i] + f.rate[i] * t;
+        const r = f.ringRadius[i] + (still ? 0 : swarm.wobble * Math.sin(swarm.waves * TAU * t + f.phase[i]));
+        let x = Math.cos(a) * r;
+        let y = Math.sin(a) * r;
+        if (e < 1) {
+          const k = smootherstep(e);
+          let nx = f.nebulaX[i], ny = f.nebulaY[i];
+          if (shimmering) {
+            // Bilinear lookup in this frame's flow grid.
+            const gx = Math.min(FLOW.cols - 1.001, Math.max(0, (nx + FLOW.halfWidth) / FLOW.cell));
+            const gy = Math.min(FLOW.rows - 1.001, Math.max(0, (ny + FLOW.halfHeight) / FLOW.cell));
+            const ix = gx | 0, iy = gy | 0;
+            const fx = gx - ix, fy = gy - iy;
+            const c = iy * FLOW.cols + ix;
+            const c2 = c + FLOW.cols;
+            const amount = neb.shimmer.amplitude * (1 - e);
+            nx += amount * ((flowX[c] * (1 - fx) + flowX[c + 1] * fx) * (1 - fy) + (flowX[c2] * (1 - fx) + flowX[c2 + 1] * fx) * fy);
+            ny += amount * ((flowY[c] * (1 - fx) + flowY[c + 1] * fx) * (1 - fy) + (flowY[c2] * (1 - fx) + flowY[c2 + 1] * fx) * fy);
+          }
+          x = nx + (x - nx) * k;
+          y = ny + (y - ny) * k;
         }
         out.x = x;
         out.y = y;
-        out.s = s;
         out.e = e;
       };
 
-      view(phase.organize, viewNow);
-      // Motion blur: where the playhead was `shutter` seconds ago, in organise progress.
-      const lagOrganize = clamp01(phase.organize - (velocity / CONFIG.scroll.organizeEnd) * organize.shutter);
-      const blurring = stirring && Math.abs(phase.organize - lagOrganize) > 1e-4;
-      if (blurring) view(lagOrganize, viewLag);
+      // Motion blur: where the playhead was `shutter` seconds ago (capped).
+      const lag = Math.max(-organize.maxBlur, Math.min(organize.maxBlur, velocity * organize.shutter));
+      const lagPlayhead = clamp01(playhead - lag);
+      const lagOrganize = phases(lagPlayhead).organize;
+      const lagTurned = still ? 0 : lagPlayhead;
+      const blurring = !still && Math.abs(lag) > 1e-6 && phase.dive < 1;
 
       const ctx = p.drawingContext as CanvasRenderingContext2D;
       ctx.clearRect(0, 0, w, h);
@@ -862,7 +802,7 @@ export function mountHeroField({ track, stage, content, next, header }: Mount) {
       // Once the dot covers the stage there is nothing left to draw.
       const count = !still && dotRadius >= cover ? 0 : f.count;
       for (let i = 0; i < count; i++) {
-        place(i, phase.organize, viewNow, here);
+        place(i, phase.organize, turned, here);
         const e = here.e;
 
         // Camera: magnification k grows as the camera closes on the dot's depth.
@@ -876,21 +816,15 @@ export function mountHeroField({ track, stage, content, next, header }: Mount) {
 
         const distance = Math.hypot(sx - cx, sy - cy);
         if (distance >= fadeRadius) continue;
-        const lock = e > lockPulse.at[0] && e < 1 ? Math.sin(Math.PI * ((e - lockPulse.at[0]) / (lockPulse.at[1] - lockPulse.at[0]))) : 0;
-        const energy = 1 + organize.transitShade * Math.sin(Math.PI * e) + lockPulse.shade * lock;
-        const shade = Math.min(1, (1 - distance / fadeRadius) * energy) * fadeIn * stillFade;
+        const shade = (1 - distance / fadeRadius) * fadeIn * stillFade;
         if (shade < 0.02) continue;
 
-        const dot =
-          (CONFIG.dotRadius.nebula + (CONFIG.dotRadius.rings - CONFIG.dotRadius.nebula) * e) *
-          k ** dive.sizePower *
-          here.s *
-          (1 + lockPulse.size * lock);
+        const dot = (CONFIG.dotRadius.nebula + (CONFIG.dotRadius.rings - CONFIG.dotRadius.nebula) * e) * k ** dive.sizePower;
         if (sx < -dot || sy < -dot || sx > w + dot || sy > h + dot) continue;
 
         const s = Math.round(shade * (CONFIG.shades - 1));
         if (blurring) {
-          place(i, lagOrganize, viewLag, then);
+          place(i, lagOrganize, lagTurned, then);
           const lx = cx + (then.x * cosR - then.y * sinR) * m;
           const ly = cy + (then.x * sinR + then.y * cosR) * m;
           if (Math.abs(lx - sx) + Math.abs(ly - sy) > 1.2) {
@@ -953,7 +887,51 @@ export function mountHeroField({ track, stage, content, next, header }: Mount) {
         velocity = 0;
         return points();
       },
-      /** The playhead and its speed, to check the speed cap. */
+      /**
+       * How well nebula dots are paired with ring slots: mean straight-line distance (design px)
+       * and the share of crossing paths among random pairs of on-screen paths.
+       */
+      pairing: () => {
+        if (!field) return null;
+        const f = field;
+        const segs: number[][] = [];
+        let total = 0;
+        for (let i = 0; i < f.count; i++) {
+          const nx = f.nebulaX[i], ny = f.nebulaY[i];
+          const a = f.ringAngle[i] + f.rate[i] * CONFIG.scroll.organizeEnd * 0.5;
+          const tx = Math.cos(a) * f.ringRadius[i], ty = Math.sin(a) * f.ringRadius[i];
+          total += Math.hypot(tx - nx, ty - ny);
+          if (Math.hypot(nx, ny) < 700 && f.ringRadius[i] < 1000) segs.push([nx, ny, tx, ty]);
+        }
+        const cross = (a: number[], b: number[]) => {
+          const d = (px: number, py: number, qx: number, qy: number, rx: number, ry: number) => (qx - px) * (ry - py) - (qy - py) * (rx - px);
+          const d1 = d(a[0], a[1], a[2], a[3], b[0], b[1]), d2 = d(a[0], a[1], a[2], a[3], b[2], b[3]);
+          const d3 = d(b[0], b[1], b[2], b[3], a[0], a[1]), d4 = d(b[0], b[1], b[2], b[3], a[2], a[3]);
+          return d1 * d2 < 0 && d3 * d4 < 0;
+        };
+        let rng = 12345;
+        const rand = () => ((rng = (rng * 1103515245 + 12345) % 2147483648) / 2147483648);
+        let crossings = 0;
+        const trials = 40000;
+        for (let k = 0; k < trials; k++) {
+          const a = segs[Math.floor(rand() * segs.length)], b = segs[Math.floor(rand() * segs.length)];
+          if (a !== b && cross(a, b)) crossings++;
+        }
+        return { meanDistance: Math.round(total / f.count), crossingRate: +(crossings / trials).toFixed(4) };
+      },
+      /** Each ring's mean turn over the track (rad, signed) and the spread of its dots' turns. */
+      swarm: () => {
+        if (!field) return null;
+        const f = field;
+        return [...CONFIG.rings.map((ring) => ring.r), ...CONFIG.outerRings].map((r) => {
+          const rates: number[] = [];
+          for (let i = 0; i < f.count; i++) if (Math.abs(f.ringRadius[i] - r) < 30) rates.push(f.rate[i]);
+          const mean = rates.reduce((s, v) => s + v, 0) / rates.length;
+          const sd = Math.sqrt(rates.reduce((s, v) => s + (v - mean) ** 2, 0) / rates.length);
+          return `r ${r}: ${mean.toFixed(2)} ± ${sd.toFixed(2)}`;
+        });
+      },
+      /** The playhead and its speed. */
       playhead: () => ({ playhead, velocity, progress }),
       /**
        * Draws `frames` frames as if `1 / fps` seconds passed before each, and returns the playhead

@@ -1,0 +1,17 @@
+---
+import Canvas from '../../layouts/Canvas.astro';
+import CanvasTool from '../../components/CanvasTool.astro';
+---
+
+<Canvas title="Concentric dots" description="Concentric rings of small dots, bent by a noise field and drawn flat.">
+  <CanvasTool label="Concentric dot rings" orbit={false} />
+</Canvas>
+
+<script>
+  import { mountConcentricDots } from '../../scripts/concentric-dots';
+
+  mountConcentricDots(
+    document.querySelector<HTMLElement>('[data-canvas-stage]')!,
+    document.querySelector<HTMLElement>('[data-canvas-pane]')!,
+  );
+</script>

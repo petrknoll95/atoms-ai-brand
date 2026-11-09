@@ -13,7 +13,7 @@ const moveDuration = at(slitMotion.hide[1] - slitMotion.hide[0]);
 const pairStagger = at(slitMotion.stagger / slitDefaults.copies);
 ---
 
-<Guide slug="tools" description="AtomsAI brand tools: the pattern generator and the animated mark, ready to export.">
+<Guide slug="tools" description="AtomsAI brand tools: the pattern generator, animated mark and animated website patterns.">
   <Sub id="pattern-generator" title="Pattern generator" number="9.1">
     <Fragment slot="text">
       <p>
@@ -52,5 +52,11 @@ const pairStagger = at(slitMotion.stagger / slitDefaults.copies);
       </dl>
     </Fragment>
     <MarkReveal uid="tools-reveal" controls />
+  </Sub>
+  <Sub id="animated-patterns" title="Animated patterns" number="9.3">
+    <Fragment slot="text">
+      <p>Replay the website’s four animated patterns. Choose a movement, colorway and density, then copy the component name or its configured snippet.</p>
+      <p><a href={withBase('/tools/animated-patterns/')}>Open animated patterns ↗</a></p>
+    </Fragment>
   </Sub>
 </Guide>

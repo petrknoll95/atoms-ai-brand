@@ -4,6 +4,7 @@ import { brandDownloads } from '../../../data/brandDownloads';
 import { allColors, colors, combinations, contrast, gradientCss, gradients, ramps, rgb, themes } from '../../../data/colors';
 import { downloadCategories } from '../../../data/downloads';
 import { colorwayNames, DENSITY_STOPS, SLITS, structures } from '../../../data/patterns';
+import { printMatches, printReference } from '../../../data/printColors';
 import logoManifest from '../../../../public/logos/manifest.json';
 
 export const GET: APIRoute = () => new Response(JSON.stringify({
@@ -19,6 +20,7 @@ export const GET: APIRoute = () => new Response(JSON.stringify({
     sizeUnit: logoManifest.sizeUnit,
   },
   palette: allColors.map((c) => ({ ...c, rgb: rgb(c.hex) })),
+  print: { ...printReference, download: publishedUrl('/atomsai-pantone-shortlist.json'), matches: printMatches },
   ramps: Object.fromEntries(Object.entries(ramps).map(([name, keys]) => [name, keys.map((key) => colors[key].token)])),
   combinations: combinations.map((keys) => ({
     lead: colors[keys[0]].token, support: colors[keys[1]].token, accent: colors[keys[2]].token,

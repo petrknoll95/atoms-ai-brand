@@ -255,6 +255,8 @@ h3,
   --tp-button-background-color-focus: color-mix(in srgb, var(--deep-green) 11%, transparent);
   --tp-button-background-color-active: color-mix(in srgb, var(--deep-green) 13%, transparent);
   --tp-button-foreground-color: var(--fg);
+  --tp-monitor-background-color: color-mix(in srgb, var(--deep-green) 4%, transparent);
+  --tp-monitor-foreground-color: var(--muted);
 }
 
 .tp-theme .tp-rotv {

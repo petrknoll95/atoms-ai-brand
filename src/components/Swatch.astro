@@ -3,6 +3,8 @@
 // RGB, CMYK (where defined) or its CSS variable. The menu is a popover anchored to its button.
 import { bare, colors, contrast, rgb, type ColorKey } from '../data/colors';
 
+import { printMatch } from '../data/printColors';
+
 interface Props {
   color: ColorKey;
   class?: string;
@@ -15,10 +17,12 @@ const c = colors[color];
 const ink = contrast(c.hex, colors.deepGreen.hex) >= contrast(c.hex, colors.cream.hex) ? colors.deepGreen.hex : colors.cream.hex;
 
 const [r, g, b] = rgb(c.hex);
+const print = printMatch(c);
 const values = [
   { label: 'HEX', shown: bare(c.hex), copy: c.hex },
   { label: 'RGB', shown: `${r} ${g} ${b}`, copy: `rgb(${r}, ${g}, ${b})` },
   ...(c.cmyk ? [{ label: 'CMYK', shown: c.cmyk.join(' '), copy: `C${c.cmyk[0]} M${c.cmyk[1]} Y${c.cmyk[2]} K${c.cmyk[3]}` }] : []),
+  ...(print.kind !== 'unassigned' ? [{ label: print.kind === 'paper' ? 'Print stock' : 'Pantone shortlist', shown: print.kind === 'paper' ? print.label : print.choice!, copy: `${print.label} — ${print.status}` }] : []),
   { label: 'CSS', shown: `--${c.token}`, copy: `var(--${c.token})` },
 ];
 

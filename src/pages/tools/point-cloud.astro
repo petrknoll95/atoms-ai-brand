@@ -1,0 +1,17 @@
+---
+import Canvas from '../../layouts/Canvas.astro';
+import CanvasTool from '../../components/CanvasTool.astro';
+---
+
+<Canvas title="Point cloud" description="A generative point cloud: dots placed in 3D by a noise flow field, drawn as flat 2D dots.">
+  <CanvasTool label="Generative point cloud" />
+</Canvas>
+
+<script>
+  import { mountPointCloud } from '../../scripts/point-cloud';
+
+  mountPointCloud(
+    document.querySelector<HTMLElement>('[data-canvas-stage]')!,
+    document.querySelector<HTMLElement>('[data-canvas-pane]')!,
+  );
+</script>

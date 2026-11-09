@@ -1,8 +1,8 @@
 // Single source of truth for the AtomsAI palette.
-// Mirrors the "Brand colors" variable collection in Figma (AtomsAI-Brand, Brand Guidelines).
+// Accent colors sampled from the approved reference image and converted to sRGB.
 // /tokens.css is generated from this file — never hard-code hex values elsewhere.
 
-export type ColorGroup = 'forest' | 'neutral' | 'iris' | 'mono';
+export type ColorGroup = 'forest' | 'neutral' | 'mono' | 'accent';
 
 export interface BrandColor {
   token: string; // CSS custom property name, without the leading --
@@ -26,10 +26,18 @@ const palette = {
   ash: { token: 'ash', name: 'Ash', hex: '#A7AAA9', group: 'neutral' },
   mist: { token: 'mist', name: 'Mist', hex: '#D0D1D1', group: 'neutral' },
   paper: { token: 'paper', name: 'Paper', hex: '#FAFAFA', group: 'neutral' },
-  irisShade: { token: 'iris-shade', name: 'Iris shade', hex: '#493F58', group: 'iris', cmyk: [17, 28, 0, 65] },
-  iris: { token: 'iris', name: 'Iris', hex: '#8C78B0', group: 'iris', cmyk: [20, 32, 0, 31] },
-  irisTint: { token: 'iris-tint', name: 'Iris tint', hex: '#D8CDE5', group: 'iris', cmyk: [6, 10, 0, 10] },
+  irisDark: { token: 'iris-dark', name: 'Iris Dark', hex: '#514264', group: 'accent' },
+  iris: { token: 'iris', name: 'Iris', hex: '#927BB8', group: 'accent' },
+  irisLight: { token: 'iris-light', name: 'Iris Light', hex: '#D5C6EB', group: 'accent' },
+  crimson: { token: 'crimson', name: 'Crimson', hex: '#A20000', group: 'accent' },
+  orange: { token: 'orange', name: 'Orange', hex: '#FF5600', group: 'accent' },
+  apricot: { token: 'apricot', name: 'Apricot', hex: '#F9C085', group: 'accent' },
   black: { token: 'black', name: 'Black', hex: '#000000', group: 'mono' },
+  grey5: { token: 'grey-5', name: 'Grey 5', hex: '#292929', group: 'mono' },
+  grey4: { token: 'grey-4', name: 'Grey 4', hex: '#4E4E4E', group: 'mono' },
+  grey3: { token: 'grey-3', name: 'Grey 3', hex: '#777777', group: 'mono' },
+  grey2: { token: 'grey-2', name: 'Grey 2', hex: '#A2A2A2', group: 'mono' },
+  grey1: { token: 'grey-1', name: 'Grey 1', hex: '#D0D0D0', group: 'mono' },
   white: { token: 'white', name: 'White', hex: '#FFFFFF', group: 'mono' },
 } satisfies Record<string, BrandColor>;
 
@@ -61,9 +69,12 @@ export const overview: { key: ColorKey; weight: number }[][] = [
     { key: 'graphite', weight: 1 },
   ],
   [
-    { key: 'iris', weight: 4.6 },
-    { key: 'irisTint', weight: 4 },
-    { key: 'irisShade', weight: 1 },
+    { key: 'irisDark', weight: 1 },
+    { key: 'iris', weight: 1 },
+    { key: 'irisLight', weight: 1 },
+    { key: 'crimson', weight: 1 },
+    { key: 'orange', weight: 1 },
+    { key: 'apricot', weight: 1 },
   ],
 ];
 
@@ -77,13 +88,14 @@ export const roles = {
     keys: ['forestGreen', 'sageTint', 'stone'] as ColorKey[],
   },
   accent: {
-    intro: 'Iris is our single accent. Use it sparingly — for emphasis, highlights and moments that need lift — never as a dominant field.',
-    keys: ['iris', 'irisTint', 'irisShade'] as ColorKey[],
+    intro: 'Two accent families, each with dark, mid and light tones. Use Iris or Orange for focal elements and the dark and light tones for surfaces. Choose one family per layout and keep Forest as the default foundation.',
+    keys: ['irisDark', 'iris', 'irisLight', 'crimson', 'orange', 'apricot'] as ColorKey[],
   },
 };
 
 export const ramps = {
   shades: ['forestShade', 'deepGreen', 'forestGreen', 'sage', 'sageTint', 'stone', 'cream'] as ColorKey[],
+  trueGreys: ['black', 'grey5', 'grey4', 'grey3', 'grey2', 'grey1', 'white'] as ColorKey[],
   neutrals: ['forestShade', 'charcoal', 'graphite', 'slate', 'ash', 'mist', 'paper'] as ColorKey[],
 };
 
@@ -93,19 +105,21 @@ export const combinations: [ColorKey, ColorKey, ColorKey][] = [
   ['forestGreen', 'paper', 'graphite'],
   ['stone', 'forestShade', 'sage'],
   ['cream', 'sageTint', 'forestGreen'],
-  ['irisShade', 'iris', 'irisTint'],
+  ['irisDark', 'irisLight', 'iris'],
+  ['crimson', 'apricot', 'orange'],
   ['deepGreen', 'cream', 'iris'],
+  ['deepGreen', 'cream', 'orange'],
 ];
 
-// 3.8 Gradients — soft vertical blends. Stops are sampled from the eased Figma ramps (top → bottom).
+// 3.8 Gradients — original Forest recipes plus current accent blends (top → bottom).
 export const gradients: { from: ColorKey; to: ColorKey; stops: string[] }[] = [
   { from: 'forestShade', to: 'forestGreen', stops: ['#10231E 0%', '#11251F 13%', '#142923 25%', '#1B322B 41%', '#1F3831 50%', '#264038 63%', '#2B473F 75%', '#2F4C43 88%', '#304E44 100%'] },
   { from: 'cream', to: 'stone', stops: ['#F6F1E8 0%', '#F4F0E6 13%', '#EFECE1 25%', '#E5E4D7 41%', '#DEDFD1 50%', '#D5D8C8 63%', '#CED2C1 75%', '#C9CEBC 88%', '#C7CDBA 100%'] },
-  { from: 'forestShade', to: 'iris', stops: ['#10231E 0%', '#122420 13%', '#1D2C2D 25%', '#393F4E 41%', '#4E4E67 50%', '#6A6188 63%', '#7F6FA1 75%', '#8A77AE 88%', '#8C78B0 100%'] },
-  { from: 'irisTint', to: 'irisShade', stops: ['#D8CDE5 0%', '#D8CDE5 22%', '#D6CBE3 34%', '#D1C6DE 47%', '#C6BBD3 59%', '#B8ADC6 69%', '#A398B0 78%', '#847A92 88%', '#5A5069 97%', '#493F58 100%'] },
+  { from: 'forestShade', to: 'iris', stops: [colors.forestShade.hex + ' 0%', colors.iris.hex + ' 100%'] },
+  { from: 'irisLight', to: 'irisDark', stops: [colors.irisLight.hex + ' 0%', colors.irisDark.hex + ' 100%'] },
   { from: 'forestShade', to: 'cream', stops: ['#10231E 0%', '#1A2C27 13%', '#34433E 25%', '#636D67 41%', '#838A83 50%', '#ADB0A8 63%', '#D2D1C8 75%', '#ECE8DF 88%', '#F6F1E8 100%'] },
   { from: 'forestGreen', to: 'stone', stops: ['#42665A 0%', '#486A5E 13%', '#577669 25%', '#728B7D 41%', '#84998A 50%', '#9DAC9C 63%', '#B2BDAB 75%', '#C1C9B6 88%', '#C7CDBA 100%'] },
-  { from: 'iris', to: 'irisTint', stops: ['#8C78B0 0%', '#8F7CB2 13%', '#9885B8 25%', '#A797C3 41%', '#B2A2CB 50%', '#C0B2D4 63%', '#CCC0DD 75%', '#D5C9E3 88%', '#D8CDE5 100%'] },
+  { from: 'iris', to: 'irisLight', stops: [colors.iris.hex + ' 0%', colors.irisLight.hex + ' 100%'] },
   { from: 'sageTint', to: 'deepGreen', stops: ['#94AC96 0%', '#8FA792 13%', '#839C88 25%', '#6D8675 41%', '#5E7869 50%', '#496458 63%', '#385349 75%', '#2C483F 88%', '#27433B 100%'] },
 ];
 
@@ -133,13 +147,23 @@ export const themes: { name: string; intro: string; steps: { label: string; bg: 
   },
   {
     name: 'Iris',
-    intro: 'Accent themes for moments that need lift. Use sparingly, alongside a Forest theme.',
+    intro: 'Supporting backgrounds and panels. Use occasionally alongside a Forest theme.',
     steps: [
-      { label: 'Light', bg: 'irisTint', fg: 'irisShade' },
-      { label: 'Mid', bg: 'iris', fg: 'forestShade' },
-      { label: 'Dark', bg: 'irisShade', fg: 'irisTint' },
+      { label: 'Light', bg: 'irisLight', fg: 'irisDark' },
+      { label: 'Mid', bg: 'iris', fg: 'black' },
+      { label: 'Dark', bg: 'irisDark', fg: 'irisLight' },
     ],
   },
+  {
+    name: 'Orange',
+    intro: 'Warm accent surfaces. Use occasionally alongside a Forest theme.',
+    steps: [
+      { label: 'Light', bg: 'apricot', fg: 'crimson' },
+      { label: 'Mid', bg: 'orange', fg: 'black' },
+      { label: 'Dark', bg: 'crimson', fg: 'apricot' },
+    ],
+  },
+
 ];
 
 // WCAG 2.x relative luminance and contrast ratio.

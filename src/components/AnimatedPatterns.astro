@@ -1,0 +1,48 @@
+---
+// The website's shader in the same preview/panel layout as the guideline tools.
+---
+
+<div class="motion-tool" data-motion-tool>
+  <div class="preview">
+    <div class="frame">
+      <canvas data-motion-canvas role="img" aria-label="Drift pattern, Light tide" data-render-state="pending"></canvas>
+      <p class="unavailable" data-motion-error role="status" hidden>WebGL2 is unavailable. You can still choose and copy component settings.</p>
+    </div>
+    <div class="caption"><span data-motion-caption>Drift · Light tide · 12 s loop</span><span class="muted" data-motion-status role="status">Loading preview</span></div>
+    <p class="muted" data-motion-note>Playback pauses when the preview is off screen.</p>
+    <div class="component">
+      <span>Website component</span>
+      <code>MotionPattern</code>
+    </div>
+    <pre aria-label="Configured component"><code data-motion-code></code></pre>
+    <p class="muted">Use this snippet with the website’s MotionPattern component, inside a container with a set height.</p>
+  </div>
+  <div class="controls tp-theme" data-motion-pane aria-label="Animated pattern settings"></div>
+</div>
+
+<script>
+  import { mountAnimatedPatterns } from '../scripts/animated-patterns/tool';
+  document.querySelectorAll<HTMLElement>('[data-motion-tool]').forEach(mountAnimatedPatterns);
+</script>
+
+<style>
+  .motion-tool { display: grid; grid-template-columns: minmax(0, 1fr) minmax(16rem, 22rem); gap: var(--gutter); align-items: start; }
+  .preview { display: grid; gap: 0.875rem; min-width: 0; }
+  .frame { position: relative; aspect-ratio: 1; background: var(--forest-shade); }
+  canvas { width: 100%; height: 100%; }
+  .caption, .component { display: flex; justify-content: space-between; gap: 0.75rem; flex-wrap: wrap; }
+  .component { border-top: 1px solid var(--rule); padding-top: 1rem; margin-top: 0.5rem; }
+  pre { margin: 0; padding: 1rem; background: color-mix(in srgb, var(--deep-green) 4%, transparent); white-space: pre-wrap; overflow-wrap: anywhere; font-size: var(--size-annotation-small); }
+  .unavailable { position: absolute; inset: 40% 1.5rem auto; padding: 1rem; color: var(--fg); background: var(--bg); }
+  @media (max-width: 1100px) {
+    .motion-tool { grid-template-columns: minmax(0, 1fr); gap: 1rem; }
+    .preview { display: contents; }
+    .frame { order: 0; }
+    .caption { order: 1; }
+    [data-motion-note] { order: 2; }
+    .controls { order: 3; }
+    .component { order: 4; }
+    pre { order: 5; }
+    .preview > p:last-child { order: 6; }
+  }
+</style>

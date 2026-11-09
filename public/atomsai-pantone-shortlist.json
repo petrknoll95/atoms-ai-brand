@@ -1,0 +1,299 @@
+{
+  "version": 1,
+  "created": "2026-11-09T10:06:49.281Z",
+  "status": "Screen-based shortlist; physical proof required",
+  "palette": [
+    {
+      "token": "forest-shade",
+      "name": "Forest shade",
+      "hex": "#10231E",
+      "group": "forest"
+    },
+    {
+      "token": "deep-green",
+      "name": "Deep green",
+      "hex": "#27433B",
+      "group": "forest"
+    },
+    {
+      "token": "forest-green",
+      "name": "Forest green",
+      "hex": "#42665A",
+      "group": "forest"
+    },
+    {
+      "token": "sage",
+      "name": "Sage",
+      "hex": "#668978",
+      "group": "forest"
+    },
+    {
+      "token": "sage-tint",
+      "name": "Sage tint",
+      "hex": "#94AC96",
+      "group": "forest"
+    },
+    {
+      "token": "stone",
+      "name": "Stone",
+      "hex": "#C7CDBA",
+      "group": "forest"
+    },
+    {
+      "token": "cream",
+      "name": "Cream",
+      "hex": "#F6F1E8",
+      "group": "forest"
+    },
+    {
+      "token": "charcoal",
+      "name": "Charcoal",
+      "hex": "#33413D",
+      "group": "neutral"
+    },
+    {
+      "token": "graphite",
+      "name": "Graphite",
+      "hex": "#58625F",
+      "group": "neutral"
+    },
+    {
+      "token": "slate",
+      "name": "Slate",
+      "hex": "#7E8583",
+      "group": "neutral"
+    },
+    {
+      "token": "ash",
+      "name": "Ash",
+      "hex": "#A7AAA9",
+      "group": "neutral"
+    },
+    {
+      "token": "mist",
+      "name": "Mist",
+      "hex": "#D0D1D1",
+      "group": "neutral"
+    },
+    {
+      "token": "paper",
+      "name": "Paper",
+      "hex": "#FAFAFA",
+      "group": "neutral"
+    },
+    {
+      "token": "iris-dark",
+      "name": "Iris Dark",
+      "hex": "#514264",
+      "group": "accent"
+    },
+    {
+      "token": "iris",
+      "name": "Iris",
+      "hex": "#927BB8",
+      "group": "accent"
+    },
+    {
+      "token": "iris-light",
+      "name": "Iris Light",
+      "hex": "#D5C6EB",
+      "group": "accent"
+    },
+    {
+      "token": "crimson",
+      "name": "Crimson",
+      "hex": "#A20000",
+      "group": "accent"
+    },
+    {
+      "token": "orange",
+      "name": "Orange",
+      "hex": "#FF5600",
+      "group": "accent"
+    },
+    {
+      "token": "apricot",
+      "name": "Apricot",
+      "hex": "#F9C085",
+      "group": "accent"
+    },
+    {
+      "token": "black",
+      "name": "Black",
+      "hex": "#000000",
+      "group": "mono"
+    },
+    {
+      "token": "grey-5",
+      "name": "Grey 5",
+      "hex": "#292929",
+      "group": "mono"
+    },
+    {
+      "token": "grey-4",
+      "name": "Grey 4",
+      "hex": "#4E4E4E",
+      "group": "mono"
+    },
+    {
+      "token": "grey-3",
+      "name": "Grey 3",
+      "hex": "#777777",
+      "group": "mono"
+    },
+    {
+      "token": "grey-2",
+      "name": "Grey 2",
+      "hex": "#A2A2A2",
+      "group": "mono"
+    },
+    {
+      "token": "grey-1",
+      "name": "Grey 1",
+      "hex": "#D0D0D0",
+      "group": "mono"
+    },
+    {
+      "token": "white",
+      "name": "White",
+      "hex": "#FFFFFF",
+      "group": "mono"
+    }
+  ],
+  "reference": {
+    "source": "https://github.com/brettapeters/pantones",
+    "date": "2026-11-09",
+    "sha256": {
+      "C": "cf82dbae3f466a29d06ff24e6816041249da8e52fbba4cc1e8f529a4d341b8d8",
+      "U": "52e13188a5444309a7b400691e207374c34ce3d7220d44e44bae92d4a419c999"
+    },
+    "metric": "CIEDE2000 on sRGB-derived Lab D65"
+  },
+  "selections": {
+    "C:deep-green": {
+      "hex": "#27433B",
+      "choice": "560 C",
+      "note": ""
+    },
+    "C:forest-green": {
+      "hex": "#42665A",
+      "choice": "5545 C",
+      "note": ""
+    },
+    "C:sage": {
+      "hex": "#668978",
+      "choice": "5555 C",
+      "note": ""
+    },
+    "C:sage-tint": {
+      "hex": "#94AC96",
+      "choice": "5635 C",
+      "note": ""
+    },
+    "C:stone": {
+      "hex": "#C7CDBA",
+      "choice": "5665 C",
+      "note": ""
+    },
+    "C:cream": {
+      "hex": "#F6F1E8",
+      "choice": "paper",
+      "note": ""
+    },
+    "C:charcoal": {
+      "hex": "#33413D",
+      "choice": "560 C",
+      "note": ""
+    },
+    "C:slate": {
+      "hex": "#7E8583",
+      "choice": "423 C",
+      "note": ""
+    },
+    "C:graphite": {
+      "hex": "#58625F",
+      "choice": "445 C",
+      "note": ""
+    },
+    "C:ash": {
+      "hex": "#A7AAA9",
+      "choice": "422 C",
+      "note": ""
+    },
+    "C:mist": {
+      "hex": "#D0D1D1",
+      "choice": "427 C",
+      "note": ""
+    },
+    "C:paper": {
+      "hex": "#FAFAFA",
+      "choice": "paper",
+      "note": ""
+    },
+    "C:iris-dark": {
+      "hex": "#514264",
+      "choice": "7447 C",
+      "note": ""
+    },
+    "C:iris": {
+      "hex": "#927BB8",
+      "choice": "2577 C",
+      "note": ""
+    },
+    "C:iris-light": {
+      "hex": "#D5C6EB",
+      "choice": "263 C",
+      "note": ""
+    },
+    "C:crimson": {
+      "hex": "#A20000",
+      "choice": "484 C",
+      "note": ""
+    },
+    "C:orange": {
+      "hex": "#FF5600",
+      "choice": "165 C",
+      "note": ""
+    },
+    "C:apricot": {
+      "hex": "#F9C085",
+      "choice": "713 C",
+      "note": ""
+    },
+    "C:black": {
+      "hex": "#000000",
+      "choice": "BLACK 6 C",
+      "note": ""
+    },
+    "C:grey-5": {
+      "hex": "#292929",
+      "choice": "426 C",
+      "note": ""
+    },
+    "C:grey-4": {
+      "hex": "#4E4E4E",
+      "choice": "7540 C",
+      "note": ""
+    },
+    "C:grey-3": {
+      "hex": "#777777",
+      "choice": "COOL GRAY 9 C",
+      "note": ""
+    },
+    "C:grey-2": {
+      "hex": "#A2A2A2",
+      "choice": "COOL GRAY 6 C",
+      "note": ""
+    },
+    "C:grey-1": {
+      "hex": "#D0D0D0",
+      "choice": "COOL GRAY 2 C",
+      "note": ""
+    },
+    "C:white": {
+      "hex": "#FFFFFF",
+      "choice": "paper",
+      "note": ""
+    }
+  }
+}

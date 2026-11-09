@@ -11,28 +11,27 @@ npm run dev     # http://localhost:4321
 ## What it does
 
 The hero is a scroll track. Its stage stays pinned for `--scroll-length` (380svh, set in
-`Hero.astro`). The sequence follows a **playhead** that chases the scroll position with a spring,
-with its speed capped: the organise phase takes at least 3.6 s and the dive at least 2.4 s, however
-fast the page is scrolled. Small scrolls still glide in under a second.
+`Hero.astro`). The sequence is **scrubbed**: it maps to the scroll position, with only a short
+glide (`scroll.smoothing`, about 0.1 s) so wheel notches don't step. It never plays on its own.
+The long track (160svh for the transition) is what gives the transition room.
 
 - **On load** the dot field fades in as a slowly drifting, shimmering nebula. It is resampled from
   the actual dot coordinates of Figma frame 01, stretched along each point's local filament, plus
   extra clumps in random orientations. Nothing in it lines up around the centre. The cloud is 3D,
   with clumps at their own depths, and it tumbles slowly.
-- **First 42% of the scroll:** the nebula forms concentric rings around a dense core (frame 02),
-  the way debris settles into orbits. The copy stays in place. Each nebula dot is paired with a
-  ring dot by optimal transport in polar coordinates: radius rank first, then angle within each
-  ring. Three acts overlap dot by dot:
-  1. **Infall:** the cloud collapses toward the core as it spins up. Inner rings wind further than
-     outer ones, so clumps shear into spiral arms.
-  2. **The swing:** the field tilts away (with a little yaw), flattening into a disc seen at an
-     angle, like a galaxy, then swings back face-on as the arms tighten.
-  3. **Lock-in:** each dot spreads out to its ring, overshoots, and pulses (bigger, darker) as it
-     locks. Inner rings lock first, so the pulse ripples outward.
-
-  Turbulence peaks mid-way, timing varies smoothly across the cloud so whole clumps move together,
-  and moving dots are drawn with motion-blur streaks. The motion depends only on the playhead, so
-  it scrubs both ways.
+- **First 42% of the scroll:** the nebula rearranges into concentric rings around a dense core
+  (frame 02). The copy stays in place.
+  - Every dot takes the shortest path: a straight line to its ring slot, easing in and out.
+  - Nebula dots are paired with slots to minimise total squared travel (optimal transport). The
+    pairing starts in polar coordinates, then swaps pairs wherever that shortens them, which also
+    untangles crossing paths.
+  - Timing varies smoothly across the cloud, inner rings first, so neighbouring dots move
+    together.
+- **The rings turn as you scroll**, like swarms. Alternate rings (and core bands) turn in opposite
+  directions, inner ones further. Each dot runs a little faster or slower than its ring and drifts
+  in and out, so groups loosen and regroup. The rotation is tied to the scroll position too, so
+  the dots head for slots that are themselves turning.
+- **Motion blur:** moving dots get short streaks, capped for fast flicks.
 - **The rest of the scroll:** the copy fades out and the camera dives into the centre of the rings.
 - **End of the dive:** the camera's target is the single dot at the centre of the core. Every dot
   follows the same true perspective, so the centre dot grows exactly like the dots at its depth.
@@ -53,8 +52,9 @@ fast the page is scrolled. Small scrolls still glide in under a second.
   switch to cream (`[data-tone='dark']` in `global.css`).
 - `src/components/Hero.astro` holds the hero copy, the scroll track and the canvas mount.
 - `src/scripts/hero-field.ts` is the p5 sketch. Every tunable is in its `CONFIG`: ring radii and
-  density, dot size, nebula warp, where the organise phase ends, depth, dive easing, roll, the
-  perspective size law (`dive.sizePower`, 1 = true perspective), and the centre dot's peers.
+  density, dot size, nebula, where the organise phase ends, transition timing, the swarm's turn,
+  spread and wobble, depth, dive easing, roll, the perspective size law (`dive.sizePower`, 1 = true
+  perspective), and the centre dot's peers.
 - `src/data/nebula-01.json` holds frame 01's 3,830 dots, relative to the rings' centre, each with
   its local filament direction. Regenerate it from an SVG export of the frame 01 dots (node
   127:4887) with `node scripts/extract-nebula.mjs <file.svg>`.
@@ -71,10 +71,13 @@ In dev, two console helpers are available:
 
 - `heroField.pin(seconds)` freezes the clock that drives the fade-in, nebula drift and ring spin.
   `heroField.pin(null)` releases it.
-- `await heroField.seek(t)` jumps the playhead to track progress `t`, skipping the speed cap.
+- `await heroField.seek(t)` jumps the playhead to track progress `t`, skipping the glide.
 - `await heroField.simulate(frames, fps)` draws frames as if real time passed and returns the
-  playhead after each one. This checks the speed cap independently of the frame rate. At 60 fps, a
-  flick straight to the rings plays the organise phase over about 4 s.
+  playhead after each one. This checks the glide independently of the frame rate. At 60 fps, a
+  flick to the end of the transition is 90% there in 0.15 s.
+- `heroField.pairing()` reports the mean straight-line distance from nebula dot to slot, and the
+  share of crossing paths. The rework took these from 470 px and 3.6% to 318 px and 0.27%.
+- `heroField.swarm()` lists each ring's turn over the track (signed), with its spread.
 - `await heroField.stats()` compares the frame on screen with Figma frame 01's dots. It reports
   how much the dots line up around the centre (`tangential`), how periodic the radial density is
   (`ringScore`), how clumped the dots are (`clarkEvans`, `dispersion`, `outerDispersion`), and the

@@ -1,0 +1,302 @@
+/*
+  AtomsAI website: Tailwind CSS v4 theme.
+
+  This file mirrors the variables in the Figma file "AtomsAI — Website" (Library – Design System page)
+  one-to-one. Every Figma variable's WEB code syntax names a property defined here.
+
+    Palette     →  --color-{token}            bg-deep-green, border-stone, fill-iris
+    Theme       →  --color-{role}, per mode   bg-background, text-muted-foreground, outline-ring
+    States      →  --state-hover/pressed/disabled, per mode; --color-{primary,secondary}-{hover,pressed}
+    Typography  →  --font-*, --font-weight-*, --text-*
+    Layout      →  --spacing, --radius-*, --container-*, --breakpoint-*  (Tailwind defaults)
+
+  Usage:
+    @import "tailwindcss";
+    @import "./tailwind-theme.css";
+*/
+
+@theme {
+  /* Palette: brand colours only. Drop Tailwind's default palette. */
+  --color-*: initial;
+
+  --color-forest-shade: #10231e;
+  --color-deep-green: #27433b;
+  --color-forest-green: #42665a;
+  --color-sage: #668978;
+  --color-sage-tint: #94ac96;
+  --color-stone: #c7cdba;
+  --color-cream: #f6f1e8;
+
+  --color-charcoal: #33413d;
+  --color-graphite: #58625f;
+  --color-slate: #7e8583;
+  --color-ash: #a7aaa9;
+  --color-mist: #d0d1d1;
+  --color-paper: #fafafa;
+
+  --color-iris-shade: #493f58;
+  --color-iris: #8c78b0;
+  --color-iris-tint: #d8cde5;
+
+  --color-black: #000000;
+  --color-white: #ffffff;
+
+  /* Derived surfaces, not brand colours: mixes that back secondary where the palette has no step. */
+  --color-stone-tint: color-mix(in srgb, var(--color-stone) 40%, var(--color-cream));
+  --color-mist-tint: color-mix(in srgb, var(--color-mist) 40%, var(--color-paper));
+  --color-iris-light-surface: color-mix(in srgb, var(--color-iris) 20%, var(--color-iris-tint));
+  --color-iris-dark-surface: color-mix(in srgb, var(--color-iris) 20%, var(--color-iris-shade));
+
+  /* Theme: semantic roles. Default mode is Forest Light; other modes are set with data-theme. */
+  --color-background: var(--color-cream);
+  --color-foreground: var(--color-deep-green);
+  --color-muted-foreground: var(--color-forest-green);
+  --color-border: var(--color-stone);
+  /* Quieter hairlines (row dividers, card outlines on background): border at 50% in every theme.
+     Re-declared on [data-theme] below so it follows each section's border. */
+  --color-border-subtle: color-mix(in srgb, var(--color-border) 50%, transparent);
+  --color-primary: var(--color-deep-green);
+  --color-primary-foreground: var(--color-cream);
+  --color-secondary: var(--color-stone-tint);
+  --color-secondary-foreground: var(--color-deep-green);
+  --color-accent: var(--color-iris-tint);
+  --color-accent-foreground: var(--color-iris-shade);
+  --color-ring: var(--color-deep-green);
+  /* Logo: approved colourways only (Deep green on light themes, Cream on dark). Never foreground. */
+  --color-logo: var(--color-deep-green);
+
+  /* Interaction states: a role's own foreground laid over its surface at --state-hover or
+     --state-pressed, tuned per theme below so labels stay at 4.5:1 or better. Re-declared on
+     [data-theme] so each section mixes its own colours. Outline and Ghost buttons use
+     hover:bg-foreground/(--state-hover) instead. */
+  --color-primary-hover: color-mix(in srgb, var(--color-primary), var(--color-primary-foreground) var(--state-hover));
+  --color-primary-pressed: color-mix(in srgb, var(--color-primary), var(--color-primary-foreground) var(--state-pressed));
+  --color-secondary-hover: color-mix(in srgb, var(--color-secondary), var(--color-secondary-foreground) var(--state-hover));
+  --color-secondary-pressed: color-mix(in srgb, var(--color-secondary), var(--color-secondary-foreground) var(--state-pressed));
+
+  /* Typography: two families. font-sans is the default. */
+  --font-sans: "PP Neue Montreal", "Helvetica Neue", Arial, sans-serif;
+  --font-display: "Founders Grotesk", "Helvetica Neue", Arial, sans-serif;
+
+  /* Only the weights we ship: no synthetic bold. */
+  --font-weight-*: initial;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+
+  /* Brand headline tracking (−15). */
+  --tracking-tight: -0.015em;
+
+  /* Sizes are Tailwind's defaults. Line-height and tracking follow the brand: 140% body,
+     130–120% lead, 100–90% display, −1.5% from 2xl up. One utility (text-7xl) sets all three. */
+  --text-xs: 0.75rem;
+  --text-xs--line-height: 1.4;
+  --text-sm: 0.875rem;
+  --text-sm--line-height: 1.4;
+  --text-base: 1rem;
+  --text-base--line-height: 1.4;
+  --text-lg: 1.125rem;
+  --text-lg--line-height: 1.4;
+  --text-xl: 1.25rem;
+  --text-xl--line-height: 1.4;
+  --text-2xl: 1.5rem;
+  --text-2xl--line-height: 1.3;
+  --text-2xl--letter-spacing: -0.015em;
+  --text-3xl: 1.875rem;
+  --text-3xl--line-height: 1.2;
+  --text-3xl--letter-spacing: -0.015em;
+  --text-4xl: 2.25rem;
+  --text-4xl--line-height: 1;
+  --text-4xl--letter-spacing: -0.015em;
+  --text-5xl: 3rem;
+  --text-5xl--line-height: 0.95;
+  --text-5xl--letter-spacing: -0.015em;
+  --text-6xl: 3.75rem;
+  --text-6xl--line-height: 0.95;
+  --text-6xl--letter-spacing: -0.015em;
+  --text-7xl: 4.5rem;
+  --text-7xl--line-height: 0.9;
+  --text-7xl--letter-spacing: -0.015em;
+  --text-8xl: 6rem;
+  --text-8xl--line-height: 0.9;
+  --text-8xl--letter-spacing: -0.015em;
+  --text-9xl: 8rem;
+  --text-9xl--line-height: 0.9;
+  --text-9xl--letter-spacing: -0.015em;
+
+  /* Layout: spacing (--spacing: 0.25rem), radius, container and breakpoint scales are
+     Tailwind v4 defaults and are not redeclared. The Figma Layout collection mirrors them. */
+}
+
+/* Theme modes: one per brand theme that passes AA for body text.
+   <section data-theme="forest-dark" class="bg-background text-foreground"> */
+@layer base {
+  /* State defaults (Forest Light), plus the state mixes and border-subtle, recomputed inside
+     every themed section. */
+  :root {
+    --state-hover: 8%;
+    --state-pressed: 16%;
+  }
+
+  :root,
+  [data-theme] {
+    --state-disabled: 50%;
+    --color-border-subtle: color-mix(in srgb, var(--color-border) 50%, transparent);
+    --color-primary-hover: color-mix(in srgb, var(--color-primary), var(--color-primary-foreground) var(--state-hover));
+    --color-primary-pressed: color-mix(in srgb, var(--color-primary), var(--color-primary-foreground) var(--state-pressed));
+    --color-secondary-hover: color-mix(in srgb, var(--color-secondary), var(--color-secondary-foreground) var(--state-hover));
+    --color-secondary-pressed: color-mix(in srgb, var(--color-secondary), var(--color-secondary-foreground) var(--state-pressed));
+  }
+
+  /* Buttons (Figma: Button / Large, Medium, Small; sizes h-14 px-7 · h-11 px-5 · h-8 px-3):
+     base       inline-flex items-center justify-center gap-2 rounded-full font-medium
+                focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring
+                disabled:opacity-(--state-disabled) disabled:pointer-events-none
+     primary    bg-primary text-primary-foreground hover:bg-primary-hover active:bg-primary-pressed
+     secondary  bg-secondary text-secondary-foreground hover:bg-secondary-hover active:bg-secondary-pressed
+     outline    border border-border text-foreground hover:border-foreground
+                hover:bg-foreground/(--state-hover) active:bg-foreground/(--state-pressed)
+     ghost      text-foreground hover:bg-foreground/(--state-hover) active:bg-foreground/(--state-pressed)
+     link       px-0 text-foreground no-underline hover:text-muted-foreground active:text-muted-foreground
+                focus-visible:rounded-sm focus-visible:outline-offset-4
+     Buttons are never underlined, in any style or state. */
+
+  [data-theme="forest-light"] {
+    --color-background: var(--color-cream);
+    --color-foreground: var(--color-deep-green);
+    --color-muted-foreground: var(--color-forest-green);
+    --color-border: var(--color-stone);
+    --color-primary: var(--color-deep-green);
+    --color-primary-foreground: var(--color-cream);
+    --color-secondary: var(--color-stone-tint);
+    --color-secondary-foreground: var(--color-deep-green);
+    --color-accent: var(--color-iris-tint);
+    --color-accent-foreground: var(--color-iris-shade);
+    --color-ring: var(--color-deep-green);
+    --color-logo: var(--color-deep-green);
+    --state-hover: 8%;
+    --state-pressed: 16%;
+  }
+
+  /* No AA-passing muted step on forest green, so muted text equals foreground. */
+  [data-theme="forest-mid"] {
+    color-scheme: dark;
+    --color-background: var(--color-forest-green);
+    --color-foreground: var(--color-cream);
+    --color-muted-foreground: var(--color-cream);
+    --color-border: var(--color-sage);
+    --color-primary: var(--color-cream);
+    --color-primary-foreground: var(--color-deep-green);
+    --color-secondary: var(--color-deep-green);
+    --color-secondary-foreground: var(--color-cream);
+    --color-accent: var(--color-iris-tint);
+    --color-accent-foreground: var(--color-iris-shade);
+    --color-ring: var(--color-cream);
+    --color-logo: var(--color-cream);
+    --state-hover: 5%;
+    --state-pressed: 10%;
+  }
+
+  [data-theme="forest-dark"] {
+    color-scheme: dark;
+    --color-background: var(--color-forest-shade);
+    --color-foreground: var(--color-cream);
+    --color-muted-foreground: var(--color-sage-tint);
+    --color-border: var(--color-deep-green);
+    --color-primary: var(--color-cream);
+    --color-primary-foreground: var(--color-deep-green);
+    --color-secondary: var(--color-deep-green);
+    --color-secondary-foreground: var(--color-cream);
+    --color-accent: var(--color-iris-tint);
+    --color-accent-foreground: var(--color-iris-shade);
+    --color-ring: var(--color-cream);
+    --color-logo: var(--color-cream);
+    --state-hover: 8%;
+    --state-pressed: 16%;
+  }
+
+  [data-theme="neutral-light"] {
+    --color-background: var(--color-paper);
+    --color-foreground: var(--color-forest-shade);
+    --color-muted-foreground: var(--color-graphite);
+    --color-border: var(--color-mist);
+    --color-primary: var(--color-deep-green);
+    --color-primary-foreground: var(--color-paper);
+    --color-secondary: var(--color-mist-tint);
+    --color-secondary-foreground: var(--color-forest-shade);
+    --color-accent: var(--color-iris-tint);
+    --color-accent-foreground: var(--color-iris-shade);
+    --color-ring: var(--color-forest-shade);
+    --color-logo: var(--color-deep-green);
+    --state-hover: 8%;
+    --state-pressed: 16%;
+  }
+
+  [data-theme="neutral-dark"] {
+    color-scheme: dark;
+    --color-background: var(--color-charcoal);
+    --color-foreground: var(--color-paper);
+    --color-muted-foreground: var(--color-mist);
+    --color-border: var(--color-graphite);
+    --color-primary: var(--color-paper);
+    --color-primary-foreground: var(--color-charcoal);
+    --color-secondary: var(--color-graphite);
+    --color-secondary-foreground: var(--color-paper);
+    --color-accent: var(--color-iris-tint);
+    --color-accent-foreground: var(--color-iris-shade);
+    --color-ring: var(--color-paper);
+    --color-logo: var(--color-cream);
+    --state-hover: 6%;
+    --state-pressed: 12%;
+  }
+
+  /* Iris themes are occasional accents beside Forest. Every surface stays inside the iris family
+     (no cream or forest). No muted step passes AA within iris. */
+  [data-theme="iris-light"] {
+    --color-background: var(--color-iris-tint);
+    --color-foreground: var(--color-iris-shade);
+    --color-muted-foreground: var(--color-iris-shade);
+    --color-border: var(--color-iris);
+    --color-primary: var(--color-iris-shade);
+    --color-primary-foreground: var(--color-iris-tint);
+    --color-secondary: var(--color-iris-light-surface);
+    --color-secondary-foreground: var(--color-iris-shade);
+    --color-accent: var(--color-iris-shade);
+    --color-accent-foreground: var(--color-iris-tint);
+    --color-ring: var(--color-iris-shade);
+    --color-logo: var(--color-deep-green);
+    --state-hover: 7%;
+    --state-pressed: 14%;
+  }
+
+  [data-theme="iris-dark"] {
+    color-scheme: dark;
+    --color-background: var(--color-iris-shade);
+    --color-foreground: var(--color-iris-tint);
+    --color-muted-foreground: var(--color-iris-tint);
+    --color-border: var(--color-iris);
+    --color-primary: var(--color-iris-tint);
+    --color-primary-foreground: var(--color-iris-shade);
+    --color-secondary: var(--color-iris-dark-surface);
+    --color-secondary-foreground: var(--color-iris-tint);
+    --color-accent: var(--color-iris-tint);
+    --color-accent-foreground: var(--color-iris-shade);
+    --color-ring: var(--color-iris-tint);
+    --color-logo: var(--color-cream);
+    --state-hover: 4%;
+    --state-pressed: 8%;
+  }
+
+  html {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Headlines: sentence case, no lone last word. */
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+}

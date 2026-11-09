@@ -2,11 +2,16 @@
 import Guide from '../../layouts/Guide.astro';
 import Sub from '../../components/Sub.astro';
 import DownloadGroup from '../../components/DownloadGroup.astro';
+import FontGrid from '../../components/FontGrid.astro';
 import LogoDownloads from '../../components/LogoDownloads.astro';
 import { downloadCategories } from '../../data/downloads';
 import { logoVariants } from '../../data/logoExports';
 import { withBase } from '../../data/base';
 import logoManifest from '../../../public/logos/manifest.json';
+
+const googleFonts = [['Chivo', 'Headlines'], ['Inter', 'Body text']].map(([name, role]) => ({
+  name, family: name, weight: 400, detail: role, href: `https://fonts.google.com/specimen/${name}`,
+}));
 
 const logoBytes = logoManifest.files.reduce((total, file) => total + file.bytes, 0);
 ---
@@ -24,14 +29,13 @@ const logoBytes = logoManifest.files.reduce((total, file) => total + file.bytes,
   {
     downloadCategories.map((c, i) => (
       <Sub id={c.id} title={c.title} number={`10.${i + 2}`}>
-        <Fragment slot="text">
-          <p>{c.description}</p>
-          {c.id === 'fonts' && <p class="muted">The font files are licensed to AtomsAI. Use them only for AtomsAI work.</p>}
-        </Fragment>
         <DownloadGroup category={c} />
       </Sub>
     ))
   }
+  <Sub id="google-fonts" title="Google Fonts" number="10.3">
+    <FontGrid cards={googleFonts} />
+  </Sub>
 </Guide>
 
 <style>

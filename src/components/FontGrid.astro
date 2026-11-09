@@ -1,0 +1,104 @@
+---
+import '../styles/workspace-fonts.css';
+
+interface Props {
+  cards: {
+    name: string;
+    family: string;
+    weight: number;
+    detail: string;
+    href: string;
+    download?: string;
+  }[];
+}
+
+const { cards } = Astro.props;
+---
+
+<div class="group">
+  <slot />
+  <ul class="grid">
+    {
+      cards.map((d) => (
+        <li class="card">
+          <div class="preview" style={`--family: ${d.family}; --weight: ${d.weight}`} aria-hidden="true">
+            <span>Aa</span>
+          </div>
+          <div class="info">
+            <div class="meta">
+              <p>{d.name}</p>
+              <p class="muted">
+                {d.detail}
+              </p>
+            </div>
+            <a class="btn" href={d.href} download={d.download} aria-label={d.download ? `Download ${d.name}` : `${d.name} on Google Fonts`}>
+              {d.download ? 'Download ↓' : 'Google Fonts ↗'}
+            </a>
+          </div>
+        </li>
+      ))
+    }
+  </ul>
+</div>
+
+<style>
+  .group {
+    container-type: inline-size;
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2rem 1.25rem;
+  }
+
+  @container (min-width: 28rem) {
+    .grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @container (min-width: 46rem) {
+    .grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+
+  .card {
+    display: grid;
+    align-content: start;
+    gap: 0.875rem;
+  }
+
+  /* The font itself, large, as the preview. */
+  .preview {
+    display: grid;
+    place-items: center;
+    aspect-ratio: 4 / 3;
+    box-shadow: inset 0 0 0 1px var(--rule);
+    font-family: var(--family);
+    font-weight: var(--weight);
+    font-size: 4.5rem;
+    letter-spacing: -0.015em;
+    line-height: 1;
+  }
+
+  .preview span {
+    text-box: trim-both cap alphabetic;
+  }
+
+  .info {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 0.75rem;
+  }
+
+  .meta {
+    display: grid;
+    gap: 0.625rem;
+  }
+</style>

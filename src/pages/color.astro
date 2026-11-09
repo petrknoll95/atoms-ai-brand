@@ -2,8 +2,11 @@
 import { withBase } from '../data/base';
 import Guide from '../layouts/Guide.astro';
 import Sub from '../components/Sub.astro';
+import Figure from '../components/Figure.astro';
+import { printMatch } from '../data/printColors';
 import Swatch from '../components/Swatch.astro';
 import {
+  allColors,
   bare,
   colors,
   combinations,
@@ -37,8 +40,8 @@ const ink = (key: ColorKey) =>
 <Guide slug="color" description="The AtomsAI palette: copy any color, gradient or theme.">
   <Sub id="palette" title="Palette" number="3.1">
     <Fragment slot="text">
-      <p>A forest-led palette. Deep green grounds the brand, cream gives it air, and iris adds a single, deliberate accent.</p>
-      <p class="muted">Open the menu on any color to copy its HEX, RGB, CMYK or CSS value.</p>
+      <p>A forest-led palette. Deep green grounds the brand, cream gives it air, with purple and orange accents adding emphasis.</p>
+      <p class="muted">Open the menu on any color to copy its HEX, RGB, CMYK, shortlisted Pantone or CSS value.</p>
       <div class="btn-row">
         <button class="btn" type="button" data-copy={tokensCss()} data-copy-message="CSS variables copied">Copy CSS variables</button>
         <a class="btn" href={withBase('/tokens.css')} download="atomsai-colors.css">Download .css</a>
@@ -62,8 +65,9 @@ const ink = (key: ColorKey) =>
       <Sub id={block.id} title={block.title} number={block.number}>
         <Fragment slot="text">
           <p>{block.intro}</p>
+          {block.id === 'accent' && <p class="muted">Use Black labels on Iris and Orange CTAs. Pair Iris Light with Iris Dark ({contrast(colors.irisLight.hex, colors.irisDark.hex).toFixed(1)}:1), and Apricot with Crimson ({contrast(colors.apricot.hex, colors.crimson.hex).toFixed(1)}:1). Keep focal accents near 10% of a Forest-led layout.</p>}
         </Fragment>
-        <div class="roles" style={`--count: ${block.keys.length}`}>
+        <div class="roles" style={`--count: ${Math.min(block.keys.length, 3)}`}>
           {block.keys.map((key) => {
             const c = colors[key];
             const [r, g, b] = rgb(c.hex);
@@ -96,6 +100,20 @@ const ink = (key: ColorKey) =>
     ))
   }
 
+  <Sub id="accent-stacking" title="Accent stacking" number="3.4.1">
+    <Fragment slot="text">
+      <p>Stack dark, mid and light tones within one family. Keep layers opaque and edges clean. Keep the lightest layer on top.</p>
+    </Fragment>
+    <Figure tone="plain" caption="Iris Dark · Iris · Iris Light / Crimson · Orange · Apricot">
+      <div class="accent-stacking" role="img" aria-label="Two overlapping color stacks on black. Iris Dark, Iris and Iris Light align along the bottom. Crimson, Orange and Apricot step upwards.">
+        <div class="accent-stacking-art">
+        <span class="stack-iris-dark"></span><span class="stack-iris"></span><span class="stack-iris-light"></span>
+        <span class="stack-crimson"></span><span class="stack-orange"></span><span class="stack-apricot"></span>
+        </div>
+      </div>
+    </Figure>
+  </Sub>
+
   <Sub id="shades" title="Shades" number="3.5">
     <Fragment slot="text">
       <p>Forest – Cream. Seven steps from forest shade to cream. Use the ramp for hierarchy, interface states and data visualization.</p>
@@ -107,16 +125,25 @@ const ink = (key: ColorKey) =>
 
   <Sub id="neutrals" title="Neutrals" number="3.6">
     <Fragment slot="text">
-      <p>Forest – Neutral. Seven steps from forest shade to neutral white. Use the ramp for hierarchy, interface states and data visualization.</p>
+      <p>Forest shade to Paper. Use these green-tinted neutrals for brand surfaces and editorial layouts.</p>
     </Fragment>
     <div class="ramp">
       {ramps.neutrals.map((key) => <Swatch color={key} />)}
     </div>
   </Sub>
 
+  <Sub id="true-greys" title="True greys" number="3.6.1">
+    <Fragment slot="text">
+      <p>Black to White in seven steps. Use dark greys for labels, light greys for dividers and surfaces, and the full scale for ordered data.</p>
+    </Fragment>
+    <div class="ramp">
+      {ramps.trueGreys.map((key) => <Swatch color={key} />)}
+    </div>
+  </Sub>
+
   <Sub id="combinations" title="Combinations" number="3.7">
     <Fragment slot="text">
-      <p>Six approved combinations. Lead with one color, support with a second and accent with a third, at roughly 60/30/10.</p>
+      <p>Eight approved combinations. Lead with one color, support with a second and accent with a third, at roughly 60/30/10.</p>
     </Fragment>
     <ol class="combos">
       {
@@ -170,7 +197,7 @@ const ink = (key: ColorKey) =>
             <p>
               {theme.name} <span class="muted">— {theme.intro}</span>
             </p>
-            <div class="theme-row">
+            <div class="theme-row" style={`--theme-count: ${theme.steps.length}`}>
               {theme.steps.map((step) => {
                 const bg = colors[step.bg];
                 const fg = colors[step.fg];
@@ -205,9 +232,48 @@ const ink = (key: ColorKey) =>
       }
     </div>
   </Sub>
+  <Sub id="pantone" title="Pantone shortlist" number="3.10">
+    <Fragment slot="text">
+      <p>Coated Pantone matches selected from screen references. Physical proof required before production. Digital HEX values remain the source for screen use.</p>
+      <p class="muted">Paper stock means the substrate supplies the color. No uncoated matches have been selected.</p>
+      <div class="btn-row"><a class="btn" href={withBase('/atomsai-pantone-shortlist.json')} download>Download shortlist .json</a></div>
+    </Fragment>
+    <div class="print-table-wrap">
+      <table class="print-table">
+        <thead><tr><th scope="col">Color</th><th scope="col">HEX</th><th scope="col">Coated shortlist</th></tr></thead>
+        <tbody>{allColors.map(c => {
+          const match = printMatch(c);
+          return <tr>
+            <th scope="row"><span class="dot" style={`background: ${c.hex}`} />{c.name}</th>
+            <td>{c.hex}</td>
+            <td>{match.kind === 'unassigned' ? <span class="muted">{match.label}</span> : <button class="value" type="button" data-copy={`${match.label} — ${match.status}`}>{match.label}</button>}</td>
+          </tr>;
+        })}</tbody>
+      </table>
+    </div>
+  </Sub>
 </Guide>
 
 <style>
+  .print-table-wrap { overflow-x: auto; }
+  .print-table { width: 100%; border-collapse: collapse; font-size: var(--size-annotation); text-align: left; }
+  .print-table th, .print-table td { padding: 1rem 0; border-bottom: 1px solid var(--rule); vertical-align: middle; }
+  .print-table th { font-weight: 500; }
+  .print-table th + th, .print-table td { padding-left: 1.5rem; }
+  .print-table .dot { display: inline-block; margin-right: 0.75rem; }
+  .print-table td { white-space: nowrap; }
+
+  .accent-stacking { padding: clamp(1rem, 4vw, 3rem); background: var(--black); }
+  .accent-stacking-art { position: relative; aspect-ratio: 2.3; }
+  .accent-stacking-art span { position: absolute; display: block; }
+  .stack-iris-dark { left: 0; top: 0; width: 31.5%; height: 100%; background: var(--iris-dark); }
+  .stack-iris { left: 18%; bottom: 0; width: 25%; height: 77.5%; background: var(--iris); }
+  .stack-iris-light { left: 29%; bottom: 0; width: 19.5%; height: 57.5%; background: var(--iris-light); }
+  .stack-crimson { left: 53%; bottom: 0; width: 32%; height: 73.75%; background: var(--crimson); }
+  .stack-orange { left: 64%; top: 15%; width: 25.5%; height: 58.75%; background: var(--orange); }
+  .stack-apricot { right: 0; top: 0; width: 18%; height: 41.25%; background: var(--apricot); }
+
+
   .mosaic {
     display: grid;
     grid-template-columns: 1.42fr 1.85fr 1.42fr 1fr;
@@ -281,7 +347,7 @@ const ink = (key: ColorKey) =>
 
   .combos {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(var(--theme-count, 3), minmax(0, 1fr));
     gap: 1.25rem;
   }
 
@@ -347,7 +413,7 @@ const ink = (key: ColorKey) =>
 
   .theme-row {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(var(--theme-count, 3), minmax(0, 1fr));
     gap: 1.25rem;
   }
 

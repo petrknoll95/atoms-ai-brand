@@ -5,6 +5,7 @@ import Sidebar from '../components/Sidebar.astro';
 import { section, sectionNumber } from '../data/nav';
 import { withBase } from '../data/base';
 import { faviconLinks } from '../data/favicon';
+import { fontFaceCss, fontPreloads } from '../data/fonts';
 
 interface Props {
   slug: string;
@@ -21,20 +22,6 @@ const { slug, description = 'AtomsAI brand guidelines and asset library.', pageT
 const current = section(slug);
 const number = pageNumber ?? sectionNumber(slug);
 const title = pageTitle ? `${pageTitle} — AtomsAI Brand` : slug === 'intro' ? 'AtomsAI Brand' : `${current.title} — AtomsAI Brand`;
-
-// Self-hosted brand fonts from public/fonts. Declared here rather than in global.css so the URLs
-// carry the base path: Vite only rewrites root-absolute CSS URLs in the build, not in dev.
-const fontFaces = [
-  ['Founders Grotesk', 'FoundersGrotesk-Regular', 400],
-  ['Founders Grotesk', 'FoundersGrotesk-Medium', 500],
-  ['PP Neue Montreal', 'PPNeueMontreal-Regular', 400],
-  ['PP Neue Montreal', 'PPNeueMontreal-Medium', 500],
-]
-  .map(
-    ([family, file, weight]) =>
-      `@font-face { font-family: '${family}'; src: url('${withBase(`/fonts/${file}.woff2`)}') format('woff2'); font-weight: ${weight}; font-style: normal; font-display: swap; }`,
-  )
-  .join('\n');
 ---
 
 <!doctype html>
@@ -46,10 +33,9 @@ const fontFaces = [
     <meta name="description" content={description} />
     <meta name="robots" content="noindex, nofollow" />
     {faviconLinks.map(({ file, ...attributes }) => <link {...attributes} href={withBase(file)} />)}
-    <link rel="preload" href={withBase('/fonts/PPNeueMontreal-Regular.woff2')} as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href={withBase('/fonts/FoundersGrotesk-Regular.woff2')} as="font" type="font/woff2" crossorigin />
+    {fontPreloads.map((href) => <link rel="preload" href={href} as="font" type="font/woff2" crossorigin />)}
     <link rel="stylesheet" href={withBase('/tokens.css')} />
-    <style is:inline set:html={fontFaces} />
+    <style is:inline set:html={fontFaceCss()} />
   </head>
   <body>
     <div class="shell">

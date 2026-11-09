@@ -78,6 +78,21 @@ for (const c of manifest.palette) {
   assert(brand.includes(`| ${c.token} | ${c.hex} | ${c.rgb.join(', ')} |`), `Skill palette has drifted: ${c.token}`);
   if (c.cmyk) assert(brand.includes(`${c.name} ${c.cmyk.join('/')}`), `CMYK has drifted: ${c.name}`);
 }
+const printSource = JSON.parse(await read(join(root, 'public/atomsai-pantone-shortlist.json')));
+assert.deepEqual(JSON.parse(await read(join(dist, 'atomsai-pantone-shortlist.json'))), printSource);
+assert.equal(manifest.print.status, printSource.status);
+assert.equal(manifest.print.matches.length, manifest.palette.length);
+for (const match of manifest.print.matches) {
+  const selected = printSource.selections[`C:${match.token}`];
+  assert.equal(match.choice, selected?.choice ?? null, `Print selection drift: ${match.token}`);
+  if (selected) {
+    assert.equal(match.hex, selected.hex, `Print HEX drift: ${match.token}`);
+    assert.equal(match.kind, selected.choice === 'paper' ? 'paper' : 'pantone');
+    assert(brand.includes(`| ${match.token} | ${match.label} |`), `Print skill drift: ${match.token}`);
+  } else assert.equal(match.kind, 'unassigned');
+}
+await checkUrl(manifest.print.download);
+
 for (const t of manifest.themes) {
   assert(brand.includes(`| ${t.name} | ${t.background} | ${t.foreground} |`), `Theme has drifted: ${t.name}`);
 }

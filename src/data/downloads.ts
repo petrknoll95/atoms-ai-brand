@@ -15,7 +15,6 @@ export interface Download {
 export interface DownloadCategory {
   id: string;
   title: string;
-  description: string;
   /** File name of the category's "Download all" zip. */
   zip: string;
   items: Download[];
@@ -31,8 +30,7 @@ const font = (name: string, file: string, family: string, weight: number): Downl
 export const downloadCategories: DownloadCategory[] = [
   {
     id: 'fonts',
-    title: 'Fonts',
-    description: 'Founders Grotesk for headlines and display type, PP Neue Montreal for body text, in Regular and Medium.',
+    title: 'Brand Fonts',
     zip: 'atomsai-fonts.zip',
     items: [
       font('Founders Grotesk Regular', 'FoundersGrotesk-Regular.woff2', 'var(--font-display)', 400),

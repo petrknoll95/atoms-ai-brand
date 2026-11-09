@@ -26,6 +26,20 @@
       "port": 4330
     },
     {
+      "name": "slit-logo",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "8080",
+        "--bind",
+        "127.0.0.1",
+        "--directory",
+        "/Users/petrknoll/Documents/Design/AI/atoms-ai-slit-logo"
+      ],
+      "port": 8080
+    },
+    {
       "name": "hero-prototype",
       "runtimeExecutable": "npm",
       "runtimeArgs": [

@@ -87,6 +87,13 @@
   box-sizing: border-box;
 }
 
+/* No rubber-band overscroll: the scroll track drives the animation, and bouncing past the top or
+   bottom would pull the pinned hero and the deep-green section off their edges. */
+html,
+body {
+  overscroll-behavior: none;
+}
+
 html {
   background: var(--color-background);
   color: var(--color-foreground);

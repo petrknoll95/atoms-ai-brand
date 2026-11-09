@@ -1,0 +1,46 @@
+---
+import '../styles/global.css';
+import { withBase } from '../data/base';
+import { faviconLinks } from '../data/favicon';
+import { fontFaceCss, fontPreloads } from '../data/fonts';
+
+// An isolated, full-viewport view for generative tools: no sidebar, no page chrome.
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = 'AtomsAI brand guidelines and asset library.' } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" class="canvas-view">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{`${title} — AtomsAI Brand`}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content="noindex, nofollow" />
+    {faviconLinks.map(({ file, ...attributes }) => <link {...attributes} href={withBase(file)} />)}
+    {fontPreloads.map((href) => <link rel="preload" href={href} as="font" type="font/woff2" crossorigin />)}
+    <link rel="stylesheet" href={withBase('/tokens.css')} />
+    <style is:inline set:html={fontFaceCss()} />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
+
+<style is:global>
+  .canvas-view,
+  .canvas-view body {
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .canvas-view body {
+    background: var(--canvas-bg, var(--forest-shade));
+    color: var(--canvas-fg, var(--cream));
+  }
+</style>

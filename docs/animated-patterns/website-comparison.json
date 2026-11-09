@@ -1,0 +1,114 @@
+{
+  "toolURL": "http://127.0.0.1:4323/atoms-ai-brand/tools/animated-patterns/",
+  "websiteURL": "http://127.0.0.1:3001/patterns/motion",
+  "results": [
+    {
+      "kind": "drift",
+      "palette": "forest-dark",
+      "phase": 0.25,
+      "width": 512,
+      "height": 512,
+      "identicalPNG": true,
+      "sha256": "a86800d4b932dfa662b2f3843a399955d5f0626c2fe55d37d0103022bddbb84b"
+    },
+    {
+      "kind": "drift",
+      "palette": "forest-light",
+      "phase": 0.25,
+      "width": 512,
+      "height": 512,
+      "identicalPNG": true,
+      "sha256": "508d9481f5ccea24c5b9008997e0b17af7f40a02aa7f3df861636fc6745e8f50"
+    },
+    {
+      "kind": "drift",
+      "palette": "iris",
+      "phase": 0.25,
+      "width": 512,
+      "height": 512,
+      "identicalPNG": true,
+      "sha256": "472140944228bcd89f6a58de70a7766a8c3903661359564b825843215e74f8fe"
+    },
+    {
+      "kind": "offset",
+      "palette": "forest-dark",
+      "phase": 0.25,
+      "width": 512,
+      "height": 512,
+      "identicalPNG": true,
+      "sha256": "54a4851f53310c36b1c6f8f1e5f81684a94dcd727814d5d14b14925b01a765b5"
+    },
+    {
+      "kind": "offset",
+      "palette": "forest-light",
+      "phase": 0.25,
+      "width": 512,
+      "height": 512,
+      "identicalPNG": true,
+      "sha256": "7386d158fba173dc198960ef9c6742f51ead90aff7daa03b18933603c3a8af6d"
+    },
+    {
+      "kind": "offset",
+      "palette": "iris",
+      "phase": 0.25,
+      "width": 512,
+      "height": 512,
+      "identicalPNG": true,
+      "sha256": "d1156de5ff17200694ff0dac1652d11f70368763f95c0a5871a78cc1554e7177"
+    },
+    {
+      "kind": "single-band",
+      "palette": "forest-dark",
+      "phase": 0.25,
+      "width": 512,
+      "height": 512,
+      "identicalPNG": true,
+      "sha256": "bf278c462d64326931060ecf202c52c3b932af493794982c33b57a7818a18be2"
+    },
+    {
+      "kind": "single-band",
+      "palette": "forest-light",
+      "phase": 0.25,
+      "width": 512,
+      "height": 512,
+      "identicalPNG": true,
+      "sha256": "75a672d3146ae32f3f043280fb0326e96c9c1f1cc243c5a93dac4b8689ead23b"
+    },
+    {
+      "kind": "single-band",
+      "palette": "iris",
+      "phase": 0.25,
+      "width": 512,
+      "height": 512,
+      "identicalPNG": true,
+      "sha256": "2b44e6c999c02637cd4be63fe9fa86bb523f6c5446a8fec39cff30ee6b7eb770"
+    },
+    {
+      "kind": "concentric",
+      "palette": "forest-dark",
+      "phase": 0.25,
+      "width": 512,
+      "height": 512,
+      "identicalPNG": true,
+      "sha256": "8a36490cef67e151faab670b55b920f53b5c8cf1b5cd49f773e8c288cea3599f"
+    },
+    {
+      "kind": "concentric",
+      "palette": "forest-light",
+      "phase": 0.25,
+      "width": 512,
+      "height": 512,
+      "identicalPNG": true,
+      "sha256": "6e335d7d4487b72993b7dbd2b9431cb782d76398a5082786b13295f06e1842b6"
+    },
+    {
+      "kind": "concentric",
+      "palette": "iris",
+      "phase": 0.25,
+      "width": 512,
+      "height": 512,
+      "identicalPNG": true,
+      "sha256": "ccdf59a3ade0668189a636fa5ecd49688e95a91aaae24bdcbc32b8327251be59"
+    }
+  ]
+}

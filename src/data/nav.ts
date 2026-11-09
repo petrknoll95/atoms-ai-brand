@@ -44,11 +44,14 @@ export const sections: Section[] = [
       s('primary', 'Primary', '3.2'),
       s('secondary', 'Secondary', '3.3'),
       s('accent', 'Accent', '3.4'),
+      s('accent-stacking', 'Accent stacking', '3.4.1'),
       s('shades', 'Shades', '3.5'),
       s('neutrals', 'Neutrals', '3.6'),
+      s('true-greys', 'True greys', '3.6.1'),
       s('combinations', 'Combinations', '3.7'),
       s('gradients', 'Gradients', '3.8'),
       s('themes', 'Themes', '3.9'),
+      s('pantone', 'Pantone shortlist', '3.10'),
     ],
   },
   {
@@ -60,6 +63,7 @@ export const sections: Section[] = [
       s('character-set', 'Character set', '5.3'),
       s('scale', 'Scale & line-height', '5.4'),
       s('headlines', 'Headlines', '5.5'),
+      s('google-workspace', 'Google Workspace alternatives', '5.6'),
     ],
   },
   {
@@ -83,7 +87,7 @@ export const sections: Section[] = [
     slug: 'illustration',
     title: 'Illustration',
     href: withBase('/illustration/'),
-    subs: [s('style', 'Style', '7.1'), s('linework', 'Linework', '7.2')],
+    subs: [s('style', 'Style', '7.1'), s('linework', 'Linework', '7.2'), s('usage-limits', 'Usage limits', '7.3'), s('size-stroke', 'Size & stroke', '7.4'), s('readability', 'Readability', '7.5')],
   },
   {
     slug: 'examples',
@@ -99,9 +103,10 @@ export const tools: Section[] = [
     slug: 'tools',
     title: 'Tools',
     href: withBase('/tools/'),
-    subs: [s('pattern-generator', 'Pattern generator', '9.1'), s('mark-reveal', 'Mark reveal', '9.2')],
+    subs: [s('pattern-generator', 'Pattern generator', '9.1'), s('mark-reveal', 'Mark reveal', '9.2'),
+      { id: 'animated-patterns', title: 'Animated patterns', number: '9.3', href: withBase('/tools/animated-patterns/') }],
   },
-  { slug: 'assets', title: 'Assets', href: withBase('/assets/'), subs: [s('logos', 'Logos', '10.1'), s('fonts', 'Fonts', '10.2')] },
+  { slug: 'assets', title: 'Assets', href: withBase('/assets/'), subs: [s('logos', 'Logos', '10.1'), s('fonts', 'Brand Fonts', '10.2'), s('google-fonts', 'Google Fonts', '10.3')] },
   {
     slug: 'skills', title: 'Skills', href: withBase('/skills/'),
     subs: [

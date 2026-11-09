@@ -1,0 +1,31 @@
+{
+  "url": "http://127.0.0.1:4323/atoms-ai-brand/tools/animated-patterns/",
+  "results": [
+    {
+      "browser": "chromium",
+      "checks": [
+        "visible animation; cached masks; pause is stable",
+        "all four structures and three palettes render and loop exactly",
+        "replay resets loop; both clipboard actions contain correct values",
+        "compare still; reduced motion disables autoplay and preserves frame inspection",
+        "no overflow at 768, 390, 320px",
+        "offscreen suspends draws and resumes",
+        "WebGL context loss and recovery"
+      ],
+      "errors": []
+    },
+    {
+      "browser": "webkit",
+      "checks": [
+        "visible animation; cached masks; pause is stable",
+        "all four structures and three palettes render and loop exactly",
+        "replay resets loop; both clipboard actions contain correct values",
+        "compare still; reduced motion disables autoplay and preserves frame inspection",
+        "no overflow at 768, 390, 320px",
+        "offscreen suspends draws and resumes",
+        "WebGL context loss and recovery"
+      ],
+      "errors": []
+    }
+  ]
+}
