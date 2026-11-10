@@ -1,0 +1,6 @@
+---
+import { signalSVG, type AIState, type AIInk } from '../data/aiIdentity';
+interface Props { uid: string; state?: AIState; ink?: AIInk; animated?: boolean; interactive?: boolean; }
+const { uid, state = 'idle', ink = 'deepGreen', animated = false, interactive = false } = Astro.props;
+---
+<Fragment set:html={signalSVG({ uid, state, ink, animated, interactive, decorative: true })} />

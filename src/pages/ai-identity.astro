@@ -1,0 +1,113 @@
+---
+import Guide from '../layouts/Guide.astro';
+import Sub from '../components/Sub.astro';
+import AISignal from '../components/AISignal.astro';
+import GlassSpecimen from '../components/GlassSpecimen.astro';
+import { aiStates, signalFileName, signalBlades, signalViewBox } from '../data/aiIdentity';
+import { withBase } from '../data/base';
+import { glassCss } from '../data/glass';
+const asset = (path: string) => withBase(`/assets/ai-identity/${path}`);
+---
+
+<Guide slug="ai-identity" description="AtomsAI Signal: a mark-derived AI identity with idle, listening, thinking and speaking states, motion guidance and editable downloads.">
+  <style is:inline set:html={glassCss()} />
+  <Sub id="signal" title="Signal">
+    <Fragment slot="text">
+      <p>Signal gives our AI a recognizable presence. The mark’s three mirrored pairs of blades become a quiet, functional expression of what is happening: ready, receiving, working or responding.</p>
+    </Fragment>
+    <div class="signal-demo" data-signal-demo>
+      <GlassSpecimen variant="banner">
+        <AISignal slot="mark" uid="playground" state="speaking" ink="deepGreen" animated interactive />
+        <Fragment slot="overlay">
+          <p class="visually-hidden" role="status" aria-live="polite" aria-atomic="true" data-state-label>Speaking</p>
+          <div class="demo-controls">
+            <div class="btn-row" role="group" aria-label="Preview state">{aiStates.map(state => <button class="btn" type="button" data-signal-state={state.id} aria-pressed={state.id === 'speaking'}>{state.name}</button>)}</div>
+          </div>
+        </Fragment>
+      </GlassSpecimen>
+    </div>
+  </Sub>
+
+  <Sub id="construction" title="From the mark">
+    <Fragment slot="text"><p>The same circular cuts, vertical slits and mirrored rhythm that shape the mark also underpin our interference patterns. Signal brings that language into the interface at a smaller scale.</p><p>Thinking moves the three slits on each half continuously outward. Speaking contracts all six slits together at irregular intervals.</p></Fragment>
+    <div class="construction-grid">
+      <figure><div class="construction-tile"><AISignal uid="origin" /></div><figcaption><span>Recognize</span><span class="muted">The complete mark at rest.</span></figcaption></figure>
+      <figure><div class="construction-tile slit-diagram"><AISignal uid="structure" /><svg class="guides" viewBox={signalViewBox} width="440" height="400" fill="none" aria-hidden="true">{signalBlades.map(blade => <rect x={blade.x} y="0" width={blade.w} height="100" />)}</svg></div><figcaption><span>Reveal</span><span class="muted">Six slit positions. Three mirrored pairs.</span></figcaption></figure>
+      <figure><div class="construction-tile"><AISignal uid="expression" state="speaking" /></div><figcaption><span>Express</span><span class="muted">Movement changes the state, not the structure.</span></figcaption></figure>
+    </div>
+  </Sub>
+
+  <Sub id="states" title="Four states">
+    <Fragment slot="text"><p>Each state has its own rhythm and direction. Color stays consistent. Always pair Signal with a short, visible status label so meaning survives still images, reduced motion and small sizes.</p></Fragment>
+    <div class="states-toolbar"><p class="muted">Live motion specimens</p><button class="btn" type="button" data-gallery-pause aria-pressed="false">Pause specimens</button></div>
+    <div class="state-grid">{aiStates.map((state, index) => <article class="state-card">
+      <div class="state-art"><span class="state-index">0{index + 1}</span><AISignal uid={`state-${state.id}`} state={state.id} animated /><span class="art-label">{state.label}</span></div>
+      <div class="state-copy"><h3 class="display">{state.name}</h3><p>{state.description}</p></div>
+      <div class="btn-row"><a class="btn" href={asset(`static/${signalFileName(state.id, 'deepGreen')}`)} aria-label={`Download ${state.name} static SVG`} download>Static SVG ↓</a><a class="btn" href={asset(`animated/${signalFileName(state.id, 'deepGreen', true)}`)} aria-label={`Download ${state.name} animated SVG`} download>Motion SVG ↓</a></div>
+    </article>)}</div>
+  </Sub>
+
+  <Sub id="downloads" title="Downloads">
+    <Fragment slot="text"><p>Editable, transparent vectors in the current brand colors. Static SVGs work in design tools; animated SVGs carry their own CSS and reduced-motion fallback. All files use the same construction as the specimens above.</p></Fragment>
+    <div class="download-package">
+      <article class="download-card">
+        <div class="download-preview"><AISignal uid="kit-preview" /></div>
+        <div class="download-card-meta">
+          <div><p>Signal kit</p><p class="muted">32 SVGs · four states · four inks</p></div>
+          <a class="btn" href={withBase('/assets/ai-identity.zip')} download="atomsai-ai-identity.zip">Download ↓</a>
+        </div>
+      </article>
+    </div>
+    <div class="btn-row secondary-downloads"><a class="btn" href={asset('signal-engine.js')} download>Animation engine ↓</a><a class="btn" href={asset('signal.html')} download="atomsai-signal.html">HTML reference ↓</a><a class="btn" href={asset('states.json')} download>State data ↓</a><a class="btn" href={asset('README.md')} download="atomsai-signal-guide.md">Usage guide ↓</a></div>
+    <p class="muted download-note">Deep green · Cream · Black · White. SVG motion is intended for browsers; design apps may display only its still pose.</p>
+  </Sub>
+</Guide>
+
+<script>import '../scripts/ai-identity';</script>
+
+<style>
+  .signal-demo, .state-card, .state-copy { display:grid; gap:1.25rem; }
+  .demo-controls {
+    position:absolute;
+    z-index:3;
+    inset:auto 1rem 1rem;
+    display:flex;
+    justify-content:space-between;
+    gap:.75rem;
+    pointer-events:none;
+  }
+  .demo-controls .btn-row { pointer-events:auto; }
+  .demo-controls .btn { background:var(--paper); border:0; }
+  .demo-controls .btn[aria-pressed="true"] { background:var(--deep-green); color:var(--cream); }
+  .demo-controls .btn:focus-visible { outline:2px solid var(--paper); box-shadow:0 0 0 4px var(--deep-green); }
+  @container (max-width:560px) {
+    .demo-controls { inset:1rem; flex-direction:column; align-items:flex-start; }
+  }
+  @container (max-width:400px) {
+    .demo-controls .btn-row { gap:.375rem; flex-wrap:nowrap; }
+    .demo-controls .btn { padding:0 .5rem; font-size:.75rem; }
+  }
+  .states-toolbar { display:flex; justify-content:space-between; gap:1rem; flex-wrap:wrap; }
+  .construction-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1.25rem; }
+  figure { display:grid; align-content:start; gap:.875rem; }
+  figcaption { display:grid; gap:.5rem; }
+  .construction-tile { background:var(--mist); aspect-ratio:1; position:relative; display:grid; place-items:center; overflow:hidden; }
+  .construction-tile :global(svg) { width:44%; height:auto; }
+  .construction-tile .guides { position:absolute; inset:0; margin:auto; pointer-events:none; fill:none; stroke:var(--sage-tint); stroke-width:.3; stroke-dasharray:1 1; }
+  .state-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:2.5rem 1.5rem; }
+  .states-toolbar { margin-bottom:1.25rem; align-items:center; }
+  .state-art { position:relative; background:var(--mist); min-height:20rem; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:3rem; padding:3rem 1.5rem; }
+  .state-art :global(svg) { width:132px; height:120px; }
+  .state-index { position:absolute; top:1rem; left:1rem; font-size:var(--size-annotation-small); }
+  .state-copy { gap:1rem; align-content:start; }
+  .state-card { grid-template-rows:auto 1fr auto; }
+  .download-package { container-type:inline-size; }
+  .download-card { min-width:0; display:grid; gap:1rem; align-content:start; }
+  .download-preview { display:grid; place-items:center; height:12rem; padding:2rem; background-color:#f7f7f7; background-image:conic-gradient(#ededed 25%, transparent 0 50%, #ededed 0 75%, transparent 0); background-size:16px 16px; box-shadow:inset 0 0 0 1px var(--rule); }
+  .download-preview :global(svg) { width:100%; height:100%; max-height:8rem; }
+  .download-card-meta { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:.75rem; }
+  .download-card-meta>div { display:grid; gap:.625rem; }
+  @container (min-width:28rem) { .download-card { max-width:calc((100% - 1.25rem) / 2); } }
+  .secondary-downloads { margin-top:1.25rem; }.download-note { margin-top:1.5rem; }
+  @media(max-width:600px) { .construction-grid,.state-grid { grid-template-columns:1fr; }.construction-tile { aspect-ratio:1.5; }.construction-tile :global(svg) { width:30%; } }
+</style>

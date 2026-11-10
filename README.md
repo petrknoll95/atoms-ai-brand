@@ -30,6 +30,7 @@ and `base` to `'/'`.
 | Typography | Editable specimens for every face, character set, scale and headline rule |
 | Icons | 15 stroke icons with a shared color and Regular/Medium weight switch; Copy SVG, SVG, PNG (512 px) |
 | Patterns | Live renders of every structure, density and colorway, and live usage tiles |
+| AI identity | `/ai-identity/`: Signal with four interactive states, a glass preview, smooth geometric transitions, reduced motion, 32 SVGs and a portable animation engine |
 | Illustration | Concept drawings and linework, recolorable, as SVG or PNG |
 | Glass styling | Live CSS glass over rendered brand patterns, static highlights, readable combinations and CSS/JSON/HTML downloads |
 | Examples | Application mockups |
@@ -106,6 +107,10 @@ The renderer in `src/scripts/pattern-renderer.ts` reproduces the Figma pattern c
 ## Fonts
 
 Founders Grotesk (Klim Type Foundry) and PP Neue Montreal (Pangram Pangram) are commercial typefaces. Self-hosting them on a public site requires web licenses from both foundries. Keep this repository and any deployment private until those licenses are confirmed.
+
+## AI identity delivery
+
+`src/data/aiIdentity.ts` defines Signal using the existing `slitLogo.ts` construction and canonical palette. `AISignal.astro` renders uniquely namespaced vectors. The shared motion engine interpolates circle and slit geometry, runs the outward Thinking loop, and synchronizes Speaking contractions into varied speech-like phrases. The identity page never captures audio. `aiIdentityDownloads.ts` generates 16 static and 16 animated SVGs, the portable engine, an interactive HTML reference, state JSON and a usage guide. The full package is `/assets/ai-identity.zip`; individual files are served from `/assets/ai-identity/`. The Assets hub and brand manifest link to the same package. Run `npm run build` and `npm run check:signal` after changes.
 
 ## Glass styling
 

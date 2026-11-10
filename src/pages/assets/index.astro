@@ -37,6 +37,10 @@ const logoBytes = logoManifest.files.reduce((total, file) => total + file.bytes,
   <Sub id="google-fonts" title="Google Fonts" number="10.3">
     <FontGrid cards={googleFonts} />
   </Sub>
+  <Sub id="ai-identity" title="AI identity">
+    <Fragment slot="text"><p>AtomsAI Signal: idle, listening, thinking and speaking. 32 static and animated SVGs in four inks, plus a working HTML reference, state data and usage guide.</p></Fragment>
+    <div class="btn-row"><a class="btn" href={withBase('/assets/ai-identity.zip')} download="atomsai-ai-identity.zip">Download Signal kit ↓</a><a class="btn" href={withBase('/ai-identity/')}>Explore AI identity →</a></div>
+  </Sub>
   <Sub id="glass" title="Glass styling"><GlassDownloads /></Sub>
 </Guide>
 

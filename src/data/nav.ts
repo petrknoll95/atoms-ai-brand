@@ -100,6 +100,12 @@ export const sections: Section[] = [
     subs: [s('editorial-charts', 'Editorial charts'), s('overlapping-bars', 'Overlapping bar charts'), s('line-graphs', 'Line graphs'), s('circles', 'Circles')],
   },
   {
+    slug: 'ai-identity',
+    title: 'AI identity',
+    href: withBase('/ai-identity/'),
+    subs: [s('signal', 'Signal'), s('construction', 'From the mark'), s('states', 'Four states'), s('downloads', 'Downloads')],
+  },
+  {
     slug: 'examples',
     title: 'Examples',
     href: withBase('/examples/'),
@@ -116,7 +122,7 @@ export const tools: Section[] = [
     subs: [s('pattern-generator', 'Pattern generator', '9.1'), s('mark-reveal', 'Mark reveal', '9.2'),
       { id: 'animated-patterns', title: 'Animated patterns', number: '9.3', href: withBase('/tools/animated-patterns/') }],
   },
-  { slug: 'assets', title: 'Assets', href: withBase('/assets/'), subs: [s('logos', 'Logos', '10.1'), s('fonts', 'Brand Fonts', '10.2'), s('google-fonts', 'Google Fonts', '10.3'), s('glass', 'Glass styling')] },
+  { slug: 'assets', title: 'Assets', href: withBase('/assets/'), subs: [s('logos', 'Logos', '10.1'), s('fonts', 'Brand Fonts', '10.2'), s('google-fonts', 'Google Fonts', '10.3'), s('glass', 'Glass styling'), s('ai-identity', 'AI identity')] },
   {
     slug: 'skills', title: 'Skills', href: withBase('/skills/'),
     subs: [

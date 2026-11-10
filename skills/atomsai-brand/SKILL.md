@@ -250,6 +250,25 @@ Minimum digital frame width is 192 px for simple isometric objects and 280 px fo
 
 Preview and color exports: [illustration](https://petrknoll95.github.io/atoms-ai-brand/illustration/).
 
+## AI identity
+
+**Signal** is the functional AI expression of the mark. All four states reuse its original three mirrored pairs of circular blades. Thinking moves three slits on each half continuously outward. Speaking contracts all six slits together through the original openings, with irregular timing and varied strength. Retain the mark's inward-facing circular arcs and taper; never substitute equalizer bars. Use it at the point of interaction; retain the original logo for brand signatures.
+
+| State | Behavior | When to show it |
+| --- | --- | --- |
+| Idle | Complete, still mark | Ready; no task in progress |
+| Listening | 2.4 s inward rhythm, outside → center | Input capture is active |
+| Thinking | Three slits per half travel center → outside, one position every 750 ms; close before recycling at the center | A submitted task is pending; never a progress percentage |
+| Speaking | All six slits contract together in speech-like phrases: soft syllables, stronger accents, overlapping releases and longer pauses. Keep the original slit openings fixed and all pairs synchronized | Audible output is playing; stop on interruption |
+
+Use Deep green on Cream or the inverse; Black and White for monochrome. Keep the ink consistent across states. Pair the element with an adjacent visible status label, announced politely only on state changes. Hide the decorative SVG from assistive technology. Show a still pose with reduced motion (Thinking uses the complete logo); below 48 px use the complete static mark with the current label. Prefer 64–160 px width and retain half the width/height of clear space on each respective side. Use one active Signal per conversation.
+
+Drive states from actual events. Text interactions may skip Listening and Speaking. Cancellation returns to Idle; errors stop motion and require a visible message and recovery action. Keep microphone, stop and retry controls separate. The downloaded animation is a fallback cadence, not evidence of live audio capture.
+
+Use the supplied animation engine for state changes: `createSignal(svg, signalMotion)` then `signal.setState(...)`. It interpolates the positions and uniform scales of the same six circles, together with slit geometry, over 600 ms. All shapes remain fully opaque; closed slits contribute no spatial weight during recycling. No crossfade or shape swapping. Preserve continuity during rapid interruptions. Update the status label immediately. Pause/offscreen/hidden states freeze the clock; reduced motion uses still poses. Call `destroy()` when unmounting.
+
+Preview: [AI identity](https://petrknoll95.github.io/atoms-ai-brand/ai-identity/). Download: [Signal kit](https://petrknoll95.github.io/atoms-ai-brand/assets/ai-identity.zip) — 16 static and 16 animated SVGs, the animation engine, a standalone HTML reference, state data and usage guide. All assets are generated from the same source as the site specimens. The HTML reference demonstrates states without capturing audio.
+
 ## Motion and composition
 
 Use the existing [mark reveal tool](https://petrknoll95.github.io/atoms-ai-brand/tools/#mark-reveal) for animation. It runs a **4 s cycle**, with **0.88 s** for each hide/reveal move and **0.2 s** stagger per pair, outside to center, using `cubic-bezier(0.7, 0, 0.3, 1)`. Circles retreat through vertical slits and return; do not morph or distort the static master. Respect reduced motion with a complete static mark. The tool exports MP4 or WebM according to browser support.

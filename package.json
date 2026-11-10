@@ -8,6 +8,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "check": "astro check",
+    "check:signal": "node scripts/check-ai-identity.mjs && node scripts/check-signal-engine.mjs",
     "check:skills": "node scripts/check-skills.mjs",
     "assets:logos": "node --experimental-strip-types scripts/generate-logo-assets.mjs",
     "check:logos": "node --experimental-strip-types scripts/check-logo-assets.mjs"
