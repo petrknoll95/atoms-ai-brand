@@ -32,6 +32,11 @@ const logoBytes = logoManifest.files.reduce((total, file) => total + file.bytes,
   {
     downloadCategories.map((c, i) => (
       <Sub id={c.id} title={c.title} number={`10.${i + 2}`}>
+        {c.id === 'fonts' && (
+          <Fragment slot="text">
+            <p class="muted">The font files are licensed to AtomsAI. Use them only for AtomsAI work.</p>
+          </Fragment>
+        )}
         <DownloadGroup category={c} />
       </Sub>
     ))
