@@ -164,7 +164,7 @@ export const structures: Structure[] = [
   {
     id: 'offset',
     name: 'Offset',
-    description: 'Light rises from the base in tapered, offset spikes. Directional and energetic — keep the quiet top of the field for type.',
+    description: 'Light rises from the base in tapered, offset spikes. Directional and energetic.',
     densities: [0, 1, 2, 3],
     master: c('#000000', '#919191', '#7F7F7F', '#585858', '#FFFFFF'),
     colorways: {
@@ -177,7 +177,7 @@ export const structures: Structure[] = [
   {
     id: 'single-band',
     name: 'Single band',
-    description: 'One luminous band held across the middle of the frame. Strong and symmetrical — crop to frame a headline above or below it.',
+    description: 'One luminous band held across the middle of the frame. Strong and symmetrical.',
     densities: [0, 1, 2, 3],
     master: band('#000000', '#FFFFFF', '#585858', '#000000', '#D7C6E6', '#000000'),
     colorways: {

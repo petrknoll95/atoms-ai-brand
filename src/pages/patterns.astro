@@ -31,8 +31,8 @@ interface UsageExample {
   title: string;
   text: string;
   fields: UsageField[];
-  /** Sample headline, set in the quiet top of the field or across the beams at the bottom. */
-  headline?: 'top' | 'bottom';
+  /** Sample headline for the text contrast example. */
+  headline?: 'top';
 }
 
 // Deliberately off-palette (the point of the Don't) — never use these anywhere else.
@@ -41,7 +41,7 @@ const offPalette: Colors = { base: '#1E2A5D', upper: '#406CD4', lower: '#F3A643'
 const usage: Record<'do' | 'dont', UsageExample[]> = {
   do: [
     { title: 'Crop and scale freely', text: 'Let the field bleed off the edge. Any crop is on-brand.', fields: [{ structure: 'offset', density: 1, zoom: 5.85, panX: 0.17, panY: -0.13 }] },
-    { title: 'Set type in the calm field', text: 'Place copy where the pattern is quiet, never across the beams.', fields: [{ structure: 'offset', density: 1, zoom: 1.24, panY: -1 }], headline: 'top' },
+    { title: 'Keep type readable', text: 'Choose a text color with enough contrast against the pattern.', fields: [{ structure: 'offset', density: 1, zoom: 1.24, panY: -1 }], headline: 'top' },
     { title: 'Rotate to suit the format', text: 'Run the field horizontally, vertically or at an angle to fit the layout.', fields: [{ structure: 'offset', density: 1, rotation: -45, zoom: 1.95 }] },
     { title: 'Use a published colorway', text: 'Forest by default, Iris as an accent.', fields: [{ structure: 'offset', density: 1, colorway: 'Iris' }] },
   ],
@@ -49,7 +49,6 @@ const usage: Record<'do' | 'dont', UsageExample[]> = {
     // Panned half a slit so a spike sits at the center, as in the Figma example.
     { title: 'Skew or stretch', text: 'Never warp, skew or stretch the field out of proportion.', fields: [{ structure: 'offset', density: 0, panX: 0.435, fit: 'squash' }] },
     { title: 'Recolor off-palette', text: 'Use only the published colorways or palette colors.', fields: [{ structure: 'offset', density: 1, colors: offPalette }] },
-    { title: 'Set type across the beams', text: 'Copy over the bright spikes loses contrast and rhythm.', fields: [{ structure: 'offset', density: 1 }], headline: 'bottom' },
     {
       title: 'Mix structures',
       text: 'Use one structure per composition.',
@@ -132,14 +131,14 @@ const usage: Record<'do' | 'dont', UsageExample[]> = {
 
   <Sub id="usage" title="Usage" number="4.9">
     <Fragment slot="text">
-      <p>Patterns are a field, not a decoration. Keep them within the palette and calm enough to carry type.</p>
+      <p>Patterns are a field, not a decoration. Keep them within the palette and scale them uniformly.</p>
     </Fragment>
     <div class="stack">
       {
         (['do', 'dont'] as const).map((kind) => (
           <div class="usage">
             <p>{kind === 'do' ? 'Do' : 'Don’t'}</p>
-            <div class="row four">
+            <div class:list={['row', kind === 'do' ? 'four' : 'three']}>
               {usage[kind].map((u) => (
                 <figure class="usage-item">
                   <div class:list={['usage-tile', kind]} role="img" aria-label={`${kind === 'do' ? 'Do' : 'Don’t'}: ${u.title}`}>
@@ -275,12 +274,6 @@ const usage: Record<'do' | 'dont', UsageExample[]> = {
   .headline.top {
     top: 12.1cqw;
     font-size: 20.5cqw;
-  }
-
-  .headline.bottom {
-    bottom: 9.95cqw;
-    font-size: 15.3cqw;
-    line-height: 0.93;
   }
 
   /* Don't: a corner-to-corner cross. "to <corner>" gradients put their 50% line through the other two corners at any

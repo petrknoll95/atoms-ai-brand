@@ -230,15 +230,14 @@ Patterns are interference fields derived from light through parallel slits, not 
 | Structure | Character and use |
 | --- | --- |
 | Drift | Interleaved light from the top and bottom; calm, balanced backgrounds. |
-| Offset | Tapered, offset spikes rising from the base; directional energy, quiet area above for type. |
-| Single band | One luminous band across the middle; place a headline above or below. |
+| Offset | Tapered, offset spikes rising from the base; directional energy. |
+| Single band | One luminous band across the middle; strong and symmetrical. |
 | Concentric | Even rings radiating from a center; focus on one point or moment. |
 
 - Published slit densities are 5, 10, 20 and 40. Coarse reads at small sizes; fine adds texture to larger surfaces. The generator additionally provides 6, 8, 13, 16, 25 and 32 slit stops.
 - Concentric uses only its two existing presets: density indices 1 and 2, shown as 10 and 20 in the generator. Do not fabricate extra ring densities from the general slit scale.
 - Published colorways are Forest, Sage, Graphite and Iris. Forest is the default; Iris is occasional. Preserve the generator's full layer recipe, including its internal reflection values.
 - Use **one structure per composition**. Crop, bleed, rotate and scale uniformly to suit the format. Never stretch, skew, warp or mix structures.
-- Place copy in calm areas, away from bright beams and spikes. If contrast fails, change the crop or give text its own clear surface.
 - Export the required dimensions using the generator. A link to the generator is not an image file. If the tool cannot be operated, request an existing export or use a permitted flat surface; do not claim a generic imitation is official artwork.
 
 Preview: [structures, density and usage](https://petrknoll95.github.io/atoms-ai-brand/patterns/).
