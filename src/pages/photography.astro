@@ -1,0 +1,146 @@
+---
+import Guide from '../layouts/Guide.astro';
+import Sub from '../components/Sub.astro';
+import { withBase } from '../data/base';
+import { photographyPrinciples, photographyUseCases, photographyDirection, photographyDelivery, photographyExamples } from '../data/photography';
+const customerImage = photographyExamples[0].file;
+---
+
+<Guide slug="photography" description="AtomsAI photography: people and character direction for customer stories, support, onboarding and careers, with art direction and placement examples.">
+  <Sub id="approach" title="People & character">
+    <Fragment slot="text">
+      <p class="display">In their element.</p>
+      <p>Photograph people with character, a sense of place and something happening in the frame. Find the expression, encounter or moment that makes someone worth looking at. Let the photograph bring a human world to the page.</p>
+    </Fragment>
+    <div class="stack">
+      <div class="reference-board">
+        {photographyExamples.map((example, i) => <img src={withBase(example.file)} alt={example.alt} width="1448" height="1086" loading={i === 0 ? 'eager' : 'lazy'} fetchpriority={i === 0 ? 'high' : 'auto'} />)}
+      </div>
+      <div class="principles">
+        {photographyPrinciples.map(p => <div><h3>{p.title}</h3><p class="muted">{p.text}</p></div>)}
+      </div>
+
+    </div>
+  </Sub>
+
+  <Sub id="use-cases" title="By use case">
+    <Fragment slot="text"><p>Keep one photographic language. Change the subject, framing and role of the image to fit the moment.</p></Fragment>
+    <div class="use-cases">
+      {photographyUseCases.map((c, i) => (
+        <article class="use-case" id={c.id}>
+          <p class="muted">0{i + 1} / {c.title}</p>
+          <h3 class="display">{c.lead}</h3>
+          <dl>
+            <div><dt>Who</dt><dd>{c.subject}</dd></div>
+            <div><dt>Direction</dt><dd>{c.direction}</dd></div>
+            <div><dt>People / character</dt><dd>{c.character}</dd></div>
+            <div><dt>Formats</dt><dd>{c.crops}</dd></div>
+            <div><dt>Shot list</dt><dd><ul class="shot-list">{c.shots.map(shot => <li>{shot}</li>)}</ul></dd></div>
+            <div><dt>Avoid</dt><dd>{c.avoid}</dd></div>
+          </dl>
+        </article>
+      ))}
+    </div>
+  </Sub>
+
+  <Sub id="art-direction" title="Art direction">
+    <Fragment slot="text"><p>Natural can be vivid. Make a confident choice about light, distance and timing. Keep the person believable and let the place retain its own color.</p></Fragment>
+    <div class="direction-list">
+      {photographyDirection.map(d => <div class="direction-row"><h3>{d.title}</h3><div><p>{d.use}</p><p class="muted"><span>Avoid</span> {d.avoid}</p></div></div>)}
+    </div>
+  </Sub>
+
+  <Sub id="in-use" title="In use">
+    <div class="stack">
+      <figure class="placement-example">
+        <div class="placement-toolbar">
+          <p class="muted">Customer story / placement example</p>
+          <label class="placement-toggle"><input type="checkbox" /> Show placement guides</label>
+        </div>
+        <div class="story-layout">
+          <div class="story-copy">
+            <img class="story-logo" src={withBase('/logos/logotype/svg/atomsai-logotype-cream.svg')} alt="AtomsAI" width="1132" height="200" />
+            <div class="story-heading"><p>People &amp; perspective</p><p class="story-headline">In their element.</p></div>
+            <p class="story-credit">Editorial portrait</p>
+          </div>
+          <div class="story-photo-frame">
+            <svg class="story-photo story-photo-wide" viewBox="240 0 1158.4 1086" role="img" aria-label="Fictional editorial portrait, framed in the right-hand photograph panel."><image href={withBase(customerImage)} width="1448" height="1086" /></svg>
+            <svg class="story-photo story-photo-narrow" viewBox="350 0 868.8 1086" role="img" aria-label="Deliberate 4:5 crop of the fictional editorial portrait."><image href={withBase(customerImage)} width="1448" height="1086" /></svg>
+          </div>
+          <div class="placement-guides" aria-hidden="true"><span class="safe-inset"></span><span class="panel-boundary"></span></div>
+        </div>
+
+      </figure>
+      <div class="rules">
+        <div><h3>Keep the image clear.</h3><p class="muted">Place copy beside the photograph by default. Keep faces, hands and important actions clear of logos, patterns, type and glass effects. Do not mirror identifiable people or environments to fit a layout.</p></div>
+        <div><h3>Check every crop.</h3><p class="muted">If text must sit on an image, check the full text area at each responsive crop. Target 4.5:1 for normal text and 3:1 for large text. A tint or blur alone does not ensure readability.</p></div>
+      </div>
+
+    </div>
+  </Sub>
+
+  <Sub id="production" title="Production & delivery">
+    <div class="stack">
+      <dl class="delivery-rules">{photographyDelivery.map(d => <div><dt>{d.title}</dt><dd class="muted">{d.text}</dd></div>)}</dl>
+    </div>
+  </Sub>
+
+
+</Guide>
+
+<style>
+  .stack { display: grid; gap: 2rem; }
+  h3, dt { font-size: inherit; font-weight: 500; }
+  h3.display { font-weight: 400; }
+  figure { display: grid; gap: 1rem; }
+  .reference-board { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .5rem; }
+  .reference-board img { width: 100%; height: auto; }
+  .principles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5rem; }
+  .principles > div { display: grid; align-content: start; gap: .875rem; }
+  .use-cases { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2.5rem 2rem; }
+  .use-case { display: grid; align-content: start; gap: 1.5rem; border-top: 1px solid var(--rule); padding-top: 1.25rem; }
+  .use-case dl { display: grid; gap: 1.25rem; }
+  .use-case dl > div { display: grid; gap: .5rem; }
+  .use-case dd { color: var(--muted); }
+  .shot-list { list-style: disc; padding-left: 1.1rem; display: grid; gap: .5rem; }
+  .direction-list { display: grid; }
+  .direction-row { display: grid; grid-template-columns: minmax(7rem, 1fr) minmax(0, 3fr); gap: 1.5rem; border-top: 1px solid var(--rule); padding: 1.5rem 0; }
+  .direction-row > div { display: grid; gap: .875rem; }
+  .direction-row span { color: var(--fg); margin-right: .25rem; }
+  .placement-example { container-type: inline-size; }
+  .placement-toolbar { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+  .placement-toggle { display: inline-flex; align-items: center; gap: .5rem; cursor: pointer; }
+  .placement-toggle input { accent-color: var(--deep-green); width: 1rem; height: 1rem; margin: 0; }
+  .story-layout { position: relative; display: grid; grid-template-columns: 40% 60%; aspect-ratio: 16 / 9; background: var(--deep-green); color: var(--cream); }
+  /* cqi measures the complete specimen, so the shared left margin is exactly 5% of its width. */
+  .story-copy { min-width: 0; padding: max(1.25rem, 2.8125cqi) 5cqi; display: flex; flex-direction: column; justify-content: space-between; gap: max(1.5rem, 3.2cqi); }
+  .story-logo { width: clamp(100px, 15cqi, 180px); height: auto; flex-shrink: 0; }
+  .story-heading { display: grid; gap: 1rem; }
+  .story-headline { font-family: var(--font-display); font-size: clamp(1.5rem, 4.4cqi, 3rem); line-height: 1; letter-spacing: -.015em; text-wrap: balance; }
+  .story-photo-frame { min-width: 0; min-height: 0; position: relative; }
+  .story-photo { position: absolute; inset: 0; width: 100%; height: 100%; overflow: hidden; }
+  .story-photo-narrow { display: none; }
+  .placement-guides { position: absolute; inset: 0; pointer-events: none; display: none; }
+  .placement-example:has(.placement-toggle input:checked) .placement-guides { display: block; }
+  .safe-inset { position: absolute; inset: 5%; border: 1px dashed var(--cream); outline: 1px dashed var(--deep-green); outline-offset: 1px; }
+  .panel-boundary { position: absolute; left: 40%; top: 0; bottom: 0; border-left: 1px dashed var(--cream); }
+  @container (max-width: 600px) {
+    .story-layout { grid-template-columns: 1fr; aspect-ratio: auto; }
+    .story-copy { padding: max(1.5rem, 5cqi); gap: 2rem; }
+    .story-headline { font-size: 2rem; }
+    .story-photo-frame { aspect-ratio: 4 / 5; }
+    .story-photo-wide, .panel-boundary { display: none; }
+    .story-photo-narrow { display: block; }
+    .placement-guides { top: auto; height: 125cqi; }
+  }
+  .delivery-rules { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2rem; }
+  .delivery-rules > div { display: grid; align-content: start; gap: .875rem; }
+  @media (min-width: 1101px) and (max-width: 1450px) {
+    .principles { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 700px) {
+    .reference-board { grid-template-columns: 1fr; }
+    .principles, .use-cases, .delivery-rules, .direction-row { grid-template-columns: 1fr; }
+    .rules { grid-template-columns: 1fr; }
+  }
+</style>

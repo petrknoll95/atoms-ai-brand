@@ -90,6 +90,16 @@ export const sections: Section[] = [
     subs: [s('style', 'Style', '7.1'), s('linework', 'Linework', '7.2'), s('usage-limits', 'Usage limits', '7.3'), s('size-stroke', 'Size & stroke', '7.4'), s('readability', 'Readability', '7.5')],
   },
   {
+    slug: 'photography',
+    title: 'Photography',
+    href: withBase('/photography/'),
+    subs: [
+      s('approach', 'People & character'), s('use-cases', 'By use case'),
+      s('art-direction', 'Art direction'),
+      s('in-use', 'In use'), s('production', 'Production & delivery'),
+    ],
+  },
+  {
     slug: 'glass', title: 'Glass styling', href: withBase('/glass/'),
     subs: [s('in-use', 'In use'), s('settings', 'Settings'), s('readability', 'Readability'), s('downloads', 'Downloads')],
   },

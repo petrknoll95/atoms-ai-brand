@@ -32,6 +32,7 @@ and `base` to `'/'`.
 | Patterns | Live renders of every structure, density and colorway, and live usage tiles |
 | AI identity | `/ai-identity/`: Signal with four interactive states, a glass preview, smooth geometric transitions, reduced motion, 32 SVGs and a portable animation engine |
 | Illustration | Concept drawings and linework, recolorable, as SVG or PNG |
+| Photography | People and character direction for customer stories, support, onboarding and careers; placement examples and downloadable guidelines |
 | Glass styling | Live CSS glass over rendered brand patterns, static highlights, readable combinations and CSS/JSON/HTML downloads |
 | Examples | Application mockups |
 | Tools | `/tools/`: the pattern generator, with a Tweakpane panel (structure, colorway, density, size, rotation, scale, position, PNG export, shareable link), and the looping mark reveal with four colorways, an export frame, logo size and video export (MP4 or WebM, four aspect ratios, 720p to 4K) |

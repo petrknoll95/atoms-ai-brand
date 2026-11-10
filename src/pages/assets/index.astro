@@ -4,6 +4,7 @@ import Guide from '../../layouts/Guide.astro';
 import Sub from '../../components/Sub.astro';
 import DownloadGroup from '../../components/DownloadGroup.astro';
 import FontGrid from '../../components/FontGrid.astro';
+import PhotographyDownloads from '../../components/PhotographyDownloads.astro';
 import LogoDownloads from '../../components/LogoDownloads.astro';
 import { downloadCategories } from '../../data/downloads';
 import { logoVariants } from '../../data/logoExports';
@@ -40,6 +41,10 @@ const logoBytes = logoManifest.files.reduce((total, file) => total + file.bytes,
   <Sub id="ai-identity" title="AI identity">
     <Fragment slot="text"><p>AtomsAI Signal: idle, listening, thinking and speaking. 32 static and animated SVGs in four inks, plus a working HTML reference, state data and usage guide.</p></Fragment>
     <div class="btn-row"><a class="btn" href={withBase('/assets/ai-identity.zip')} download="atomsai-ai-identity.zip">Download Signal kit ↓</a><a class="btn" href={withBase('/ai-identity/')}>Explore AI identity →</a></div>
+  </Sub>
+  <Sub id="photography" title="Photography" number="10.4">
+    <Fragment slot="text"><p>Read the <a href={withBase('/photography/')}>photography guidelines</a> for people, art direction and image usage.</p></Fragment>
+    <PhotographyDownloads />
   </Sub>
   <Sub id="glass" title="Glass styling"><GlassDownloads /></Sub>
 </Guide>

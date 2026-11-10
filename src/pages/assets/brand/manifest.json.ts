@@ -1,3 +1,4 @@
+import { photographyAssets, photographyVersion, referenceNotice } from '../../../data/photography';
 import { aiInks, aiStates, signalFileName } from '../../../data/aiIdentity';
 import { glassSpec } from '../../../data/glass';
 import type { APIRoute } from 'astro';
@@ -14,6 +15,12 @@ export const GET: APIRoute = () => new Response(JSON.stringify({
   guidelines: publishedUrl('/'),
   usage: 'Use official artwork and the written guidelines. Font files are for AtomsAI work. currentColor SVGs need an explicit ink for standalone imports.',
   tokens: publishedUrl('/tokens.css'),
+  photographyPackage: {
+    version: photographyVersion,
+    guidelines: publishedUrl('/photography/'),
+    download: publishedUrl('/assets/photography/guidelines.md'),
+    usage: referenceNotice,
+  },
   aiIdentity: {
     name: 'AtomsAI Signal', guidelines: publishedUrl('/ai-identity/'),
     download: publishedUrl('/assets/ai-identity.zip'),
@@ -59,6 +66,9 @@ export const GET: APIRoute = () => new Response(JSON.stringify({
     note: 'Concentric uses only density indices 1 and 2 (10 and 20 in the generator). The generator produces final PNGs; these color recipes alone are not rendered patterns.',
   },
   assets: [
+    ...photographyAssets().map(({ file, name, format, description }) => ({
+      name, category: 'photography', format, description, url: publishedUrl(`/assets/photography/${file}`),
+    })),
     ...aiStates.flatMap(state => aiInks.flatMap(ink => [false, true].map(animated => ({
       name: `Signal ${state.name} — ${colors[ink].name}${animated ? ' motion' : ''}`,
       category: 'ai-identity', format: 'SVG', state: state.id, color: colors[ink].token, animated,

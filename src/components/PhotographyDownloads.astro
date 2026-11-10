@@ -1,0 +1,22 @@
+---
+import { withBase } from '../data/base';
+import { photographyAssets } from '../data/photography';
+const assets = photographyAssets();
+---
+
+  <ul class="download-list">
+    {assets.map(asset => (
+      <li>
+        <div><h3>{asset.name}</h3><p class="muted">{asset.description}</p></div>
+        <a class="btn" href={withBase(`/assets/photography/${asset.file}`)} download={asset.file} aria-label={`Download ${asset.name} (${asset.format})`}>{asset.format} ↓</a>
+      </li>
+    ))}
+  </ul>
+
+<style>
+  .download-list { border-top: 1px solid var(--rule); }
+  .download-list li { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1.25rem 0; border-bottom: 1px solid var(--rule); }
+  .download-list li > div { display: grid; gap: .5rem; }
+  h3 { font-size: inherit; font-weight: 500; }
+  .btn { flex-shrink: 0; }
+</style>
