@@ -1,0 +1,279 @@
+---
+import ChartSpecimen from './ChartSpecimen.astro';
+import { colors } from '../data/colors';
+import { circleExamples } from '../data/dataVisualization';
+
+const { unitStacks, dotGrid, proportional, network } = circleExamples;
+const format = (value: number) => value.toLocaleString('en-US');
+const stackRows = Math.max(...unitStacks.categories.map(category => Math.ceil(category.value / unitStacks.unit / 2)));
+const largestCircle = Math.max(...proportional.map(category => category.value));
+const automatedShare = dotGrid.highlighted / dotGrid.total * 100;
+---
+
+<div class="circle-gallery">
+<div class="circle-examples">
+  <ChartSpecimen
+    id="circle-units" label="Unit stacks" unit={`1 circle = ${format(unitStacks.unit)} requests`}
+    background="irisLight" foreground="irisDark"
+  >
+      <div class="unit-columns" role="img" aria-label={`Requests by team. Each circle represents ${unitStacks.unit} requests. ${unitStacks.categories.map(category => `${category.name}: ${format(category.value)}`).join('; ')}.`}>
+        {unitStacks.categories.map(category => (
+          <div class="unit-column" aria-hidden="true">
+            <div class="category-label">
+              <span>{category.name}</span>
+              <span class="chart-value">{format(category.value)}</span>
+            </div>
+            <div class="unit-stack" style={`--stack-rows:${stackRows}`}>
+              {Array.from({ length: category.value / unitStacks.unit }, (_, i) => (
+                <span class="unit-dot" style={`grid-row:${stackRows - Math.floor(i / 2)};grid-column:${i % 2 + 1}`} />
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+  </ChartSpecimen>
+
+  <ChartSpecimen
+    id="circle-share" label="Dot grid" unit="1 circle = 1%"
+    background="cream" foreground="deepGreen"
+  >
+    <div class="share-layout">
+      <div class="dot-grid" role="img" aria-label={`${dotGrid.total} circles: ${dotGrid.highlighted} filled for automated tasks and ${dotGrid.total - dotGrid.highlighted} outlined for reviewed tasks.`}>
+        {Array.from({ length: dotGrid.total }, (_, index) => <span class:list={['share-dot', { filled: index < dotGrid.highlighted }]} aria-hidden="true" />)}
+      </div>
+      <ul class="share-key" aria-label="Task shares">
+        <li><span class="key-dot filled" aria-hidden="true" />{automatedShare}% automated</li>
+        <li><span class="key-dot" aria-hidden="true" />{100 - automatedShare}% reviewed</li>
+      </ul>
+    </div>
+  </ChartSpecimen>
+
+  <ChartSpecimen
+    id="circle-area" label="Proportional circles" unit="Requests per month"
+    background="paper" foreground="deepGreen"
+  >
+    <div class="bubble-comparison" role="img" aria-label={`Circle areas represent monthly requests. ${proportional.map(category => `${category.name}: ${category.value}`).join('; ')}.`}>
+      {proportional.map(category => (
+        <div class="bubble-category" aria-hidden="true">
+          <div class="bubble-field">
+            <span class="proportional-circle" data-value={category.value} style={`--diameter-ratio:${Math.sqrt(category.value / largestCircle)};background:${colors[category.color].hex}`} />
+          </div>
+          <div class="bubble-label"><span>{category.name}</span><span class="chart-value">{format(category.value)}</span></div>
+        </div>
+      ))}
+    </div>
+  </ChartSpecimen>
+
+  <ChartSpecimen
+    id="circle-connections" label="Connections"
+    background="forestShade" foreground="cream"
+  >
+    <div class="network" role="img" aria-label="One agent connects to five systems: CRM, Support, Documents, Data and Operations. Equal circle sizes identify systems; lines represent integrations.">
+      <svg viewBox="0 0 700 400" preserveAspectRatio="none" aria-hidden="true">
+        {network.links.map(([from, to]) => <line x1={network.nodes[from].x} y1={network.nodes[from].y} x2={network.nodes[to].x} y2={network.nodes[to].y} />)}
+      </svg>
+      {network.nodes.map(node => (
+        <div class:list={['network-node', { primary: node.primary }]} style={`left:${node.x / 700 * 100}%;top:${node.y / 400 * 100}%`} aria-hidden="true">
+          <span class="node-circle" />
+          <span class:list={['node-label', { above: node.labelAbove }]}>{node.name}</span>
+        </div>
+      ))}
+    </div>
+  </ChartSpecimen>
+</div>
+</div>
+
+<style>
+  .circle-gallery {
+    container-type: inline-size;
+  }
+
+  .circle-examples {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2rem 1.5rem;
+  }
+
+  .unit-columns {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .unit-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0 0.125rem;
+    border-left: 1px solid color-mix(in srgb, var(--specimen-ink) 20%, transparent);
+  }
+
+  .category-label,
+  .bubble-label {
+    display: grid;
+    gap: 0.375rem;
+    font-size: var(--size-annotation-small);
+    line-height: 1.4;
+  }
+
+  .category-label {
+    overflow-wrap: anywhere;
+  }
+
+  .category-label .chart-value {
+    font-size: clamp(1.125rem, 5cqi, 1.5rem);
+  }
+
+  .unit-stack {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: repeat(var(--stack-rows), minmax(0, 1fr));
+    gap: 0.25rem;
+    aspect-ratio: 1 / 2.1;
+    align-items: end;
+  }
+
+  .unit-dot {
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: var(--specimen-ink);
+  }
+
+  .share-layout {
+    display: grid;
+    justify-items: center;
+    gap: 1rem;
+  }
+
+  .dot-grid {
+    display: grid;
+    grid-template-columns: repeat(10, minmax(0, 1fr));
+    gap: 0.25rem;
+    width: min(100%, 14rem);
+  }
+
+  .share-dot,
+  .key-dot {
+    display: block;
+    aspect-ratio: 1;
+    border: 1px solid var(--specimen-ink);
+    border-radius: 50%;
+  }
+
+  .filled {
+    background: var(--specimen-ink);
+  }
+
+  .share-key {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem 1rem;
+    font-size: var(--size-annotation-small);
+  }
+
+  .share-key li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .key-dot {
+    width: 0.625rem;
+    flex: 0 0 auto;
+  }
+
+  .bubble-comparison {
+    --bubble-size: min(25cqi, 9rem);
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.75rem;
+  }
+
+  .bubble-category {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .bubble-field {
+    display: flex;
+    align-items: end;
+    justify-content: center;
+    height: var(--bubble-size);
+  }
+
+  .proportional-circle {
+    display: block;
+    width: calc(var(--bubble-size) * var(--diameter-ratio));
+    aspect-ratio: 1;
+    border-radius: 50%;
+  }
+
+  .bubble-label {
+    font-size: var(--size-annotation);
+    text-align: center;
+  }
+
+  .network {
+    position: relative;
+    width: 100%;
+    min-width: 0;
+    height: clamp(14rem, 58cqi, 18rem);
+  }
+
+  .network svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .network line {
+    stroke: var(--specimen-ink);
+    stroke-opacity: 0.35;
+    stroke-width: 1;
+    vector-effect: non-scaling-stroke;
+  }
+
+  .network-node {
+    position: absolute;
+    width: clamp(1.75rem, 8cqi, 2.5rem);
+    aspect-ratio: 1;
+    transform: translate(-50%, -50%);
+  }
+
+  .node-circle {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: 1px solid var(--specimen-ink);
+    border-radius: 50%;
+    background: var(--specimen-bg);
+  }
+
+  .primary .node-circle {
+    background: var(--iris-light);
+    border-color: var(--iris-light);
+  }
+
+  .node-label {
+    position: absolute;
+    top: calc(100% + 0.625rem);
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: var(--size-annotation-small);
+    white-space: nowrap;
+  }
+
+  .node-label.above {
+    top: auto;
+    bottom: calc(100% + 0.625rem);
+  }
+
+  @container (max-width: 660px) {
+    .circle-examples {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+</style>

@@ -1,0 +1,51 @@
+---
+import Guide from '../layouts/Guide.astro';
+import Sub from '../components/Sub.astro';
+import OverlappingBarChart from '../components/OverlappingBarChart.astro';
+import LineGraph from '../components/LineGraph.astro';
+import CircleChartExamples from '../components/CircleChartExamples.astro';
+import EditorialChartExamples from '../components/EditorialChartExamples.astro';
+import { overlappingBarExamples, lineGraphExamples } from '../data/dataVisualization';
+---
+
+<Guide slug="data-visualization" description="AtomsAI data visualization: overlapping bars, line graphs, circles and editorial charts in the brand palette.">
+  <Sub id="editorial-charts" title="Editorial charts">
+    <p slot="text" class="muted">Illustrative data.</p>
+    <EditorialChartExamples />
+  </Sub>
+  <Sub id="overlapping-bars" title="Overlapping bar charts">
+    <div class="chart-gallery">
+      <div class="chart-examples">
+        {overlappingBarExamples.map(example => <OverlappingBarChart example={example} />)}
+      </div>
+    </div>
+  </Sub>
+  <Sub id="line-graphs" title="Line graphs">
+    <div class="chart-gallery">
+      <div class="chart-examples">
+        {lineGraphExamples.map(example => <LineGraph example={example} />)}
+      </div>
+    </div>
+  </Sub>
+  <Sub id="circles" title="Circles">
+    <CircleChartExamples />
+  </Sub>
+</Guide>
+
+<style>
+  .chart-gallery {
+    container-type: inline-size;
+  }
+
+  .chart-examples {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2rem 1.5rem;
+  }
+
+  @container (max-width: 660px) {
+    .chart-examples {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+</style>

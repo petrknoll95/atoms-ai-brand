@@ -1,0 +1,86 @@
+---
+import { colors, contrast } from '../data/colors';
+import ChartSpecimen from './ChartSpecimen.astro';
+import type { OverlappingBarExample } from '../data/dataVisualization';
+
+interface Props {
+  example: OverlappingBarExample;
+}
+
+const { example } = Astro.props;
+const { id, title, variant, maximum, orientation, unit, suffix = '' } = example;
+// Paint the largest first so every shorter bar remains visible.
+const series = [...example.series].sort((a, b) => b.value - a.value);
+const labelColor = (hex: string) => {
+  const candidates = [colors.deepGreen, colors.cream, colors.black, colors.white];
+  return candidates.find(color => contrast(hex, color.hex) >= 4.5)!.hex;
+};
+const valueLabel = (value: number) => `${value}${suffix}`;
+---
+
+<ChartSpecimen id={id} label={variant} unit={unit} background={example.background} foreground={example.foreground}>
+        <div
+          class:list={['chart-plot', orientation]}
+          role="img"
+          aria-label={`${title.replace('\n', ' ')}. ${series.map(item => `${item.name}: ${valueLabel(item.value)}`).join('; ')}. Shared scale: 0 to ${valueLabel(maximum)}${suffix ? '' : ` ${unit.toLowerCase()}`}.`}
+        >
+          <div class="plot-area" aria-hidden="true">
+            {series.map((item, layer) => (
+              <div
+                class="bar"
+                data-value={item.value}
+                data-maximum={maximum}
+                style={`--length:${item.value / maximum * 100}%;--thickness:${100 - layer * (orientation === 'horizontal' ? 40 : 27)}%;--bar-fill:${colors[item.color].hex};--bar-ink:${labelColor(colors[item.color].hex)}`}
+              >
+                <span class="bar-label">
+                  <span class="chart-value">{valueLabel(item.value)}</span>
+                  <span class="bar-series">{item.name}</span>
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+</ChartSpecimen>
+
+<style>
+  .chart-plot {
+    position: relative;
+    min-width: 0;
+  }
+
+  .plot-area {
+    position: relative;
+    height: clamp(14rem, 60cqi, 16rem);
+  }
+
+  .bar {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background: var(--bar-fill);
+    color: var(--bar-ink);
+  }
+
+  .vertical .bar {
+    width: var(--thickness);
+    height: var(--length);
+  }
+
+  .horizontal .bar {
+    width: var(--length);
+    height: var(--thickness);
+  }
+
+  .bar-label {
+    display: grid;
+    align-content: start;
+    gap: 0.375rem;
+    padding: 0.75rem;
+  }
+
+  .bar-series {
+    font-size: var(--size-annotation);
+    line-height: 1.4;
+  }
+
+</style>

@@ -1,0 +1,56 @@
+---
+import { colors, type ColorKey } from '../data/colors';
+
+interface Props {
+  id: string;
+  label: string;
+  unit?: string;
+  background: ColorKey;
+  foreground: ColorKey;
+}
+
+const { id, label, unit, background, foreground } = Astro.props;
+---
+
+<figure class="specimen" id={id} aria-label={unit ? `${label} · ${unit}` : label}>
+  <div class="specimen-surface" style={`--specimen-bg:${colors[background].hex};--specimen-ink:${colors[foreground].hex}`}>
+    <slot />
+  </div>
+</figure>
+
+<style>
+  .specimen {
+    container-type: inline-size;
+    display: grid;
+    grid-template-rows: minmax(0, 1fr);
+    min-width: 0;
+    font-family: var(--font-text);
+    font-size: var(--size-annotation);
+    font-weight: 400;
+    font-variant-numeric: proportional-nums;
+    letter-spacing: 0;
+    line-height: 1.4;
+  }
+
+  .specimen :global(.chart-value) {
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 6cqi, 2rem);
+    font-weight: 400;
+    letter-spacing: -0.015em;
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  .specimen-surface {
+    container-type: inline-size;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    align-content: center;
+    min-width: 0;
+    min-height: clamp(16rem, 65cqi, 20rem);
+    padding: clamp(1rem, 4cqi, 1.5rem);
+    color: var(--specimen-ink);
+    background: var(--specimen-bg);
+  }
+
+</style>

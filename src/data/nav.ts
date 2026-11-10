@@ -94,6 +94,12 @@ export const sections: Section[] = [
     subs: [s('in-use', 'In use'), s('settings', 'Settings'), s('readability', 'Readability'), s('downloads', 'Downloads')],
   },
   {
+    slug: 'data-visualization',
+    title: 'Data visualization',
+    href: withBase('/data-visualization/'),
+    subs: [s('editorial-charts', 'Editorial charts'), s('overlapping-bars', 'Overlapping bar charts'), s('line-graphs', 'Line graphs'), s('circles', 'Circles')],
+  },
+  {
     slug: 'examples',
     title: 'Examples',
     href: withBase('/examples/'),

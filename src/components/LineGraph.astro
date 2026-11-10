@@ -1,0 +1,108 @@
+---
+import { colors } from '../data/colors';
+import ChartSpecimen from './ChartSpecimen.astro';
+import type { LineGraphExample } from '../data/dataVisualization';
+
+interface Props {
+  example: LineGraphExample;
+}
+
+const { example } = Astro.props;
+const { id, title, variant, unit, maximum, suffix = '' } = example;
+const points = [...example.points].sort((a, b) => a.year - b.year);
+const startYear = points[0].year;
+const endYear = points[points.length - 1].year;
+const plotted = points.map(point => ({
+  ...point,
+  x: (point.year - startYear) / (endYear - startYear) * 100,
+  y: (1 - point.value / maximum) * 100,
+}));
+const line = plotted.map((point, i) => `${i === 0 ? 'M' : 'L'} ${point.x * 10} ${point.y * 5}`).join(' ');
+const columns = plotted.slice(0, -1).map((point, index) => {
+  const next = plotted[index + 1];
+  return {
+    gradientId: `${id}-area-${index}`,
+    path: `M ${point.x * 10} ${point.y * 5} L ${next.x * 10} ${next.y * 5} L ${next.x * 10} 500 L ${point.x * 10} 500 Z`,
+  };
+});
+const ticks = Array.from({ length: 5 }, (_, i) => ({ value: maximum * i / 4, position: 100 - i * 25 }));
+const formattedValue = (value: number) => `${value}${suffix}`;
+---
+
+<ChartSpecimen id={id} label={variant} unit={unit} background={example.background} foreground={example.foreground}>
+      <div
+        class="line-chart"
+        role="img"
+        aria-label={`${title.replace('\n', ' ')}. ${unit}, from 0 to ${formattedValue(maximum)}. ${points.map(point => `${point.year}: ${formattedValue(point.value)}`).join('; ')}. Illustrative data.`}
+      >
+        <div class="line-plot" aria-hidden="true">
+          <svg viewBox="0 0 1000 500" preserveAspectRatio="none" aria-hidden="true">
+            <defs>
+              {columns.map(column => (
+                <linearGradient id={column.gradientId} x1="0" y1="0" x2="0" y2="1" gradientUnits="objectBoundingBox">
+                  <stop offset="0" stop-color={colors[example.fill].hex} stop-opacity="1" />
+                  <stop offset="0.3" stop-color={colors[example.fill].hex} stop-opacity="0.65" />
+                  <stop offset="0.65" stop-color={colors[example.fill].hex} stop-opacity="0.22" />
+                  <stop offset="1" stop-color={colors[example.fill].hex} stop-opacity="0" />
+                </linearGradient>
+              ))}
+            </defs>
+            {columns.map(column => <path d={column.path} fill={`url(#${column.gradientId})`} />)}
+            <g class="grid-lines">
+              {ticks.map(tick => <line x1="0" x2="1000" y1={tick.position * 5} y2={tick.position * 5} />)}
+              {plotted.map(point => <line x1={point.x * 10} x2={point.x * 10} y1="0" y2="500" />)}
+            </g>
+            <path class="trend-line" d={line} />
+          </svg>
+          {plotted.map(point => <span class="point" style={`left:${point.x}%;top:${point.y}%`} />)}
+        </div>
+      </div>
+</ChartSpecimen>
+
+<style>
+  .line-chart {
+    --line-ink: var(--specimen-ink);
+    width: 100%;
+    min-width: 0;
+  }
+
+  .line-plot {
+    position: relative;
+    width: 100%;
+    min-width: 0;
+    height: clamp(10rem, 52cqi, 15rem);
+  }
+
+  svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+  }
+
+  .grid-lines line {
+    stroke: var(--line-ink);
+    stroke-opacity: 0.16;
+    stroke-width: 1;
+    vector-effect: non-scaling-stroke;
+  }
+
+  .trend-line {
+    fill: none;
+    stroke: var(--line-ink);
+    stroke-width: 1.5;
+    stroke-linejoin: round;
+    vector-effect: non-scaling-stroke;
+  }
+
+  .point {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--line-ink);
+    transform: translate(-50%, -50%);
+  }
+
+</style>
