@@ -1,0 +1,51 @@
+gradientPaths=20
+clippingPaths=10
+compoundPaths=0
+paths=32
+groups=22
+document=atomsai-drift-forest-10-cmyk.ai; selection=2
+group=mask lower; clipped=false
+group=; clipped=true
+group=; clipped=false
+gradient=Unnamed gradient 20; stops=22; origin=-168,-416; angle=0; length=0.50001319589233
+stop=0; opacity=100; color=CMYKColor
+stop=86; opacity=100; color=CMYKColor
+stop=86.6999969482422; opacity=99.2749989032745; color=CMYKColor
+stop=87.4000015258789; opacity=97.2000002861023; color=CMYKColor
+stop=88.0999984741211; opacity=93.9249992370606; color=CMYKColor
+stop=88.8000030517578; opacity=89.6000027656555; color=CMYKColor
+stop=89.5; opacity=84.375; color=CMYKColor
+stop=90.2000045776367; opacity=78.3999979496002; color=CMYKColor
+stop=90.9000015258789; opacity=71.8249976634979; color=CMYKColor
+stop=91.5999984741211; opacity=64.8000001907349; color=CMYKColor
+stop=92.2999954223633; opacity=57.4750006198883; color=CMYKColor
+stop=93; opacity=50; color=CMYKColor
+stop=93.6999969482422; opacity=42.5249993801117; color=CMYKColor
+stop=94.4000015258789; opacity=35.1999998092651; color=CMYKColor
+stop=95.0999984741211; opacity=28.1749993562698; color=CMYKColor
+stop=95.8000030517578; opacity=21.6000005602837; color=CMYKColor
+stop=96.5; opacity=15.625; color=CMYKColor
+stop=97.1999969482422; opacity=10.4000002145767; color=CMYKColor
+stop=97.8999938964844; opacity=6.0750000178814; color=CMYKColor
+stop=98.5999984741211; opacity=2.8000000864267; color=CMYKColor
+stop=99.2999954223633; opacity=0.7249999791384; color=CMYKColor
+stop=100; opacity=0; color=CMYKColor
+group=; clipped=true
+group=; clipped=false
+group=; clipped=true
+group=; clipped=false
+group=; clipped=true
+group=; clipped=false
+group=; clipped=true
+group=; clipped=false
+group=; clipped=true
+group=; clipped=false
+group=; clipped=true
+group=; clipped=false
+group=; clipped=true
+group=; clipped=false
+group=; clipped=true
+group=; clipped=false
+group=; clipped=true
+group=; clipped=false
+group=; clipped=false

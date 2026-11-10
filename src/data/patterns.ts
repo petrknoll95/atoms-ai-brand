@@ -155,10 +155,10 @@ export const structures: Structure[] = [
     densities: [0, 1, 2, 3],
     master: c('#000000', '#3E3E3E', '#313131', '#000000', '#FFFFFF'),
     colorways: {
-      Forest: c('#27433B', '#42665A', '#42665A', '#10231E', '#F6F1E8'),
-      Sage: c('#27433B', '#668978', '#668978', '#10231E', '#F6F1E8'),
-      Graphite: c('#10231E', '#58625F', '#58625F', '#10231E', '#668978'),
-      Iris: c('#927BB8', '#D5C6EB', '#514264', '#927BB8', '#FFFFFF'),
+      Forest: c('#1D3C34', '#43695B', '#43695B', '#10231E', '#F6F1E8'),
+      Sage: c('#1D3C34', '#5C7F71', '#5C7F71', '#10231E', '#F6F1E8'),
+      Graphite: c('#10231E', '#58625F', '#58625F', '#10231E', '#5C7F71'),
+      Iris: c('#A77BCA', '#D7C6E6', '#5D4777', '#A77BCA', '#FFFFFF'),
     },
   },
   {
@@ -168,10 +168,10 @@ export const structures: Structure[] = [
     densities: [0, 1, 2, 3],
     master: c('#000000', '#919191', '#7F7F7F', '#585858', '#FFFFFF'),
     colorways: {
-      Forest: c('#27433B', '#42665A', '#F6F1E8', '#585858', '#FFFFFF'),
-      Sage: c('#27433B', '#668978', '#F6F1E8', '#585858', '#FFFFFF'),
+      Forest: c('#1D3C34', '#43695B', '#F6F1E8', '#585858', '#FFFFFF'),
+      Sage: c('#1D3C34', '#5C7F71', '#F6F1E8', '#585858', '#FFFFFF'),
       Graphite: c('#10231E', '#58625F', '#FAFAFA', '#585858', '#FFFFFF'),
-      Iris: c('#927BB8', '#927BB8', '#D5C6EB', '#927BB8', '#FFFFFF'),
+      Iris: c('#A77BCA', '#A77BCA', '#D7C6E6', '#A77BCA', '#FFFFFF'),
     },
   },
   {
@@ -179,12 +179,12 @@ export const structures: Structure[] = [
     name: 'Single band',
     description: 'One luminous band held across the middle of the frame. Strong and symmetrical — crop to frame a headline above or below it.',
     densities: [0, 1, 2, 3],
-    master: band('#000000', '#FFFFFF', '#585858', '#000000', '#D5C6EB', '#000000'),
+    master: band('#000000', '#FFFFFF', '#585858', '#000000', '#D7C6E6', '#000000'),
     colorways: {
-      Forest: band('#27433B', '#A7AAA9', '#42665A', '#42665A', '#D5C6EB', '#27433B'),
-      Sage: band('#27433B', '#A7AAA9', '#668978', '#668978', '#D5C6EB', '#27433B'),
+      Forest: band('#1D3C34', '#A7AAA9', '#43695B', '#43695B', '#D7C6E6', '#1D3C34'),
+      Sage: band('#1D3C34', '#A7AAA9', '#5C7F71', '#5C7F71', '#D7C6E6', '#1D3C34'),
       Graphite: band('#10231E', '#A7AAA9', '#58625F', '#58625F', '#FAFAFA', '#10231E'),
-      Iris: band('#514264', '#D5C6EB', '#927BB8', '#927BB8', '#D5C6EB', '#514264'),
+      Iris: band('#5D4777', '#D7C6E6', '#A77BCA', '#A77BCA', '#D7C6E6', '#5D4777'),
     },
   },
   {
@@ -194,10 +194,10 @@ export const structures: Structure[] = [
     densities: [1, 2],
     master: c('#000000', '#4D4D4D', '#5A5A5A', '#2E2E2E', '#646464'),
     colorways: {
-      Forest: c('#10231E', '#42665A', '#42665A', '#2E2E2E', '#646464'),
-      Sage: c('#10231E', '#668978', '#668978', '#2E2E2E', '#646464'),
+      Forest: c('#10231E', '#43695B', '#43695B', '#2E2E2E', '#646464'),
+      Sage: c('#10231E', '#5C7F71', '#5C7F71', '#2E2E2E', '#646464'),
       Graphite: c('#10231E', '#58625F', '#58625F', '#2E2E2E', '#646464'),
-      Iris: c('#514264', '#927BB8', '#927BB8', '#D5C6EB', '#927BB8'),
+      Iris: c('#5D4777', '#A77BCA', '#A77BCA', '#D7C6E6', '#A77BCA'),
     },
   },
 ];

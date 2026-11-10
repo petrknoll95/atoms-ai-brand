@@ -1,0 +1,170 @@
+<svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" overflow="visible" width="181" height="181" viewBox="0 0 181 181" fill="none" data-hidden-line-opacity="0.35">
+  <defs>
+    <radialGradient id="paint0_radial_0_4" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(90.5 150.5) rotate(90) scale(30 90)">
+      <stop stop-color="#A77BCA" stop-opacity="0" />
+      <stop offset="0.03125" stop-color="#A77BCA" stop-opacity="0.01" />
+      <stop offset="0.0625" stop-color="#A77BCA" stop-opacity="0.01" />
+      <stop offset="0.09375" stop-color="#A77BCA" stop-opacity="0.01" />
+      <stop offset="0.125" stop-color="#A77BCA" stop-opacity="0.01" />
+      <stop offset="0.15625" stop-color="#A77BCA" stop-opacity="0.01" />
+      <stop offset="0.1875" stop-color="#A77BCA" stop-opacity="0.01" />
+      <stop offset="0.21875" stop-color="#A77BCA" stop-opacity="0.0104675" />
+      <stop offset="0.25" stop-color="#A77BCA" stop-opacity="0.015625" />
+      <stop offset="0.28125" stop-color="#A77BCA" stop-opacity="0.0222473" />
+      <stop offset="0.3125" stop-color="#A77BCA" stop-opacity="0.0305176" />
+      <stop offset="0.34375" stop-color="#A77BCA" stop-opacity="0.0406189" />
+      <stop offset="0.375" stop-color="#A77BCA" stop-opacity="0.0527344" />
+      <stop offset="0.40625" stop-color="#A77BCA" stop-opacity="0.0670471" />
+      <stop offset="0.4375" stop-color="#A77BCA" stop-opacity="0.0837402" />
+      <stop offset="0.46875" stop-color="#A77BCA" stop-opacity="0.102997" />
+      <stop offset="0.5" stop-color="#A77BCA" stop-opacity="0.125" />
+      <stop offset="0.53125" stop-color="#A77BCA" stop-opacity="0.149933" />
+      <stop offset="0.5625" stop-color="#A77BCA" stop-opacity="0.177979" />
+      <stop offset="0.59375" stop-color="#A77BCA" stop-opacity="0.20932" />
+      <stop offset="0.625" stop-color="#A77BCA" stop-opacity="0.244141" />
+      <stop offset="0.65625" stop-color="#A77BCA" stop-opacity="0.282623" />
+      <stop offset="0.6875" stop-color="#A77BCA" stop-opacity="0.324951" />
+      <stop offset="0.71875" stop-color="#A77BCA" stop-opacity="0.371307" />
+      <stop offset="0.75" stop-color="#A77BCA" stop-opacity="0.421875" />
+      <stop offset="0.78125" stop-color="#A77BCA" stop-opacity="0.476837" />
+      <stop offset="0.8125" stop-color="#A77BCA" stop-opacity="0.536377" />
+      <stop offset="0.84375" stop-color="#A77BCA" stop-opacity="0.600677" />
+      <stop offset="0.875" stop-color="#A77BCA" stop-opacity="0.669922" />
+      <stop offset="0.90625" stop-color="#A77BCA" stop-opacity="0.744293" />
+      <stop offset="0.9375" stop-color="#A77BCA" stop-opacity="0.823975" />
+      <stop offset="0.96875" stop-color="#A77BCA" stop-opacity="0.909149" />
+      <stop offset="1" stop-color="#A77BCA" />
+    </radialGradient>
+    <radialGradient id="paint1_radial_0_4" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(90.5 30.5) rotate(90) scale(30 90)">
+      <stop stop-color="#A77BCA" stop-opacity="0" />
+      <stop offset="0.03125" stop-color="#A77BCA" stop-opacity="0.01" />
+      <stop offset="0.0625" stop-color="#A77BCA" stop-opacity="0.01" />
+      <stop offset="0.09375" stop-color="#A77BCA" stop-opacity="0.01" />
+      <stop offset="0.125" stop-color="#A77BCA" stop-opacity="0.01" />
+      <stop offset="0.15625" stop-color="#A77BCA" stop-opacity="0.01" />
+      <stop offset="0.1875" stop-color="#A77BCA" stop-opacity="0.01" />
+      <stop offset="0.21875" stop-color="#A77BCA" stop-opacity="0.0104675" />
+      <stop offset="0.25" stop-color="#A77BCA" stop-opacity="0.015625" />
+      <stop offset="0.28125" stop-color="#A77BCA" stop-opacity="0.0222473" />
+      <stop offset="0.3125" stop-color="#A77BCA" stop-opacity="0.0305176" />
+      <stop offset="0.34375" stop-color="#A77BCA" stop-opacity="0.0406189" />
+      <stop offset="0.375" stop-color="#A77BCA" stop-opacity="0.0527344" />
+      <stop offset="0.40625" stop-color="#A77BCA" stop-opacity="0.0670471" />
+      <stop offset="0.4375" stop-color="#A77BCA" stop-opacity="0.0837402" />
+      <stop offset="0.46875" stop-color="#A77BCA" stop-opacity="0.102997" />
+      <stop offset="0.5" stop-color="#A77BCA" stop-opacity="0.125" />
+      <stop offset="0.53125" stop-color="#A77BCA" stop-opacity="0.149933" />
+      <stop offset="0.5625" stop-color="#A77BCA" stop-opacity="0.177979" />
+      <stop offset="0.59375" stop-color="#A77BCA" stop-opacity="0.20932" />
+      <stop offset="0.625" stop-color="#A77BCA" stop-opacity="0.244141" />
+      <stop offset="0.65625" stop-color="#A77BCA" stop-opacity="0.282623" />
+      <stop offset="0.6875" stop-color="#A77BCA" stop-opacity="0.324951" />
+      <stop offset="0.71875" stop-color="#A77BCA" stop-opacity="0.371307" />
+      <stop offset="0.75" stop-color="#A77BCA" stop-opacity="0.421875" />
+      <stop offset="0.78125" stop-color="#A77BCA" stop-opacity="0.476837" />
+      <stop offset="0.8125" stop-color="#A77BCA" stop-opacity="0.536377" />
+      <stop offset="0.84375" stop-color="#A77BCA" stop-opacity="0.600677" />
+      <stop offset="0.875" stop-color="#A77BCA" stop-opacity="0.669922" />
+      <stop offset="0.90625" stop-color="#A77BCA" stop-opacity="0.744293" />
+      <stop offset="0.9375" stop-color="#A77BCA" stop-opacity="0.823975" />
+      <stop offset="0.96875" stop-color="#A77BCA" stop-opacity="0.909149" />
+      <stop offset="1" stop-color="#A77BCA" />
+    </radialGradient>
+    <mask id="depth-0-visible" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse" style="mask-type:luminance" x="-10.0" y="-10.0" width="201.0" height="201.0">
+      <rect x="-10.0" y="-10.0" width="201.0" height="201.0" fill="white" />
+      <ellipse fill="black" cx="90.5" cy="126.5" rx="90" ry="30" stroke="none" />
+      <ellipse fill="black" cx="90.5" cy="102.5" rx="90" ry="30" stroke="none" />
+      <ellipse fill="black" cx="90.5" cy="78.5" rx="90" ry="30" stroke="none" />
+      <ellipse fill="black" cx="90.5" cy="54.5" rx="90" ry="30" stroke="none" />
+      <ellipse fill="black" cx="90.5" cy="30.5" rx="90" ry="30" stroke="none" />
+    </mask>
+    <mask id="depth-0-hidden" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse" style="mask-type:luminance" x="-10.0" y="-10.0" width="201.0" height="201.0">
+      <rect x="-10.0" y="-10.0" width="201.0" height="201.0" fill="black" />
+      <ellipse fill="white" cx="90.5" cy="126.5" rx="90" ry="30" stroke="none" />
+      <ellipse fill="white" cx="90.5" cy="102.5" rx="90" ry="30" stroke="none" />
+      <ellipse fill="white" cx="90.5" cy="78.5" rx="90" ry="30" stroke="none" />
+      <ellipse fill="white" cx="90.5" cy="54.5" rx="90" ry="30" stroke="none" />
+      <ellipse fill="white" cx="90.5" cy="30.5" rx="90" ry="30" stroke="none" />
+    </mask>
+    <mask id="depth-1-visible" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse" style="mask-type:luminance" x="-10.0" y="-10.0" width="201.0" height="201.0">
+      <rect x="-10.0" y="-10.0" width="201.0" height="201.0" fill="white" />
+      <ellipse fill="black" cx="90.5" cy="102.5" rx="90" ry="30" stroke="none" />
+      <ellipse fill="black" cx="90.5" cy="78.5" rx="90" ry="30" stroke="none" />
+      <ellipse fill="black" cx="90.5" cy="54.5" rx="90" ry="30" stroke="none" />
+      <ellipse fill="black" cx="90.5" cy="30.5" rx="90" ry="30" stroke="none" />
+    </mask>
+    <mask id="depth-1-hidden" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse" style="mask-type:luminance" x="-10.0" y="-10.0" width="201.0" height="201.0">
+      <rect x="-10.0" y="-10.0" width="201.0" height="201.0" fill="black" />
+      <ellipse fill="white" cx="90.5" cy="102.5" rx="90" ry="30" stroke="none" />
+      <ellipse fill="white" cx="90.5" cy="78.5" rx="90" ry="30" stroke="none" />
+      <ellipse fill="white" cx="90.5" cy="54.5" rx="90" ry="30" stroke="none" />
+      <ellipse fill="white" cx="90.5" cy="30.5" rx="90" ry="30" stroke="none" />
+    </mask>
+    <mask id="depth-2-visible" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse" style="mask-type:luminance" x="-10.0" y="-10.0" width="201.0" height="201.0">
+      <rect x="-10.0" y="-10.0" width="201.0" height="201.0" fill="white" />
+      <ellipse fill="black" cx="90.5" cy="78.5" rx="90" ry="30" stroke="none" />
+      <ellipse fill="black" cx="90.5" cy="54.5" rx="90" ry="30" stroke="none" />
+      <ellipse fill="black" cx="90.5" cy="30.5" rx="90" ry="30" stroke="none" />
+    </mask>
+    <mask id="depth-2-hidden" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse" style="mask-type:luminance" x="-10.0" y="-10.0" width="201.0" height="201.0">
+      <rect x="-10.0" y="-10.0" width="201.0" height="201.0" fill="black" />
+      <ellipse fill="white" cx="90.5" cy="78.5" rx="90" ry="30" stroke="none" />
+      <ellipse fill="white" cx="90.5" cy="54.5" rx="90" ry="30" stroke="none" />
+      <ellipse fill="white" cx="90.5" cy="30.5" rx="90" ry="30" stroke="none" />
+    </mask>
+    <mask id="depth-3-visible" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse" style="mask-type:luminance" x="-10.0" y="-10.0" width="201.0" height="201.0">
+      <rect x="-10.0" y="-10.0" width="201.0" height="201.0" fill="white" />
+      <ellipse fill="black" cx="90.5" cy="54.5" rx="90" ry="30" stroke="none" />
+      <ellipse fill="black" cx="90.5" cy="30.5" rx="90" ry="30" stroke="none" />
+    </mask>
+    <mask id="depth-3-hidden" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse" style="mask-type:luminance" x="-10.0" y="-10.0" width="201.0" height="201.0">
+      <rect x="-10.0" y="-10.0" width="201.0" height="201.0" fill="black" />
+      <ellipse fill="white" cx="90.5" cy="54.5" rx="90" ry="30" stroke="none" />
+      <ellipse fill="white" cx="90.5" cy="30.5" rx="90" ry="30" stroke="none" />
+    </mask>
+    <mask id="depth-4-visible" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse" style="mask-type:luminance" x="-10.0" y="-10.0" width="201.0" height="201.0">
+      <rect x="-10.0" y="-10.0" width="201.0" height="201.0" fill="white" />
+      <ellipse fill="black" cx="90.5" cy="30.5" rx="90" ry="30" stroke="none" />
+    </mask>
+    <mask id="depth-4-hidden" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse" style="mask-type:luminance" x="-10.0" y="-10.0" width="201.0" height="201.0">
+      <rect x="-10.0" y="-10.0" width="201.0" height="201.0" fill="black" />
+      <ellipse fill="white" cx="90.5" cy="30.5" rx="90" ry="30" stroke="none" />
+    </mask>
+  </defs>
+  <g data-layer="color">
+    <ellipse fill="url(#paint0_radial_0_4)" cx="90.5" cy="150.5" rx="90" ry="30" stroke="none" />
+    <ellipse fill="url(#paint1_radial_0_4)" cx="90.5" cy="30.5" rx="90" ry="30" stroke="none" />
+  </g>
+  <g data-layer="hidden-linework" opacity="0.35">
+    <g mask="url(#depth-1-hidden)">
+      <ellipse fill="none" cx="90.5" cy="126.5" rx="90" ry="30" stroke="currentColor" />
+    </g>
+    <g mask="url(#depth-2-hidden)">
+      <ellipse fill="none" cx="90.5" cy="102.5" rx="90" ry="30" stroke="currentColor" />
+    </g>
+    <g mask="url(#depth-3-hidden)">
+      <ellipse fill="none" cx="90.5" cy="78.5" rx="90" ry="30" stroke="currentColor" />
+    </g>
+    <g mask="url(#depth-4-hidden)">
+      <ellipse fill="none" cx="90.5" cy="54.5" rx="90" ry="30" stroke="currentColor" />
+    </g>
+  </g>
+  <g data-layer="visible-linework">
+    <g mask="url(#depth-1-visible)">
+      <ellipse fill="none" cx="90.5" cy="126.5" rx="90" ry="30" stroke="currentColor" />
+    </g>
+    <g mask="url(#depth-2-visible)">
+      <ellipse fill="none" cx="90.5" cy="102.5" rx="90" ry="30" stroke="currentColor" />
+    </g>
+    <g mask="url(#depth-3-visible)">
+      <ellipse fill="none" cx="90.5" cy="78.5" rx="90" ry="30" stroke="currentColor" />
+    </g>
+    <g mask="url(#depth-4-visible)">
+      <ellipse fill="none" cx="90.5" cy="54.5" rx="90" ry="30" stroke="currentColor" />
+    </g>
+    <ellipse fill="none" cx="90.5" cy="30.5" rx="90" ry="30" stroke="currentColor" />
+  </g>
+  <g data-layer="highlight-outlines" opacity="1">
+    <ellipse fill="none" cx="90.5" cy="150.5" rx="90" ry="30" stroke="currentColor" />
+  </g>
+</svg>

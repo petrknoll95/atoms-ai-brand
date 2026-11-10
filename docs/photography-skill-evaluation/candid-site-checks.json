@@ -1,0 +1,64 @@
+{
+  "viewports": [
+    {
+      "width": 1440,
+      "overflow": false,
+      "images": [
+        {
+          "loaded": true,
+          "src": "/atoms-ai-brand/photography/customer-story-ai-generated.png"
+        },
+        {
+          "loaded": true,
+          "src": "/atoms-ai-brand/photography/support-ai-generated.png"
+        },
+        {
+          "loaded": true,
+          "src": "/atoms-ai-brand/photography/onboarding-ai-generated.png"
+        },
+        {
+          "loaded": true,
+          "src": "/atoms-ai-brand/photography/careers-ai-generated.png"
+        }
+      ],
+      "story": {
+        "width": 824,
+        "height": 463.5,
+        "copyRatio": 0.3999924150485437
+      },
+      "removedHeadings": 0
+    },
+    {
+      "width": 390,
+      "overflow": false,
+      "images": [
+        {
+          "loaded": true,
+          "src": "/atoms-ai-brand/photography/customer-story-ai-generated.png"
+        },
+        {
+          "loaded": true,
+          "src": "/atoms-ai-brand/photography/support-ai-generated.png"
+        },
+        {
+          "loaded": true,
+          "src": "/atoms-ai-brand/photography/onboarding-ai-generated.png"
+        },
+        {
+          "loaded": true,
+          "src": "/atoms-ai-brand/photography/careers-ai-generated.png"
+        }
+      ],
+      "story": {
+        "width": 358,
+        "height": 665.34375,
+        "copyRatio": 1
+      },
+      "removedHeadings": 0
+    }
+  ],
+  "skillDownloadMatches": true,
+  "photographyPackageFiles": 12,
+  "photoBytesMatch": true,
+  "pageErrors": []
+}

@@ -1,0 +1,89 @@
+{
+  "date": "2026-11-10",
+  "combinations": 56,
+  "files": {
+    "native_ai": 56,
+    "print_pdf": 56,
+    "rgb_png": 56,
+    "per_combination_validation": 56
+  },
+  "family_counts": {
+    "drift": 16,
+    "offset": 16,
+    "single-band": 16,
+    "concentric": 8
+  },
+  "native_reopened": 56,
+  "native_mask_contents_audit": "audits/native-mask-summary.json",
+  "previews_visually_reviewed": 56,
+  "representative_reopened_previews": [
+    {
+      "id": "atomsai-drift-forest-5",
+      "mean_absolute_channel_difference": 0.0,
+      "maximum_channel_difference": 0.0
+    },
+    {
+      "id": "atomsai-drift-forest-10",
+      "mean_absolute_channel_difference": 0.0,
+      "maximum_channel_difference": 0.0
+    },
+    {
+      "id": "atomsai-drift-iris-40",
+      "mean_absolute_channel_difference": 0.0,
+      "maximum_channel_difference": 0.0
+    },
+    {
+      "id": "atomsai-offset-forest-5",
+      "mean_absolute_channel_difference": 0.0,
+      "maximum_channel_difference": 0.0
+    },
+    {
+      "id": "atomsai-offset-iris-40",
+      "mean_absolute_channel_difference": 0.0,
+      "maximum_channel_difference": 0.0
+    },
+    {
+      "id": "atomsai-single-band-forest-5",
+      "mean_absolute_channel_difference": 0.0,
+      "maximum_channel_difference": 0.0
+    },
+    {
+      "id": "atomsai-single-band-iris-40",
+      "mean_absolute_channel_difference": 0.0,
+      "maximum_channel_difference": 0.0
+    },
+    {
+      "id": "atomsai-concentric-forest-variant-1",
+      "mean_absolute_channel_difference": 0.0,
+      "maximum_channel_difference": 0.0
+    },
+    {
+      "id": "atomsai-concentric-iris-variant-2",
+      "mean_absolute_channel_difference": 0.0,
+      "maximum_channel_difference": 0.0
+    }
+  ],
+  "all_structural_checks_passed": true,
+  "unintended_rgb_or_spot_inks": false,
+  "fonts": 0,
+  "linked_art": 0,
+  "native_raster_art": 0,
+  "overprint_true_objects": 0,
+  "all_bleed_edges_covered": true,
+  "maximum_sampled_total_ink_percent": 281.961,
+  "sampling_ppi": 150,
+  "minimum_effect_image_ppi": 300.0000067147477,
+  "profile": "Coated FOGRA39 (ISO 12647-2:2004)",
+  "profile_sha256": "da2b9b593e27cba2563cbc8596071c5c8f2395d3dbb4434538bac2bc9d58ce77",
+  "declared_pdf_standard": "PDF/X-4",
+  "formal_pdfx_certified": false,
+  "limitations": [
+    "FOGRA39 is an assumed coated-offset condition, not printer approval.",
+    "Additive RGB reflection is adapted to Screen at 20% only where specified.",
+    "CMYK gamut/compositing and application blur rendering differ from RGB canvas.",
+    "PDF/X structural checks are not formal certified conformance.",
+    "Ink and bleed raster sampling is 150 ppi, not a full-resolution RIP proof."
+  ],
+  "source_hashes_still_current": true,
+  "total_deliverable_bytes": 546932783
+}

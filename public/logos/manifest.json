@@ -14,7 +14,7 @@
       "name": "Logotype",
       "format": "svg",
       "width": null,
-      "ink": "#27433B",
+      "ink": "#1D3C34",
       "inkToken": "deep-green",
       "inkName": "Deep green",
       "background": null,
@@ -24,7 +24,7 @@
       "height": null,
       "transparent": true,
       "bytes": 4680,
-      "sha256": "e2e2e2968a46db6518d2e255ac173e03cf68920dbbc2f0f1b8752a65ebe33785"
+      "sha256": "8102cad81fe004c6e651f9aecb040342868f3cfbea47403642c83a7e98b55b69"
     },
     {
       "variant": "logotype",
@@ -82,7 +82,7 @@
       "name": "Logotype",
       "format": "png",
       "width": 256,
-      "ink": "#27433B",
+      "ink": "#1D3C34",
       "inkToken": "deep-green",
       "inkName": "Deep green",
       "background": null,
@@ -91,15 +91,15 @@
       "path": "logotype/png/atomsai-logotype-deep-green-256w.png",
       "height": 45,
       "transparent": true,
-      "bytes": 4538,
-      "sha256": "8dd4b4c7e93e048a032def2a05d79ae4a875fc3f1f18befc0e6c88088a19fae9"
+      "bytes": 4525,
+      "sha256": "a86c56e80ad8b9863308ed06ef0ee138bfe288a863d4da67add403900276a937"
     },
     {
       "variant": "logotype",
       "name": "Logotype",
       "format": "png",
       "width": 512,
-      "ink": "#27433B",
+      "ink": "#1D3C34",
       "inkToken": "deep-green",
       "inkName": "Deep green",
       "background": null,
@@ -108,15 +108,15 @@
       "path": "logotype/png/atomsai-logotype-deep-green-512w.png",
       "height": 90,
       "transparent": true,
-      "bytes": 8996,
-      "sha256": "260317de7083e1c8687e7915f6dfdecfa0323b76e87b4893e46d542b3f2055eb"
+      "bytes": 8992,
+      "sha256": "22de159bdabc48988c0d5e5e9c1ea1fb88900c66279f92e934f6d35e981e9fba"
     },
     {
       "variant": "logotype",
       "name": "Logotype",
       "format": "png",
       "width": 1024,
-      "ink": "#27433B",
+      "ink": "#1D3C34",
       "inkToken": "deep-green",
       "inkName": "Deep green",
       "background": null,
@@ -125,15 +125,15 @@
       "path": "logotype/png/atomsai-logotype-deep-green-1024w.png",
       "height": 181,
       "transparent": true,
-      "bytes": 19506,
-      "sha256": "f98bfaf9f42ad091fe91121472aaabf00bf8dbc27ed4d207b9f194f0bf23dd19"
+      "bytes": 19370,
+      "sha256": "1af8f38b7e2ca88320694d2b8ccff965654f48b0741bc718c1976ea7c696c4be"
     },
     {
       "variant": "logotype",
       "name": "Logotype",
       "format": "png",
       "width": 2048,
-      "ink": "#27433B",
+      "ink": "#1D3C34",
       "inkToken": "deep-green",
       "inkName": "Deep green",
       "background": null,
@@ -142,15 +142,15 @@
       "path": "logotype/png/atomsai-logotype-deep-green-2048w.png",
       "height": 362,
       "transparent": true,
-      "bytes": 45707,
-      "sha256": "1ef5571980fd5f2b0e9297a68cff4e6144ca3e457b18585ba32960ad3adeca50"
+      "bytes": 45553,
+      "sha256": "cc7779e875f0f6dfdf69f7175f46b28a52c461347c09d3255476047ffb4fa88c"
     },
     {
       "variant": "logotype",
       "name": "Logotype",
       "format": "png",
       "width": 4096,
-      "ink": "#27433B",
+      "ink": "#1D3C34",
       "inkToken": "deep-green",
       "inkName": "Deep green",
       "background": null,
@@ -159,8 +159,8 @@
       "path": "logotype/png/atomsai-logotype-deep-green-4096w.png",
       "height": 724,
       "transparent": true,
-      "bytes": 108536,
-      "sha256": "a2e0e040a2eaf6e2d1b4d5a4f03c28055197919fde5aa502b4a53b7408d2b57a"
+      "bytes": 107455,
+      "sha256": "79bd0ff4868df9b9c69dd7d5f6ced4218faed6fb374636ce80c313d5e9c75f5b"
     },
     {
       "variant": "logotype",
@@ -422,7 +422,7 @@
       "name": "Logotype",
       "format": "jpg",
       "width": 256,
-      "ink": "#27433B",
+      "ink": "#1D3C34",
       "inkToken": "deep-green",
       "inkName": "Deep green",
       "background": "#F6F1E8",
@@ -431,15 +431,15 @@
       "path": "logotype/jpg/atomsai-logotype-deep-green-on-cream-256w.jpg",
       "height": 98,
       "transparent": false,
-      "bytes": 6950,
-      "sha256": "1174d1729dc3493be21cb7f805d3169058cb1058cc4bd399494276eb0dc60131"
+      "bytes": 7064,
+      "sha256": "a08135e39045b565fdc0be0303c0817024ad67a6fb450b3b373e38dd06340302"
     },
     {
       "variant": "logotype",
       "name": "Logotype",
       "format": "jpg",
       "width": 512,
-      "ink": "#27433B",
+      "ink": "#1D3C34",
       "inkToken": "deep-green",
       "inkName": "Deep green",
       "background": "#F6F1E8",
@@ -448,15 +448,15 @@
       "path": "logotype/jpg/atomsai-logotype-deep-green-on-cream-512w.jpg",
       "height": 195,
       "transparent": false,
-      "bytes": 16141,
-      "sha256": "776dcedd3a527b57b96c7481ec09d2512c608e7b50ce7526508bfb97c38a27e8"
+      "bytes": 16415,
+      "sha256": "58b1707014b377f19ba0ff3076b0c1a58d06f91b1444e1aae6f78e08305752b3"
     },
     {
       "variant": "logotype",
       "name": "Logotype",
       "format": "jpg",
       "width": 1024,
-      "ink": "#27433B",
+      "ink": "#1D3C34",
       "inkToken": "deep-green",
       "inkName": "Deep green",
       "background": "#F6F1E8",
@@ -465,15 +465,15 @@
       "path": "logotype/jpg/atomsai-logotype-deep-green-on-cream-1024w.jpg",
       "height": 391,
       "transparent": false,
-      "bytes": 35592,
-      "sha256": "e39e73965f6387d83d4271d0519b027c0f13427b38d878652475a75c6e5cb38b"
+      "bytes": 36268,
+      "sha256": "9093a79e29d5e58b1321c50384072dd5e67c83d9ff8445bccbdeacd0893f635e"
     },
     {
       "variant": "logotype",
       "name": "Logotype",
       "format": "jpg",
       "width": 2048,
-      "ink": "#27433B",
+      "ink": "#1D3C34",
       "inkToken": "deep-green",
       "inkName": "Deep green",
       "background": "#F6F1E8",
@@ -482,15 +482,15 @@
       "path": "logotype/jpg/atomsai-logotype-deep-green-on-cream-2048w.jpg",
       "height": 782,
       "transparent": false,
-      "bytes": 79861,
-      "sha256": "ff218f50e436037707f88cb669ee69e8315813b136f8b9187b6ffa486560e037"
+      "bytes": 81084,
+      "sha256": "25803a25afc3716bb384b2ab0305a59e3b83bcf0b2f9482d88332a2dba14a53b"
     },
     {
       "variant": "logotype",
       "name": "Logotype",
       "format": "jpg",
       "width": 4096,
-      "ink": "#27433B",
+      "ink": "#1D3C34",
       "inkToken": "deep-green",
       "inkName": "Deep green",
       "background": "#F6F1E8",
@@ -499,8 +499,8 @@
       "path": "logotype/jpg/atomsai-logotype-deep-green-on-cream-4096w.jpg",
       "height": 1563,
       "transparent": false,
-      "bytes": 195173,
-      "sha256": "b43d8f8da8bc37ac5efb4ae769bf1242e2d64c4e10b6c72031fb795d47dd87d5"
+      "bytes": 197823,
+      "sha256": "5990ca2775cab625b2ca3debaa143dc31ea11fe325d7ce5a3a710c4ccf2ad916"
     },
     {
       "variant": "logotype",
@@ -595,14 +595,14 @@
       "ink": "#F6F1E8",
       "inkToken": "cream",
       "inkName": "Cream",
-      "background": "#27433B",
+      "background": "#1D3C34",
       "colorway": "cream-on-deep-green",
       "filename": "atomsai-logotype-cream-on-deep-green-256w.jpg",
       "path": "logotype/jpg/atomsai-logotype-cream-on-deep-green-256w.jpg",
       "height": 98,
       "transparent": false,
-      "bytes": 7127,
-      "sha256": "b80f2aaaf8b31282c4d2e976aa8a630106fa4aade14d1a4138a4595245e6ae2e"
+      "bytes": 6998,
+      "sha256": "7ac03beb2c1effb84bddacdc213386a88c8309141b726288f329d0131e5ab360"
     },
     {
       "variant": "logotype",
@@ -612,14 +612,14 @@
       "ink": "#F6F1E8",
       "inkToken": "cream",
       "inkName": "Cream",
-      "background": "#27433B",
+      "background": "#1D3C34",
       "colorway": "cream-on-deep-green",
       "filename": "atomsai-logotype-cream-on-deep-green-512w.jpg",
       "path": "logotype/jpg/atomsai-logotype-cream-on-deep-green-512w.jpg",
       "height": 195,
       "transparent": false,
-      "bytes": 16318,
-      "sha256": "9477b4b18e15f4f3e8e14dabdd32c0224922e4b16b1035c1f03308916e0e0b22"
+      "bytes": 16635,
+      "sha256": "4f14f1f790093205fb61b18c20ec8235e014e6e6019dd58c336a547a104678f6"
     },
     {
       "variant": "logotype",
@@ -629,14 +629,14 @@
       "ink": "#F6F1E8",
       "inkToken": "cream",
       "inkName": "Cream",
-      "background": "#27433B",
+      "background": "#1D3C34",
       "colorway": "cream-on-deep-green",
       "filename": "atomsai-logotype-cream-on-deep-green-1024w.jpg",
       "path": "logotype/jpg/atomsai-logotype-cream-on-deep-green-1024w.jpg",
       "height": 391,
       "transparent": false,
-      "bytes": 35586,
-      "sha256": "46f2f0367339881168f06c816f51c7578d867faff8aa11cd5fb445a1e0209205"
+      "bytes": 37278,
+      "sha256": "8c54d4bc11960e72adb09ab53bacdfa0cf03ef93a52ddb5318aefa5d8288063a"
     },
     {
       "variant": "logotype",
@@ -646,14 +646,14 @@
       "ink": "#F6F1E8",
       "inkToken": "cream",
       "inkName": "Cream",
-      "background": "#27433B",
+      "background": "#1D3C34",
       "colorway": "cream-on-deep-green",
       "filename": "atomsai-logotype-cream-on-deep-green-2048w.jpg",
       "path": "logotype/jpg/atomsai-logotype-cream-on-deep-green-2048w.jpg",
       "height": 782,
       "transparent": false,
-      "bytes": 81401,
-      "sha256": "799e1b456052477936618c27b7ed1612cf254ed55ce75cdf6a037ba132dd34f9"
+      "bytes": 80979,
+      "sha256": "a36103a60113bf62551d8ffca3efd523558c9f19e75249124d5cd7e0d7d0d3de"
     },
     {
       "variant": "logotype",
@@ -663,14 +663,14 @@
       "ink": "#F6F1E8",
       "inkToken": "cream",
       "inkName": "Cream",
-      "background": "#27433B",
+      "background": "#1D3C34",
       "colorway": "cream-on-deep-green",
       "filename": "atomsai-logotype-cream-on-deep-green-4096w.jpg",
       "path": "logotype/jpg/atomsai-logotype-cream-on-deep-green-4096w.jpg",
       "height": 1563,
       "transparent": false,
-      "bytes": 195802,
-      "sha256": "7ecab05dc9167317a783da7ab2a99d78f67a31752d23083ea0bdf3a04130fb71"
+      "bytes": 197476,
+      "sha256": "6e8081eafba9a38b56dc5c28e0e60532e364f3e6753f1e8cf62040611ff7e7db"
     },
     {
       "variant": "logotype",
@@ -762,7 +762,7 @@
       "name": "Logotype",
       "format": "webp",
       "width": 256,
-      "ink": "#27433B",
+      "ink": "#1D3C34",
       "inkToken": "deep-green",
       "inkName": "Deep green",
       "background": null,
@@ -771,15 +771,15 @@
       "path": "logotype/webp/atomsai-logotype-deep-green-256w.webp",
       "height": 45,
       "transparent": true,
-      "bytes": 3200,
-      "sha256": "1ea04b438393178f208f56c44f7796d16eee2442429eb8723ad74e98b53d4699"
+      "bytes": 3178,
+      "sha256": "12f3dc715a24abec8054b1f3ee2659a4c38dd1bce096d2deb948701b8798f1d8"
     },
     {
       "variant": "logotype",
       "name": "Logotype",
       "format": "webp",
       "width": 512,
-      "ink": "#27433B",
+      "ink": "#1D3C34",
       "inkToken": "deep-green",
       "inkName": "Deep green",
       "background": null,
@@ -788,15 +788,15 @@
       "path": "logotype/webp/atomsai-logotype-deep-green-512w.webp",
       "height": 90,
       "transparent": true,
-      "bytes": 5194,
-      "sha256": "7f8cc57a3e2567030cbe99a4c9b246597351f73ad3ba2271d735d58c81ea5935"
+      "bytes": 5172,
+      "sha256": "efc4f627847526c7f14f509c507ca7b86a274508ccd6cda68bbd1c2d1514bfcc"
     },
     {
       "variant": "logotype",
       "name": "Logotype",
       "format": "webp",
       "width": 1024,
-      "ink": "#27433B",
+      "ink": "#1D3C34",
       "inkToken": "deep-green",
       "inkName": "Deep green",
       "background": null,
@@ -805,15 +805,15 @@
       "path": "logotype/webp/atomsai-logotype-deep-green-1024w.webp",
       "height": 181,
       "transparent": true,
-      "bytes": 9542,
-      "sha256": "a67db40cefa933f11c91dc87e77c8defd244f7352c926a918b263f17538d8112"
+      "bytes": 9524,
+      "sha256": "301f547dafca4bbb5d086a618aae433b503b28dcb9cc0cae97674e675f00c36d"
     },
     {
       "variant": "logotype",
       "name": "Logotype",
       "format": "webp",
       "width": 2048,
-      "ink": "#27433B",
+      "ink": "#1D3C34",
       "inkToken": "deep-green",
       "inkName": "Deep green",
       "background": null,
@@ -822,15 +822,15 @@
       "path": "logotype/webp/atomsai-logotype-deep-green-2048w.webp",
       "height": 362,
       "transparent": true,
-      "bytes": 18480,
-      "sha256": "02d4b8e39c8065888d7ddf136cbeb804bff2b5f89cb57d3662f857f667dade06"
+      "bytes": 18456,
+      "sha256": "c3e58e05f86d7c546e6849f26d66a1c6060c14908e2f5bd35afa4763bdc82187"
     },
     {
       "variant": "logotype",
       "name": "Logotype",
       "format": "webp",
       "width": 4096,
-      "ink": "#27433B",
+      "ink": "#1D3C34",
       "inkToken": "deep-green",
       "inkName": "Deep green",
       "background": null,
@@ -839,8 +839,8 @@
       "path": "logotype/webp/atomsai-logotype-deep-green-4096w.webp",
       "height": 724,
       "transparent": true,
-      "bytes": 36974,
-      "sha256": "f2e914a7586c47bd1b2d05aaf55fb4b05334ef7efccec105ac852483571f0244"
+      "bytes": 36958,
+      "sha256": "2e8e7c34b074d7293548f739b40dd2499f1c79790f62352b523c4522ab4984b1"
     },
     {
       "variant": "logotype",
@@ -1102,7 +1102,7 @@
       "name": "Symbol",
       "format": "svg",
       "width": null,
-      "ink": "#27433B",
+      "ink": "#1D3C34",
       "inkToken": "deep-green",
       "inkName": "Deep green",
       "background": null,
@@ -1112,7 +1112,7 @@
       "height": null,
       "transparent": true,
       "bytes": 704,
-      "sha256": "96e3d5d5f485c661ed0c6115a7a22433d88af5835e89620dbee9e25cfeb9aa83"
+      "sha256": "2033e9b9493c26a8024daa03354fbee8a318508c52193803ecec2bea525c5398"
     },
     {
       "variant": "symbol",
@@ -1170,7 +1170,7 @@
       "name": "Symbol",
       "format": "png",
       "width": 256,
-      "ink": "#27433B",
+      "ink": "#1D3C34",
       "inkToken": "deep-green",
       "inkName": "Deep green",
       "background": null,
@@ -1179,15 +1179,15 @@
       "path": "symbol/png/atomsai-symbol-deep-green-256w.png",
       "height": 233,
       "transparent": true,
-      "bytes": 7439,
-      "sha256": "63ec0ae479adcabfac62e6349d09484c16a503badeafeb6221fef7c6b131fdf0"
+      "bytes": 7388,
+      "sha256": "8df655c014b2f5c39cc381c4eefa11d490d479fdd0938d107e6abf840dc0b4e6"
     },
     {
       "variant": "symbol",
       "name": "Symbol",
       "format": "png",
       "width": 512,
-      "ink": "#27433B",
+      "ink": "#1D3C34",
       "inkToken": "deep-green",
       "inkName": "Deep green",
       "background": null,
@@ -1196,15 +1196,15 @@
       "path": "symbol/png/atomsai-symbol-deep-green-512w.png",
       "height": 465,
       "transparent": true,
-      "bytes": 15919,
-      "sha256": "3fe6991b680db2527f3752d4b5f98a6832207bfd94695ee6761ebf32cd763504"
+      "bytes": 15859,
+      "sha256": "9c9aed5e8235feb416c39edf138a00b023aac34004b4114c827d1354138b8aac"
     },
     {
       "variant": "symbol",
       "name": "Symbol",
       "format": "png",
       "width": 1024,
-      "ink": "#27433B",
+      "ink": "#1D3C34",
       "inkToken": "deep-green",
       "inkName": "Deep green",
       "background": null,
@@ -1213,15 +1213,15 @@
       "path": "symbol/png/atomsai-symbol-deep-green-1024w.png",
       "height": 931,
       "transparent": true,
-      "bytes": 36584,
-      "sha256": "f732c10448eb692b6b3cca03af81f928875f129876a0cb641ab9673fbd1226c7"
+      "bytes": 36408,
+      "sha256": "6c0e1689d46e2f72ff2c58dcf3297fb3a0414ddfcf956785248e9f958c235090"
     },
     {
       "variant": "symbol",
       "name": "Symbol",
       "format": "png",
       "width": 2048,
-      "ink": "#27433B",
+      "ink": "#1D3C34",
       "inkToken": "deep-green",
       "inkName": "Deep green",
       "background": null,
@@ -1230,15 +1230,15 @@
       "path": "symbol/png/atomsai-symbol-deep-green-2048w.png",
       "height": 1862,
       "transparent": true,
-      "bytes": 85495,
-      "sha256": "95b7d6f16cfb41e272a576ad874f7d923ebf5990760e7d5a6983b1e0c55e84d2"
+      "bytes": 84997,
+      "sha256": "f4862cfe0832e1021ecb0f2009b768afe682fb38567a2586e5b954a4abc59d57"
     },
     {
       "variant": "symbol",
       "name": "Symbol",
       "format": "png",
       "width": 4096,
-      "ink": "#27433B",
+      "ink": "#1D3C34",
       "inkToken": "deep-green",
       "inkName": "Deep green",
       "background": null,
@@ -1247,8 +1247,8 @@
       "path": "symbol/png/atomsai-symbol-deep-green-4096w.png",
       "height": 3724,
       "transparent": true,
-      "bytes": 207961,
-      "sha256": "8ff574fc3ac1de92be9a260205560796332026498eafb366c50d1da932c80775"
+      "bytes": 209085,
+      "sha256": "4193b542147272dad1de5ebd6a8062ac6bd4bcda64081a2939a1fff55dd90553"
     },
     {
       "variant": "symbol",
@@ -1510,7 +1510,7 @@
       "name": "Symbol",
       "format": "jpg",
       "width": 256,
-      "ink": "#27433B",
+      "ink": "#1D3C34",
       "inkToken": "deep-green",
       "inkName": "Deep green",
       "background": "#F6F1E8",
@@ -1519,15 +1519,15 @@
       "path": "symbol/jpg/atomsai-symbol-deep-green-on-cream-256w.jpg",
       "height": 233,
       "transparent": false,
-      "bytes": 8051,
-      "sha256": "42350a068be0c9e2d7d35adcdc101d9399599dc573fbdeea1a070137db724a87"
+      "bytes": 8178,
+      "sha256": "a0c2a144d27357be2cc5da3ef9810ed5e92536adb27d37b4930d6bbf64891569"
     },
     {
       "variant": "symbol",
       "name": "Symbol",
       "format": "jpg",
       "width": 512,
-      "ink": "#27433B",
+      "ink": "#1D3C34",
       "inkToken": "deep-green",
       "inkName": "Deep green",
       "background": "#F6F1E8",
@@ -1536,15 +1536,15 @@
       "path": "symbol/jpg/atomsai-symbol-deep-green-on-cream-512w.jpg",
       "height": 465,
       "transparent": false,
-      "bytes": 17524,
-      "sha256": "973d851a00a9bf35e272d738af82bcf84370de185146d421de1d6245caecba4b"
+      "bytes": 17802,
+      "sha256": "4f166add6143eb5b795d8f34146472ed5950752aedf82a9c2d0610d9dac3f057"
     },
     {
       "variant": "symbol",
       "name": "Symbol",
       "format": "jpg",
       "width": 1024,
-      "ink": "#27433B",
+      "ink": "#1D3C34",
       "inkToken": "deep-green",
       "inkName": "Deep green",
       "background": "#F6F1E8",
@@ -1553,15 +1553,15 @@
       "path": "symbol/jpg/atomsai-symbol-deep-green-on-cream-1024w.jpg",
       "height": 931,
       "transparent": false,
-      "bytes": 38605,
-      "sha256": "35aaa6b19d1acfc40d2ce3c0b73c66f3ffe294bdbd1cdef1e2bf5a1286de0002"
+      "bytes": 39187,
+      "sha256": "aba97f1f43b34b56c725330062f4285757f2b77cd1a63be20206330185aede9e"
     },
     {
       "variant": "symbol",
       "name": "Symbol",
       "format": "jpg",
       "width": 2048,
-      "ink": "#27433B",
+      "ink": "#1D3C34",
       "inkToken": "deep-green",
       "inkName": "Deep green",
       "background": "#F6F1E8",
@@ -1570,15 +1570,15 @@
       "path": "symbol/jpg/atomsai-symbol-deep-green-on-cream-2048w.jpg",
       "height": 1862,
       "transparent": false,
-      "bytes": 100658,
-      "sha256": "2edc128c6420cbe2e8c0ed13324413f7562e25e946830861121a47ac087678e6"
+      "bytes": 101570,
+      "sha256": "65d88af033a223d60233dc01a9e112dfca5cc50fdfe41518cae6853a4ead9cbf"
     },
     {
       "variant": "symbol",
       "name": "Symbol",
       "format": "jpg",
       "width": 4096,
-      "ink": "#27433B",
+      "ink": "#1D3C34",
       "inkToken": "deep-green",
       "inkName": "Deep green",
       "background": "#F6F1E8",
@@ -1587,8 +1587,8 @@
       "path": "symbol/jpg/atomsai-symbol-deep-green-on-cream-4096w.jpg",
       "height": 3724,
       "transparent": false,
-      "bytes": 289014,
-      "sha256": "0daf1f79088c0d23f01c8cc2c91dca3bc1fd45c31e5d139e7d05b5ee35d554e9"
+      "bytes": 291194,
+      "sha256": "005d41b74747715b9d9382a98b802ec602acc75c526068ef2042c5f9ac042d14"
     },
     {
       "variant": "symbol",
@@ -1683,14 +1683,14 @@
       "ink": "#F6F1E8",
       "inkToken": "cream",
       "inkName": "Cream",
-      "background": "#27433B",
+      "background": "#1D3C34",
       "colorway": "cream-on-deep-green",
       "filename": "atomsai-symbol-cream-on-deep-green-256w.jpg",
       "path": "symbol/jpg/atomsai-symbol-cream-on-deep-green-256w.jpg",
       "height": 233,
       "transparent": false,
-      "bytes": 8118,
-      "sha256": "05d872de46d469522bac15c9509ddf3af22f976889adee66b176472d87e271d1"
+      "bytes": 8248,
+      "sha256": "cdb09eedcb7a473052e5474f5ae308317a5fba396773833936d0953449a84381"
     },
     {
       "variant": "symbol",
@@ -1700,14 +1700,14 @@
       "ink": "#F6F1E8",
       "inkToken": "cream",
       "inkName": "Cream",
-      "background": "#27433B",
+      "background": "#1D3C34",
       "colorway": "cream-on-deep-green",
       "filename": "atomsai-symbol-cream-on-deep-green-512w.jpg",
       "path": "symbol/jpg/atomsai-symbol-cream-on-deep-green-512w.jpg",
       "height": 465,
       "transparent": false,
-      "bytes": 17978,
-      "sha256": "5d2fb7360c1cdc6c946d3da9a52fc3e1f24680b232ed7e8dd08404b30958f656"
+      "bytes": 18452,
+      "sha256": "6e061b1a4cac83c1e6e88f66f430aadcd74b0c03019c4886b04cb1ae33ec37fb"
     },
     {
       "variant": "symbol",
@@ -1717,14 +1717,14 @@
       "ink": "#F6F1E8",
       "inkToken": "cream",
       "inkName": "Cream",
-      "background": "#27433B",
+      "background": "#1D3C34",
       "colorway": "cream-on-deep-green",
       "filename": "atomsai-symbol-cream-on-deep-green-1024w.jpg",
       "path": "symbol/jpg/atomsai-symbol-cream-on-deep-green-1024w.jpg",
       "height": 931,
       "transparent": false,
-      "bytes": 39424,
-      "sha256": "2fb78538ba986af07c83f40cbf0b168c5d325e349f062844a4fd63eafcd4fb44"
+      "bytes": 40622,
+      "sha256": "948d392855476ef3c25b336a31f5ae13adca24cec4cc1fe52ac13fe16513d419"
     },
     {
       "variant": "symbol",
@@ -1734,14 +1734,14 @@
       "ink": "#F6F1E8",
       "inkToken": "cream",
       "inkName": "Cream",
-      "background": "#27433B",
+      "background": "#1D3C34",
       "colorway": "cream-on-deep-green",
       "filename": "atomsai-symbol-cream-on-deep-green-2048w.jpg",
       "path": "symbol/jpg/atomsai-symbol-cream-on-deep-green-2048w.jpg",
       "height": 1862,
       "transparent": false,
-      "bytes": 101206,
-      "sha256": "525068fbaccd45d89bdfdd88de4cf2ef92df042fa6c25f0a5384e43323033139"
+      "bytes": 100920,
+      "sha256": "7dfbd8b04aba53ecb3bf43743b8e7845397073ca0ce24c69752a3d841893fc93"
     },
     {
       "variant": "symbol",
@@ -1751,14 +1751,14 @@
       "ink": "#F6F1E8",
       "inkToken": "cream",
       "inkName": "Cream",
-      "background": "#27433B",
+      "background": "#1D3C34",
       "colorway": "cream-on-deep-green",
       "filename": "atomsai-symbol-cream-on-deep-green-4096w.jpg",
       "path": "symbol/jpg/atomsai-symbol-cream-on-deep-green-4096w.jpg",
       "height": 3724,
       "transparent": false,
-      "bytes": 288625,
-      "sha256": "4a1daf438a84c033ae44550557039b8ab057755a815ef1d980e237e29e667fe5"
+      "bytes": 295816,
+      "sha256": "f9acca374a939acbaf60cdaff1253f50b5cdeab48f926bf5c68a04097e8c0faa"
     },
     {
       "variant": "symbol",
@@ -1850,7 +1850,7 @@
       "name": "Symbol",
       "format": "webp",
       "width": 256,
-      "ink": "#27433B",
+      "ink": "#1D3C34",
       "inkToken": "deep-green",
       "inkName": "Deep green",
       "background": null,
@@ -1859,15 +1859,15 @@
       "path": "symbol/webp/atomsai-symbol-deep-green-256w.webp",
       "height": 233,
       "transparent": true,
-      "bytes": 3810,
-      "sha256": "3995fc5d7788601c13a3cda121b77dcd87203af0f10a7787c7f2413a505b252a"
+      "bytes": 3790,
+      "sha256": "fcd0c421018ed98d35798cc0fd28b9af668c02d990c00f74ff7d3dcf79235051"
     },
     {
       "variant": "symbol",
       "name": "Symbol",
       "format": "webp",
       "width": 512,
-      "ink": "#27433B",
+      "ink": "#1D3C34",
       "inkToken": "deep-green",
       "inkName": "Deep green",
       "background": null,
@@ -1876,15 +1876,15 @@
       "path": "symbol/webp/atomsai-symbol-deep-green-512w.webp",
       "height": 465,
       "transparent": true,
-      "bytes": 6642,
-      "sha256": "4ecdf870d257a1285e91afc37e9f80845881d7d74152fd31ea443be5df994339"
+      "bytes": 6624,
+      "sha256": "c6ec05a8331ee22073c4e58804940acad11786113b5b36eff439e4c8805a0e05"
     },
     {
       "variant": "symbol",
       "name": "Symbol",
       "format": "webp",
       "width": 1024,
-      "ink": "#27433B",
+      "ink": "#1D3C34",
       "inkToken": "deep-green",
       "inkName": "Deep green",
       "background": null,
@@ -1893,15 +1893,15 @@
       "path": "symbol/webp/atomsai-symbol-deep-green-1024w.webp",
       "height": 931,
       "transparent": true,
-      "bytes": 12486,
-      "sha256": "c2579ea5717c7ed19cb1c8edab804692d0beee4c047a7c5cca2cdb5b79eda1e9"
+      "bytes": 12468,
+      "sha256": "06e211397b9f0b7047059d1ab643fcb47d9d5af2956a228440e4966ecd2861e0"
     },
     {
       "variant": "symbol",
       "name": "Symbol",
       "format": "webp",
       "width": 2048,
-      "ink": "#27433B",
+      "ink": "#1D3C34",
       "inkToken": "deep-green",
       "inkName": "Deep green",
       "background": null,
@@ -1910,15 +1910,15 @@
       "path": "symbol/webp/atomsai-symbol-deep-green-2048w.webp",
       "height": 1862,
       "transparent": true,
-      "bytes": 24770,
-      "sha256": "151a7333d47e93089efb481590509e5df476d9e98c0f428c098a1858387eb198"
+      "bytes": 24752,
+      "sha256": "d142096698d1fc7d320f0d8e67484857af272bcb4f39e30deaebd3ce68367a38"
     },
     {
       "variant": "symbol",
       "name": "Symbol",
       "format": "webp",
       "width": 4096,
-      "ink": "#27433B",
+      "ink": "#1D3C34",
       "inkToken": "deep-green",
       "inkName": "Deep green",
       "background": null,
@@ -1927,8 +1927,8 @@
       "path": "symbol/webp/atomsai-symbol-deep-green-4096w.webp",
       "height": 3724,
       "transparent": true,
-      "bytes": 46644,
-      "sha256": "756257602929631b176b3e2ae92e38853f5a87f1abf94bf448c8b3afbd8d277a"
+      "bytes": 47278,
+      "sha256": "4ec76a06fffcb1004e8c712614eed7dc977c593366b1834b45a1b4b93dff4c2f"
     },
     {
       "variant": "symbol",

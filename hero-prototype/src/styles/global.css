@@ -3,9 +3,9 @@
   repo, mirrored from the "AtomsAI — Website" Figma file). Same names, plain CSS, no Tailwind.
 */
 :root {
-  --color-deep-green: #27433b;
-  --color-forest-green: #42665a;
-  --color-stone: #c7cdba;
+  --color-deep-green: #1D3C34;
+  --color-forest-green: #43695B;
+  --color-stone: #BAC5B9;
   --color-cream: #f6f1e8;
 
   --color-background: var(--color-cream);

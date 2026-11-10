@@ -1,5 +1,6 @@
 import { structures } from '../../data/patterns';
-import { rgb } from '../../data/colors';
+import { colors, rgb } from '../../data/colors';
+import { patternThemes as sourceThemes } from './source-data';
 import type { PatternColor, PatternColors, PatternKind } from './types';
 
 // The renderer blends encoded Display P3. Convert the sRGB palette on input.
@@ -14,3 +15,14 @@ export const irisColors = Object.fromEntries(structures.map(s => {
   if (s.id === 'concentric') colors.reflectionBase = colors.base;
   return [s.id, colors];
 })) as Record<PatternKind, PatternColors>;
+
+// Preserve source geometry and effects while resolving the brand inks from current tokens.
+export const patternThemes = Object.fromEntries(Object.entries(sourceThemes).map(([mode, theme]) => [mode,
+  Object.fromEntries(Object.entries(theme).map(([role, value]) => {
+    let ink: string | undefined;
+    if (mode === 'light' && (role.endsWith('/base') || role === 'pattern/single-band/reflection-3') && !role.includes('/concentric/')) ink = colors.deepGreen.hex;
+    if (role.endsWith('/upper-field') || (role.endsWith('/lower-field') && (role.includes('/drift/') || role.includes('/concentric/')))) ink = mode === 'light' ? colors.sage.hex : colors.forestGreen.hex;
+    if (mode === 'dark' && role === 'pattern/drift/reflection') ink = colors.sage.hex;
+    return [role, ink ? [...toP3(ink), value[3]] : value];
+  })),
+])) as typeof sourceThemes;

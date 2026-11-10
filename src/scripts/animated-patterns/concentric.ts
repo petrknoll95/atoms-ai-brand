@@ -1,4 +1,5 @@
-import { patternGradients, patternSources, patternThemes, type SourceNode } from './source-data';
+import { patternThemes } from './palettes';
+import { patternGradients, patternSources, type SourceNode } from './source-data';
 import type { GradientData, MaskData, PatternColor, PatternModel, PatternOptions } from './types';
 
 const layers = ['Upper field', 'Lower field', 'Highlight', 'Reflection'] as const;

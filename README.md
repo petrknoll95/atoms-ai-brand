@@ -59,6 +59,12 @@ scripts/figma/           Helpers used to clean Figma exports (see below)
 
 Colors are available as CSS custom properties at `/tokens.css` (`--deep-green`, `--cream`, …), generated from `src/data/colors.ts`.
 
+## Print colors
+
+The Color page includes coated and uncoated PANTONE references and ICC-based CMYK values for all 26 colors. Copy menus include the output profile; the print section provides a downloadable JSON reference. PSO Coated v3 / FOGRA51 and PSO Uncoated v3 / FOGRA52 are the process conditions. Physical proof on the final stock is required.
+
+See [print color documentation](docs/print-colors.md) for conversion settings, source provenance, regeneration and the distinction between same-number PANTONE references and appearance matches.
+
 ## Logo delivery
 
 `public/logos/` contains 128 checked-in exports generated from the canonical logo SVGs and palette. Both logo forms have four transparent SVGs, plus PNG, lossless WEBP and background JPGs at widths of 256, 512, 1024, 2048 and 4096 pixels. JPGs include the clear space specified by the logo diagrams. The package README explains sizing, bounds, colors and RGB usage; its manifest records exact dimensions and SHA-256 checksums.
@@ -72,6 +78,8 @@ The Assets page offers individual files, `/assets/logos.zip`, `/assets/logos/log
 `skills/atomsai-brand/SKILL.md` covers the full brand system; `skills/atomsai-icons/SKILL.md` covers the icon style, measured master geometry and SVG production. Both are self-contained Markdown with portable `name` and `description` frontmatter. They can be installed in a host's skills directory or used as ordinary instructions/attachments. No vendor-specific tools are required.
 
 The dedicated `/skills/<name>/` pages, clipboard payload, `/skills/<name>/SKILL.md` endpoints and `/skills/atomsai-skills.zip` all use these same source files. Source files contain the current production links; generated previews/downloads automatically rewrite that origin and base from Astro's `site`/`base` settings. Add new skills to `src/data/skills.ts` and the Skills subsection list in `src/data/nav.ts`.
+
+`skills/atomsai-photography/SKILL.md` is a standalone ChatGPT instruction attachment for generating or editing photographs. It carries the photography art direction across people, products, places and other subjects while preserving the assignment's content, format and references. The Photography Skill follows Illustration Skill in the library and is included in the shared download ZIP. It distinguishes image generation from prompt-only requests and requires no specific image provider.
 
 Agents can fetch artwork without operating browser buttons: `/assets/brand/manifest.json` lists stable logo export, SVG and font URLs and current palette, theme, combination and gradient data. SVG routes are built from the original masters by `src/data/brandDownloads.ts`; there is no duplicate artwork directory. Fonts retain the asset library's AtomsAI-only usage restriction.
 
@@ -104,6 +112,10 @@ Assets were exported through the Figma MCP server and cleaned with the scripts i
 - `minify_rings.py` turns the Concentric mask exports into the files in `public/pattern-masks/`.
 
 The renderer in `src/scripts/pattern-renderer.ts` reproduces the Figma pattern components. Slit structures are drawn from the exact gradient transforms in `src/data/patterns.ts`, and Concentric tints Figma's own ring masks. Compared against Figma's renders of all 14 greyscale templates, every one matches within a mean difference of 5/255 (most under 2/255).
+
+## Photography delivery
+
+`/photography/` defines the people and character approach for customer stories, support, onboarding and careers. `src/data/photography.ts` supplies the page and its downloadable guidelines at `/assets/photography/guidelines.md`, linked from Assets and the brand manifest. The four AI-generated editorial studies demonstrate the “In their element” direction through portrait, conversation, arrival and movement; they do not establish actual customer or employee identity. The version 3 rendered evaluation is recorded in `docs/photography-skill-evaluation/v3-editorial/results.md`.
 
 ## Fonts
 

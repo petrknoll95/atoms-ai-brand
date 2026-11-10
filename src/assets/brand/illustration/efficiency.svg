@@ -1,0 +1,214 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="500 100 100 100" fill="none" data-hidden-line-opacity="0.35">
+  <defs>
+    <radialGradient id="iris" cx="50%" cy="50%" r="50%">
+      <stop offset="0.0" stop-color="#A77BCA" stop-opacity="0.0" />
+      <stop offset="0.03125" stop-color="#A77BCA" stop-opacity="3e-05" />
+      <stop offset="0.0625" stop-color="#A77BCA" stop-opacity="0.00024" />
+      <stop offset="0.09375" stop-color="#A77BCA" stop-opacity="0.00082" />
+      <stop offset="0.125" stop-color="#A77BCA" stop-opacity="0.00195" />
+      <stop offset="0.15625" stop-color="#A77BCA" stop-opacity="0.00381" />
+      <stop offset="0.1875" stop-color="#A77BCA" stop-opacity="0.00659" />
+      <stop offset="0.21875" stop-color="#A77BCA" stop-opacity="0.01047" />
+      <stop offset="0.25" stop-color="#A77BCA" stop-opacity="0.01562" />
+      <stop offset="0.28125" stop-color="#A77BCA" stop-opacity="0.02225" />
+      <stop offset="0.3125" stop-color="#A77BCA" stop-opacity="0.03052" />
+      <stop offset="0.34375" stop-color="#A77BCA" stop-opacity="0.04062" />
+      <stop offset="0.375" stop-color="#A77BCA" stop-opacity="0.05273" />
+      <stop offset="0.40625" stop-color="#A77BCA" stop-opacity="0.06705" />
+      <stop offset="0.4375" stop-color="#A77BCA" stop-opacity="0.08374" />
+      <stop offset="0.46875" stop-color="#A77BCA" stop-opacity="0.103" />
+      <stop offset="0.5" stop-color="#A77BCA" stop-opacity="0.125" />
+      <stop offset="0.53125" stop-color="#A77BCA" stop-opacity="0.14993" />
+      <stop offset="0.5625" stop-color="#A77BCA" stop-opacity="0.17798" />
+      <stop offset="0.59375" stop-color="#A77BCA" stop-opacity="0.20932" />
+      <stop offset="0.625" stop-color="#A77BCA" stop-opacity="0.24414" />
+      <stop offset="0.65625" stop-color="#A77BCA" stop-opacity="0.28262" />
+      <stop offset="0.6875" stop-color="#A77BCA" stop-opacity="0.32495" />
+      <stop offset="0.71875" stop-color="#A77BCA" stop-opacity="0.37131" />
+      <stop offset="0.75" stop-color="#A77BCA" stop-opacity="0.42188" />
+      <stop offset="0.78125" stop-color="#A77BCA" stop-opacity="0.47684" />
+      <stop offset="0.8125" stop-color="#A77BCA" stop-opacity="0.53638" />
+      <stop offset="0.84375" stop-color="#A77BCA" stop-opacity="0.60068" />
+      <stop offset="0.875" stop-color="#A77BCA" stop-opacity="0.66992" />
+      <stop offset="0.90625" stop-color="#A77BCA" stop-opacity="0.74429" />
+      <stop offset="0.9375" stop-color="#A77BCA" stop-opacity="0.82397" />
+      <stop offset="0.96875" stop-color="#A77BCA" stop-opacity="0.90915" />
+      <stop offset="1.0" stop-color="#A77BCA" stop-opacity="1.0" />
+    </radialGradient>
+    <mask id="depth-0-visible" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse" style="mask-type:luminance" x="490.0" y="90.0" width="120.0" height="120.0">
+      <rect x="490.0" y="90.0" width="120.0" height="120.0" fill="white" />
+      <circle fill="black" cx="547.7" cy="151.5" r="25.82" stroke-width=".5" stroke="none" />
+      <circle fill="black" cx="529.4" cy="133.6" r="1.835" stroke="none" stroke-width=".5" />
+      <circle fill="black" cx="573.3" cy="151.4" r="1.769" stroke="none" stroke-width=".5" />
+      <circle fill="black" cx="547.7" cy="165.1" r="1.872" stroke="none" stroke-width=".5" />
+    </mask>
+    <mask id="depth-0-hidden" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse" style="mask-type:luminance" x="490.0" y="90.0" width="120.0" height="120.0">
+      <rect x="490.0" y="90.0" width="120.0" height="120.0" fill="black" />
+      <circle fill="white" cx="547.7" cy="151.5" r="25.82" stroke-width=".5" stroke="none" />
+      <circle fill="white" cx="529.4" cy="133.6" r="1.835" stroke="none" stroke-width=".5" />
+      <circle fill="white" cx="573.3" cy="151.4" r="1.769" stroke="none" stroke-width=".5" />
+      <circle fill="white" cx="547.7" cy="165.1" r="1.872" stroke="none" stroke-width=".5" />
+    </mask>
+    <mask id="depth-1-visible" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse" style="mask-type:luminance" x="490.0" y="90.0" width="120.0" height="120.0">
+      <rect x="490.0" y="90.0" width="120.0" height="120.0" fill="white" />
+      <circle fill="black" cx="529.4" cy="133.6" r="1.835" stroke="none" stroke-width=".5" />
+      <circle fill="black" cx="573.3" cy="151.4" r="1.769" stroke="none" stroke-width=".5" />
+      <circle fill="black" cx="547.7" cy="165.1" r="1.872" stroke="none" stroke-width=".5" />
+    </mask>
+    <mask id="depth-1-hidden" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse" style="mask-type:luminance" x="490.0" y="90.0" width="120.0" height="120.0">
+      <rect x="490.0" y="90.0" width="120.0" height="120.0" fill="black" />
+      <circle fill="white" cx="529.4" cy="133.6" r="1.835" stroke="none" stroke-width=".5" />
+      <circle fill="white" cx="573.3" cy="151.4" r="1.769" stroke="none" stroke-width=".5" />
+      <circle fill="white" cx="547.7" cy="165.1" r="1.872" stroke="none" stroke-width=".5" />
+    </mask>
+    <mask id="depth-2-visible" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse" style="mask-type:luminance" x="490.0" y="90.0" width="120.0" height="120.0">
+      <rect x="490.0" y="90.0" width="120.0" height="120.0" fill="white" />
+      <circle fill="black" cx="573.3" cy="151.4" r="1.769" stroke="none" stroke-width=".5" />
+      <circle fill="black" cx="547.7" cy="165.1" r="1.872" stroke="none" stroke-width=".5" />
+    </mask>
+    <mask id="depth-2-hidden" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse" style="mask-type:luminance" x="490.0" y="90.0" width="120.0" height="120.0">
+      <rect x="490.0" y="90.0" width="120.0" height="120.0" fill="black" />
+      <circle fill="white" cx="573.3" cy="151.4" r="1.769" stroke="none" stroke-width=".5" />
+      <circle fill="white" cx="547.7" cy="165.1" r="1.872" stroke="none" stroke-width=".5" />
+    </mask>
+    <mask id="depth-3-visible" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse" style="mask-type:luminance" x="490.0" y="90.0" width="120.0" height="120.0">
+      <rect x="490.0" y="90.0" width="120.0" height="120.0" fill="white" />
+      <circle fill="black" cx="547.7" cy="165.1" r="1.872" stroke="none" stroke-width=".5" />
+    </mask>
+    <mask id="depth-3-hidden" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse" style="mask-type:luminance" x="490.0" y="90.0" width="120.0" height="120.0">
+      <rect x="490.0" y="90.0" width="120.0" height="120.0" fill="black" />
+      <circle fill="white" cx="547.7" cy="165.1" r="1.872" stroke="none" stroke-width=".5" />
+    </mask>
+  </defs>
+  <g data-layer="color">
+    <circle fill="url(#iris)" cx="547.7" cy="151.5" r="25.82" stroke="none" stroke-width=".5" />
+  </g>
+  <g data-layer="hidden-linework" opacity="0.35">
+    <g mask="url(#depth-0-hidden)">
+      <rect fill="none" x="515.4" y="119" width="64.59" height="65.4" stroke="currentColor" stroke-width=".5" />
+    </g>
+    <g mask="url(#depth-0-hidden)">
+      <path fill="none" d="m524.8 119.1v65.32" stroke="currentColor" stroke-width=".5" />
+    </g>
+    <g mask="url(#depth-0-hidden)">
+      <path fill="none" d="m534.4 119.1v65.32" stroke="currentColor" stroke-width=".5" />
+    </g>
+    <g mask="url(#depth-0-hidden)">
+      <path fill="none" d="m560.9 119.1v65.32" stroke="currentColor" stroke-width=".5" />
+    </g>
+    <g mask="url(#depth-0-hidden)">
+      <path fill="none" d="m570.6 119.1v65.32" stroke="currentColor" stroke-width=".5" />
+    </g>
+    <g mask="url(#depth-0-hidden)">
+      <path fill="none" d="m515.4 128.9h64.61" stroke="currentColor" stroke-width=".5" />
+    </g>
+    <g mask="url(#depth-0-hidden)">
+      <path fill="none" d="m515.4 138.9h64.61" stroke="currentColor" stroke-width=".5" />
+    </g>
+    <g mask="url(#depth-0-hidden)">
+      <path fill="none" d="m515.4 163.8h64.61" stroke="currentColor" stroke-width=".5" />
+    </g>
+    <g mask="url(#depth-0-hidden)">
+      <path fill="none" d="m515.4 174.3h64.61" stroke="currentColor" stroke-width=".5" />
+    </g>
+    <g mask="url(#depth-0-hidden)">
+      <path fill="none" d="m515.2 184.3h64.76" stroke="currentColor" stroke-width=".5" />
+    </g>
+    <g mask="url(#depth-1-hidden)">
+      <ellipse fill="none" cx="547.9" cy="151.5" rx="18.16" ry="26" stroke="currentColor" stroke-width=".5" />
+    </g>
+    <g mask="url(#depth-1-hidden)">
+      <ellipse fill="none" cx="547.8" cy="151.5" rx="9.618" ry="26" stroke="currentColor" stroke-width=".5" />
+    </g>
+    <g mask="url(#depth-1-hidden)">
+      <path fill="none" d="m547.5 111.1v80.85" stroke="currentColor" stroke-width=".5" />
+    </g>
+    <g mask="url(#depth-1-hidden)">
+      <path fill="none" d="m545.4 114 2.25-2.85 2.738 2.85" stroke="currentColor" stroke-width=".5" />
+    </g>
+    <g mask="url(#depth-1-hidden)">
+      <path fill="none" d="m545.5 189.5 2.138 2.475 2.475-2.55" stroke="currentColor" stroke-width=".5" />
+    </g>
+    <g mask="url(#depth-1-hidden)">
+      <path fill="none" d="m587.6 151.5h-79.35" stroke="currentColor" stroke-width=".5" />
+    </g>
+    <g mask="url(#depth-1-hidden)">
+      <path fill="none" d="m510.6 149.1-2.513 2.288 2.513 2.325" stroke="currentColor" stroke-width=".5" />
+    </g>
+    <g mask="url(#depth-1-hidden)">
+      <path fill="none" d="m584.9 149 2.738 2.362-2.588 2.438" stroke="currentColor" stroke-width=".5" />
+    </g>
+    <g mask="url(#depth-2-hidden)">
+      <circle fill="none" cx="529.4" cy="133.6" r="1.835" stroke="currentColor" stroke-width=".5" />
+    </g>
+    <g mask="url(#depth-3-hidden)">
+      <circle fill="none" cx="573.3" cy="151.4" r="1.769" stroke="currentColor" stroke-width=".5" />
+    </g>
+  </g>
+  <g data-layer="visible-linework">
+    <g mask="url(#depth-0-visible)">
+      <rect fill="none" x="515.4" y="119" width="64.59" height="65.4" stroke="currentColor" stroke-width=".5" />
+    </g>
+    <g mask="url(#depth-0-visible)">
+      <path fill="none" d="m524.8 119.1v65.32" stroke="currentColor" stroke-width=".5" />
+    </g>
+    <g mask="url(#depth-0-visible)">
+      <path fill="none" d="m534.4 119.1v65.32" stroke="currentColor" stroke-width=".5" />
+    </g>
+    <g mask="url(#depth-0-visible)">
+      <path fill="none" d="m560.9 119.1v65.32" stroke="currentColor" stroke-width=".5" />
+    </g>
+    <g mask="url(#depth-0-visible)">
+      <path fill="none" d="m570.6 119.1v65.32" stroke="currentColor" stroke-width=".5" />
+    </g>
+    <g mask="url(#depth-0-visible)">
+      <path fill="none" d="m515.4 128.9h64.61" stroke="currentColor" stroke-width=".5" />
+    </g>
+    <g mask="url(#depth-0-visible)">
+      <path fill="none" d="m515.4 138.9h64.61" stroke="currentColor" stroke-width=".5" />
+    </g>
+    <g mask="url(#depth-0-visible)">
+      <path fill="none" d="m515.4 163.8h64.61" stroke="currentColor" stroke-width=".5" />
+    </g>
+    <g mask="url(#depth-0-visible)">
+      <path fill="none" d="m515.4 174.3h64.61" stroke="currentColor" stroke-width=".5" />
+    </g>
+    <g mask="url(#depth-0-visible)">
+      <path fill="none" d="m515.2 184.3h64.76" stroke="currentColor" stroke-width=".5" />
+    </g>
+    <g mask="url(#depth-1-visible)">
+      <ellipse fill="none" cx="547.9" cy="151.5" rx="18.16" ry="26" stroke="currentColor" stroke-width=".5" />
+    </g>
+    <g mask="url(#depth-1-visible)">
+      <ellipse fill="none" cx="547.8" cy="151.5" rx="9.618" ry="26" stroke="currentColor" stroke-width=".5" />
+    </g>
+    <g mask="url(#depth-1-visible)">
+      <path fill="none" d="m547.5 111.1v80.85" stroke="currentColor" stroke-width=".5" />
+    </g>
+    <g mask="url(#depth-1-visible)">
+      <path fill="none" d="m545.4 114 2.25-2.85 2.738 2.85" stroke="currentColor" stroke-width=".5" />
+    </g>
+    <g mask="url(#depth-1-visible)">
+      <path fill="none" d="m545.5 189.5 2.138 2.475 2.475-2.55" stroke="currentColor" stroke-width=".5" />
+    </g>
+    <g mask="url(#depth-1-visible)">
+      <path fill="none" d="m587.6 151.5h-79.35" stroke="currentColor" stroke-width=".5" />
+    </g>
+    <g mask="url(#depth-1-visible)">
+      <path fill="none" d="m510.6 149.1-2.513 2.288 2.513 2.325" stroke="currentColor" stroke-width=".5" />
+    </g>
+    <g mask="url(#depth-1-visible)">
+      <path fill="none" d="m584.9 149 2.738 2.362-2.588 2.438" stroke="currentColor" stroke-width=".5" />
+    </g>
+    <g mask="url(#depth-2-visible)">
+      <circle fill="none" cx="529.4" cy="133.6" r="1.835" stroke="currentColor" stroke-width=".5" />
+    </g>
+    <g mask="url(#depth-3-visible)">
+      <circle fill="none" cx="573.3" cy="151.4" r="1.769" stroke="currentColor" stroke-width=".5" />
+    </g>
+    <circle fill="none" cx="547.7" cy="165.1" r="1.872" stroke="currentColor" stroke-width=".5" />
+  </g>
+  <g data-layer="highlight-outlines" opacity="1">
+    <circle fill="none" cx="547.7" cy="151.5" r="25.82" stroke="currentColor" stroke-width=".5" />
+  </g>
+</svg>

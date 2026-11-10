@@ -1,9 +1,9 @@
 ---
 // A color chip: its name bottom left, and a small menu top right that copies the color as HEX,
-// RGB, CMYK (where defined) or its CSS variable. The menu is a popover anchored to its button.
+// RGB, profile-based CMYK, PANTONE references or its CSS variable. The menu is a popover anchored to its button.
 import { bare, colors, contrast, rgb, type ColorKey } from '../data/colors';
 
-import { printMatch } from '../data/printColors';
+import { printValues } from '../data/printColors';
 
 interface Props {
   color: ColorKey;
@@ -17,12 +17,10 @@ const c = colors[color];
 const ink = contrast(c.hex, colors.deepGreen.hex) >= contrast(c.hex, colors.cream.hex) ? colors.deepGreen.hex : colors.cream.hex;
 
 const [r, g, b] = rgb(c.hex);
-const print = printMatch(c);
 const values = [
   { label: 'HEX', shown: bare(c.hex), copy: c.hex },
   { label: 'RGB', shown: `${r} ${g} ${b}`, copy: `rgb(${r}, ${g}, ${b})` },
-  ...(c.cmyk ? [{ label: 'CMYK', shown: c.cmyk.join(' '), copy: `C${c.cmyk[0]} M${c.cmyk[1]} Y${c.cmyk[2]} K${c.cmyk[3]}` }] : []),
-  ...(print.kind !== 'unassigned' ? [{ label: print.kind === 'paper' ? 'Print stock' : 'Pantone shortlist', shown: print.kind === 'paper' ? print.label : print.choice!, copy: `${print.label} — ${print.status}` }] : []),
+  ...printValues(c),
   { label: 'CSS', shown: `--${c.token}`, copy: `var(--${c.token})` },
 ];
 
@@ -39,7 +37,7 @@ const id = `swatch-${c.token}-${Math.random().toString(36).slice(2, 8)}`;
     <p class="menu-title muted">Copy {c.name}</p>
     {
       values.map((v) => (
-        <button type="button" class="menu-item" data-copy={v.copy} data-copy-message={`Copied ${c.name} ${v.copy}`}>
+        <button type="button" class="menu-item" title={'title' in v ? v.title : undefined} data-copy={v.copy} data-copy-message={`${c.name} ${v.label} copied`}>
           <span class="muted">{v.label}</span>
           <span>{v.shown}</span>
         </button>
@@ -114,7 +112,10 @@ const id = `swatch-${c.token}-${Math.random().toString(36).slice(2, 8)}`;
     position-anchor: var(--anchor);
     position-area: bottom span-left;
     position-try-fallbacks: flip-block;
-    min-width: 11rem;
+    min-width: min(19rem, calc(100vw - 2rem));
+    max-width: calc(100vw - 2rem);
+    max-height: calc(100dvh - 2rem);
+    overflow-y: auto;
     margin: 0.25rem 0;
     padding: 0.375rem;
     border: 0;

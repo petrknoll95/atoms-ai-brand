@@ -1,0 +1,262 @@
+{
+  "always-on": {
+    "frame": [
+      280.0,
+      280.0
+    ],
+    "bounds": [
+      65.2031,
+      476.554,
+      304.136,
+      710.447
+    ],
+    "sourceHash": "dd8cf76ae21b2e795ce88fc5b6946f9d16840a3e4594eed267c361aa71f75154"
+  },
+  "built-in-your-stack": {
+    "frame": [
+      249.33,
+      286.0
+    ],
+    "bounds": [
+      447.0,
+      250.0,
+      692.333,
+      532.001
+    ],
+    "sourceHash": "6f9be492bb0c85ae32ab046d5cb0095c9553ca52f1ade981449bcaf010b3b070"
+  },
+  "compounding-outcomes": {
+    "frame": [
+      261.5,
+      261.5
+    ],
+    "bounds": [
+      830.0,
+      283.0,
+      1086.0,
+      539.0
+    ],
+    "sourceHash": "ca6867186f9c83d1ce79d6a3820cfe59ea33c4fa518487f7cf3d868719768555"
+  },
+  "efficiency": {
+    "frame": [
+      100.0,
+      100.0
+    ],
+    "bounds": [
+      508.087,
+      111.1,
+      587.638,
+      191.975
+    ],
+    "sourceHash": "a32607b7db7f81ad04bb5d50a941bbd685380ce1cf537e99158d2be7b4d87f18"
+  },
+  "filtering": {
+    "frame": [
+      250.0,
+      250.0
+    ],
+    "bounds": [
+      650.4,
+      616.265,
+      859.7,
+      845.545
+    ],
+    "sourceHash": "8379bd46d8fc4c1bcb9aadc3cddb33156ca16fb154680a8fceaa5672d1f039c6"
+  },
+  "focus": {
+    "frame": [
+      280.0,
+      280.0
+    ],
+    "bounds": [
+      450.535,
+      90.2998,
+      689.468,
+      294.644
+    ],
+    "sourceHash": "2778d28f8e2d24d701d818016ff315b1b7cd4d455c010037f76f8afe3d619624"
+  },
+  "full-visibility": {
+    "frame": [
+      255.5,
+      255.5
+    ],
+    "bounds": [
+      57.0,
+      286.0,
+      307.0,
+      536.0
+    ],
+    "sourceHash": "c06173e976d5c9eebf80c0e148e58d40d23ff228de38291443cf709ab8f3806a"
+  },
+  "handoff": {
+    "frame": [
+      200.0,
+      200.0
+    ],
+    "bounds": [
+      944.0,
+      509.0,
+      1102.0,
+      638.0
+    ],
+    "sourceHash": "5f29ba15a64dd9e190696655c793cf96d61b3331eaf5d6c724f90999020c92fb"
+  },
+  "input": {
+    "frame": [
+      201.0,
+      201.0
+    ],
+    "bounds": [
+      0.5,
+      0.5,
+      200.5,
+      200.5
+    ],
+    "sourceHash": "c1be6ad9013f106ad1702ed82516c5415ded348bfe3a3015561bc7f8d12ff4d8"
+  },
+  "layers": {
+    "frame": [
+      202.236,
+      151.118
+    ],
+    "bounds": [
+      1.11803,
+      25.559,
+      201.118,
+      175.559
+    ],
+    "sourceHash": "4d8a566618686b2158b9aad4e14678ab1d51fbebe2d9faae2819d0f12772f455"
+  },
+  "modular": {
+    "frame": [
+      280.0,
+      280.0
+    ],
+    "bounds": [
+      835.867,
+      73.9668,
+      1074.8,
+      311.034
+    ],
+    "sourceHash": "e6f4a72ebc717b2a1e2d4fa3bca9744c9d06527a3e72f2fc22b6a1f0c11905e8"
+  },
+  "momentum": {
+    "frame": [
+      280.0,
+      280.0
+    ],
+    "bounds": [
+      835.867,
+      513.233,
+      1074.8,
+      693.367
+    ],
+    "sourceHash": "7bf990d30059c75f0749b025506e51116b798f70456d05812f4634c7ed206d92"
+  },
+  "nested": {
+    "frame": [
+      250.0,
+      250.0
+    ],
+    "bounds": [
+      661.7,
+      340.91,
+      849.47,
+      552.66
+    ],
+    "sourceHash": "01a4e47feac1b507c4116fdf58e9a8f910dcfe282fc9d53f9288150b10612c93"
+  },
+  "orbit": {
+    "frame": [
+      240.0,
+      240.0
+    ],
+    "bounds": [
+      20.0,
+      20.0,
+      220.0,
+      220.0
+    ],
+    "sourceHash": "b3b0a62c9ee1829cea2068fd049268ebfe3583b5ea6a9fb713d670010bd5c7ad"
+  },
+  "precision": {
+    "frame": [
+      220.0,
+      220.0
+    ],
+    "bounds": [
+      279.0,
+      64.0,
+      459.0,
+      222.0
+    ],
+    "sourceHash": "4aca94bdd5c8a0d75f3d8e2e783b56dd65220afa5e0d912f410a23be25384b20"
+  },
+  "stack-2": {
+    "frame": [
+      181.0,
+      181.0
+    ],
+    "bounds": [
+      0.5,
+      0.5,
+      180.5,
+      180.5
+    ],
+    "sourceHash": "f2f65e1d05886469ee0b315d7513f2c565cd794cb336efb3680ed8cfd5af8674"
+  },
+  "stack": {
+    "frame": [
+      202.236,
+      201.118
+    ],
+    "bounds": [
+      1.11803,
+      0.55902,
+      201.118,
+      200.559
+    ],
+    "sourceHash": "c35504da4d96155634f9cca56181bdb5e4132e0e331788649b784c0e5f69b8c1"
+  },
+  "states": {
+    "frame": [
+      250.0,
+      250.0
+    ],
+    "bounds": [
+      652.6,
+      56.12,
+      854.5,
+      249.34
+    ],
+    "sourceHash": "8bae1c81ddadfe9e196ad8493af49d4874bcd250070907442bcfc752d1c0b8bb"
+  },
+  "unfolding": {
+    "frame": [
+      250.0,
+      250.0
+    ],
+    "bounds": [
+      42.0,
+      333.0,
+      237.0,
+      540.0
+    ],
+    "sourceHash": "0e8d8c9f93441b6b2083b45e728638a9ab4aad037ac7fc6097513965fdcbef65"
+  },
+  "versatility": {
+    "frame": [
+      100.0,
+      100.0
+    ],
+    "bounds": [
+      406.9,
+      109.4,
+      494.8,
+      189.19
+    ],
+    "sourceHash": "81e7c2f43803ddcc04be1bcd23d823844844f544b4b9e48e7d973a4fdbf9e6b2"
+  }
+}

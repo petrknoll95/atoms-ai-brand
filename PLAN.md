@@ -20,7 +20,7 @@ This repo (empty, `main`, no commits yet) will become a lightweight **Astro** si
 
 | Group | Tokens |
 |---|---|
-| forest | forest-shade `#10231E`, deep-green `#27433B`, forest-green `#42665A`, sage `#668978`, sage-tint `#94AC96`, stone `#C7CDBA`, cream `#F6F1E8` |
+| forest | forest-shade `#10231E`, deep-green `#1D3C34`, forest-green `#43695B`, sage `#5C7F71`, sage-tint `#94A596`, stone `#BAC5B9`, cream `#F6F1E8` |
 | neutral | charcoal `#33413D`, graphite `#58625F`, slate `#7E8583`, ash `#A7AAA9`, mist `#D0D1D1`, paper `#FAFAFA` |
 | iris | iris-shade `#493F58`, iris `#8C78B0`, iris-tint `#D8CDE5` |
 | mono | black `#000000`, white `#FFFFFF` |
@@ -47,7 +47,7 @@ This can be reproduced in Canvas 2D.
 ## Shell design
 
 - White background.
-- **Two colors:** `--fg` is Deep green `#27433B`. `--muted` is Graphite `#58625F`, which has 6.4:1 contrast on white (Slate would fail AA for small text).
+- **Two colors:** `--fg` is Deep green `#1D3C34`. `--muted` is Graphite `#58625F`, which has 6.4:1 contrast on white (Slate would fail AA for small text).
 - **Two sizes:**
   - Display: Founders Grotesk Regular 32/1.0 at −1.5% tracking, for section and sub-section titles.
   - Annotation: PP Neue Montreal Regular 14/1.4, for everything else (nav, prose, labels, buttons, "Copied" feedback).
@@ -114,7 +114,7 @@ src/pages/                   index (Intro), logo, color, typography, icons, patt
 - **Name in copy:** do/don't list set in live type.
 
 ### Color
-- Every swatch is a button. Clicking it **copies the hex** and shows a "Copied #27433B" annotation in an `aria-live` region.
+- Every swatch is a button. Clicking it **copies the hex** and shows a "Copied #1D3C34" annotation in an `aria-live` region.
 - Palette overview, Primary, Secondary and Accent with RGB/CMYK, both 7-step ramps, and the 6 combinations at 60/30/10 proportions.
 - Gradients are rendered with CSS. Clicking one copies its CSS `linear-gradient`.
 - Themes render live "Aa" cards. The contrast ratio and WCAG level are **computed** in `contrast.ts` and cross-checked against the Figma values (9.6, 5.7, 14.56, …).

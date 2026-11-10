@@ -1,0 +1,121 @@
+gradientPaths=40
+clippingPaths=40
+compoundPaths=0
+paths=81
+groups=81
+document=atomsai-single-band-forest-40-cmyk.ai; selection=1
+group=source mask fields; clipped=false
+group=; clipped=true
+group=; clipped=false
+gradient=Unnamed gradient 160; stops=33; origin=-166,-416; angle=0; length=0.49999940002492
+stop=0; opacity=100; color=GrayColor 0
+stop=3.125; opacity=100; color=GrayColor 0
+stop=6.25; opacity=99.9000012874603; color=GrayColor 0
+stop=9.375; opacity=99.9000012874603; color=GrayColor 0
+stop=12.5; opacity=99.8000025749207; color=GrayColor 0
+stop=15.625; opacity=99.5999991893768; color=GrayColor 0
+stop=18.75; opacity=99.4000017642975; color=GrayColor 0
+stop=21.875; opacity=99.0000009536743; color=GrayColor 0
+stop=25; opacity=98.5000014305115; color=GrayColor 0
+stop=28.125; opacity=97.6000010967255; color=GrayColor 0
+stop=31.25; opacity=96.2999999523163; color=GrayColor 0
+stop=34.375; opacity=94.3000018596649; color=GrayColor 0
+stop=37.5; opacity=91.2000000476837; color=GrayColor 0
+stop=40.625; opacity=86.4000022411346; color=GrayColor 0
+stop=43.75; opacity=79.0000021457672; color=GrayColor 0
+stop=46.875; opacity=67.5999999046326; color=GrayColor 0
+stop=50; opacity=50; color=GrayColor 0
+stop=53.125; opacity=32.4000000953674; color=GrayColor 0
+stop=56.25; opacity=20.9999993443489; color=GrayColor 0
+stop=59.375; opacity=13.6000007390976; color=GrayColor 0
+stop=62.5; opacity=8.7999999523163; color=GrayColor 0
+stop=65.625; opacity=5.7000000029802; color=GrayColor 0
+stop=68.75; opacity=3.7000000476837; color=GrayColor 0
+stop=71.875; opacity=2.4000000208616; color=GrayColor 0
+stop=75; opacity=1.4999999664724; color=GrayColor 0
+stop=78.125; opacity=0.9999999776483; color=GrayColor 0
+stop=81.25; opacity=0.6000000052154; color=GrayColor 0
+stop=84.375; opacity=0.400000018999; color=GrayColor 0
+stop=87.5; opacity=0.2000000094995; color=GrayColor 0
+stop=90.625; opacity=0.1000000047497; color=GrayColor 0
+stop=93.75; opacity=0.1000000047497; color=GrayColor 0
+stop=96.875; opacity=0; color=GrayColor 0
+stop=100; opacity=0; color=GrayColor 0
+group=; clipped=true
+group=; clipped=false
+group=; clipped=true
+group=; clipped=false
+group=; clipped=true
+group=; clipped=false
+group=; clipped=true
+group=; clipped=false
+group=; clipped=true
+group=; clipped=false
+group=; clipped=true
+group=; clipped=false
+group=; clipped=true
+group=; clipped=false
+group=; clipped=true
+group=; clipped=false
+group=; clipped=true
+group=; clipped=false
+group=; clipped=true
+group=; clipped=false
+group=; clipped=true
+group=; clipped=false
+group=; clipped=true
+group=; clipped=false
+group=; clipped=true
+group=; clipped=false
+group=; clipped=true
+group=; clipped=false
+group=; clipped=true
+group=; clipped=false
+group=; clipped=true
+group=; clipped=false
+group=; clipped=true
+group=; clipped=false
+group=; clipped=true
+group=; clipped=false
+group=; clipped=true
+group=; clipped=false
+group=; clipped=true
+group=; clipped=false
+group=; clipped=true
+group=; clipped=false
+group=; clipped=true
+group=; clipped=false
+group=; clipped=true
+group=; clipped=false
+group=; clipped=true
+group=; clipped=false
+group=; clipped=true
+group=; clipped=false
+group=; clipped=true
+group=; clipped=false
+group=; clipped=true
+group=; clipped=false
+group=; clipped=true
+group=; clipped=false
+group=; clipped=true
+group=; clipped=false
+group=; clipped=true
+group=; clipped=false
+group=; clipped=true
+group=; clipped=false
+group=; clipped=true
+group=; clipped=false
+group=; clipped=true
+group=; clipped=false
+group=; clipped=true
+group=; clipped=false
+group=; clipped=true
+group=; clipped=false
+group=; clipped=true
+group=; clipped=false
+group=; clipped=true
+group=; clipped=false
+group=; clipped=true
+group=; clipped=false
+group=; clipped=true
+group=; clipped=false

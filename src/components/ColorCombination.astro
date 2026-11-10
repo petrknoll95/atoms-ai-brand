@@ -1,0 +1,34 @@
+---
+import { colors, type ColorKey } from '../data/colors';
+interface Props { palette: [ColorKey, ColorKey, ColorKey]; variant: number }
+const { palette, variant } = Astro.props;
+---
+<div class={`combination variant-${variant % 4}`} role="group" aria-label={palette.map(key => colors[key].name).join(', ')}>
+  <div class="composition">
+    {palette.map((key, i) => {
+      const color = colors[key];
+      return <button type="button" class={`layer layer-${i}`} style={`background: ${color.hex}`} data-copy={color.hex} data-copy-message={`Copied ${color.hex}`} aria-label={`Copy ${color.name} HEX ${color.hex}`} />;
+    })}
+  </div>
+</div>
+<style>
+  .combination { padding: clamp(1.25rem, 2.5vw, 2rem); background: var(--black); }
+  .composition { position: relative; aspect-ratio: 1.15; }
+  .layer { position: absolute; display: block; padding: 0; border: 0; border-radius: 0; cursor: copy; }
+  .layer:focus-visible { outline: 2px solid white; outline-offset: -4px; box-shadow: inset 0 0 0 6px black; }
+  /* Shared baseline: progressively smaller blocks, matching the reference stack. */
+  .layer-0 { left: 0; top: 0; width: 65%; height: 100%; }
+  .layer-1 { left: 37%; top: 20%; width: 51%; height: 80%; }
+  .layer-2 { left: 60%; top: 42%; width: 40%; height: 58%; }
+  /* Rising diagonal, with all three blocks overlapping the next. */
+  .variant-1 .layer-0 { top: 28%; width: 66%; height: 72%; }
+  .variant-1 .layer-1 { left: 23%; top: 14%; width: 53%; height: 58%; }
+  .variant-1 .layer-2 { left: 62%; top: 0; width: 38%; height: 42%; }
+  /* Mirrored baseline and diagonal keep the same proportions and outer bounds. */
+  .variant-2 .layer-0 { left: 35%; }
+  .variant-2 .layer-1 { left: 12%; }
+  .variant-2 .layer-2 { left: 0; }
+  .variant-3 .layer-0 { left: 34%; top: 28%; width: 66%; height: 72%; }
+  .variant-3 .layer-1 { left: 24%; top: 14%; width: 53%; height: 58%; }
+  .variant-3 .layer-2 { left: 0; top: 0; width: 38%; height: 42%; }
+</style>

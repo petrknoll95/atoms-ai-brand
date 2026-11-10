@@ -47,6 +47,7 @@ const facts = [
       <div class="btn-row">
         <button class="btn" type="button" data-copy-skill hidden aria-label={`Copy ${skill.title} Markdown`}>Copy to clipboard</button>
         <a class="btn" href={skill.download} download={skill.filename} aria-label={`Download ${skill.title} as Markdown`}>Download .md ↓</a>
+        {skill.kitDownload && <a class="btn" href={skill.kitDownload} download="atomsai-skills.zip" aria-label={`Download the skills kit including ${skill.title} resources`}>Download kit ↓</a>}
       </div>
     </div>
     <p class="copy-status muted" role="status" aria-live="polite" data-skill-status></p>
@@ -210,6 +211,7 @@ const facts = [
   .markdown :global(code), .source code { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; font-size: 0.875em; }
   .markdown :global(pre), .markdown :global(pre span) { background: var(--paper) !important; color: var(--fg) !important; }
   .markdown :global(pre code) { white-space: pre; }
+  .markdown :global(img) { display: block; max-width: 100%; height: auto; }
   .source pre { margin: 0; white-space: pre-wrap; overflow-wrap: anywhere; line-height: 1.6; }
 
   /* Scoped layout rules must not override the native hidden attribute. */

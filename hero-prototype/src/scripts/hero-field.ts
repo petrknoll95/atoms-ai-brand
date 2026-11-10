@@ -36,7 +36,7 @@ const TAU = Math.PI * 2;
 
 export const CONFIG = {
   seed: 4127,
-  colors: { foreground: '#27433b', background: '#f6f1e8' },
+  colors: { foreground: '#1D3C34', background: '#f6f1e8' },
   /** Centre of the rings as a fraction of the stage (frame 02: 1045, 439). */
   centre: { x: 1045 / 1600, y: 439 / 900 },
   /** Below this stage width the field centres horizontally behind the stacked copy. */

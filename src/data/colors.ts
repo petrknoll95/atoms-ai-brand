@@ -1,5 +1,6 @@
 // Single source of truth for the AtomsAI palette.
-// Accent colors sampled from the approved reference image and converted to sRGB.
+// Greens and accents use the adopted PANTONE screen-reference HEX values.
+// Original neutrals, true greys, Forest shade and Cream are retained.
 // /tokens.css is generated from this file — never hard-code hex values elsewhere.
 
 export type ColorGroup = 'forest' | 'neutral' | 'mono' | 'accent';
@@ -9,29 +10,28 @@ export interface BrandColor {
   name: string;
   hex: string;
   group: ColorGroup;
-  cmyk?: [number, number, number, number];
 }
 
 const palette = {
   forestShade: { token: 'forest-shade', name: 'Forest shade', hex: '#10231E', group: 'forest' },
-  deepGreen: { token: 'deep-green', name: 'Deep green', hex: '#27433B', group: 'forest', cmyk: [42, 0, 12, 74] },
-  forestGreen: { token: 'forest-green', name: 'Forest green', hex: '#42665A', group: 'forest', cmyk: [35, 0, 12, 60] },
-  sage: { token: 'sage', name: 'Sage', hex: '#668978', group: 'forest' },
-  sageTint: { token: 'sage-tint', name: 'Sage tint', hex: '#94AC96', group: 'forest', cmyk: [14, 0, 13, 33] },
-  stone: { token: 'stone', name: 'Stone', hex: '#C7CDBA', group: 'forest', cmyk: [3, 0, 9, 20] },
-  cream: { token: 'cream', name: 'Cream', hex: '#F6F1E8', group: 'forest', cmyk: [0, 2, 6, 4] },
+  deepGreen: { token: 'deep-green', name: 'Deep green', hex: '#1D3C34', group: 'forest' },
+  forestGreen: { token: 'forest-green', name: 'Forest green', hex: '#43695B', group: 'forest' },
+  sage: { token: 'sage', name: 'Sage', hex: '#5C7F71', group: 'forest' },
+  sageTint: { token: 'sage-tint', name: 'Sage tint', hex: '#94A596', group: 'forest' },
+  stone: { token: 'stone', name: 'Stone', hex: '#BAC5B9', group: 'forest' },
+  cream: { token: 'cream', name: 'Cream', hex: '#F6F1E8', group: 'forest' },
   charcoal: { token: 'charcoal', name: 'Charcoal', hex: '#33413D', group: 'neutral' },
   graphite: { token: 'graphite', name: 'Graphite', hex: '#58625F', group: 'neutral' },
   slate: { token: 'slate', name: 'Slate', hex: '#7E8583', group: 'neutral' },
   ash: { token: 'ash', name: 'Ash', hex: '#A7AAA9', group: 'neutral' },
   mist: { token: 'mist', name: 'Mist', hex: '#D0D1D1', group: 'neutral' },
   paper: { token: 'paper', name: 'Paper', hex: '#FAFAFA', group: 'neutral' },
-  irisDark: { token: 'iris-dark', name: 'Iris Dark', hex: '#514264', group: 'accent' },
-  iris: { token: 'iris', name: 'Iris', hex: '#927BB8', group: 'accent' },
-  irisLight: { token: 'iris-light', name: 'Iris Light', hex: '#D5C6EB', group: 'accent' },
-  crimson: { token: 'crimson', name: 'Crimson', hex: '#A20000', group: 'accent' },
-  orange: { token: 'orange', name: 'Orange', hex: '#FF5600', group: 'accent' },
-  apricot: { token: 'apricot', name: 'Apricot', hex: '#F9C085', group: 'accent' },
+  irisDark: { token: 'iris-dark', name: 'Iris Dark', hex: '#5D4777', group: 'accent' },
+  iris: { token: 'iris', name: 'Iris', hex: '#A77BCA', group: 'accent' },
+  irisLight: { token: 'iris-light', name: 'Iris Light', hex: '#D7C6E6', group: 'accent' },
+  crimson: { token: 'crimson', name: 'Crimson', hex: '#9A3324', group: 'accent' },
+  orange: { token: 'orange', name: 'Orange', hex: '#FF671F', group: 'accent' },
+  apricot: { token: 'apricot', name: 'Apricot', hex: '#FDBE87', group: 'accent' },
   black: { token: 'black', name: 'Black', hex: '#000000', group: 'mono' },
   grey5: { token: 'grey-5', name: 'Grey 5', hex: '#292929', group: 'mono' },
   grey4: { token: 'grey-4', name: 'Grey 4', hex: '#4E4E4E', group: 'mono' },
@@ -69,9 +69,9 @@ export const overview: { key: ColorKey; weight: number }[][] = [
     { key: 'graphite', weight: 1 },
   ],
   [
-    { key: 'irisDark', weight: 1 },
-    { key: 'iris', weight: 1 },
-    { key: 'irisLight', weight: 1 },
+    { key: 'irisDark', weight: 2 },
+    { key: 'iris', weight: 2 },
+    { key: 'irisLight', weight: 2 },
     { key: 'crimson', weight: 1 },
     { key: 'orange', weight: 1 },
     { key: 'apricot', weight: 1 },
@@ -111,16 +111,27 @@ export const combinations: [ColorKey, ColorKey, ColorKey][] = [
   ['deepGreen', 'cream', 'orange'],
 ];
 
-// 3.8 Gradients — original Forest recipes plus current accent blends (top → bottom).
+// Eased sRGB blends follow the adopted palette, so endpoints and intermediates stay in sync.
+const easedStops = (from: ColorKey, to: ColorKey) => {
+  const start = rgb(colors[from].hex);
+  const end = rgb(colors[to].hex);
+  return [0, 13, 25, 41, 50, 63, 75, 88, 100].map(position => {
+    const t = (1 - Math.cos(Math.PI * position / 100)) / 2;
+    const hex = start.map((channel, i) => Math.round(channel + (end[i] - channel) * t).toString(16).padStart(2, '0')).join('').toUpperCase();
+    return `#${hex} ${position}%`;
+  });
+};
+
+// 3.8 Gradients — Forest recipes and accent blends (top → bottom).
 export const gradients: { from: ColorKey; to: ColorKey; stops: string[] }[] = [
-  { from: 'forestShade', to: 'forestGreen', stops: ['#10231E 0%', '#11251F 13%', '#142923 25%', '#1B322B 41%', '#1F3831 50%', '#264038 63%', '#2B473F 75%', '#2F4C43 88%', '#304E44 100%'] },
-  { from: 'cream', to: 'stone', stops: ['#F6F1E8 0%', '#F4F0E6 13%', '#EFECE1 25%', '#E5E4D7 41%', '#DEDFD1 50%', '#D5D8C8 63%', '#CED2C1 75%', '#C9CEBC 88%', '#C7CDBA 100%'] },
+  { from: 'forestShade', to: 'forestGreen', stops: easedStops('forestShade', 'forestGreen') },
+  { from: 'cream', to: 'stone', stops: easedStops('cream', 'stone') },
   { from: 'forestShade', to: 'iris', stops: [colors.forestShade.hex + ' 0%', colors.iris.hex + ' 100%'] },
   { from: 'irisLight', to: 'irisDark', stops: [colors.irisLight.hex + ' 0%', colors.irisDark.hex + ' 100%'] },
-  { from: 'forestShade', to: 'cream', stops: ['#10231E 0%', '#1A2C27 13%', '#34433E 25%', '#636D67 41%', '#838A83 50%', '#ADB0A8 63%', '#D2D1C8 75%', '#ECE8DF 88%', '#F6F1E8 100%'] },
-  { from: 'forestGreen', to: 'stone', stops: ['#42665A 0%', '#486A5E 13%', '#577669 25%', '#728B7D 41%', '#84998A 50%', '#9DAC9C 63%', '#B2BDAB 75%', '#C1C9B6 88%', '#C7CDBA 100%'] },
+  { from: 'forestShade', to: 'cream', stops: easedStops('forestShade', 'cream') },
+  { from: 'forestGreen', to: 'stone', stops: easedStops('forestGreen', 'stone') },
   { from: 'iris', to: 'irisLight', stops: [colors.iris.hex + ' 0%', colors.irisLight.hex + ' 100%'] },
-  { from: 'sageTint', to: 'deepGreen', stops: ['#94AC96 0%', '#8FA792 13%', '#839C88 25%', '#6D8675 41%', '#5E7869 50%', '#496458 63%', '#385349 75%', '#2C483F 88%', '#27433B 100%'] },
+  { from: 'sageTint', to: 'deepGreen', stops: easedStops('sageTint', 'deepGreen') },
 ];
 
 export const gradientCss = (g: (typeof gradients)[number]) => `linear-gradient(180deg, ${g.stops.join(', ')})`;

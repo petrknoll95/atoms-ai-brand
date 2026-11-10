@@ -1,12 +1,71 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="261.5" height="261.5" viewBox="827.25 280.25 261.5 261.5" fill="none"><g>
-<g>
-<path d="M958 539C1028.69 539 1086 481.692 1086 411C1086 340.308 1028.69 283 958 283C887.308 283 830 340.308 830 411C830 481.692 887.308 539 958 539Z" stroke="currentColor" stroke-width="1.5" />
-<path d="M935.398 529.6C988.418 529.6 1031.4 486.619 1031.4 433.6C1031.4 380.58 988.418 337.6 935.398 337.6C882.379 337.6 839.398 380.58 839.398 433.6C839.398 486.619 882.379 529.6 935.398 529.6Z" stroke="currentColor" stroke-width="1.5" />
-<path d="M911.301 519.7C945.542 519.7 973.301 491.942 973.301 457.7C973.301 423.459 945.542 395.7 911.301 395.7C877.059 395.7 849.301 423.459 849.301 457.7C849.301 491.942 877.059 519.7 911.301 519.7Z" stroke="currentColor" stroke-width="1.5" />
-<path d="M894.398 512.6C915.385 512.6 932.398 495.586 932.398 474.6C932.398 453.613 915.385 436.6 894.398 436.6C873.412 436.6 856.398 453.613 856.398 474.6C856.398 495.586 873.412 512.6 894.398 512.6Z" stroke="currentColor" stroke-width="1.5" />
-<path d="M878.801 506.2C887.637 506.2 894.801 499.037 894.801 490.2C894.801 481.364 887.637 474.2 878.801 474.2C869.964 474.2 862.801 481.364 862.801 490.2C862.801 499.037 869.964 506.2 878.801 506.2Z" stroke="currentColor" stroke-width="1.5" />
-<path d="M890.113 478.886L1030 339" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
-<path d="M1020 339H1030V349" stroke="currentColor" stroke-width="1.5" />
-</g>
-</g>
+<svg xmlns="http://www.w3.org/2000/svg" width="261.5" height="261.5" viewBox="827.25 280.25 261.5 261.5" fill="none" data-hidden-line-opacity="0.35">
+  <defs>
+    <radialGradient id="compounding-outcomes-iris" cx="50%" cy="50%" r="50%">
+      <stop offset="0.00000" stop-color="#A77BCA" stop-opacity="0.0000000" />
+      <stop offset="0.03125" stop-color="#A77BCA" stop-opacity="0.0100000" />
+      <stop offset="0.06250" stop-color="#A77BCA" stop-opacity="0.0100000" />
+      <stop offset="0.09375" stop-color="#A77BCA" stop-opacity="0.0100000" />
+      <stop offset="0.12500" stop-color="#A77BCA" stop-opacity="0.0100000" />
+      <stop offset="0.15625" stop-color="#A77BCA" stop-opacity="0.0100000" />
+      <stop offset="0.18750" stop-color="#A77BCA" stop-opacity="0.0100000" />
+      <stop offset="0.21875" stop-color="#A77BCA" stop-opacity="0.0104675" />
+      <stop offset="0.25000" stop-color="#A77BCA" stop-opacity="0.0156250" />
+      <stop offset="0.28125" stop-color="#A77BCA" stop-opacity="0.0222473" />
+      <stop offset="0.31250" stop-color="#A77BCA" stop-opacity="0.0305176" />
+      <stop offset="0.34375" stop-color="#A77BCA" stop-opacity="0.0406189" />
+      <stop offset="0.37500" stop-color="#A77BCA" stop-opacity="0.0527344" />
+      <stop offset="0.40625" stop-color="#A77BCA" stop-opacity="0.0670471" />
+      <stop offset="0.43750" stop-color="#A77BCA" stop-opacity="0.0837402" />
+      <stop offset="0.46875" stop-color="#A77BCA" stop-opacity="0.1029968" />
+      <stop offset="0.50000" stop-color="#A77BCA" stop-opacity="0.1250000" />
+      <stop offset="0.53125" stop-color="#A77BCA" stop-opacity="0.1499329" />
+      <stop offset="0.56250" stop-color="#A77BCA" stop-opacity="0.1779785" />
+      <stop offset="0.59375" stop-color="#A77BCA" stop-opacity="0.2093201" />
+      <stop offset="0.62500" stop-color="#A77BCA" stop-opacity="0.2441406" />
+      <stop offset="0.65625" stop-color="#A77BCA" stop-opacity="0.2826233" />
+      <stop offset="0.68750" stop-color="#A77BCA" stop-opacity="0.3249512" />
+      <stop offset="0.71875" stop-color="#A77BCA" stop-opacity="0.3713074" />
+      <stop offset="0.75000" stop-color="#A77BCA" stop-opacity="0.4218750" />
+      <stop offset="0.78125" stop-color="#A77BCA" stop-opacity="0.4768372" />
+      <stop offset="0.81250" stop-color="#A77BCA" stop-opacity="0.5363770" />
+      <stop offset="0.84375" stop-color="#A77BCA" stop-opacity="0.6006775" />
+      <stop offset="0.87500" stop-color="#A77BCA" stop-opacity="0.6699219" />
+      <stop offset="0.90625" stop-color="#A77BCA" stop-opacity="0.7442932" />
+      <stop offset="0.93750" stop-color="#A77BCA" stop-opacity="0.8239746" />
+      <stop offset="0.96875" stop-color="#A77BCA" stop-opacity="0.9091492" />
+      <stop offset="1.00000" stop-color="#A77BCA" stop-opacity="1.0000000" />
+    </radialGradient>
+    <mask id="depth-0-visible" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse" style="mask-type:luminance" x="817.25" y="270.25" width="281.5" height="281.5">
+      <rect x="817.25" y="270.25" width="281.5" height="281.5" fill="white" />
+      <path fill="black" d="M911.301 519.7C945.542 519.7 973.301 491.942 973.301 457.7C973.301 423.459 945.542 395.7 911.301 395.7C877.059 395.7 849.301 423.459 849.301 457.7C849.301 491.942 877.059 519.7 911.301 519.7Z" fill-rule="evenodd" stroke="none" />
+    </mask>
+    <mask id="depth-0-hidden" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse" style="mask-type:luminance" x="817.25" y="270.25" width="281.5" height="281.5">
+      <rect x="817.25" y="270.25" width="281.5" height="281.5" fill="black" />
+      <path fill="white" d="M911.301 519.7C945.542 519.7 973.301 491.942 973.301 457.7C973.301 423.459 945.542 395.7 911.301 395.7C877.059 395.7 849.301 423.459 849.301 457.7C849.301 491.942 877.059 519.7 911.301 519.7Z" fill-rule="evenodd" stroke="none" />
+    </mask>
+  </defs>
+  <g data-layer="color">
+    <path fill="url(#compounding-outcomes-iris)" d="M911.301 519.7C945.542 519.7 973.301 491.942 973.301 457.7C973.301 423.459 945.542 395.7 911.301 395.7C877.059 395.7 849.301 423.459 849.301 457.7C849.301 491.942 877.059 519.7 911.301 519.7Z" fill-rule="evenodd" stroke="none" />
+  </g>
+  <g data-layer="hidden-linework" opacity="0.35">
+    <g mask="url(#depth-0-hidden)">
+      <path fill="none" d="M958 539C1028.69 539 1086 481.692 1086 411C1086 340.308 1028.69 283 958 283C887.308 283 830 340.308 830 411C830 481.692 887.308 539 958 539Z" stroke="currentColor" stroke-width="1.3075" />
+    </g>
+    <g mask="url(#depth-0-hidden)">
+      <path fill="none" d="M935.398 529.6C988.418 529.6 1031.4 486.619 1031.4 433.6C1031.4 380.58 988.418 337.6 935.398 337.6C882.379 337.6 839.398 380.58 839.398 433.6C839.398 486.619 882.379 529.6 935.398 529.6Z" stroke="currentColor" stroke-width="1.3075" />
+    </g>
+  </g>
+  <g data-layer="visible-linework">
+    <g mask="url(#depth-0-visible)">
+      <path fill="none" d="M958 539C1028.69 539 1086 481.692 1086 411C1086 340.308 1028.69 283 958 283C887.308 283 830 340.308 830 411C830 481.692 887.308 539 958 539Z" stroke="currentColor" stroke-width="1.3075" />
+    </g>
+    <g mask="url(#depth-0-visible)">
+      <path fill="none" d="M935.398 529.6C988.418 529.6 1031.4 486.619 1031.4 433.6C1031.4 380.58 988.418 337.6 935.398 337.6C882.379 337.6 839.398 380.58 839.398 433.6C839.398 486.619 882.379 529.6 935.398 529.6Z" stroke="currentColor" stroke-width="1.3075" />
+    </g>
+    <path fill="none" d="M911.301 519.7C945.542 519.7 973.301 491.942 973.301 457.7C973.301 423.459 945.542 395.7 911.301 395.7C877.059 395.7 849.301 423.459 849.301 457.7C849.301 491.942 877.059 519.7 911.301 519.7Z" stroke="currentColor" stroke-width="1.3075" />
+    <path fill="none" d="M894.398 512.6C915.385 512.6 932.398 495.586 932.398 474.6C932.398 453.613 915.385 436.6 894.398 436.6C873.412 436.6 856.398 453.613 856.398 474.6C856.398 495.586 873.412 512.6 894.398 512.6Z" stroke="currentColor" stroke-width="1.3075" />
+    <path fill="none" d="M878.801 506.2C887.637 506.2 894.801 499.037 894.801 490.2C894.801 481.364 887.637 474.2 878.801 474.2C869.964 474.2 862.801 481.364 862.801 490.2C862.801 499.037 869.964 506.2 878.801 506.2Z" stroke="currentColor" stroke-width="1.3075" />
+    <path fill="none" d="M890.113 478.886L1030 339" stroke="currentColor" stroke-width="1.3075" stroke-linecap="round" />
+    <path fill="none" d="M1020 339H1030V349" stroke="currentColor" stroke-width="1.3075" />
+  </g>
 </svg>

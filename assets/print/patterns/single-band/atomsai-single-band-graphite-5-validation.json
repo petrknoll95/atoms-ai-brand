@@ -1,0 +1,317 @@
+{
+  "id": "atomsai-single-band-graphite-5",
+  "status": "structural-pass",
+  "native": {
+    "layers_bottom_to_top": [
+      "01 / Base",
+      "02 / Fields",
+      "03 / Reflection",
+      "04 / Overlay",
+      "05 / Shade"
+    ],
+    "opacity_masks": 7,
+    "live_gaussian_blur_pt": [
+      2.00905511811024,
+      2.00905511811024,
+      2.00905511811024,
+      2.00905511811024
+    ],
+    "private_edit_data": true,
+    "application_log": "application=30.8.1\nprofile=Coated FOGRA39 (ISO 12647-2:2004)\nspace=DocumentColorSpace.CMYK\nppi=300\nlayers=5\nrasterItems=0\nplacedItems=0\ntextFrames=0\n",
+    "gradient_definitions": 24,
+    "native_raster_art_objects": "See native application log; effect render caches are not flattened art",
+    "artboard_name": "AtomsAI / single-band / Graphite / 5 slits / 300 mm",
+    "resaved_label_and_embedded_profile_reopened": true,
+    "reopened_in_illustrator": true,
+    "saved_file_reopen_log": "id=atomsai-single-band-graphite-5\nprofile=Coated FOGRA39 (ISO 12647-2:2004)\nspace=DocumentColorSpace.CMYK\nppi=300\nrasterItems=0\nplacedItems=0\ntextFrames=0\nartboard=21.2598425196848,871.653543307087,871.653543307086,21.2598425196848\nlayer=01 / Base; groups=1; bounds=0.00003051757812,892.913360595729,892.913391113281,2.5465851649642e-11\nlayer=02 / Fields; groups=1; bounds=0.00003051757812,892.913360595729,892.913391113281,2.5465851649642e-11\nlayer=03 / Reflection; groups=1; bounds=0.00003051757812,892.913360595729,892.913391113281,2.5465851649642e-11\nlayer=04 / Overlay; groups=1; bounds=0.00003051757812,892.913360595729,892.913391113281,2.5465851649642e-11\nlayer=05 / Shade; groups=1; bounds=0.00003051757812,892.913360595729,892.913391113281,2.5465851649642e-11\nblend=02 / Fields BlendModes.NORMAL 100\nblend=03 / Reflection BlendModes.NORMAL 20\nblend=04 / Overlay BlendModes.OVERLAY 15\nblend=05 / Shade BlendModes.NORMAL 100\nink shade=84.7058832645416,58.8235318660736,69.0196096897125,78.0392169952393; overprint=false\nink overlay=1.5686269849539,1.9607840105891,1.9607840105891,0; overprint=false\nink reflection=0,0,0,0; overprint=false\nink field3=61.5686297416687,44.3137258291245,49.4117647409439,35.2941185235977; overprint=false\nink field2=61.5686297416687,44.3137258291245,49.4117647409439,35.2941185235977; overprint=false\nink field1=36.4705890417099,27.0588248968124,29.4117659330368,6.66666701436041; overprint=false\nink base=84.7058832645416,58.8235318660736,69.0196096897125,78.0392169952393; overprint=false\nartboard_name=AtomsAI / single-band / Graphite / 5 slits / 300 mm\nResaved native master reopened again: embedded profile, five layers, zero raster/link/text confirmed.\n",
+    "saved_process_colors": {
+      "shade": [
+        84.7058832645416,
+        58.8235318660736,
+        69.0196096897125,
+        78.0392169952393
+      ],
+      "overlay": [
+        1.5686269849539,
+        1.9607840105891,
+        1.9607840105891,
+        0.0
+      ],
+      "reflection": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "field3": [
+        61.5686297416687,
+        44.3137258291245,
+        49.4117647409439,
+        35.2941185235977
+      ],
+      "field2": [
+        61.5686297416687,
+        44.3137258291245,
+        49.4117647409439,
+        35.2941185235977
+      ],
+      "field1": [
+        36.4705890417099,
+        27.0588248968124,
+        29.4117659330368,
+        6.66666701436041
+      ],
+      "base": [
+        84.7058832645416,
+        58.8235318660736,
+        69.0196096897125,
+        78.0392169952393
+      ]
+    }
+  },
+  "pdf": {
+    "declared_standard": "PDF/X-4",
+    "certified": false,
+    "output_intent_registry": "http://www.color.org",
+    "trim_mm": [
+      299.99999985980554,
+      299.99999985980554
+    ],
+    "bleed_mm": [
+      3.0000000007499996,
+      3.0000000007499996,
+      2.9999999972222047,
+      2.9999999972222047
+    ],
+    "color_spaces": [
+      "/DeviceCMYK",
+      "/DeviceGray",
+      "['/ICCBased', IndirectObject(9, 0, 4486892112)]",
+      "['/Indexed', '/DeviceCMYK', 180, IndirectObject(19, 0, 4486892112)]",
+      "['/Indexed', '/DeviceCMYK', 255, IndirectObject(105, 0, 4486892112)]",
+      "['/Separation', '/Black', '/DeviceCMYK', {'/C0': [0.0, 0.0, 0.0, 0.0], '/C1': [0.0, 0.0, 0.0, 1], '/Domain': [0, 1], '/FunctionType': 2, '/N': 1, '/Range': [0.0, 1, 0.0, 1, 0.0, 1, 0.0, 1]}]"
+    ],
+    "blend_modes": [
+      "/Normal",
+      "/Overlay"
+    ],
+    "icc_sha256": "da2b9b593e27cba2563cbc8596071c5c8f2395d3dbb4434538bac2bc9d58ce77",
+    "shadings": 4,
+    "soft_masks": 31,
+    "images": [
+      {
+        "width": 4021,
+        "height": 4021,
+        "color_space": "/DeviceGray"
+      },
+      {
+        "width": 4021,
+        "height": 4021,
+        "color_space": "['/Indexed', '/DeviceCMYK', 180, IndirectObject(19, 0, 4486892112)]"
+      },
+      {
+        "width": 4021,
+        "height": 4021,
+        "color_space": "/DeviceGray"
+      },
+      {
+        "width": 4021,
+        "height": 4021,
+        "color_space": "['/Indexed', '/DeviceCMYK', 255, IndirectObject(105, 0, 4486892112)]"
+      },
+      {
+        "width": 4021,
+        "height": 4021,
+        "color_space": "/DeviceGray"
+      },
+      {
+        "width": 4021,
+        "height": 4021,
+        "color_space": "['/Indexed', '/DeviceCMYK', 255, IndirectObject(105, 0, 4486892112)]"
+      },
+      {
+        "width": 4021,
+        "height": 4021,
+        "color_space": "/DeviceGray"
+      },
+      {
+        "width": 4021,
+        "height": 4021,
+        "color_space": "['/Indexed', '/DeviceCMYK', 255, IndirectObject(105, 0, 4486892112)]"
+      },
+      {
+        "width": 4021,
+        "height": 4021,
+        "color_space": "/DeviceGray"
+      }
+    ],
+    "image_resolution_ppi": [
+      [
+        300.0000067147477,
+        300.0000067147477
+      ],
+      [
+        300.0000067147477,
+        300.0000067147477
+      ],
+      [
+        300.0000067147477,
+        300.0000067147477
+      ],
+      [
+        300.0000067147477,
+        300.0000067147477
+      ],
+      [
+        300.0000067147477,
+        300.0000067147477
+      ],
+      [
+        300.0000067147477,
+        300.0000067147477
+      ],
+      [
+        300.0000067147477,
+        300.0000067147477
+      ],
+      [
+        300.0000067147477,
+        300.0000067147477
+      ],
+      [
+        300.0000067147477,
+        300.0000067147477
+      ]
+    ],
+    "fonts": 0,
+    "overprint_true_objects": [],
+    "max_total_ink_150ppi_percent": 281.961,
+    "unprinted_edge_pixels_at_150ppi": 0,
+    "edge_sampling": "One pixel inside bleed box; excludes fractional pixmap boundary rounding",
+    "unintended_rgb_paint_operators": 0,
+    "final_document_structure": {
+      "pages": 1,
+      "version": "1.6",
+      "encrypted": false,
+      "trapped": false,
+      "interactive_actions": false,
+      "registry": "http://www.color.org"
+    },
+    "image_resolution_details": [
+      {
+        "object": 26,
+        "role": "transparency soft mask",
+        "width": 4021,
+        "height": 4021,
+        "ppi": [
+          300.0000067147477,
+          300.0000067147477
+        ]
+      },
+      {
+        "object": 27,
+        "role": "transparency soft mask",
+        "width": 4021,
+        "height": 4021,
+        "ppi": [
+          300.0000067147477,
+          300.0000067147477
+        ]
+      },
+      {
+        "object": 28,
+        "role": "image alpha/mask",
+        "width": 4021,
+        "height": 4021,
+        "ppi": [
+          300.0000067147477,
+          300.0000067147477
+        ]
+      },
+      {
+        "object": 106,
+        "role": "transparency soft mask",
+        "width": 4021,
+        "height": 4021,
+        "ppi": [
+          300.0000067147477,
+          300.0000067147477
+        ]
+      },
+      {
+        "object": 107,
+        "role": "image alpha/mask",
+        "width": 4021,
+        "height": 4021,
+        "ppi": [
+          300.0000067147477,
+          300.0000067147477
+        ]
+      },
+      {
+        "object": 115,
+        "role": "transparency soft mask",
+        "width": 4021,
+        "height": 4021,
+        "ppi": [
+          300.0000067147477,
+          300.0000067147477
+        ]
+      },
+      {
+        "object": 116,
+        "role": "image alpha/mask",
+        "width": 4021,
+        "height": 4021,
+        "ppi": [
+          300.0000067147477,
+          300.0000067147477
+        ]
+      },
+      {
+        "object": 124,
+        "role": "transparency soft mask",
+        "width": 4021,
+        "height": 4021,
+        "ppi": [
+          300.0000067147477,
+          300.0000067147477
+        ]
+      },
+      {
+        "object": 125,
+        "role": "image alpha/mask",
+        "width": 4021,
+        "height": 4021,
+        "ppi": [
+          300.0000067147477,
+          300.0000067147477
+        ]
+      }
+    ],
+    "image_resolution_method": "CTM traversal through page forms, soft-mask groups and image alpha masks"
+  },
+  "files": {
+    "atomsai-single-band-graphite-5-cmyk.ai": {
+      "bytes": 11171566,
+      "sha256": "65b1e3b5035a564ddb8ce6e1e37f14521db79d4b184faedb49fb6a330a2c3445"
+    },
+    "atomsai-single-band-graphite-5-cmyk-print.pdf": {
+      "bytes": 6465026,
+      "sha256": "22ea083ec1d07e6165d00ae6443b77111eaa3a353a78811aa86f816a342cff31"
+    },
+    "atomsai-single-band-graphite-5-preview.png": {
+      "bytes": 560322,
+      "sha256": "e99f468624b6231dffbd230e0844bb8c8d6e4c717bf3c6aee660fdd71fcefad8"
+    }
+  },
+  "qualification": "Structural checks and sampled ink/bleed analysis, not certified PDF/X conformance. FOGRA39 is an assumed condition.",
+  "preview": {
+    "mode": "RGB",
+    "size_px": [
+      1200,
+      1200
+    ],
+    "embedded_profile": "sRGB"
+  }
+}

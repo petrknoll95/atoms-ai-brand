@@ -1,0 +1,112 @@
+{
+  "skillVersion": "2.1",
+  "mode": "built-in image generation and editing",
+  "selected": {
+    "customer-story": "customer-story-new.png",
+    "support": "support-new.png",
+    "onboarding": "onboarding.png",
+    "careers": "careers-new.png"
+  },
+  "artifacts": [
+    {
+      "file": "careers-fresh.png",
+      "width": 1448,
+      "height": 1086,
+      "sha256": "eea8819964b78b6357f6e3fb88ca6f2dd5632a7da3947ddc24aaa7d5c1691861",
+      "selected": false
+    },
+    {
+      "file": "careers-new-initial.png",
+      "width": 1448,
+      "height": 1086,
+      "sha256": "290702ee5de554c71270b8e20b804758742a2a1e094bd13a5ee035d230383e2c",
+      "selected": false
+    },
+    {
+      "file": "careers-new.png",
+      "width": 1448,
+      "height": 1086,
+      "sha256": "1a6c4f7112fbc7d11879f5779f68e4150b08ee1b3923e1cbf7b22e994bb821b1",
+      "selected": true
+    },
+    {
+      "file": "careers-revised.png",
+      "width": 1448,
+      "height": 1086,
+      "sha256": "7645f7e45dbbe820cf780b88e5aaa0748a7891db2579ac8ad7db2b0b20ac398e",
+      "selected": false
+    },
+    {
+      "file": "careers.png",
+      "width": 1448,
+      "height": 1086,
+      "sha256": "069979fba9fb39a10560b2b195396b4dd401e45e884f380fc977b840e758ca76",
+      "selected": false
+    },
+    {
+      "file": "customer-story-new-attempt-1.png",
+      "width": 1448,
+      "height": 1086,
+      "sha256": "314460391590a7852eb5efa5ee3baebda8da931afd9adf12649fbad2f5db9f57",
+      "selected": false
+    },
+    {
+      "file": "customer-story-new.png",
+      "width": 1448,
+      "height": 1086,
+      "sha256": "958e1eba1cebb00dfd392268522fe35497fddf7573e7ba1877589743c7f5bc29",
+      "selected": true
+    },
+    {
+      "file": "customer-story.png",
+      "width": 1448,
+      "height": 1086,
+      "sha256": "eb1835e4e0588a5c915f04c924cb18bd298b2ab8a52b72aa046a0005020ae544",
+      "selected": false
+    },
+    {
+      "file": "onboarding-new.png",
+      "width": 1448,
+      "height": 1086,
+      "sha256": "c0bbbb105bc49c5bb11b2a509459055f37e34f38ca7179fda399299b21662a60",
+      "selected": false
+    },
+    {
+      "file": "onboarding.png",
+      "width": 1448,
+      "height": 1086,
+      "sha256": "1ea37ebd479f099ac2fa542bc659fa042c14a27b08549f4e9ec7d99016cc4906",
+      "selected": true
+    },
+    {
+      "file": "support-fresh.png",
+      "width": 1448,
+      "height": 1086,
+      "sha256": "586404bb91edf164dd581e496f3d9280130b0188a75beeb6ed7922ec0a9bf57a",
+      "selected": false
+    },
+    {
+      "file": "support-new.png",
+      "width": 1448,
+      "height": 1086,
+      "sha256": "e244e9b31642a405fdc8a6bf828e1f90550dd3a3ccd1877ba072cf1dd7e0ec17",
+      "selected": true
+    },
+    {
+      "file": "support-revised.png",
+      "width": 1448,
+      "height": 1086,
+      "sha256": "0ea3669f8bf6efe09c2e2d52b275ff6004546499f106d92a5307df8d092c2d93",
+      "selected": false
+    },
+    {
+      "file": "support.png",
+      "width": 1448,
+      "height": 1086,
+      "sha256": "fe18846621332ee88944bb010a0d099e079df73e081f115a04573a22b7203fe5",
+      "selected": false
+    }
+  ],
+  "sourceDirectory": "/Users/petrknoll/Documents/ChatGPT/AtomsAI/output/photography-skill-eval/considered",
+  "pixelPostprocessing": false
+}

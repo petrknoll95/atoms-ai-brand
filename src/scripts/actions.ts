@@ -17,7 +17,7 @@ const scopeOf = (card: HTMLElement) => card.closest<HTMLElement>('[data-asset-gr
 
 /** Current artwork for an asset card, with its selected color and weight applied. */
 function assetState(card: HTMLElement) {
-  const master = card.querySelector<HTMLTemplateElement>('template[data-asset-svg]')!.innerHTML.trim();
+  const master = card.dataset.currentSvg ?? card.querySelector<HTMLTemplateElement>('template[data-asset-svg]')!.innerHTML.trim();
   const scope = scopeOf(card);
   const color = scope.querySelector<HTMLInputElement>('input[data-asset-color]:checked');
   const weight = scope.querySelector<HTMLInputElement>('input[data-asset-weight]:checked');
@@ -28,6 +28,7 @@ function assetState(card: HTMLElement) {
 }
 
 async function runAssetAction(card: HTMLElement, action: string) {
+  card.dispatchEvent(new Event('asset:prepare-export'));
   const { svg, filename } = assetState(card);
   if (action === 'copy-svg') {
     await copyText(svg);
@@ -73,7 +74,7 @@ document.addEventListener('change', (event) => {
   const cards = scope.matches('[data-asset]') ? [scope] : [...scope.querySelectorAll<HTMLElement>('[data-asset]')];
   for (const card of cards) {
     const preview = card.querySelector<HTMLElement>('[data-asset-preview]');
-    if (preview) preview.innerHTML = assetState(card).svg;
+    if (preview && !card.closest('[data-illustration-3d]')) preview.innerHTML = assetState(card).svg;
   }
   if (input.matches('[data-asset-color]')) {
     scope.querySelectorAll<HTMLElement>('[data-asset-preview], [data-asset-tone]').forEach((el) => {

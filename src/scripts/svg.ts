@@ -10,6 +10,17 @@ export const colorize = (svg: string, ink: string, surface = 'none') =>
 export const withStrokeWidth = (svg: string, width: string) =>
   svg.replace(/stroke-width="[^"]*"/g, `stroke-width="${width}"`);
 
+/** Keep fills and silhouettes local when artwork appears on several preview surfaces. */
+export function namespaceSvgIds(svg: string, prefix: string) {
+  const ids = [...svg.matchAll(/\bid="([^"]+)"/g)].map((match) => match[1]);
+  for (const id of ids) {
+    svg = svg.replaceAll(`id="${id}"`, `id="${prefix}-${id}"`)
+      .replaceAll(`url(#${id})`, `url(#${prefix}-${id})`)
+      .replaceAll(`href="#${id}"`, `href="#${prefix}-${id}"`);
+  }
+  return svg;
+}
+
 export function downloadBlob(blob: Blob, filename: string) {
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');

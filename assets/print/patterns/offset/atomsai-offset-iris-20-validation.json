@@ -1,0 +1,124 @@
+{
+  "id": "atomsai-offset-iris-20",
+  "status": "structural-pass",
+  "native": {
+    "layers_bottom_to_top": [
+      "01 / Base",
+      "02 / Upper",
+      "03 / Lower",
+      "04 / Highlight",
+      "05 / Reflection"
+    ],
+    "opacity_masks": 4,
+    "live_gaussian_blur_pt": [],
+    "private_edit_data": true,
+    "application_log": "application=30.8.1\nprofile=Coated FOGRA39 (ISO 12647-2:2004)\nspace=DocumentColorSpace.CMYK\nppi=300\nlayers=5\nrasterItems=0\nplacedItems=0\ntextFrames=0\n",
+    "gradient_definitions": 22,
+    "native_raster_art_objects": "See native application log; effect render caches are not flattened art",
+    "artboard_name": "AtomsAI / offset / Iris / 20 slits / 300 mm",
+    "resaved_label_and_embedded_profile_reopened": true,
+    "reopened_in_illustrator": true,
+    "saved_file_reopen_log": "id=atomsai-offset-iris-20\nprofile=Coated FOGRA39 (ISO 12647-2:2004)\nspace=DocumentColorSpace.CMYK\nppi=300\nrasterItems=0\nplacedItems=0\ntextFrames=0\nartboard=21.2598425196848,871.653543307087,871.653543307086,21.2598425196848\nlayer=01 / Base; groups=1; bounds=0.00003051757812,892.913360595729,892.913391113281,2.5465851649642e-11\nlayer=02 / Upper; groups=1; bounds=0.00003051757812,892.913360595729,892.913391113281,2.5465851649642e-11\nlayer=03 / Lower; groups=1; bounds=0.00003051757812,892.913360595729,892.913391113281,2.5465851649642e-11\nlayer=04 / Highlight; groups=1; bounds=0.00003051757812,892.913360595729,892.913391113281,2.5465851649642e-11\nlayer=05 / Reflection; groups=1; bounds=0.00003051757812,892.913360595729,892.913391113281,2.5465851649642e-11\nblend=02 / Upper BlendModes.NORMAL 100\nblend=03 / Lower BlendModes.NORMAL 100\nblend=04 / Highlight BlendModes.NORMAL 100\nblend=05 / Reflection BlendModes.SCREEN 20\nink reflection=0,0,0,0; overprint=false\nink highlight=43.1372553110123,58.0392181873322,0,0; overprint=false\nink lower=16.8627455830574,25.8823543787003,0,0; overprint=false\nink upper=43.1372553110123,58.0392181873322,0,0; overprint=false\nink base=43.1372553110123,58.0392181873322,0,0; overprint=false\nartboard_name=AtomsAI / offset / Iris / 20 slits / 300 mm\nResaved native master reopened again: embedded profile, five layers, zero raster/link/text confirmed.\n",
+    "saved_process_colors": {
+      "reflection": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "highlight": [
+        43.1372553110123,
+        58.0392181873322,
+        0.0,
+        0.0
+      ],
+      "lower": [
+        16.8627455830574,
+        25.8823543787003,
+        0.0,
+        0.0
+      ],
+      "upper": [
+        43.1372553110123,
+        58.0392181873322,
+        0.0,
+        0.0
+      ],
+      "base": [
+        43.1372553110123,
+        58.0392181873322,
+        0.0,
+        0.0
+      ]
+    }
+  },
+  "pdf": {
+    "declared_standard": "PDF/X-4",
+    "certified": false,
+    "output_intent_registry": "http://www.color.org",
+    "trim_mm": [
+      299.99999985980554,
+      299.99999985980554
+    ],
+    "bleed_mm": [
+      3.0000000007499996,
+      3.0000000007499996,
+      2.9999999972222047,
+      2.9999999972222047
+    ],
+    "color_spaces": [
+      "/DeviceCMYK",
+      "/DeviceGray",
+      "['/ICCBased', IndirectObject(9, 0, 4515119632)]",
+      "['/Separation', '/Black', '/DeviceCMYK', {'/C0': [0.0, 0.0, 0.0, 0.0], '/C1': [0.0, 0.0, 0.0, 1], '/Domain': [0, 1], '/FunctionType': 2, '/N': 1, '/Range': [0.0, 1, 0.0, 1, 0.0, 1, 0.0, 1]}]"
+    ],
+    "blend_modes": [
+      "/Normal",
+      "/Screen"
+    ],
+    "icc_sha256": "da2b9b593e27cba2563cbc8596071c5c8f2395d3dbb4434538bac2bc9d58ce77",
+    "shadings": 4,
+    "soft_masks": 88,
+    "images": [],
+    "image_resolution_ppi": [],
+    "fonts": 0,
+    "overprint_true_objects": [],
+    "max_total_ink_150ppi_percent": 96.471,
+    "unprinted_edge_pixels_at_150ppi": 0,
+    "edge_sampling": "One pixel inside bleed box; excludes fractional pixmap boundary rounding",
+    "unintended_rgb_paint_operators": 0,
+    "final_document_structure": {
+      "pages": 1,
+      "version": "1.6",
+      "encrypted": false,
+      "trapped": false,
+      "interactive_actions": false,
+      "registry": "http://www.color.org"
+    },
+    "image_resolution_details": [],
+    "image_resolution_method": "CTM traversal through page forms, soft-mask groups and image alpha masks"
+  },
+  "files": {
+    "atomsai-offset-iris-20-cmyk.ai": {
+      "bytes": 1524004,
+      "sha256": "dc6377e994e5fe54f80ca5debdf11a2166d3bf0800278edcb7ad4066d01363fb"
+    },
+    "atomsai-offset-iris-20-cmyk-print.pdf": {
+      "bytes": 1290917,
+      "sha256": "8feb8307a949046bb58bb33f99f52d4fbde423eb66490c7ff947239ae9e3cbf6"
+    },
+    "atomsai-offset-iris-20-preview.png": {
+      "bytes": 170041,
+      "sha256": "4cd748b4be278ffed6f7cfef8294a61519345b84825a492f61e7f302b292d875"
+    }
+  },
+  "qualification": "Structural checks and sampled ink/bleed analysis, not certified PDF/X conformance. FOGRA39 is an assumed condition.",
+  "preview": {
+    "mode": "RGB",
+    "size_px": [
+      1200,
+      1200
+    ],
+    "embedded_profile": "sRGB"
+  }
+}

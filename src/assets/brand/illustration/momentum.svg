@@ -1,20 +1,349 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="280" height="280" viewBox="815.34 453.5 280 280" fill="none"><g>
-<g>
-<path d="M930.132 576.7L872.266 609.367V584.167L930.132 551.5V576.7Z" fill="SURFACE" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-<path d="M835.867 588.834L872.267 609.367V584.167L835.867 563.634V588.834Z" fill="SURFACE" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-<path d="M893.734 530.033L930.134 551.5L872.267 584.167L835.867 563.633L893.734 530.033Z" fill="SURFACE" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-<path d="M966.535 597.234L908.668 630.834V580.434L966.535 546.834V597.234Z" fill="SURFACE" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-<path d="M872.266 609.367L908.666 630.834V580.434L872.266 559.9V609.367Z" fill="SURFACE" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-<path d="M930.132 526.301L966.532 546.834L908.666 580.434L872.266 559.901L930.132 526.301Z" fill="SURFACE" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-<path d="M1002 617.767L944.133 651.367V576.701L1002 543.101V617.767Z" fill="SURFACE" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-<path d="M908.668 630.833L944.135 651.367V576.7L908.668 555.233V630.833Z" fill="SURFACE" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-<path d="M966.535 521.634L1002 543.1L944.135 576.7L908.668 555.234L966.535 521.634Z" fill="SURFACE" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-<path d="M1038.4 639.234L980.535 672.834V572.034L1038.4 538.434V639.234Z" fill="SURFACE" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-<path d="M944.133 651.367L980.533 672.833V572.033L944.133 551.5V651.367Z" fill="SURFACE" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-<path d="M1002 517.9L1038.4 538.434L980.533 572.034L944.133 551.5L1002 517.9Z" fill="SURFACE" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-<path d="M1074.8 659.767L1016.93 693.367V568.3L1074.8 534.7V659.767Z" fill="SURFACE" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-<path d="M980.535 672.834L1016.94 693.367V568.301L980.535 546.834V672.834Z" fill="SURFACE" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-<path d="M1038.4 513.233L1074.8 534.7L1016.94 568.3L980.535 546.833L1038.4 513.233Z" fill="SURFACE" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-</g>
-</g>
+<svg xmlns="http://www.w3.org/2000/svg" width="280" height="280" viewBox="815.34 453.5 280 280" fill="none" data-hidden-line-opacity="0.35">
+  <defs>
+    <radialGradient id="momentum-iris" cx="50%" cy="50%" r="50%">
+      <stop offset="0.00000" stop-color="#A77BCA" stop-opacity="0.0000000" />
+      <stop offset="0.03125" stop-color="#A77BCA" stop-opacity="0.0100000" />
+      <stop offset="0.06250" stop-color="#A77BCA" stop-opacity="0.0100000" />
+      <stop offset="0.09375" stop-color="#A77BCA" stop-opacity="0.0100000" />
+      <stop offset="0.12500" stop-color="#A77BCA" stop-opacity="0.0100000" />
+      <stop offset="0.15625" stop-color="#A77BCA" stop-opacity="0.0100000" />
+      <stop offset="0.18750" stop-color="#A77BCA" stop-opacity="0.0100000" />
+      <stop offset="0.21875" stop-color="#A77BCA" stop-opacity="0.0104675" />
+      <stop offset="0.25000" stop-color="#A77BCA" stop-opacity="0.0156250" />
+      <stop offset="0.28125" stop-color="#A77BCA" stop-opacity="0.0222473" />
+      <stop offset="0.31250" stop-color="#A77BCA" stop-opacity="0.0305176" />
+      <stop offset="0.34375" stop-color="#A77BCA" stop-opacity="0.0406189" />
+      <stop offset="0.37500" stop-color="#A77BCA" stop-opacity="0.0527344" />
+      <stop offset="0.40625" stop-color="#A77BCA" stop-opacity="0.0670471" />
+      <stop offset="0.43750" stop-color="#A77BCA" stop-opacity="0.0837402" />
+      <stop offset="0.46875" stop-color="#A77BCA" stop-opacity="0.1029968" />
+      <stop offset="0.50000" stop-color="#A77BCA" stop-opacity="0.1250000" />
+      <stop offset="0.53125" stop-color="#A77BCA" stop-opacity="0.1499329" />
+      <stop offset="0.56250" stop-color="#A77BCA" stop-opacity="0.1779785" />
+      <stop offset="0.59375" stop-color="#A77BCA" stop-opacity="0.2093201" />
+      <stop offset="0.62500" stop-color="#A77BCA" stop-opacity="0.2441406" />
+      <stop offset="0.65625" stop-color="#A77BCA" stop-opacity="0.2826233" />
+      <stop offset="0.68750" stop-color="#A77BCA" stop-opacity="0.3249512" />
+      <stop offset="0.71875" stop-color="#A77BCA" stop-opacity="0.3713074" />
+      <stop offset="0.75000" stop-color="#A77BCA" stop-opacity="0.4218750" />
+      <stop offset="0.78125" stop-color="#A77BCA" stop-opacity="0.4768372" />
+      <stop offset="0.81250" stop-color="#A77BCA" stop-opacity="0.5363770" />
+      <stop offset="0.84375" stop-color="#A77BCA" stop-opacity="0.6006775" />
+      <stop offset="0.87500" stop-color="#A77BCA" stop-opacity="0.6699219" />
+      <stop offset="0.90625" stop-color="#A77BCA" stop-opacity="0.7442932" />
+      <stop offset="0.93750" stop-color="#A77BCA" stop-opacity="0.8239746" />
+      <stop offset="0.96875" stop-color="#A77BCA" stop-opacity="0.9091492" />
+      <stop offset="1.00000" stop-color="#A77BCA" stop-opacity="1.0000000" />
+    </radialGradient>
+    <mask id="depth-0-visible" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse" style="mask-type:luminance" x="805.34" y="443.5" width="300.0" height="300.0">
+      <rect x="805.34" y="443.5" width="300.0" height="300.0" fill="white" />
+      <path fill="black" d="M835.867 588.834L872.267 609.367V584.167L835.867 563.634V588.834Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="black" d="M893.734 530.033L930.134 551.5L872.267 584.167L835.867 563.633L893.734 530.033Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="black" d="M966.535 597.234L908.668 630.834V580.434L966.535 546.834V597.234Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="black" d="M872.266 609.367L908.666 630.834V580.434L872.266 559.9V609.367Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="black" d="M930.132 526.301L966.532 546.834L908.666 580.434L872.266 559.901L930.132 526.301Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="black" d="M1002 617.767L944.133 651.367V576.701L1002 543.101V617.767Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="black" d="M908.668 630.833L944.135 651.367V576.7L908.668 555.233V630.833Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="black" d="M966.535 521.634L1002 543.1L944.135 576.7L908.668 555.234L966.535 521.634Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="black" d="M1038.4 639.234L980.535 672.834V572.034L1038.4 538.434V639.234Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="black" d="M944.133 651.367L980.533 672.833V572.033L944.133 551.5V651.367Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="black" d="M1002 517.9L1038.4 538.434L980.533 572.034L944.133 551.5L1002 517.9Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="black" d="M1038.4 513.233L1074.8 534.7V659.767L1016.94 693.367L980.535 672.834V546.834Z" fill-rule="evenodd" stroke="none" />
+    </mask>
+    <mask id="depth-0-hidden" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse" style="mask-type:luminance" x="805.34" y="443.5" width="300.0" height="300.0">
+      <rect x="805.34" y="443.5" width="300.0" height="300.0" fill="black" />
+      <path fill="white" d="M835.867 588.834L872.267 609.367V584.167L835.867 563.634V588.834Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="white" d="M893.734 530.033L930.134 551.5L872.267 584.167L835.867 563.633L893.734 530.033Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="white" d="M966.535 597.234L908.668 630.834V580.434L966.535 546.834V597.234Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="white" d="M872.266 609.367L908.666 630.834V580.434L872.266 559.9V609.367Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="white" d="M930.132 526.301L966.532 546.834L908.666 580.434L872.266 559.901L930.132 526.301Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="white" d="M1002 617.767L944.133 651.367V576.701L1002 543.101V617.767Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="white" d="M908.668 630.833L944.135 651.367V576.7L908.668 555.233V630.833Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="white" d="M966.535 521.634L1002 543.1L944.135 576.7L908.668 555.234L966.535 521.634Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="white" d="M1038.4 639.234L980.535 672.834V572.034L1038.4 538.434V639.234Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="white" d="M944.133 651.367L980.533 672.833V572.033L944.133 551.5V651.367Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="white" d="M1002 517.9L1038.4 538.434L980.533 572.034L944.133 551.5L1002 517.9Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="white" d="M1038.4 513.233L1074.8 534.7V659.767L1016.94 693.367L980.535 672.834V546.834Z" fill-rule="evenodd" stroke="none" />
+    </mask>
+    <mask id="depth-1-visible" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse" style="mask-type:luminance" x="805.34" y="443.5" width="300.0" height="300.0">
+      <rect x="805.34" y="443.5" width="300.0" height="300.0" fill="white" />
+      <path fill="black" d="M893.734 530.033L930.134 551.5L872.267 584.167L835.867 563.633L893.734 530.033Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="black" d="M966.535 597.234L908.668 630.834V580.434L966.535 546.834V597.234Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="black" d="M872.266 609.367L908.666 630.834V580.434L872.266 559.9V609.367Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="black" d="M930.132 526.301L966.532 546.834L908.666 580.434L872.266 559.901L930.132 526.301Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="black" d="M1002 617.767L944.133 651.367V576.701L1002 543.101V617.767Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="black" d="M908.668 630.833L944.135 651.367V576.7L908.668 555.233V630.833Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="black" d="M966.535 521.634L1002 543.1L944.135 576.7L908.668 555.234L966.535 521.634Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="black" d="M1038.4 639.234L980.535 672.834V572.034L1038.4 538.434V639.234Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="black" d="M944.133 651.367L980.533 672.833V572.033L944.133 551.5V651.367Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="black" d="M1002 517.9L1038.4 538.434L980.533 572.034L944.133 551.5L1002 517.9Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="black" d="M1038.4 513.233L1074.8 534.7V659.767L1016.94 693.367L980.535 672.834V546.834Z" fill-rule="evenodd" stroke="none" />
+    </mask>
+    <mask id="depth-1-hidden" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse" style="mask-type:luminance" x="805.34" y="443.5" width="300.0" height="300.0">
+      <rect x="805.34" y="443.5" width="300.0" height="300.0" fill="black" />
+      <path fill="white" d="M893.734 530.033L930.134 551.5L872.267 584.167L835.867 563.633L893.734 530.033Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="white" d="M966.535 597.234L908.668 630.834V580.434L966.535 546.834V597.234Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="white" d="M872.266 609.367L908.666 630.834V580.434L872.266 559.9V609.367Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="white" d="M930.132 526.301L966.532 546.834L908.666 580.434L872.266 559.901L930.132 526.301Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="white" d="M1002 617.767L944.133 651.367V576.701L1002 543.101V617.767Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="white" d="M908.668 630.833L944.135 651.367V576.7L908.668 555.233V630.833Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="white" d="M966.535 521.634L1002 543.1L944.135 576.7L908.668 555.234L966.535 521.634Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="white" d="M1038.4 639.234L980.535 672.834V572.034L1038.4 538.434V639.234Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="white" d="M944.133 651.367L980.533 672.833V572.033L944.133 551.5V651.367Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="white" d="M1002 517.9L1038.4 538.434L980.533 572.034L944.133 551.5L1002 517.9Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="white" d="M1038.4 513.233L1074.8 534.7V659.767L1016.94 693.367L980.535 672.834V546.834Z" fill-rule="evenodd" stroke="none" />
+    </mask>
+    <mask id="depth-2-visible" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse" style="mask-type:luminance" x="805.34" y="443.5" width="300.0" height="300.0">
+      <rect x="805.34" y="443.5" width="300.0" height="300.0" fill="white" />
+      <path fill="black" d="M966.535 597.234L908.668 630.834V580.434L966.535 546.834V597.234Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="black" d="M872.266 609.367L908.666 630.834V580.434L872.266 559.9V609.367Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="black" d="M930.132 526.301L966.532 546.834L908.666 580.434L872.266 559.901L930.132 526.301Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="black" d="M1002 617.767L944.133 651.367V576.701L1002 543.101V617.767Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="black" d="M908.668 630.833L944.135 651.367V576.7L908.668 555.233V630.833Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="black" d="M966.535 521.634L1002 543.1L944.135 576.7L908.668 555.234L966.535 521.634Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="black" d="M1038.4 639.234L980.535 672.834V572.034L1038.4 538.434V639.234Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="black" d="M944.133 651.367L980.533 672.833V572.033L944.133 551.5V651.367Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="black" d="M1002 517.9L1038.4 538.434L980.533 572.034L944.133 551.5L1002 517.9Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="black" d="M1038.4 513.233L1074.8 534.7V659.767L1016.94 693.367L980.535 672.834V546.834Z" fill-rule="evenodd" stroke="none" />
+    </mask>
+    <mask id="depth-2-hidden" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse" style="mask-type:luminance" x="805.34" y="443.5" width="300.0" height="300.0">
+      <rect x="805.34" y="443.5" width="300.0" height="300.0" fill="black" />
+      <path fill="white" d="M966.535 597.234L908.668 630.834V580.434L966.535 546.834V597.234Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="white" d="M872.266 609.367L908.666 630.834V580.434L872.266 559.9V609.367Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="white" d="M930.132 526.301L966.532 546.834L908.666 580.434L872.266 559.901L930.132 526.301Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="white" d="M1002 617.767L944.133 651.367V576.701L1002 543.101V617.767Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="white" d="M908.668 630.833L944.135 651.367V576.7L908.668 555.233V630.833Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="white" d="M966.535 521.634L1002 543.1L944.135 576.7L908.668 555.234L966.535 521.634Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="white" d="M1038.4 639.234L980.535 672.834V572.034L1038.4 538.434V639.234Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="white" d="M944.133 651.367L980.533 672.833V572.033L944.133 551.5V651.367Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="white" d="M1002 517.9L1038.4 538.434L980.533 572.034L944.133 551.5L1002 517.9Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="white" d="M1038.4 513.233L1074.8 534.7V659.767L1016.94 693.367L980.535 672.834V546.834Z" fill-rule="evenodd" stroke="none" />
+    </mask>
+    <mask id="depth-3-visible" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse" style="mask-type:luminance" x="805.34" y="443.5" width="300.0" height="300.0">
+      <rect x="805.34" y="443.5" width="300.0" height="300.0" fill="white" />
+      <path fill="black" d="M872.266 609.367L908.666 630.834V580.434L872.266 559.9V609.367Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="black" d="M930.132 526.301L966.532 546.834L908.666 580.434L872.266 559.901L930.132 526.301Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="black" d="M1002 617.767L944.133 651.367V576.701L1002 543.101V617.767Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="black" d="M908.668 630.833L944.135 651.367V576.7L908.668 555.233V630.833Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="black" d="M966.535 521.634L1002 543.1L944.135 576.7L908.668 555.234L966.535 521.634Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="black" d="M1038.4 639.234L980.535 672.834V572.034L1038.4 538.434V639.234Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="black" d="M944.133 651.367L980.533 672.833V572.033L944.133 551.5V651.367Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="black" d="M1002 517.9L1038.4 538.434L980.533 572.034L944.133 551.5L1002 517.9Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="black" d="M1038.4 513.233L1074.8 534.7V659.767L1016.94 693.367L980.535 672.834V546.834Z" fill-rule="evenodd" stroke="none" />
+    </mask>
+    <mask id="depth-3-hidden" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse" style="mask-type:luminance" x="805.34" y="443.5" width="300.0" height="300.0">
+      <rect x="805.34" y="443.5" width="300.0" height="300.0" fill="black" />
+      <path fill="white" d="M872.266 609.367L908.666 630.834V580.434L872.266 559.9V609.367Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="white" d="M930.132 526.301L966.532 546.834L908.666 580.434L872.266 559.901L930.132 526.301Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="white" d="M1002 617.767L944.133 651.367V576.701L1002 543.101V617.767Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="white" d="M908.668 630.833L944.135 651.367V576.7L908.668 555.233V630.833Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="white" d="M966.535 521.634L1002 543.1L944.135 576.7L908.668 555.234L966.535 521.634Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="white" d="M1038.4 639.234L980.535 672.834V572.034L1038.4 538.434V639.234Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="white" d="M944.133 651.367L980.533 672.833V572.033L944.133 551.5V651.367Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="white" d="M1002 517.9L1038.4 538.434L980.533 572.034L944.133 551.5L1002 517.9Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="white" d="M1038.4 513.233L1074.8 534.7V659.767L1016.94 693.367L980.535 672.834V546.834Z" fill-rule="evenodd" stroke="none" />
+    </mask>
+    <mask id="depth-4-visible" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse" style="mask-type:luminance" x="805.34" y="443.5" width="300.0" height="300.0">
+      <rect x="805.34" y="443.5" width="300.0" height="300.0" fill="white" />
+      <path fill="black" d="M930.132 526.301L966.532 546.834L908.666 580.434L872.266 559.901L930.132 526.301Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="black" d="M1002 617.767L944.133 651.367V576.701L1002 543.101V617.767Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="black" d="M908.668 630.833L944.135 651.367V576.7L908.668 555.233V630.833Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="black" d="M966.535 521.634L1002 543.1L944.135 576.7L908.668 555.234L966.535 521.634Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="black" d="M1038.4 639.234L980.535 672.834V572.034L1038.4 538.434V639.234Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="black" d="M944.133 651.367L980.533 672.833V572.033L944.133 551.5V651.367Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="black" d="M1002 517.9L1038.4 538.434L980.533 572.034L944.133 551.5L1002 517.9Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="black" d="M1038.4 513.233L1074.8 534.7V659.767L1016.94 693.367L980.535 672.834V546.834Z" fill-rule="evenodd" stroke="none" />
+    </mask>
+    <mask id="depth-4-hidden" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse" style="mask-type:luminance" x="805.34" y="443.5" width="300.0" height="300.0">
+      <rect x="805.34" y="443.5" width="300.0" height="300.0" fill="black" />
+      <path fill="white" d="M930.132 526.301L966.532 546.834L908.666 580.434L872.266 559.901L930.132 526.301Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="white" d="M1002 617.767L944.133 651.367V576.701L1002 543.101V617.767Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="white" d="M908.668 630.833L944.135 651.367V576.7L908.668 555.233V630.833Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="white" d="M966.535 521.634L1002 543.1L944.135 576.7L908.668 555.234L966.535 521.634Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="white" d="M1038.4 639.234L980.535 672.834V572.034L1038.4 538.434V639.234Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="white" d="M944.133 651.367L980.533 672.833V572.033L944.133 551.5V651.367Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="white" d="M1002 517.9L1038.4 538.434L980.533 572.034L944.133 551.5L1002 517.9Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="white" d="M1038.4 513.233L1074.8 534.7V659.767L1016.94 693.367L980.535 672.834V546.834Z" fill-rule="evenodd" stroke="none" />
+    </mask>
+    <mask id="depth-5-visible" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse" style="mask-type:luminance" x="805.34" y="443.5" width="300.0" height="300.0">
+      <rect x="805.34" y="443.5" width="300.0" height="300.0" fill="white" />
+      <path fill="black" d="M1002 617.767L944.133 651.367V576.701L1002 543.101V617.767Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="black" d="M908.668 630.833L944.135 651.367V576.7L908.668 555.233V630.833Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="black" d="M966.535 521.634L1002 543.1L944.135 576.7L908.668 555.234L966.535 521.634Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="black" d="M1038.4 639.234L980.535 672.834V572.034L1038.4 538.434V639.234Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="black" d="M944.133 651.367L980.533 672.833V572.033L944.133 551.5V651.367Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="black" d="M1002 517.9L1038.4 538.434L980.533 572.034L944.133 551.5L1002 517.9Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="black" d="M1038.4 513.233L1074.8 534.7V659.767L1016.94 693.367L980.535 672.834V546.834Z" fill-rule="evenodd" stroke="none" />
+    </mask>
+    <mask id="depth-5-hidden" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse" style="mask-type:luminance" x="805.34" y="443.5" width="300.0" height="300.0">
+      <rect x="805.34" y="443.5" width="300.0" height="300.0" fill="black" />
+      <path fill="white" d="M1002 617.767L944.133 651.367V576.701L1002 543.101V617.767Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="white" d="M908.668 630.833L944.135 651.367V576.7L908.668 555.233V630.833Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="white" d="M966.535 521.634L1002 543.1L944.135 576.7L908.668 555.234L966.535 521.634Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="white" d="M1038.4 639.234L980.535 672.834V572.034L1038.4 538.434V639.234Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="white" d="M944.133 651.367L980.533 672.833V572.033L944.133 551.5V651.367Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="white" d="M1002 517.9L1038.4 538.434L980.533 572.034L944.133 551.5L1002 517.9Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="white" d="M1038.4 513.233L1074.8 534.7V659.767L1016.94 693.367L980.535 672.834V546.834Z" fill-rule="evenodd" stroke="none" />
+    </mask>
+    <mask id="depth-6-visible" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse" style="mask-type:luminance" x="805.34" y="443.5" width="300.0" height="300.0">
+      <rect x="805.34" y="443.5" width="300.0" height="300.0" fill="white" />
+      <path fill="black" d="M908.668 630.833L944.135 651.367V576.7L908.668 555.233V630.833Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="black" d="M966.535 521.634L1002 543.1L944.135 576.7L908.668 555.234L966.535 521.634Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="black" d="M1038.4 639.234L980.535 672.834V572.034L1038.4 538.434V639.234Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="black" d="M944.133 651.367L980.533 672.833V572.033L944.133 551.5V651.367Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="black" d="M1002 517.9L1038.4 538.434L980.533 572.034L944.133 551.5L1002 517.9Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="black" d="M1038.4 513.233L1074.8 534.7V659.767L1016.94 693.367L980.535 672.834V546.834Z" fill-rule="evenodd" stroke="none" />
+    </mask>
+    <mask id="depth-6-hidden" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse" style="mask-type:luminance" x="805.34" y="443.5" width="300.0" height="300.0">
+      <rect x="805.34" y="443.5" width="300.0" height="300.0" fill="black" />
+      <path fill="white" d="M908.668 630.833L944.135 651.367V576.7L908.668 555.233V630.833Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="white" d="M966.535 521.634L1002 543.1L944.135 576.7L908.668 555.234L966.535 521.634Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="white" d="M1038.4 639.234L980.535 672.834V572.034L1038.4 538.434V639.234Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="white" d="M944.133 651.367L980.533 672.833V572.033L944.133 551.5V651.367Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="white" d="M1002 517.9L1038.4 538.434L980.533 572.034L944.133 551.5L1002 517.9Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="white" d="M1038.4 513.233L1074.8 534.7V659.767L1016.94 693.367L980.535 672.834V546.834Z" fill-rule="evenodd" stroke="none" />
+    </mask>
+    <mask id="depth-7-visible" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse" style="mask-type:luminance" x="805.34" y="443.5" width="300.0" height="300.0">
+      <rect x="805.34" y="443.5" width="300.0" height="300.0" fill="white" />
+      <path fill="black" d="M966.535 521.634L1002 543.1L944.135 576.7L908.668 555.234L966.535 521.634Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="black" d="M1038.4 639.234L980.535 672.834V572.034L1038.4 538.434V639.234Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="black" d="M944.133 651.367L980.533 672.833V572.033L944.133 551.5V651.367Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="black" d="M1002 517.9L1038.4 538.434L980.533 572.034L944.133 551.5L1002 517.9Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="black" d="M1038.4 513.233L1074.8 534.7V659.767L1016.94 693.367L980.535 672.834V546.834Z" fill-rule="evenodd" stroke="none" />
+    </mask>
+    <mask id="depth-7-hidden" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse" style="mask-type:luminance" x="805.34" y="443.5" width="300.0" height="300.0">
+      <rect x="805.34" y="443.5" width="300.0" height="300.0" fill="black" />
+      <path fill="white" d="M966.535 521.634L1002 543.1L944.135 576.7L908.668 555.234L966.535 521.634Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="white" d="M1038.4 639.234L980.535 672.834V572.034L1038.4 538.434V639.234Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="white" d="M944.133 651.367L980.533 672.833V572.033L944.133 551.5V651.367Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="white" d="M1002 517.9L1038.4 538.434L980.533 572.034L944.133 551.5L1002 517.9Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="white" d="M1038.4 513.233L1074.8 534.7V659.767L1016.94 693.367L980.535 672.834V546.834Z" fill-rule="evenodd" stroke="none" />
+    </mask>
+    <mask id="depth-8-visible" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse" style="mask-type:luminance" x="805.34" y="443.5" width="300.0" height="300.0">
+      <rect x="805.34" y="443.5" width="300.0" height="300.0" fill="white" />
+      <path fill="black" d="M1038.4 639.234L980.535 672.834V572.034L1038.4 538.434V639.234Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="black" d="M944.133 651.367L980.533 672.833V572.033L944.133 551.5V651.367Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="black" d="M1002 517.9L1038.4 538.434L980.533 572.034L944.133 551.5L1002 517.9Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="black" d="M1038.4 513.233L1074.8 534.7V659.767L1016.94 693.367L980.535 672.834V546.834Z" fill-rule="evenodd" stroke="none" />
+    </mask>
+    <mask id="depth-8-hidden" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse" style="mask-type:luminance" x="805.34" y="443.5" width="300.0" height="300.0">
+      <rect x="805.34" y="443.5" width="300.0" height="300.0" fill="black" />
+      <path fill="white" d="M1038.4 639.234L980.535 672.834V572.034L1038.4 538.434V639.234Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="white" d="M944.133 651.367L980.533 672.833V572.033L944.133 551.5V651.367Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="white" d="M1002 517.9L1038.4 538.434L980.533 572.034L944.133 551.5L1002 517.9Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="white" d="M1038.4 513.233L1074.8 534.7V659.767L1016.94 693.367L980.535 672.834V546.834Z" fill-rule="evenodd" stroke="none" />
+    </mask>
+    <mask id="depth-9-visible" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse" style="mask-type:luminance" x="805.34" y="443.5" width="300.0" height="300.0">
+      <rect x="805.34" y="443.5" width="300.0" height="300.0" fill="white" />
+      <path fill="black" d="M944.133 651.367L980.533 672.833V572.033L944.133 551.5V651.367Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="black" d="M1002 517.9L1038.4 538.434L980.533 572.034L944.133 551.5L1002 517.9Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="black" d="M1038.4 513.233L1074.8 534.7V659.767L1016.94 693.367L980.535 672.834V546.834Z" fill-rule="evenodd" stroke="none" />
+    </mask>
+    <mask id="depth-9-hidden" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse" style="mask-type:luminance" x="805.34" y="443.5" width="300.0" height="300.0">
+      <rect x="805.34" y="443.5" width="300.0" height="300.0" fill="black" />
+      <path fill="white" d="M944.133 651.367L980.533 672.833V572.033L944.133 551.5V651.367Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="white" d="M1002 517.9L1038.4 538.434L980.533 572.034L944.133 551.5L1002 517.9Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="white" d="M1038.4 513.233L1074.8 534.7V659.767L1016.94 693.367L980.535 672.834V546.834Z" fill-rule="evenodd" stroke="none" />
+    </mask>
+    <mask id="depth-10-visible" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse" style="mask-type:luminance" x="805.34" y="443.5" width="300.0" height="300.0">
+      <rect x="805.34" y="443.5" width="300.0" height="300.0" fill="white" />
+      <path fill="black" d="M1002 517.9L1038.4 538.434L980.533 572.034L944.133 551.5L1002 517.9Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="black" d="M1038.4 513.233L1074.8 534.7V659.767L1016.94 693.367L980.535 672.834V546.834Z" fill-rule="evenodd" stroke="none" />
+    </mask>
+    <mask id="depth-10-hidden" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse" style="mask-type:luminance" x="805.34" y="443.5" width="300.0" height="300.0">
+      <rect x="805.34" y="443.5" width="300.0" height="300.0" fill="black" />
+      <path fill="white" d="M1002 517.9L1038.4 538.434L980.533 572.034L944.133 551.5L1002 517.9Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="white" d="M1038.4 513.233L1074.8 534.7V659.767L1016.94 693.367L980.535 672.834V546.834Z" fill-rule="evenodd" stroke="none" />
+    </mask>
+    <mask id="depth-11-visible" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse" style="mask-type:luminance" x="805.34" y="443.5" width="300.0" height="300.0">
+      <rect x="805.34" y="443.5" width="300.0" height="300.0" fill="white" />
+      <path fill="black" d="M1038.4 513.233L1074.8 534.7V659.767L1016.94 693.367L980.535 672.834V546.834Z" fill-rule="evenodd" stroke="none" />
+    </mask>
+    <mask id="depth-11-hidden" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse" style="mask-type:luminance" x="805.34" y="443.5" width="300.0" height="300.0">
+      <rect x="805.34" y="443.5" width="300.0" height="300.0" fill="black" />
+      <path fill="white" d="M1038.4 513.233L1074.8 534.7V659.767L1016.94 693.367L980.535 672.834V546.834Z" fill-rule="evenodd" stroke="none" />
+    </mask>
+  </defs>
+  <g data-layer="color">
+    <path fill="url(#momentum-iris)" d="M1038.4 513.233L1074.8 534.7V659.767L1016.94 693.367L980.535 672.834V546.834Z" fill-rule="evenodd" stroke="none" />
+  </g>
+  <g data-layer="hidden-linework" opacity="0.35">
+    <g mask="url(#depth-0-hidden)">
+      <path fill="none" d="M930.132 576.7L872.266 609.367V584.167L930.132 551.5V576.7Z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+    <g mask="url(#depth-1-hidden)">
+      <path fill="none" d="M835.867 588.834L872.267 609.367V584.167L835.867 563.634V588.834Z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+    <g mask="url(#depth-2-hidden)">
+      <path fill="none" d="M893.734 530.033L930.134 551.5L872.267 584.167L835.867 563.633L893.734 530.033Z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+    <g mask="url(#depth-3-hidden)">
+      <path fill="none" d="M966.535 597.234L908.668 630.834V580.434L966.535 546.834V597.234Z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+    <g mask="url(#depth-4-hidden)">
+      <path fill="none" d="M872.266 609.367L908.666 630.834V580.434L872.266 559.9V609.367Z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+    <g mask="url(#depth-5-hidden)">
+      <path fill="none" d="M930.132 526.301L966.532 546.834L908.666 580.434L872.266 559.901L930.132 526.301Z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+    <g mask="url(#depth-6-hidden)">
+      <path fill="none" d="M1002 617.767L944.133 651.367V576.701L1002 543.101V617.767Z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+    <g mask="url(#depth-7-hidden)">
+      <path fill="none" d="M908.668 630.833L944.135 651.367V576.7L908.668 555.233V630.833Z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+    <g mask="url(#depth-8-hidden)">
+      <path fill="none" d="M966.535 521.634L1002 543.1L944.135 576.7L908.668 555.234L966.535 521.634Z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+    <g mask="url(#depth-9-hidden)">
+      <path fill="none" d="M1038.4 639.234L980.535 672.834V572.034L1038.4 538.434V639.234Z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+    <g mask="url(#depth-10-hidden)">
+      <path fill="none" d="M944.133 651.367L980.533 672.833V572.033L944.133 551.5V651.367Z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+    <g mask="url(#depth-11-hidden)">
+      <path fill="none" d="M1002 517.9L1038.4 538.434L980.533 572.034L944.133 551.5L1002 517.9Z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+  </g>
+  <g data-layer="visible-linework">
+    <g mask="url(#depth-0-visible)">
+      <path fill="none" d="M930.132 576.7L872.266 609.367V584.167L930.132 551.5V576.7Z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+    <g mask="url(#depth-1-visible)">
+      <path fill="none" d="M835.867 588.834L872.267 609.367V584.167L835.867 563.634V588.834Z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+    <g mask="url(#depth-2-visible)">
+      <path fill="none" d="M893.734 530.033L930.134 551.5L872.267 584.167L835.867 563.633L893.734 530.033Z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+    <g mask="url(#depth-3-visible)">
+      <path fill="none" d="M966.535 597.234L908.668 630.834V580.434L966.535 546.834V597.234Z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+    <g mask="url(#depth-4-visible)">
+      <path fill="none" d="M872.266 609.367L908.666 630.834V580.434L872.266 559.9V609.367Z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+    <g mask="url(#depth-5-visible)">
+      <path fill="none" d="M930.132 526.301L966.532 546.834L908.666 580.434L872.266 559.901L930.132 526.301Z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+    <g mask="url(#depth-6-visible)">
+      <path fill="none" d="M1002 617.767L944.133 651.367V576.701L1002 543.101V617.767Z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+    <g mask="url(#depth-7-visible)">
+      <path fill="none" d="M908.668 630.833L944.135 651.367V576.7L908.668 555.233V630.833Z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+    <g mask="url(#depth-8-visible)">
+      <path fill="none" d="M966.535 521.634L1002 543.1L944.135 576.7L908.668 555.234L966.535 521.634Z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+    <g mask="url(#depth-9-visible)">
+      <path fill="none" d="M1038.4 639.234L980.535 672.834V572.034L1038.4 538.434V639.234Z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+    <g mask="url(#depth-10-visible)">
+      <path fill="none" d="M944.133 651.367L980.533 672.833V572.033L944.133 551.5V651.367Z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+    <g mask="url(#depth-11-visible)">
+      <path fill="none" d="M1002 517.9L1038.4 538.434L980.533 572.034L944.133 551.5L1002 517.9Z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+    <path fill="none" d="M1074.8 659.767L1016.93 693.367V568.3L1074.8 534.7V659.767Z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+    <path fill="none" d="M980.535 672.834L1016.94 693.367V568.301L980.535 546.834V672.834Z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+    <path fill="none" d="M1038.4 513.233L1074.8 534.7L1016.94 568.3L980.535 546.833L1038.4 513.233Z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+  </g>
 </svg>

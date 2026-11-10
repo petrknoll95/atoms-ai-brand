@@ -3,8 +3,9 @@ import { withBase } from '../data/base';
 import Guide from '../layouts/Guide.astro';
 import Sub from '../components/Sub.astro';
 import Figure from '../components/Figure.astro';
-import { printMatch } from '../data/printColors';
+import { cmykCopy, cmykFor, printMatch, printProfiles, printReference, printStocks, printValues } from '../data/printColors';
 import Swatch from '../components/Swatch.astro';
+import ColorCombination from '../components/ColorCombination.astro';
 import {
   allColors,
   bare,
@@ -41,7 +42,7 @@ const ink = (key: ColorKey) =>
   <Sub id="palette" title="Palette" number="3.1">
     <Fragment slot="text">
       <p>A forest-led palette. Deep green grounds the brand, cream gives it air, with purple and orange accents adding emphasis.</p>
-      <p class="muted">Open the menu on any color to copy its HEX, RGB, CMYK, shortlisted Pantone or CSS value.</p>
+      <p class="muted">Open the menu on any color to copy its HEX, RGB, CMYK, PANTONE or CSS value.</p>
       <div class="btn-row">
         <button class="btn" type="button" data-copy={tokensCss()} data-copy-message="CSS variables copied">Copy CSS variables</button>
         <a class="btn" href={withBase('/tokens.css')} download="atomsai-colors.css">Download .css</a>
@@ -65,6 +66,7 @@ const ink = (key: ColorKey) =>
       <Sub id={block.id} title={block.title} number={block.number}>
         <Fragment slot="text">
           <p>{block.intro}</p>
+          <p class="muted">Print values: C = coated, U = uncoated. <a href="#pantone">Profiles and proofing guidance ↓</a></p>
           {block.id === 'accent' && <p class="muted">Use Black labels on Iris and Orange CTAs. Pair Iris Light with Iris Dark ({contrast(colors.irisLight.hex, colors.irisDark.hex).toFixed(1)}:1), and Apricot with Crimson ({contrast(colors.apricot.hex, colors.crimson.hex).toFixed(1)}:1). Keep focal accents near 10% of a Forest-led layout.</p>}
         </Fragment>
         <div class="roles" style={`--count: ${Math.min(block.keys.length, 3)}`}>
@@ -74,7 +76,7 @@ const ink = (key: ColorKey) =>
             const values = [
               { label: 'HEX', shown: bare(c.hex), copy: c.hex },
               { label: 'RGB', shown: rgbString(c.hex), copy: `rgb(${r}, ${g}, ${b})` },
-              ...(c.cmyk ? [{ label: 'CMYK', shown: c.cmyk.join(' '), copy: `C${c.cmyk[0]} M${c.cmyk[1]} Y${c.cmyk[2]} K${c.cmyk[3]}` }] : []),
+              ...printValues(c),
               { label: 'CSS', shown: `--${c.token}`, copy: `var(--${c.token})` },
             ];
             return (
@@ -85,7 +87,7 @@ const ink = (key: ColorKey) =>
                     <div>
                       <dt class="muted">{v.label}</dt>
                       <dd>
-                        <button type="button" class="value" data-copy={v.copy}>
+                        <button type="button" class="value" title={'title' in v ? v.title : undefined} data-copy={v.copy} data-copy-message={`${c.name} ${v.label} copied`}>
                           {v.shown}
                         </button>
                       </dd>
@@ -143,20 +145,11 @@ const ink = (key: ColorKey) =>
 
   <Sub id="combinations" title="Combinations" number="3.7">
     <Fragment slot="text">
-      <p>Eight approved combinations. Lead with one color, support with a second and accent with a third, at roughly 60/30/10.</p>
+      <p>Lead with one color, support with a second and accent with a third. Click any shape to copy its HEX value.</p>
     </Fragment>
-    <ol class="combos">
-      {
-        combinations.map(([lead, support, accent], i) => (
-          <li class="combo">
-            <Swatch color={lead} class="combo-lead" />
-            <Swatch color={support} class="combo-support" />
-            <Swatch color={accent} class="combo-accent" />
-            <span class="muted combo-num">{String(i + 1).padStart(2, '0')}</span>
-          </li>
-        ))
-      }
-    </ol>
+    <div class="combos">
+      {combinations.map((palette, i) => <ColorCombination palette={palette} variant={i} />)}
+    </div>
   </Sub>
 
   <Sub id="gradients" title="Gradients" number="3.8">
@@ -232,23 +225,36 @@ const ink = (key: ColorKey) =>
       }
     </div>
   </Sub>
-  <Sub id="pantone" title="Pantone shortlist" number="3.10">
+  <Sub id="pantone" title="PANTONE & CMYK" number="3.10">
     <Fragment slot="text">
-      <p>Coated Pantone matches selected from screen references. Physical proof required before production. Digital HEX values remain the source for screen use.</p>
-      <p class="muted">Paper stock means the substrate supplies the color. No uncoated matches have been selected.</p>
-      <div class="btn-row"><a class="btn" href={withBase('/atomsai-pantone-shortlist.json')} download>Download shortlist .json</a></div>
+      <p>Choose the finish that matches your paper. Coated (C) and uncoated (U) references cover the full palette. Uncoated references use the same PANTONE numbers; their appearance changes with the stock. Proof both spot inks and process colors before production.</p>
+      <p class="muted">CMYK values are C / M / Y / K percentages, converted from the digital palette using relative colorimetric rendering with black-point compensation. They simulate the screen colors in process ink; they are not PANTONE ink recipes.</p>
+      <dl class="rules">
+        {printStocks.map(stock => <div>
+          <dt>{printProfiles[stock].stock} · {printProfiles[stock].condition}</dt>
+          <dd><a href={printProfiles[stock].url} target="_blank" rel="noopener noreferrer">{printProfiles[stock].name} ↗</a></dd>
+        </div>)}
+      </dl>
+      <p class="muted">Paper stock supplies Cream, Paper and White in spot-color work. Their CMYK values apply when simulating the color on the profile’s reference white; do not add that tint to an already matching stock. Use 0 / 0 / 0 / 100 for small black text and fine rules; the converted Black below is for larger color areas.</p>
+      <div class="btn-row">
+        <a class="btn" href={printReference.url} target="_blank" rel="noopener noreferrer">PANTONE Color Finder ↗</a>
+        <a class="btn" href={withBase('/assets/brand/print-colors.json')} download="atomsai-print-colors.json">Download print values</a>
+      </div>
     </Fragment>
-    <div class="print-table-wrap">
+    <div class="print-table-wrap" role="region" aria-label="Print color references" tabindex="0">
       <table class="print-table">
-        <thead><tr><th scope="col">Color</th><th scope="col">HEX</th><th scope="col">Coated shortlist</th></tr></thead>
-        <tbody>{allColors.map(c => {
-          const match = printMatch(c);
-          return <tr>
-            <th scope="row"><span class="dot" style={`background: ${c.hex}`} />{c.name}</th>
-            <td>{c.hex}</td>
-            <td>{match.kind === 'unassigned' ? <span class="muted">{match.label}</span> : <button class="value" type="button" data-copy={`${match.label} — ${match.status}`}>{match.label}</button>}</td>
-          </tr>;
-        })}</tbody>
+        <caption class="visually-hidden">PANTONE references and profile-based CMYK percentages for all 26 colors. Physical proof required.</caption>
+        <thead><tr><th scope="col">Color / HEX</th>{printStocks.map(stock => <th scope="col">{printProfiles[stock].stock}<span class="muted print-detail">CMYK · {printProfiles[stock].condition}</span></th>)}</tr></thead>
+        <tbody>{allColors.map(c => <tr>
+          <th scope="row"><button class="print-sample" type="button" style={`background: ${c.hex}`} data-copy={c.hex} aria-label={`Copy ${c.name} HEX ${c.hex}`} /><span>{c.name}</span><span class="muted print-detail">{c.hex}</span></th>
+          {printStocks.map(stock => {
+            const match = printMatch(c, stock);
+            return <td>
+              <button class="value" type="button" title={match.note || match.status} data-copy={`${match.label} — ${printProfiles[stock].stock}; ${match.status}`} data-copy-message={`${c.name} ${printProfiles[stock].stock.toLowerCase()} reference copied`} aria-label={`Copy ${c.name} ${printProfiles[stock].stock.toLowerCase()} ${match.label}`}>{match.label}</button>
+              <span class="print-detail"><button class="value muted" type="button" data-copy={cmykCopy(c, stock)} data-copy-message={`${c.name} CMYK ${printProfiles[stock].condition} copied`} aria-label={`Copy ${c.name} CMYK ${printProfiles[stock].condition}`}>{cmykFor(c, stock).join(' / ')}</button></span>
+            </td>;
+          })}
+        </tr>)}</tbody>
       </table>
     </div>
   </Sub>
@@ -260,7 +266,8 @@ const ink = (key: ColorKey) =>
   .print-table th, .print-table td { padding: 1rem 0; border-bottom: 1px solid var(--rule); vertical-align: middle; }
   .print-table th { font-weight: 500; }
   .print-table th + th, .print-table td { padding-left: 1.5rem; }
-  .print-table .dot { display: inline-block; margin-right: 0.75rem; }
+  .print-sample { display: block; width: 6rem; height: 4rem; border: 0; padding: 0; margin-bottom: 0.625rem; box-shadow: inset 0 0 0 1px var(--rule); cursor: copy; }
+  .print-detail { display: block; margin-top: 0.5rem; font-weight: 400; }
   .print-table td { white-space: nowrap; }
 
   .accent-stacking { padding: clamp(1rem, 4vw, 3rem); background: var(--black); }
@@ -309,7 +316,7 @@ const ink = (key: ColorKey) =>
 
   .specs > div {
     display: grid;
-    grid-template-columns: 3.5rem 1fr;
+    grid-template-columns: 5.5rem minmax(0, 1fr);
     gap: 0.5rem;
     padding-block: 0.625rem;
   }
@@ -347,40 +354,8 @@ const ink = (key: ColorKey) =>
 
   .combos {
     display: grid;
-    grid-template-columns: repeat(var(--theme-count, 3), minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 1.25rem;
-  }
-
-  .combo {
-    position: relative;
-    display: grid;
-    grid-template-rows: 6fr 3fr 1fr;
-    height: 15rem;
-  }
-
-  .combo :global(.swatch) {
-    min-height: 0;
-  }
-
-  /* The thin accent band: name and menu centered in it. */
-  .combo :global(.combo-accent) {
-    justify-content: center;
-    padding-block: 0;
-  }
-
-  .combo :global(.combo-accent .menu-button) {
-    top: 50%;
-    translate: 0 -50%;
-  }
-
-  .combo-num {
-    position: absolute;
-    left: 0;
-    bottom: -1.5rem;
-  }
-
-  .combos {
-    row-gap: 2.75rem;
   }
 
   .gradients {
@@ -452,6 +427,11 @@ const ink = (key: ColorKey) =>
   }
 
   @media (max-width: 760px) {
+    .print-table { table-layout: fixed; font-size: var(--size-annotation-small); }
+    .print-table th:first-child { width: 27%; }
+    .print-table th + th, .print-table td { padding-left: 0.75rem; white-space: normal; }
+    .print-sample { width: min(5rem, 100%); }
+
     .mosaic {
       grid-template-columns: 1fr 1fr;
       height: auto;

@@ -1,7 +1,7 @@
-import { photographyAssets, photographyVersion, referenceNotice } from '../../../data/photography';
 import { aiInks, aiStates, signalFileName } from '../../../data/aiIdentity';
-import { glassSpec } from '../../../data/glass';
 import type { APIRoute } from 'astro';
+import { glassSpec } from '../../../data/glass';
+import { typography, lineHeightPx } from '../../../data/typography';
 import { publishedUrl } from '../../../data/base';
 import { brandDownloads } from '../../../data/brandDownloads';
 import { allColors, colors, combinations, contrast, gradientCss, gradients, ramps, rgb, themes } from '../../../data/colors';
@@ -9,6 +9,7 @@ import { downloadCategories } from '../../../data/downloads';
 import { colorwayNames, DENSITY_STOPS, SLITS, structures } from '../../../data/patterns';
 import { printMatches, printReference } from '../../../data/printColors';
 import logoManifest from '../../../../public/logos/manifest.json';
+import { photographyAssets, photographyVersion, referenceNotice } from '../../../data/photography';
 
 export const GET: APIRoute = () => new Response(JSON.stringify({
   schemaVersion: 1,
@@ -46,7 +47,15 @@ export const GET: APIRoute = () => new Response(JSON.stringify({
     guidance: publishedUrl('/assets/glass/README.md'),
   },
   palette: allColors.map((c) => ({ ...c, rgb: rgb(c.hex) })),
-  print: { ...printReference, download: publishedUrl('/atomsai-pantone-shortlist.json'), matches: printMatches },
+  print: { ...printReference, matches: printMatches },
+  typography: {
+    ...typography,
+    scale: typography.scale.map(({ sample: _sample, ...step }) => ({
+      ...step,
+      desktopLineHeight: lineHeightPx(step.desktop, step.leading),
+      mobileLineHeight: lineHeightPx(step.mobile, step.leading),
+    })),
+  },
   ramps: Object.fromEntries(Object.entries(ramps).map(([name, keys]) => [name, keys.map((key) => colors[key].token)])),
   combinations: combinations.map((keys) => ({
     lead: colors[keys[0]].token, support: colors[keys[1]].token, accent: colors[keys[2]].token,

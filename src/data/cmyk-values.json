@@ -1,0 +1,429 @@
+{
+  "version": 1,
+  "conversion": {
+    "source": "sRGB IEC61966-2.1",
+    "sourceProfile": "LittleCMS built-in sRGB (ImageCms.createProfile)",
+    "engine": "LittleCMS 2.17",
+    "library": "Pillow 12.1.0",
+    "intent": "Relative colorimetric",
+    "blackPointCompensation": true,
+    "precision": "8-bit CMYK, rounded to nearest whole percent (half up)",
+    "channelOrder": [
+      "C",
+      "M",
+      "Y",
+      "K"
+    ],
+    "note": "Process simulations of the digital palette on profile reference white; not Pantone ink recipes. Proof on the final stock."
+  },
+  "profiles": {
+    "C": {
+      "name": "PSO Coated v3",
+      "condition": "FOGRA51",
+      "stock": "Coated",
+      "file": "PSOcoated_v3.icc",
+      "sha256": "c30ad2c01e8f93135ec7682c535e0a81bc2d177c301e196376c5f5838b5c8e86",
+      "url": "https://registry.color.org/profile-registry/PSOcoated_v3"
+    },
+    "U": {
+      "name": "PSO Uncoated v3 (FOGRA52)",
+      "condition": "FOGRA52",
+      "stock": "Uncoated",
+      "file": "PSOuncoated_v3_FOGRA52.icc",
+      "sha256": "7c39f74fbede1e8c85f8fbb9df7d359aea638b9b68dd0854fdd3ba386e3a02c0",
+      "url": "https://registry.color.org/profile-registry/PSOuncoated_v3_FOGRA52"
+    }
+  },
+  "colors": {
+    "forest-shade": {
+      "hex": "#10231E",
+      "C": [
+        76,
+        48,
+        54,
+        81
+      ],
+      "U": [
+        90,
+        46,
+        47,
+        81
+      ]
+    },
+    "deep-green": {
+      "hex": "#1D3C34",
+      "C": [
+        74,
+        38,
+        53,
+        66
+      ],
+      "U": [
+        85,
+        33,
+        49,
+        65
+      ]
+    },
+    "forest-green": {
+      "hex": "#43695B",
+      "C": [
+        65,
+        28,
+        51,
+        39
+      ],
+      "U": [
+        69,
+        24,
+        49,
+        33
+      ]
+    },
+    "sage": {
+      "hex": "#5C7F71",
+      "C": [
+        59,
+        25,
+        45,
+        27
+      ],
+      "U": [
+        59,
+        21,
+        43,
+        21
+      ]
+    },
+    "sage-tint": {
+      "hex": "#94A596",
+      "C": [
+        41,
+        20,
+        36,
+        11
+      ],
+      "U": [
+        37,
+        17,
+        31,
+        7
+      ]
+    },
+    "stone": {
+      "hex": "#BAC5B9",
+      "C": [
+        28,
+        14,
+        25,
+        3
+      ],
+      "U": [
+        24,
+        11,
+        20,
+        2
+      ]
+    },
+    "cream": {
+      "hex": "#F6F1E8",
+      "C": [
+        4,
+        5,
+        9,
+        0
+      ],
+      "U": [
+        3,
+        4,
+        6,
+        0
+      ]
+    },
+    "charcoal": {
+      "hex": "#33413D",
+      "C": [
+        66,
+        44,
+        47,
+        62
+      ],
+      "U": [
+        73,
+        42,
+        43,
+        59
+      ]
+    },
+    "graphite": {
+      "hex": "#58625F",
+      "C": [
+        56,
+        40,
+        41,
+        41
+      ],
+      "U": [
+        57,
+        37,
+        37,
+        35
+      ]
+    },
+    "slate": {
+      "hex": "#7E8583",
+      "C": [
+        45,
+        33,
+        33,
+        22
+      ],
+      "U": [
+        44,
+        29,
+        29,
+        16
+      ]
+    },
+    "ash": {
+      "hex": "#A7AAA9",
+      "C": [
+        33,
+        24,
+        24,
+        9
+      ],
+      "U": [
+        30,
+        20,
+        20,
+        5
+      ]
+    },
+    "mist": {
+      "hex": "#D0D1D1",
+      "C": [
+        19,
+        14,
+        13,
+        2
+      ],
+      "U": [
+        16,
+        11,
+        10,
+        1
+      ]
+    },
+    "paper": {
+      "hex": "#FAFAFA",
+      "C": [
+        2,
+        2,
+        2,
+        0
+      ],
+      "U": [
+        2,
+        1,
+        1,
+        0
+      ]
+    },
+    "iris-dark": {
+      "hex": "#5D4777",
+      "C": [
+        65,
+        71,
+        15,
+        22
+      ],
+      "U": [
+        70,
+        81,
+        8,
+        13
+      ]
+    },
+    "iris": {
+      "hex": "#A77BCA",
+      "C": [
+        45,
+        56,
+        0,
+        0
+      ],
+      "U": [
+        42,
+        53,
+        0,
+        0
+      ]
+    },
+    "iris-light": {
+      "hex": "#D7C6E6",
+      "C": [
+        18,
+        24,
+        0,
+        0
+      ],
+      "U": [
+        15,
+        19,
+        0,
+        0
+      ]
+    },
+    "crimson": {
+      "hex": "#9A3324",
+      "C": [
+        15,
+        83,
+        78,
+        33
+      ],
+      "U": [
+        8,
+        93,
+        88,
+        28
+      ]
+    },
+    "orange": {
+      "hex": "#FF671F",
+      "C": [
+        0,
+        71,
+        91,
+        0
+      ],
+      "U": [
+        0,
+        67,
+        98,
+        0
+      ]
+    },
+    "apricot": {
+      "hex": "#FDBE87",
+      "C": [
+        0,
+        31,
+        49,
+        0
+      ],
+      "U": [
+        0,
+        25,
+        45,
+        0
+      ]
+    },
+    "black": {
+      "hex": "#000000",
+      "C": [
+        83,
+        67,
+        51,
+        95
+      ],
+      "U": [
+        95,
+        63,
+        41,
+        93
+      ]
+    },
+    "grey-5": {
+      "hex": "#292929",
+      "C": [
+        66,
+        56,
+        46,
+        74
+      ],
+      "U": [
+        73,
+        57,
+        42,
+        75
+      ]
+    },
+    "grey-4": {
+      "hex": "#4E4E4E",
+      "C": [
+        56,
+        47,
+        41,
+        51
+      ],
+      "U": [
+        60,
+        48,
+        36,
+        46
+      ]
+    },
+    "grey-3": {
+      "hex": "#777777",
+      "C": [
+        46,
+        38,
+        35,
+        28
+      ],
+      "U": [
+        45,
+        36,
+        30,
+        21
+      ]
+    },
+    "grey-2": {
+      "hex": "#A2A2A2",
+      "C": [
+        34,
+        27,
+        25,
+        11
+      ],
+      "U": [
+        31,
+        23,
+        21,
+        7
+      ]
+    },
+    "grey-1": {
+      "hex": "#D0D0D0",
+      "C": [
+        19,
+        14,
+        13,
+        2
+      ],
+      "U": [
+        16,
+        11,
+        11,
+        1
+      ]
+    },
+    "white": {
+      "hex": "#FFFFFF",
+      "C": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "U": [
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "version": 2,
+  "source": "Current local gallery renderer; historical SVG masters are not visual baselines.",
+  "gallery": [
+    "full-visibility",
+    "built-in-your-stack",
+    "compounding-outcomes",
+    "stack",
+    "input",
+    "orbit",
+    "stack-2",
+    "focus",
+    "modular",
+    "always-on",
+    "momentum",
+    "layers",
+    "states",
+    "unfolding",
+    "nested",
+    "filtering",
+    "precision",
+    "versatility",
+    "efficiency"
+  ],
+  "references": [
+    "layers",
+    "modular",
+    "orbit",
+    "always-on",
+    "filtering",
+    "versatility"
+  ],
+  "inputs": {
+    "src/scripts/illustration-3d/data/reference-metrics.json": "7c513f7e5eebe53a7fd06cc68d2be8de1e2f6dbde44b07f9ac6b85d49258641f",
+    "src/pages/illustration.astro": "b466b6cce7170ab6bcd21962d72c0b84706880a0ff6a8de81f5623d79a496751",
+    "src/data/colors.ts": "b356bfaf3f8c59fb297c34a34fcf9bbd9a1d60f815e16446e58b7e6a2f365839",
+    "src/scripts/illustration-3d/geometry.ts": "9a018144a5fb602c29d201e83b3392183967912fdd0a5efb42e55f7376518ca2",
+    "src/scripts/illustration-3d/primitives.ts": "b743ed8d7bd918ed27acab2166457ac67d55216782b6dd4de8a87aca0ac3cdb6",
+    "src/scripts/illustration-3d/models.ts": "80b8ca119ceab9612dee55afca53a7a470dc1797562a2c9c40358247d92514f2",
+    "src/scripts/illustration-3d/render.ts": "f7ac4176d4eeeb20a28ea998af16b53ff7a8e05357133172f776833a2573afcd"
+  },
+  "runtime": {
+    "runtime/colors.mjs": "dcc4644d94e8d5aead9fbcb261c500bd7d9ca607f6a876db0d6bf27d35fe87be",
+    "runtime/geometry.mjs": "30035210b6138a6fef5dbbfeb93fc54ce490ecf483ed3ccf2c23bc0526616816",
+    "runtime/primitives.mjs": "f0e915276992374385ac16266543431f16104ab78265c11900e73eb23f9dc039",
+    "runtime/models.mjs": "c72ca5f7fef7e186bf209eea23766c4e3ec77759b1010d2ee3bd67f83d6f5c6a",
+    "runtime/render.mjs": "ccee8a51ce1987551ac6314098c89db1af36f3f3bb314087513c56ae58d7f75f"
+  },
+  "palette": {
+    "iris": "#A77BCA",
+    "dark": "#10231E",
+    "light": "#FAFAFA"
+  },
+  "projection": {
+    "size": 384,
+    "yawDegrees": 45,
+    "pitchDegrees": 30,
+    "stroke": 1.28,
+    "hiddenOpacity": 0.35
+  }
+}

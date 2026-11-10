@@ -1,0 +1,89 @@
+{
+  "method": "Released native masks only in unsaved working copies, then inspected actual Illustrator gradient stops, clipping paths and compound paths. Delivered masters remain masked.",
+  "results": [
+    {
+      "id": "concentric-variant-2-upper",
+      "counts": {
+        "gradientPaths": 115,
+        "clippingPaths": 0,
+        "compoundPaths": 57,
+        "paths": 117,
+        "groups": 3
+      },
+      "gradient_stop_counts": [
+        40
+      ],
+      "log": "concentric-variant-2-upper.txt"
+    },
+    {
+      "id": "drift-40-lower",
+      "counts": {
+        "gradientPaths": 80,
+        "clippingPaths": 40,
+        "compoundPaths": 0,
+        "paths": 122,
+        "groups": 82
+      },
+      "gradient_stop_counts": [
+        22
+      ],
+      "log": "drift-40-lower.txt"
+    },
+    {
+      "id": "offset-40-upper",
+      "counts": {
+        "gradientPaths": 40,
+        "clippingPaths": 40,
+        "compoundPaths": 0,
+        "paths": 82,
+        "groups": 82
+      },
+      "gradient_stop_counts": [
+        22
+      ],
+      "log": "offset-40-upper.txt"
+    },
+    {
+      "id": "original-pilot-lower",
+      "counts": {
+        "gradientPaths": 20,
+        "clippingPaths": 10,
+        "compoundPaths": 0,
+        "paths": 32,
+        "groups": 22
+      },
+      "gradient_stop_counts": [
+        22
+      ],
+      "log": "original-pilot-lower.txt"
+    },
+    {
+      "id": "single-band-40-field1",
+      "counts": {
+        "gradientPaths": 40,
+        "clippingPaths": 40,
+        "compoundPaths": 0,
+        "paths": 82,
+        "groups": 82
+      },
+      "gradient_stop_counts": [
+        33
+      ],
+      "log": "single-band-40-field1.txt"
+    },
+    {
+      "id": "single-band-40-parent",
+      "counts": {
+        "gradientPaths": 40,
+        "clippingPaths": 40,
+        "compoundPaths": 0,
+        "paths": 81,
+        "groups": 81
+      },
+      "gradient_stop_counts": [
+        33
+      ],
+      "log": "single-band-40-parent.txt"
+    }
+  ]
+}

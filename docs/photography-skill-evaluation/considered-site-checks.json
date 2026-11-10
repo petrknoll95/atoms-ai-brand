@@ -1,0 +1,35 @@
+{
+  "viewports": [
+    {
+      "width": 1440,
+      "overflow": false,
+      "loaded": 4,
+      "story": {
+        "width": 824,
+        "height": 463.5,
+        "copyRatio": 0.3999924150485437
+      },
+      "removedHeadings": 0
+    },
+    {
+      "width": 390,
+      "overflow": false,
+      "loaded": 4,
+      "story": {
+        "width": 358,
+        "height": 665.34375,
+        "copyRatio": 1
+      },
+      "removedHeadings": 0
+    }
+  ],
+  "skillVersion": "2.1",
+  "skillPreviewDownloadAndZipMatch": true,
+  "photographicReferenceBytesMatch": true,
+  "currentGuidelinesDownload": true,
+  "assetLinks": [
+    "/atoms-ai-brand/photography/",
+    "/atoms-ai-brand/assets/photography/guidelines.md"
+  ],
+  "pageErrors": []
+}

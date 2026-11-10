@@ -1,0 +1,54 @@
+# Onboarding / implementation — candid direction evaluation
+
+## Result
+
+- Image: `onboarding.png`
+- Actual PNG dimensions: **1448 × 1086**, exactly **4:3** (width/height = 1.333333…). Read directly from the saved PNG header, not inferred from the request.
+- Original generated file kept at `/Users/petrknoll/.codex/generated_images/01a1c69b-6dd8-7582-bc06-c7e75afe7c20/exec-597291e1-2273-4935-bbb3-9a5e3e6f4596.png`.
+- Generated with the built-in image generation tool using AtomsAI photography SKILL.md version 2.0, reviewed 2026-11-10.
+- This is a fictional generated onboarding concept, not a photograph of a real customer, employee or event.
+
+## Pixel inspection
+
+The built-in `view_image` was called against the saved image twice, including original detail; its display returned a tiny top-left fragment. Therefore the full saved PNG was also displayed directly from its original bytes with `nodeRepl.emitImage` and inspected at its full 1448 × 1086 presentation. The notes below refer to visible pixels in that full image.
+
+The client is the active participant: an older woman at her existing desktop has a hand on the mouse and is reading the screen. The engineer sits back in a different chair, looking toward the working area rather than pointing or pitching. The scene communicates a client trying the workflow while someone waits to see whether help is needed. A printed, bound guide in the foreground supports a handover reading, although no legible detail proves that it is a runbook. Likewise, the monitor is an indistinct table with a highlighted row: it suggests an operational queue but cannot visually establish exception handling by itself. This limitation is appropriate for incidental screen content, and the image should be used with accurate surrounding page copy.
+
+Candidness is credible overall. Neither person looks at the camera; the operator's concentration and mouse contact are believable. The engineer's crossed leg and loosely clasped hands are a slightly composed-looking resting posture, and his position leaves his face unusually unobstructed, but this still reads plausibly as waiting for the client to finish a step. It does not rise to a material staged-pose failure. The woman resting a finger near her mouth could be generic 'thinking' shorthand, yet it is restrained rather than demonstrative.
+
+Lighting is cool/neutral office light with a brighter window and modestly uneven illumination, no golden wash or facial rim lights. There is slight polish to the evenly readable faces, but no conspicuous studio key light. The gray cabinets, utilitarian printer, desk fan, papers, blue mouse mat and a knitted layer on the chair make an ordinary occupied office, with density that is plausible rather than theatrical grime. The mug and pen holder are normal desk clutter, not coordinated props. Burgundy cardigan/scarf and olive overshirt/jeans are visibly different personal clothes; there is no forced brand palette. The office is not a showroom.
+
+Both crowns have comfortable headroom. The operator and desktop receive the visual priority; the engineer is secondary. Body, chair and desk contact are plausible at full-image inspection, with no obvious extra hands or malformed limbs. Both gaze directions fit the workstation. Keyboard, mouse, fan, monitor and furniture are recognizable and functional-looking. Screen and document text are blurred/non-readable, and there are no visible logos, slogans, brand claims, overlays or borders.
+
+## Decision
+
+**Accept first render; no revision.** A targeted revision is reserved for a material miss. The slight composed quality of the observer's seated posture is documented, but a new render is not warranted here: the action, ordinary setting, neutral light and uncoordinated styling satisfy the candid default. This is a qualified pass, not evidence of a real onboarding deployment.
+
+## Exact generation prompt
+
+Create one documentary workplace photograph, landscape 4:3 aspect ratio. A fictional AtomsAI onboarding / implementation working moment, no logos or named customer. In a client's ordinary small administrative office, a client operations woman in her late fifties is actually trying an exception-handling workflow at her existing desktop computer. An embedded software engineer, a man in his early thirties, sits a little back and to the side, quietly watching whether the client can complete the step without his help. Catch the brief unremarkable pause while the client reads the result and decides the next step; neither person performs for the camera. This is client ownership in progress, not a sales demonstration. A simple unbranded printed runbook sits among a few existing papers within reach, its text too small to read. The screen is angled away so only an incidental blurred exception queue is suggested, with no readable customer data or invented polished interface. Medium environmental view from a plausible colleague position slightly behind and to the side of the operator, off-center composition, enough room around both heads, workspace legible with moderate depth of field. The engineer and client wear unrelated everyday office clothes, varied personal appearance rather than stock-photo casting. Existing gray furniture, different-aged office equipment and a few normal cables and personal objects, incidental disorder, no curated set decoration. Ordinary cool ceiling light with a little overcast window spill, slightly uneven illumination, readable faces without beauty lighting, neutral real skin tones and normal local color, normal contrast. The photo should feel taken during a regular working day without pausing the work. No pointing presentation gesture, no group leaning in symmetrically, no shared staged smile, no eye contact with camera, no hero pose, no showroom office, no coordinated clothes or color palette, no golden glow, no commercial retouching, no floating graphics, brand stamp, borders, captions, or promotional claims. Anatomically believable contact with chair, desk and computer.
+
+## Targeted revision after series review
+
+The full-set review found that onboarding, support and customer-story images repeated the same chin-resting, static 'thinking' pose. That series-level evidence makes the original first-pass acceptance too generous. The original is retained for comparison; it should not be counted as an unqualified candid-direction success.
+
+- Revised file: `onboarding-revised.png`.
+- Source generated original preserved at `/Users/petrknoll/.codex/generated_images/01a1c69b-6dd8-7582-bc06-c7e75afe7c20/exec-3e487f51-2316-4c3f-85f1-c183b9407245.png`.
+- Actual dimensions from the revised saved PNG header: **1448 × 1086**, exactly **4:3**.
+- Full saved revised PNG inspected using `view_image` with original detail. Earlier direct displays produced only a tiny fragment, but the final original-detail view showed the complete saved image and supported the comparison below.
+
+### What improved
+
+The operator no longer holds the chin-resting pose. Her left hand is over the keyboard and right hand remains on the mouse while she looks at the monitor. This shows continued client operation more clearly. The engineer is now looking down and writing in a small notebook on his lap. His attention is separated from the client's, which breaks the staged shared-looking pattern. He leans into a plausible small note-taking action, and a portion of his lower body overlaps the client's chair. The same people, ordinary furniture, papers, utility equipment and unrelated clothes are preserved closely. No decorative styling was added, and the neutral daylight/office-light treatment is consistent. Both full heads remain comfortably inside the frame. No obvious hand, limb or object-contact failure is visible at full-image inspection.
+
+### What did not improve enough
+
+The requested more incidental colleague angle was largely ignored: camera placement, desk composition and monitor framing are almost unchanged. The engineer is still neatly separated as a readable secondary figure on the left, and the overall picture remains unusually clear and orderly for a camera interrupting work. His crossed-leg posture persists, now supporting the notebook, so it is functional but still somewhat composed. The note-taking action is credible, yet it also risks becoming a second stock depiction of 'doing work.' The revision therefore fixes the repeated chin-resting action and improves role clarity more than it fixes the photographic staging. The screen still cannot prove an exception-handling workflow, and the nearby guide cannot prove a runbook; accurate surrounding copy is required.
+
+### Revised judgment
+
+**Prefer the revision, with a remaining candidness reservation.** It is a useful improvement over the original and no longer repeats the chin-resting motif, but it is not a complete success on the request for a less arranged camera position and body presentation. Do not report this as an unqualified pass. Exactly one targeted revision was made, and both original and revision are retained.
+
+### Exact revision prompt
+
+Revise this generated fictional onboarding photograph with one specific change: make the working moment less carefully arranged and more incidental. Preserve the same older client operations woman, younger embedded engineer, her existing desktop workstation and ordinary occupied office, their personal clothing, cool neutral available office light, realistic color and 4:3 landscape framing. The client continues trying her exception-handling workflow at the computer, focused on the task with her hands naturally occupied in using the workstation, rather than holding a chin-resting thinking pose. The engineer is making a few brief notes instead of sitting fully exposed with a neatly crossed leg and clasped hands watching her. Let their unforced postures follow that work; do not compose an exact demonstration gesture. The camera is at a slightly more incidental colleague position, with ordinary visual overlap between people, chairs and equipment, rather than presenting both bodies cleanly to the viewer. Keep both full heads with comfortable space above them and enough office context to understand client-led implementation. Retain the plausible papers and furniture already present; do not add decorative props or dress the office. The monitor and any notes remain incidental and too oblique or small to read, no invented customer data or brand claims. Preserve the client's ownership of the task, the waiting/supporting role of the engineer, the ordinary neutral light and uncoordinated clothes. No gaze at camera, sales pointing, shared smiles, theatrical busyness, hero framing, golden grading, coordinated styling, new logos, captions or overlays. A quiet real-looking moment of continuing work, not a posed 'thinking' photograph.

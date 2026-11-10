@@ -1,0 +1,131 @@
+---
+import Sub from './Sub.astro';
+import Figure from './Figure.astro';
+import { withBase } from '../data/base';
+import { icon, icons } from '../data/icons';
+import { iconSizes, iconUsage, quantityRules, iconUsageExamples, iconUsageAssets } from '../data/iconUsage';
+
+const assetUrl = (filename: string) => withBase(`/assets/icon-usage/${filename}`);
+const specimen = (name: string) => icon(name).replace('<svg ', '<svg aria-hidden="true" ');
+---
+
+<Sub id="minimum-size" title="Minimum size" number="6.5">
+  <Fragment slot="text">
+    <p>Measure the full icon frame, including its built-in space. Simple icons start at {iconUsage.minimum} px; detailed symbols start at {iconUsage.detailedMinimum} px. Use 24 px by default.</p>
+    <p>Scale the drawing and stroke together. Check at 100% on the target screen: the symbol must read immediately and its open gaps must remain visible. Enlarge or simplify an icon that fails this check.</p>
+  </Fragment>
+  <div class="size-grid">
+    {iconSizes.map(({ size, label, use }) => (
+      <figure class="size-card">
+        <div class="size-surface" aria-label={`${size} px icons on a light background`}>
+          {['search', 'plus', 'arrow-right'].map((name) => <span class="actual-icon" style={`--icon-size: ${size}px`} set:html={specimen(name)} />)}
+        </div>
+        <div class="size-surface dark" aria-label={`${size} px icons on a dark background`}>
+          {['search', 'plus', 'arrow-right'].map((name) => <span class="actual-icon" style={`--icon-size: ${size}px`} set:html={specimen(name)} />)}
+        </div>
+        <figcaption>
+          <p>{size} px · {label}</p>
+          <p class="muted">{use}</p>
+          <p class="muted">Regular {(size * 1.5 / 24).toFixed(2).replace(/\.?0+$/, '')} px · Medium {(size * 2 / 24).toFixed(2).replace(/\.?0+$/, '')} px</p>
+        </figcaption>
+      </figure>
+    ))}
+  </div>
+  <div class="size-notes prose">
+    <p class="muted">Specimens above render at their labelled CSS size. Both rows use Regular. Browser zoom changes their apparent size.</p>
+    <p>For print, start at 4.5 mm for simple icons and 6.5 mm for detailed symbols. Proof at the final physical size; increase the size if fine strokes or gaps disappear.</p>
+    <p>Use an icon to identify an action, status or category. Use an <a href={withBase('/illustration/#size-stroke')}>illustration</a> to explain a process or abstract idea, with at least 200 px for a simple drawing or 280 px for detailed artwork.</p>
+  </div>
+</Sub>
+
+<Sub id="usage-limits" title="Quantity & spacing" number="6.6">
+  <Fragment slot="text">
+    <p>Give each icon a job. Repeating a useful symbol in navigation is different from filling a layout with decorative icons.</p>
+    <dl class="rules">
+      {quantityRules.map(({ title, text }) => <div><dt>{title}</dt><dd class="muted">{text}</dd></div>)}
+    </dl>
+    <p>The feature-group limit applies to promotional layouts, not functional navigation lists. Repeat navigation icons consistently, one per item.</p>
+  </Fragment>
+  <div class="spacing-example">
+    <div class="spacing-control" aria-label="Example: a 24 px search icon inside a 44 px control">
+      <span class="target-frame"><span class="actual-icon" style="--icon-size: 24px" set:html={specimen('search')} /></span>
+      <p>44 × 44 px target</p>
+      <p class="muted">24 px icon</p>
+    </div>
+    <dl class="spacing-values">
+      <div><dt>{iconUsage.labelGap} px</dt><dd>Icon frame to label</dd></div>
+      <div><dt>{iconUsage.controlGap} px</dt><dd>Between controls</dd></div>
+      <div><dt>{iconUsage.groupGap} px</dt><dd>Between action groups</dd></div>
+    </dl>
+  </div>
+  <p class="muted spacing-note">These are minimum gaps. Keep icon size independent of the control: icon-only actions use at least a 44 × 44 px target, which can be invisible. Give each control an accessible name.</p>
+</Sub>
+
+<Sub id="usage-examples" title="Do & don’t" number="6.7">
+  <Fragment slot="text">
+    <p>Keep symbols readable, relevant and comfortably spaced. These diagrams show the decision; use the specimens above to judge actual icon sizes.</p>
+  </Fragment>
+  <div class="example-groups">
+    {iconUsageExamples.map((example) => (
+      <section class="example-group" aria-labelledby={`icon-example-${example.id}`}>
+        <h3 id={`icon-example-${example.id}`}>{example.title}</h3>
+        <div class="example-pair">
+          {(['do', 'dont'] as const).map((kind) => (
+            <div class="example-item">
+              <Figure tone="plain" caption={example[kind].caption}>
+                <Fragment set:html={example[kind].svg} />
+              </Figure>
+              <a class="btn" href={assetUrl(`${example.id}-${kind}.svg`)} download={`atomsai-icon-${example.id}-${kind}.svg`} aria-label={`Download ${example.id} ${kind === 'do' ? 'Do' : 'Don’t'} example SVG`}>SVG ↓</a>
+            </div>
+          ))}
+        </div>
+      </section>
+    ))}
+  </div>
+</Sub>
+
+<Sub id="usage-downloads" title="Usage downloads" number="6.8">
+  <Fragment slot="text">
+    <p>Keep the rules with the artwork. The pack includes the size reference, six editable example diagrams, the written rules and all {icons.length} icons in both weights.</p>
+    <p>Do and Don’t diagrams are teaching examples. Use the original masters in the Regular and Medium folders for production artwork.</p>
+  </Fragment>
+  <div class="download-bar">
+    <div class="btn-row">
+      <a class="btn" href={assetUrl('atomsai-icon-usage.zip')} download>Download usage pack ↓</a>
+      <a class="btn" href={assetUrl('size-reference.svg')} download>Size reference SVG ↓</a>
+      <a class="btn" href={assetUrl('README.md')} download="atomsai-icon-usage.md">Written rules ↓</a>
+    </div>
+    <p class="muted">{iconUsageAssets.length} SVG references · {icons.length * 2} icon masters · Written guide</p>
+  </div>
+  <p class="muted download-note">Diagrams use editable PP Neue Montreal text, with Arial fallback. Icon masters have no font dependency.</p>
+</Sub>
+
+<style>
+  .size-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr)); gap: 1.25rem; }
+  .size-card { min-width: 0; }
+  .size-surface { display: flex; align-items: center; justify-content: center; gap: 1.25rem; min-height: 7rem; background: var(--cream); color: var(--deep-green); }
+  .size-surface.dark { background: var(--deep-green); color: var(--cream); }
+  .actual-icon { display: inline-flex; flex: none; width: var(--icon-size); height: var(--icon-size); }
+  .actual-icon :global(svg) { width: 100%; height: 100%; }
+  .size-card figcaption { display: grid; align-content: start; gap: 0.625rem; padding-top: 0.875rem; }
+  .size-notes { margin-top: 2rem; max-width: 40rem; }
+  .spacing-example { display: grid; grid-template-columns: minmax(9rem, 1fr) 2fr; align-items: center; gap: 2rem; padding: 2.5rem 2rem; background: var(--cream); }
+  .spacing-control { display: grid; justify-items: center; gap: 0.875rem; }
+  .target-frame { display: grid; place-items: center; width: 44px; height: 44px; border: 1px dashed var(--deep-green); }
+  .spacing-values { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; }
+  .spacing-values > div { display: grid; gap: 1rem; }
+  .spacing-values dt { font-family: var(--font-display); font-size: var(--size-display); line-height: 1; letter-spacing: -0.015em; }
+  .spacing-note, .download-note { margin-top: 1.25rem; max-width: 40rem; }
+  .example-groups { display: grid; gap: 2.5rem; }
+  .example-group { display: grid; gap: 1rem; }
+  .example-group h3 { font: inherit; }
+  .example-pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; }
+  .example-item { display: grid; justify-items: start; align-content: start; gap: 0.875rem; min-width: 0; }
+  .example-item :global(.figure) { width: 100%; }
+  .download-bar { display: grid; gap: 1.25rem; padding: 1.5rem 0; border-block: 1px solid var(--rule); }
+  @media (max-width: 640px) {
+    .example-pair { grid-template-columns: minmax(0, 1fr); }
+    .spacing-example { grid-template-columns: minmax(0, 1fr); padding: 2rem 1rem; }
+    .spacing-values { gap: 1rem; }
+  }
+</style>

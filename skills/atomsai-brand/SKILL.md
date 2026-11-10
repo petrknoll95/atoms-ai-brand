@@ -2,8 +2,8 @@
 name: atomsai-brand
 description: Apply the AtomsAI brand to websites, interfaces, presentations, documents, social posts and print. Use for AtomsAI-branded work or a brand consistency review, including logos, colors, typography, patterns, illustrations and voice.
 metadata:
-  version: "1.0"
-  reviewed: "2026-10-16"
+  version: "1.1"
+  reviewed: "2026-11-10"
 ---
 
 # AtomsAI brand
@@ -60,11 +60,11 @@ Use these exact sRGB values. Token names are also the CSS custom properties in t
 | Token | HEX | RGB |
 | --- | --- | --- |
 | forest-shade | #10231E | 16, 35, 30 |
-| deep-green | #27433B | 39, 67, 59 |
-| forest-green | #42665A | 66, 102, 90 |
-| sage | #668978 | 102, 137, 120 |
-| sage-tint | #94AC96 | 148, 172, 150 |
-| stone | #C7CDBA | 199, 205, 186 |
+| deep-green | #1D3C34 | 29, 60, 52 |
+| forest-green | #43695B | 67, 105, 91 |
+| sage | #5C7F71 | 92, 127, 113 |
+| sage-tint | #94A596 | 148, 165, 150 |
+| stone | #BAC5B9 | 186, 197, 185 |
 | cream | #F6F1E8 | 246, 241, 232 |
 | charcoal | #33413D | 51, 65, 61 |
 | graphite | #58625F | 88, 98, 95 |
@@ -72,12 +72,12 @@ Use these exact sRGB values. Token names are also the CSS custom properties in t
 | ash | #A7AAA9 | 167, 170, 169 |
 | mist | #D0D1D1 | 208, 209, 209 |
 | paper | #FAFAFA | 250, 250, 250 |
-| iris-dark | #514264 | 81, 66, 100 |
-| iris | #927BB8 | 146, 123, 184 |
-| iris-light | #D5C6EB | 213, 198, 235 |
-| crimson | #A20000 | 162, 0, 0 |
-| orange | #FF5600 | 255, 86, 0 |
-| apricot | #F9C085 | 249, 192, 133 |
+| iris-dark | #5D4777 | 93, 71, 119 |
+| iris | #A77BCA | 167, 123, 202 |
+| iris-light | #D7C6E6 | 215, 198, 230 |
+| crimson | #9A3324 | 154, 51, 36 |
+| orange | #FF671F | 255, 103, 31 |
+| apricot | #FDBE87 | 253, 190, 135 |
 | black | #000000 | 0, 0, 0 |
 | grey-5 | #292929 | 41, 41, 41 |
 | grey-4 | #4E4E4E | 78, 78, 78 |
@@ -86,41 +86,44 @@ Use these exact sRGB values. Token names are also the CSS custom properties in t
 | grey-1 | #D0D0D0 | 208, 208, 208 |
 | white | #FFFFFF | 255, 255, 255 |
 
-Published print values, in **C/M/Y/K percentages**: Deep green 42/0/12/74; Cream 0/2/6/4; Forest green 35/0/12/60; Sage tint 14/0/13/33; Stone 3/0/9/20. No CMYK values are specified for the remaining tokens. Do not present a calculated conversion or guessed Pantone number as official; use the printer's required profile for production conversion.
+### Print: PANTONE and CMYK
 
-### Pantone shortlist
+The selected coated PANTONE screen-reference HEX values remain the digital palette for greens and accents. Original neutrals, true greys, Forest shade and Cream remain unchanged. Every color now has a coated (C) and uncoated (U) reference. Uncoated references are same-number counterparts, **not appearance-matched substitutions**: paper changes how the ink looks. Forest shade uses 5535 C / U as a dark green reference candidate. All spot references require physical proof; none is a press-approved match.
 
-These are screen-based **coated** matches. Physical proof is required before production. Keep digital HEX values unchanged. Paper stock means the substrate supplies the color; it is not a Pantone ink. No uncoated selections are approved. Forest shade is not shortlisted.
+CMYK values below are **C/M/Y/K percentages**, converted from sRGB IEC61966-2.1 with LittleCMS 2.17, relative colorimetric intent and black-point compensation. Coated uses **PSO Coated v3 (FOGRA51)**; uncoated uses **PSO Uncoated v3 (FOGRA52)**. Values are rounded to whole percentages. These are process simulations of the digital palette, not PANTONE ink recipes. They replace the previous formula estimates, including Cream 0/2/6/4. Use the printer’s required profile if it differs and regenerate separations from the RGB source; do not reuse these numbers under another profile.
 
-| Token | Coated shortlist |
-| --- | --- |
-| deep-green | PANTONE 560 C |
-| forest-green | PANTONE 5545 C |
-| sage | PANTONE 5555 C |
-| sage-tint | PANTONE 5635 C |
-| stone | PANTONE 5665 C |
-| cream | Paper stock |
-| charcoal | PANTONE 560 C |
-| slate | PANTONE 423 C |
-| graphite | PANTONE 445 C |
-| ash | PANTONE 422 C |
-| mist | PANTONE 427 C |
-| paper | Paper stock |
-| iris-dark | PANTONE 7447 C |
-| iris | PANTONE 2577 C |
-| iris-light | PANTONE 263 C |
-| crimson | PANTONE 484 C |
-| orange | PANTONE 165 C |
-| apricot | PANTONE 713 C |
-| black | PANTONE BLACK 6 C |
-| grey-5 | PANTONE 426 C |
-| grey-4 | PANTONE 7540 C |
-| grey-3 | PANTONE COOL GRAY 9 C |
-| grey-2 | PANTONE COOL GRAY 6 C |
-| grey-1 | PANTONE COOL GRAY 2 C |
-| white | Paper stock |
+Paper stock supplies Cream, Paper and White in spot-color work. Their process values simulate the color on the profile’s reference white; do not add a tint on already matching paper. Converted Black is for larger color areas. Use **0/0/0/100 for small black text and fine rules** to avoid registration problems. True-grey conversions may contain CMY; do not treat them as single-ink tints.
 
-[Download the supplied shortlist](https://petrknoll95.github.io/atoms-ai-brand/atomsai-pantone-shortlist.json). Preserve its reference metadata and proof status when handing it to a printer.
+| Token | PANTONE Coated | PANTONE Uncoated | CMYK FOGRA51 | CMYK FOGRA52 |
+| --- | --- | --- | --- | --- |
+| forest-shade | PANTONE 5535 C | PANTONE 5535 U | 76/48/54/81 | 90/46/47/81 |
+| deep-green | PANTONE 560 C | PANTONE 560 U | 74/38/53/66 | 85/33/49/65 |
+| forest-green | PANTONE 5545 C | PANTONE 5545 U | 65/28/51/39 | 69/24/49/33 |
+| sage | PANTONE 5555 C | PANTONE 5555 U | 59/25/45/27 | 59/21/43/21 |
+| sage-tint | PANTONE 5635 C | PANTONE 5635 U | 41/20/36/11 | 37/17/31/7 |
+| stone | PANTONE 5665 C | PANTONE 5665 U | 28/14/25/3 | 24/11/20/2 |
+| cream | Paper stock | Paper stock | 4/5/9/0 | 3/4/6/0 |
+| charcoal | PANTONE 560 C | PANTONE 560 U | 66/44/47/62 | 73/42/43/59 |
+| graphite | PANTONE 445 C | PANTONE 445 U | 56/40/41/41 | 57/37/37/35 |
+| slate | PANTONE 423 C | PANTONE 423 U | 45/33/33/22 | 44/29/29/16 |
+| ash | PANTONE 422 C | PANTONE 422 U | 33/24/24/9 | 30/20/20/5 |
+| mist | PANTONE 427 C | PANTONE 427 U | 19/14/13/2 | 16/11/10/1 |
+| paper | Paper stock | Paper stock | 2/2/2/0 | 2/1/1/0 |
+| iris-dark | PANTONE 7447 C | PANTONE 7447 U | 65/71/15/22 | 70/81/8/13 |
+| iris | PANTONE 2577 C | PANTONE 2577 U | 45/56/0/0 | 42/53/0/0 |
+| iris-light | PANTONE 263 C | PANTONE 263 U | 18/24/0/0 | 15/19/0/0 |
+| crimson | PANTONE 484 C | PANTONE 484 U | 15/83/78/33 | 8/93/88/28 |
+| orange | PANTONE 165 C | PANTONE 165 U | 0/71/91/0 | 0/67/98/0 |
+| apricot | PANTONE 713 C | PANTONE 713 U | 0/31/49/0 | 0/25/45/0 |
+| black | PANTONE BLACK 6 C | PANTONE BLACK 6 U | 83/67/51/95 | 95/63/41/93 |
+| grey-5 | PANTONE 426 C | PANTONE 426 U | 66/56/46/74 | 73/57/42/75 |
+| grey-4 | PANTONE 7540 C | PANTONE 7540 U | 56/47/41/51 | 60/48/36/46 |
+| grey-3 | PANTONE COOL GRAY 9 C | PANTONE COOL GRAY 9 U | 46/38/35/28 | 45/36/30/21 |
+| grey-2 | PANTONE COOL GRAY 6 C | PANTONE COOL GRAY 6 U | 34/27/25/11 | 31/23/21/7 |
+| grey-1 | PANTONE COOL GRAY 2 C | PANTONE COOL GRAY 2 U | 19/14/13/2 | 16/11/11/1 |
+| white | Paper stock | Paper stock | 0/0/0/0 | 0/0/0/0 |
+
+[View print guidance](https://petrknoll95.github.io/atoms-ai-brand/color/#pantone), [download print values and profile metadata](https://petrknoll95.github.io/atoms-ai-brand/assets/brand/print-colors.json), or [open PANTONE Color Finder](https://www.pantone.com/na/en-us/color-finder). Physical proof on the final stock is required before production.
 
 ### Accent stacking
 
@@ -189,15 +192,21 @@ Preview: [glass styling](https://petrknoll95.github.io/atoms-ai-brand/glass/). D
 
 ## Typography
 
-| Role | Family | Weight | Line-height and spacing |
-| --- | --- | --- | --- |
-| Headlines and display | Founders Grotesk | Regular 400; Medium 500 for emphasis | 90–100% leading; −1.5% tracking, or `letter-spacing: -0.015em`. |
-| Lead text | Founders Grotesk in the guide's specimen | Regular 400 | General lead guidance: 130%; the 32 px specimen uses 120%. |
-| Body, captions and interface copy | PP Neue Montreal | Regular 400; Medium 500 available for emphasis | Body leading 140%; do not automatically apply headline tracking. |
+Use this web scale at **768 px and wider** for desktop and **below 768 px** for mobile. Size / line-height values are CSS pixels. Implement sizes in rem (16 px base) with unitless leading so text scales with user preferences.
+
+| Role | Family | Desktop size / line-height | Mobile size / line-height | Tracking |
+| --- | --- | --- | --- | --- |
+| Display | Founders Grotesk | 80 / 72 px | 48 / 43.2 px | −1.5% |
+| H1 | Founders Grotesk | 64 / 64 px | 40 / 40 px | −1.5% |
+| H2 | Founders Grotesk | 48 / 48 px | 32 / 32 px | −1.5% |
+| H3 | Founders Grotesk | 32 / 32 px | 24 / 24 px | −1.5% |
+| Body | PP Neue Montreal | 16 / 22.4 px | 16 / 22.4 px | Normal |
+| Caption | PP Neue Montreal | 14 / 19.6 px | 14 / 19.6 px | Normal |
+
+Regular 400 is the default for every role; Medium 500 is available for emphasis. Display uses 90% leading, H1–H3 use 100%, and body/caption use 140%. Use Display for short hero statements. Keep semantic heading levels independent of visual size; an H1 can use Display styling. Body stays at 16 px on mobile, with roughly 45–75 characters per line. Captions are for supporting details, not running text. Use the separate Google Workspace settings for slides and documents.
 
 - Headlines use **sentence case with punctuation**. Break lines deliberately and avoid a lone final word.
 - Tighten leading as display size increases; open it for smaller text. Keep glyphs, accents and descenders from colliding or clipping.
-- The published specimens are **80 px / 90%** display, **32 px / 120%** lead/display, and **16 px / 140%** body. These demonstrate hierarchy; they are not a universal size scale for every format.
 - Use default character forms. Use tabular figures for tables and data, and verify required language glyphs in the output.
 - The guideline website itself uses 32 px Founders Grotesk and 14 px PP Neue Montreal for its shell. Do not limit a slide, poster or product to those two sizes.
 - Use the actual font files and real weights rather than synthetic bold. WOFF2 files are supplied for web use. Desktop applications may need licensed desktop-format fonts; if unsupported, report the limitation and agree a substitute instead of silently calling a fallback on-brand.
@@ -236,17 +245,21 @@ Preview: [structures, density and usage](https://petrknoll95.github.io/atoms-ai-
 
 ## Illustration
 
-Two related modes have different fill behavior:
+Use fine monochrome linework, translucent overlapping layers and an Iris edge fade. The only preview/export pairings are **Black bg** (white outlines on Black, default) and **White bg** (black outlines on White). For new illustrations and changes to the interactive examples, use the [Illustration Skill](https://petrknoll95.github.io/atoms-ai-brand/skills/atomsai-illustrations/SKILL.md).
 
-**Concept drawings:** one idea in simple outlined 2D/3D geometry, one thin line weight, one palette ink on a light surface. Small solid nodes and arrows may emphasize connections. No filled planes, shading, gradients or literal imagery. Existing concepts are Full Visibility (map workflows and handoffs), Built In Your Stack (agents inside existing systems), and Compounding Outcomes (each workflow supports the next).
+**Concept drawings:** one idea in simple outlined 2D/3D geometry. Small solid nodes and arrows may emphasize connections. Existing concepts are Full Visibility, Built In Your Stack and Compounding Outcomes.
 
-**Isometric linework:** one centered object per card with generous space. Nearer forms hide lines behind them using opaque fills that match the surface. Use Deep green lines by default. Published pairings are Deep green/White, Deep green/Cream, Cream/Deep green and Black/White (line/surface). Keep these fills; making everything transparent exposes hidden edges. Objects are Scale, Focus, Modular, Always on, Insight and Momentum.
+**Construction:** build complete 3D solids, planes, hoops and curves with the shared orthographic camera. Match the reference at the neutral pose and verify it from other sides. Do not reconstruct only the front-facing SVG paths and assign invented depth. Each gallery preview has its own responsive p5.js canvas; one depth-aware projection supplies both direct canvas drawing and vector export. Generate SVG on copy/download, not during dragging. Reuse static masters for ordinary placement and comparison.
 
-The illustration masters use 1.5-unit lines in their own approximately 250–280-unit viewBoxes. This is not the icon system's 1.5 units on a 24-unit grid. Preserve each artwork's aspect ratio, line proportions and viewBox, including non-zero origins.
+**Linework:** one centered object per card with generous space. Use scene depth to separate hidden and visible segments, with one shared 35% opacity group for all hidden linework and full opacity for visible outlines. Overlapping surfaces must never compound the opacity. Paint color fills first, then hidden and visible linework. Highlighted outlines render last at 100%, including behind other surfaces. Always on and Versatility are opaque exceptions: omit hidden edges and nodes. Versatility keeps quadrant dividers on all six faces, revealed by rotation, and its Iris face is visible only from the outside. Draw intentional edges and silhouettes, not mesh tessellation. Highlight one focal part, preserving approved exceptions such as Stack 2's two end layers.
+
+**Gradient fills:** use Iris #A77BCA from the current brand palette for illustration fills. For isometric rectangular surfaces, use a diamond gradient aligned to the four corners of the face: transparent at the center, 25% opacity halfway out and full Iris at every edge, with a smooth quadratic fade. Do not use an elliptical radial fill on these planes. Curved surfaces retain a radial gradient with cubic opacity: transparent in the center, 12.5% opacity at the midpoint and full color at the edge. Keep the gradient inside the existing silhouette and retain transparent centers. Do not add a pale rim, a separate darker band or an outer glow. The same gradient spans all faces of a highlighted part; internal face seams do not restart it.
+
+Existing masters are normalized to a 1 px outline at 200 px artwork width. Preserve geometry, aspect ratios and viewBoxes, including non-zero origins. Scale artwork and strokes together; retain the shared padded viewport and normalized line weight when extending the p5 previews.
 
 Use one lead illustration per slide, hero or editorial layout. A feature grid may contain up to three, one per card. Apply this limit per section on long pages. Use one illustration mode per group and clear space of at least one eighth of the artwork width.
 
-Minimum digital frame width is 192 px for simple isometric objects and 280 px for concepts or dense detail. Scale the master stroke with the artwork. Rendered stroke = 1.5 × display width / viewBox width. For the 280-unit Focus master, widths of 192, 280, 420 and 560 px yield strokes of 1.03, 1.50, 2.25 and 3.00 px. At final size, keep lines at least 1 px and visible gaps at least 2 px. Enlarge drawings that fail this check. Use icons below the minimum sizes and proof print work at final physical size.
+Minimum digital frame width is 200 px for simple isometric objects and 280 px for concepts or dense detail. Scale the master stroke with the artwork. For the normalized Focus master, rendered stroke = display width / 200. Widths of 200, 280, 420 and 560 px yield strokes of 1.00, 1.40, 2.10 and 2.80 px. At final size, keep lines at least 1 px and visible gaps at least 2 px. Enlarge drawings that fail this check. Use icons below the minimum sizes and proof print work at final physical size.
 
 Preview and color exports: [illustration](https://petrknoll95.github.io/atoms-ai-brand/illustration/).
 
@@ -277,6 +290,19 @@ Build hierarchy with strong display type, quiet supporting copy, aligned edges a
 
 Use the [application gallery](https://petrknoll95.github.io/atoms-ai-brand/examples/) for reference: social profile/posts/stories, office screens/displays, transit posters, vertical banners, event cards and business cards. Adapt to aspect ratio and reading distance. Do not treat names, contact details, event dates or claims inside mockups as production content.
 
+## Photography and people
+
+The photography idea is “In their element”: people with character, a sense of place and something happening in the frame. Use a deliberate portrait, a close encounter, movement or a revealing detail according to the story. Vary distance, setting and light while keeping skin and local color believable. Place typography, logos and patterns beside the photograph. Never tint skin to match the palette or cover faces and key actions with effects. For image generation and editing, use the [Photography Skill](https://petrknoll95.github.io/atoms-ai-brand/skills/atomsai-photography/).
+
+- **Customer stories:** the actual customer and their point of view. Let an environmental portrait, encounter or detail come from the story; a photograph need not demonstrate software use. Pair approved names and quotations with real subjects. Use a text-led story and approved customer logo when photography is unavailable.
+- **Support:** a close listening moment for editorial use; a real head-and-shoulders portrait for the assigned person; the brand mark for a shared team; Signal with an explicit “AI assistant” label for automation. Keep names and roles visible. Portraits do not indicate availability.
+- **Onboarding:** photography at welcome and human handoff moments. Use product UI, icons and existing geometric illustrations for instructions and progress. No invented human mascot.
+- **Careers:** actual people and relationships, including individual portraits, moments between tasks or personal interests supplied by a profile. Show engineering work when it adds to the story. Do not invent employee biographies, perks or company places.
+
+Compose for 4:3 stories, 4:5 portraits, 16:9 heroes and circle-safe 1:1 avatars. Preserve proportions and prepare separate mobile crops. Use a 5% working safety inset for essential detail, not print bleed. Place live copy on a solid panel by default. Keep full-resolution profiled masters; convert web derivatives to sRGB without upscaling. Record image source, permission, credit, approved channels and expiry; keep signed releases private.
+
+The AI-generated reference board shows fictional people for art direction only. It must never represent actual customers, staff, testimonials or live support identities. Preview: [photography guidelines](https://petrknoll95.github.io/atoms-ai-brand/photography/). Download: [photography guidelines](https://petrknoll95.github.io/atoms-ai-brand/assets/photography/guidelines.md).
+
 ## Download assets directly
 
 The [manifest](https://petrknoll95.github.io/atoms-ai-brand/assets/brand/manifest.json) lists stable file URLs, variants, palette values, themes and exact gradient CSS. Download actual SVG/font files, not an HTML guideline page saved with an asset extension.
@@ -295,9 +321,8 @@ The [manifest](https://petrknoll95.github.io/atoms-ai-brand/assets/brand/manifes
 | PP Neue Montreal Medium | [WOFF2](https://petrknoll95.github.io/atoms-ai-brand/fonts/PPNeueMontreal-Medium.woff2) |
 | Regular search icon | [SVG](https://petrknoll95.github.io/atoms-ai-brand/assets/brand/icons/regular/search.svg) |
 | Full Visibility concept | [SVG](https://petrknoll95.github.io/atoms-ai-brand/assets/brand/illustration/full-visibility.svg) |
-| Scale linework, Deep green/White | [SVG](https://petrknoll95.github.io/atoms-ai-brand/assets/brand/illustration/scale.svg) |
 
-The manifest includes all 15 icons in both weights, all nine illustrations and the remaining logo variants. Icon masters use `currentColor`: set a color for inline use; replace it with a palette HEX for standalone imports that do not inherit CSS. Concrete logo and illustration downloads already resolve their inks and opaque fills. Preserve SVG vectors where supported. For raster output, export at the requested size; the website defaults are 2400 px long edge for logos, 1024 px for app icons, 512 px for icons and 2000 px long edge for illustrations.
+The manifest includes all 15 icons in both weights, all illustration masters and the remaining logo variants. Icon masters use `currentColor`: set a color for inline use; replace it with a palette HEX for standalone imports that do not inherit CSS. Concrete logo and illustration downloads already resolve their inks and opaque fills. Preserve SVG vectors where supported. For raster output, export at the requested size; the website defaults are 2400 px long edge for logos, 1024 px for app icons, 512 px for icons and 2000 px long edge for illustrations.
 
 ## Final check
 

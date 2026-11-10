@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="923 477 200 200" fill="none" data-hidden-line-opacity="0.35">
+  <defs>
+    <radialGradient id="iris" cx="50%" cy="50%" r="50%">
+      <stop offset="0.0" stop-color="#A77BCA" stop-opacity="0.0" />
+      <stop offset="0.03125" stop-color="#A77BCA" stop-opacity="3e-05" />
+      <stop offset="0.0625" stop-color="#A77BCA" stop-opacity="0.00024" />
+      <stop offset="0.09375" stop-color="#A77BCA" stop-opacity="0.00082" />
+      <stop offset="0.125" stop-color="#A77BCA" stop-opacity="0.00195" />
+      <stop offset="0.15625" stop-color="#A77BCA" stop-opacity="0.00381" />
+      <stop offset="0.1875" stop-color="#A77BCA" stop-opacity="0.00659" />
+      <stop offset="0.21875" stop-color="#A77BCA" stop-opacity="0.01047" />
+      <stop offset="0.25" stop-color="#A77BCA" stop-opacity="0.01562" />
+      <stop offset="0.28125" stop-color="#A77BCA" stop-opacity="0.02225" />
+      <stop offset="0.3125" stop-color="#A77BCA" stop-opacity="0.03052" />
+      <stop offset="0.34375" stop-color="#A77BCA" stop-opacity="0.04062" />
+      <stop offset="0.375" stop-color="#A77BCA" stop-opacity="0.05273" />
+      <stop offset="0.40625" stop-color="#A77BCA" stop-opacity="0.06705" />
+      <stop offset="0.4375" stop-color="#A77BCA" stop-opacity="0.08374" />
+      <stop offset="0.46875" stop-color="#A77BCA" stop-opacity="0.103" />
+      <stop offset="0.5" stop-color="#A77BCA" stop-opacity="0.125" />
+      <stop offset="0.53125" stop-color="#A77BCA" stop-opacity="0.14993" />
+      <stop offset="0.5625" stop-color="#A77BCA" stop-opacity="0.17798" />
+      <stop offset="0.59375" stop-color="#A77BCA" stop-opacity="0.20932" />
+      <stop offset="0.625" stop-color="#A77BCA" stop-opacity="0.24414" />
+      <stop offset="0.65625" stop-color="#A77BCA" stop-opacity="0.28262" />
+      <stop offset="0.6875" stop-color="#A77BCA" stop-opacity="0.32495" />
+      <stop offset="0.71875" stop-color="#A77BCA" stop-opacity="0.37131" />
+      <stop offset="0.75" stop-color="#A77BCA" stop-opacity="0.42188" />
+      <stop offset="0.78125" stop-color="#A77BCA" stop-opacity="0.47684" />
+      <stop offset="0.8125" stop-color="#A77BCA" stop-opacity="0.53638" />
+      <stop offset="0.84375" stop-color="#A77BCA" stop-opacity="0.60068" />
+      <stop offset="0.875" stop-color="#A77BCA" stop-opacity="0.66992" />
+      <stop offset="0.90625" stop-color="#A77BCA" stop-opacity="0.74429" />
+      <stop offset="0.9375" stop-color="#A77BCA" stop-opacity="0.82397" />
+      <stop offset="0.96875" stop-color="#A77BCA" stop-opacity="0.90915" />
+      <stop offset="1.0" stop-color="#A77BCA" stop-opacity="1.0" />
+    </radialGradient>
+    <mask id="depth-0-visible" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse" style="mask-type:luminance" x="913.0" y="467.0" width="220.0" height="220.0">
+      <rect x="913.0" y="467.0" width="220.0" height="220.0" fill="white" />
+      <path fill="black" d="M993 609 1025 590 1035 596 1003 615Z" stroke="none" />
+      <path fill="black" d="M995 538 1045 509 1100 538 1047 568Z" stroke="none" />
+      <path fill="black" d="M1018 537 1041 524 1052 530 1030 543Z" stroke="none" />
+    </mask>
+    <mask id="depth-0-hidden" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse" style="mask-type:luminance" x="913.0" y="467.0" width="220.0" height="220.0">
+      <rect x="913.0" y="467.0" width="220.0" height="220.0" fill="black" />
+      <path fill="white" d="M993 609 1025 590 1035 596 1003 615Z" stroke="none" />
+      <path fill="white" d="M995 538 1045 509 1100 538 1047 568Z" stroke="none" />
+      <path fill="white" d="M1018 537 1041 524 1052 530 1030 543Z" stroke="none" />
+    </mask>
+    <mask id="depth-1-visible" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse" style="mask-type:luminance" x="913.0" y="467.0" width="220.0" height="220.0">
+      <rect x="913.0" y="467.0" width="220.0" height="220.0" fill="white" />
+      <path fill="black" d="M995 538 1045 509 1100 538 1047 568Z" stroke="none" />
+      <path fill="black" d="M1018 537 1041 524 1052 530 1030 543Z" stroke="none" />
+    </mask>
+    <mask id="depth-1-hidden" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse" style="mask-type:luminance" x="913.0" y="467.0" width="220.0" height="220.0">
+      <rect x="913.0" y="467.0" width="220.0" height="220.0" fill="black" />
+      <path fill="white" d="M995 538 1045 509 1100 538 1047 568Z" stroke="none" />
+      <path fill="white" d="M1018 537 1041 524 1052 530 1030 543Z" stroke="none" />
+    </mask>
+    <mask id="depth-2-visible" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse" style="mask-type:luminance" x="913.0" y="467.0" width="220.0" height="220.0">
+      <rect x="913.0" y="467.0" width="220.0" height="220.0" fill="white" />
+      <path fill="black" d="M1018 537 1041 524 1052 530 1030 543Z" stroke="none" />
+    </mask>
+    <mask id="depth-2-hidden" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse" style="mask-type:luminance" x="913.0" y="467.0" width="220.0" height="220.0">
+      <rect x="913.0" y="467.0" width="220.0" height="220.0" fill="black" />
+      <path fill="white" d="M1018 537 1041 524 1052 530 1030 543Z" stroke="none" />
+    </mask>
+  </defs>
+  <g data-layer="color">
+    <path fill="url(#iris)" d="M995 538 1045 509 1100 538 1047 568Z" stroke="none" />
+  </g>
+  <g data-layer="hidden-linework" opacity="0.35">
+    <g mask="url(#depth-0-hidden)">
+      <path fill="none" d="M1023 546 1102 592 1023 638 944 592Z" stroke="currentColor" stroke-width="1" stroke-linejoin="miter" />
+    </g>
+    <g mask="url(#depth-1-hidden)">
+      <path fill="none" d="M993 609 1025 590 1035 596 1003 615Z" stroke="currentColor" stroke-width="1" stroke-linejoin="miter" />
+    </g>
+  </g>
+  <g data-layer="visible-linework">
+    <g mask="url(#depth-0-visible)">
+      <path fill="none" d="M1023 546 1102 592 1023 638 944 592Z" stroke="currentColor" stroke-width="1" stroke-linejoin="miter" />
+    </g>
+    <g mask="url(#depth-1-visible)">
+      <path fill="none" d="M993 609 1025 590 1035 596 1003 615Z" stroke="currentColor" stroke-width="1" stroke-linejoin="miter" />
+    </g>
+    <path fill="none" d="M1018 537 1041 524 1052 530 1030 543Z" stroke="currentColor" stroke-width="1" stroke-linejoin="miter" />
+    <path fill="none" d="M1024 540 C998 555 1044 570 1030 593" stroke="currentColor" stroke-width="1" stroke-linejoin="miter" />
+  </g>
+  <g data-layer="highlight-outlines" opacity="1">
+    <path fill="none" d="M995 538 1045 509 1100 538 1047 568Z" stroke="currentColor" stroke-width="1" stroke-linejoin="miter" />
+  </g>
+</svg>

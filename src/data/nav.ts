@@ -51,7 +51,7 @@ export const sections: Section[] = [
       s('combinations', 'Combinations', '3.7'),
       s('gradients', 'Gradients', '3.8'),
       s('themes', 'Themes', '3.9'),
-      s('pantone', 'Pantone shortlist', '3.10'),
+      s('pantone', 'PANTONE & CMYK', '3.10'),
     ],
   },
   {
@@ -70,7 +70,11 @@ export const sections: Section[] = [
     slug: 'icons',
     title: 'Icons',
     href: withBase('/icons/'),
-    subs: [s('style', 'Style', '6.1'), s('weight', 'Weight', '6.2'), s('library', 'Library', '6.3'), s('in-use', 'In use', '6.4')],
+    subs: [
+      s('style', 'Style', '6.1'), s('weight', 'Weight', '6.2'), s('library', 'Library', '6.3'), s('in-use', 'In use', '6.4'),
+      s('minimum-size', 'Minimum size', '6.5'), s('usage-limits', 'Quantity & spacing', '6.6'),
+      s('usage-examples', 'Do & don’t', '6.7'), s('usage-downloads', 'Usage downloads', '6.8'),
+    ],
   },
   {
     slug: 'patterns',
@@ -132,12 +136,14 @@ export const tools: Section[] = [
     subs: [s('pattern-generator', 'Pattern generator', '9.1'), s('mark-reveal', 'Mark reveal', '9.2'),
       { id: 'animated-patterns', title: 'Animated patterns', number: '9.3', href: withBase('/tools/animated-patterns/') }],
   },
-  { slug: 'assets', title: 'Assets', href: withBase('/assets/'), subs: [s('logos', 'Logos', '10.1'), s('fonts', 'Brand Fonts', '10.2'), s('google-fonts', 'Google Fonts', '10.3'), s('glass', 'Glass styling'), s('ai-identity', 'AI identity')] },
+  { slug: 'assets', title: 'Assets', href: withBase('/assets/'), subs: [s('logos', 'Logos', '10.1'), s('fonts', 'Brand Fonts', '10.2'), s('google-fonts', 'Google Fonts', '10.3'), s('glass', 'Glass styling'), s('photography', 'Photography', '10.4'), s('ai-identity', 'AI identity')] },
   {
     slug: 'skills', title: 'Skills', href: withBase('/skills/'),
     subs: [
       { id: 'atomsai-brand', title: 'Brand Skill', number: '11.1', href: withBase('/skills/atomsai-brand/') },
       { id: 'atomsai-icons', title: 'Icon Skill', number: '11.2', href: withBase('/skills/atomsai-icons/') },
+      { id: 'atomsai-illustrations', title: 'Illustration Skill', number: '11.3', href: withBase('/skills/atomsai-illustrations/') },
+      { id: 'atomsai-photography', title: 'Photography Skill', number: '11.4', href: withBase('/skills/atomsai-photography/') },
     ],
   },
 ];

@@ -1,0 +1,940 @@
+{
+  "date": "2026-11-10",
+  "count": 56,
+  "profile": "/Library/Application Support/Adobe/Color/Profiles/Recommended/CoatedFOGRA39.icc",
+  "profile_sha256": "da2b9b593e27cba2563cbc8596071c5c8f2395d3dbb4434538bac2bc9d58ce77",
+  "conversion": {
+    "source": "sRGB IEC61966-2.1",
+    "destination": "Coated FOGRA39 (ISO 12647-2:2004)",
+    "intent": "Relative colorimetric",
+    "black_point_compensation": true,
+    "pillow": "12.1.0",
+    "littlecms": "2.17",
+    "precision": "8-bit profile output, expressed as percentage; Illustrator save quantization checked separately",
+    "cream": "Converted through same profile; obsolete 0/2/6/4 override removed"
+  },
+  "source_files": {
+    "src/data/colors.ts": "007bd260bb45644798b0ca60fb34470b047758849a9145e9c8fa8055d0b44d06",
+    "src/data/patterns.ts": "30fe4645fd164634e8e3d2219cabcafffb25e5381caee5b4bd518926157be083",
+    "src/scripts/pattern-renderer.ts": "c1652602672387218d906572a0e0d253cd288b6f6335e838cdfe91880a45054a",
+    "src/components/PatternGenerator.astro": "fa709edf406de6f2dbecf6bdfe027ed9c325043d3a59af2ada60bd2518c6d8c1",
+    "src/pages/assets/brand/manifest.json.ts": "436ebcbcd2495d4c48934761ecec61639c5d1ff362e821e79206161fefa96c0b",
+    "public/pattern-masks/concentric-1-highlight.svg": "35f7b95a37c1afecfc67e3951011954bc9e5ac35027d8f0f05776593e7f34ee2",
+    "public/pattern-masks/concentric-1-lower.svg": "48fb70a547ea87b7539d3824c7c3585e318d35e053b534b2ce20413f51967bd6",
+    "public/pattern-masks/concentric-1-upper.svg": "a3edbc544187807b2aab012fb74eeb1f400b1ae79ef0fd98ea0db2580bf94862",
+    "public/pattern-masks/concentric-2-highlight.svg": "b84137adcb602573e8abb8306c824efc1fe441649246662ab0f4715ca4905d71",
+    "public/pattern-masks/concentric-2-lower.svg": "b66918f9e44e60fd3edc394fa9f94290c2586a9645dadc87dcf6408cb022e473",
+    "public/pattern-masks/concentric-2-upper.svg": "9e5d87d334ff455e7a639e088000f559f9d370331909b054f9dc257c9edf4e5a"
+  },
+  "inventory_reason": "56 published combinations. Master is a guideline specimen and data recipe, not a published generator choice or downloadable pattern. Intermediate generator slit stops excluded.",
+  "spec": {
+    "DENSITY_STOPS": [
+      5,
+      6,
+      8,
+      10,
+      13,
+      16,
+      20,
+      25,
+      32,
+      40
+    ],
+    "FIELD": 840,
+    "SLITS": [
+      5,
+      10,
+      20,
+      40
+    ],
+    "VISIBLE": 800,
+    "colorwayNames": [
+      "Forest",
+      "Sage",
+      "Graphite",
+      "Iris"
+    ],
+    "ringLayers": [
+      {
+        "role": "upper",
+        "blend": "source-over"
+      },
+      {
+        "role": "lower",
+        "blend": "source-over"
+      },
+      {
+        "role": "highlight",
+        "blend": "source-over"
+      },
+      {
+        "role": "reflection",
+        "blend": "lighter",
+        "uniform": 0.2
+      }
+    ],
+    "slitLayers": {
+      "drift": [
+        {
+          "kind": "fill",
+          "role": "lower",
+          "blend": "source-over",
+          "mask": {
+            "curve": "fade86",
+            "blur": 1.89,
+            "paints": [
+              [
+                [
+                  0.5263,
+                  0,
+                  0.2368
+                ],
+                [
+                  0,
+                  0.2907,
+                  -0.1541
+                ]
+              ],
+              [
+                [
+                  0.5263,
+                  0,
+                  0.2368
+                ],
+                [
+                  0,
+                  -0.2907,
+                  0.1366
+                ]
+              ]
+            ]
+          }
+        },
+        {
+          "kind": "fill",
+          "role": "upper",
+          "blend": "source-over",
+          "mask": {
+            "curve": "fade86",
+            "blur": 1.89,
+            "paints": [
+              [
+                [
+                  0.5,
+                  0,
+                  0.25
+                ],
+                [
+                  0,
+                  0.2083,
+                  0.8917
+                ]
+              ],
+              [
+                [
+                  0.5,
+                  0,
+                  0.25
+                ],
+                [
+                  0,
+                  -0.2083,
+                  1.1
+                ]
+              ]
+            ]
+          }
+        },
+        {
+          "kind": "fill",
+          "role": "highlight",
+          "blend": "source-over",
+          "mask": {
+            "curve": "fade86",
+            "blur": 1.89,
+            "paints": [
+              [
+                [
+                  0.4348,
+                  0,
+                  0.2826
+                ],
+                [
+                  0,
+                  -0.25,
+                  1.2
+                ]
+              ],
+              [
+                [
+                  0.4348,
+                  0,
+                  0.2826
+                ],
+                [
+                  0,
+                  0.25,
+                  0.95
+                ]
+              ]
+            ]
+          }
+        },
+        {
+          "kind": "fill",
+          "role": "reflection",
+          "blend": "lighter",
+          "mask": {
+            "paints": [
+              [
+                [
+                  0,
+                  1,
+                  -0.0002
+                ],
+                [
+                  -1.8578,
+                  0,
+                  2.3561
+                ]
+              ]
+            ],
+            "curve": "cosine",
+            "slitOpacity": 0.2
+          }
+        }
+      ],
+      "offset": [
+        {
+          "kind": "fill",
+          "role": "upper",
+          "blend": "source-over",
+          "mask": {
+            "curve": "fade72",
+            "paints": [
+              [
+                [
+                  0.5,
+                  0,
+                  0.25
+                ],
+                [
+                  0,
+                  0.2128,
+                  0.9043
+                ]
+              ]
+            ]
+          }
+        },
+        {
+          "kind": "fill",
+          "role": "lower",
+          "blend": "source-over",
+          "mask": {
+            "curve": "fade72",
+            "paints": [
+              [
+                [
+                  0.5,
+                  0,
+                  0.5
+                ],
+                [
+                  0,
+                  0.2128,
+                  -0.0723
+                ]
+              ],
+              [
+                [
+                  0.5,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0.2128,
+                  -0.0723
+                ]
+              ]
+            ]
+          }
+        },
+        {
+          "kind": "fill",
+          "role": "highlight",
+          "blend": "source-over",
+          "mask": {
+            "curve": "fade72",
+            "paints": [
+              [
+                [
+                  0.5,
+                  0,
+                  0.5
+                ],
+                [
+                  0,
+                  0.303,
+                  -0.2485
+                ]
+              ],
+              [
+                [
+                  0.5,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0.303,
+                  -0.2485
+                ]
+              ]
+            ]
+          }
+        },
+        {
+          "kind": "fill",
+          "role": "reflection",
+          "blend": "lighter",
+          "mask": {
+            "paints": [
+              [
+                [
+                  0,
+                  1,
+                  -0.0002
+                ],
+                [
+                  -1.8578,
+                  0,
+                  2.3561
+                ]
+              ]
+            ],
+            "curve": "cosine",
+            "slitOpacity": 0.2
+          }
+        }
+      ],
+      "single-band": [
+        {
+          "kind": "group",
+          "blend": "source-over",
+          "mask": {
+            "curve": [
+              1,
+              1,
+              0.999,
+              0.999,
+              0.998,
+              0.996,
+              0.994,
+              0.99,
+              0.985,
+              0.976,
+              0.963,
+              0.943,
+              0.912,
+              0.864,
+              0.79,
+              0.676,
+              0.5,
+              0.324,
+              0.21,
+              0.136,
+              0.088,
+              0.057,
+              0.037,
+              0.024,
+              0.015,
+              0.01,
+              0.006,
+              0.004,
+              0.002,
+              0.001,
+              0.001,
+              0,
+              0
+            ],
+            "blur": 1.89,
+            "paints": [
+              [
+                [
+                  0.3944,
+                  0,
+                  0.3028
+                ],
+                [
+                  0,
+                  -0.3564,
+                  0.6782
+                ]
+              ]
+            ]
+          },
+          "children": [
+            {
+              "kind": "fill",
+              "role": "field1",
+              "blend": "source-over",
+              "mask": {
+                "curve": [
+                  1,
+                  1,
+                  0.999,
+                  0.999,
+                  0.998,
+                  0.996,
+                  0.994,
+                  0.99,
+                  0.985,
+                  0.976,
+                  0.963,
+                  0.943,
+                  0.912,
+                  0.864,
+                  0.79,
+                  0.676,
+                  0.5,
+                  0.324,
+                  0.21,
+                  0.136,
+                  0.088,
+                  0.057,
+                  0.037,
+                  0.024,
+                  0.015,
+                  0.01,
+                  0.006,
+                  0.004,
+                  0.002,
+                  0.001,
+                  0.001,
+                  0,
+                  0
+                ],
+                "blur": 1.89,
+                "paints": [
+                  [
+                    [
+                      0.6109,
+                      0,
+                      0.1945
+                    ],
+                    [
+                      0,
+                      -0.5454,
+                      0.7727
+                    ]
+                  ]
+                ]
+              }
+            },
+            {
+              "kind": "fill",
+              "role": "field2",
+              "blend": "source-over",
+              "mask": {
+                "curve": [
+                  1,
+                  1,
+                  0.999,
+                  0.999,
+                  0.998,
+                  0.996,
+                  0.994,
+                  0.99,
+                  0.985,
+                  0.976,
+                  0.963,
+                  0.943,
+                  0.912,
+                  0.864,
+                  0.79,
+                  0.676,
+                  0.5,
+                  0.324,
+                  0.21,
+                  0.136,
+                  0.088,
+                  0.057,
+                  0.037,
+                  0.024,
+                  0.015,
+                  0.01,
+                  0.006,
+                  0.004,
+                  0.002,
+                  0.001,
+                  0.001,
+                  0,
+                  0
+                ],
+                "blur": 1.89,
+                "paints": [
+                  [
+                    [
+                      0.6109,
+                      0,
+                      0.1945
+                    ],
+                    [
+                      0,
+                      -0.714,
+                      0.857
+                    ]
+                  ]
+                ]
+              }
+            },
+            {
+              "kind": "fill",
+              "role": "field3",
+              "blend": "source-over",
+              "mask": {
+                "curve": [
+                  1,
+                  1,
+                  0.999,
+                  0.999,
+                  0.998,
+                  0.996,
+                  0.994,
+                  0.99,
+                  0.985,
+                  0.976,
+                  0.963,
+                  0.943,
+                  0.912,
+                  0.864,
+                  0.79,
+                  0.676,
+                  0.5,
+                  0.324,
+                  0.21,
+                  0.136,
+                  0.088,
+                  0.057,
+                  0.037,
+                  0.024,
+                  0.015,
+                  0.01,
+                  0.006,
+                  0.004,
+                  0.002,
+                  0.001,
+                  0.001,
+                  0,
+                  0
+                ],
+                "blur": 1.89,
+                "paints": [
+                  [
+                    [
+                      0.4275,
+                      0,
+                      0.2863
+                    ],
+                    [
+                      0,
+                      -0.9485,
+                      0.9743
+                    ]
+                  ]
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "kind": "fill",
+          "role": "reflection",
+          "blend": "source-over",
+          "mask": {
+            "paints": [
+              [
+                [
+                  0,
+                  1,
+                  -0.0002
+                ],
+                [
+                  -1.8578,
+                  0,
+                  2.3561
+                ]
+              ]
+            ],
+            "curve": "cosine",
+            "slitOpacity": 0.2
+          }
+        },
+        {
+          "kind": "fill",
+          "role": "overlay",
+          "blend": "overlay",
+          "mask": {
+            "curve": [
+              0,
+              0,
+              0.001,
+              0.003,
+              0.008,
+              0.015,
+              0.026,
+              0.042,
+              0.063,
+              0.089,
+              0.122,
+              0.162,
+              0.211,
+              0.268,
+              0.335,
+              0.412,
+              0.5,
+              0.588,
+              0.665,
+              0.732,
+              0.789,
+              0.838,
+              0.878,
+              0.911,
+              0.938,
+              0.958,
+              0.974,
+              0.985,
+              0.992,
+              0.997,
+              0.999,
+              1,
+              1
+            ],
+            "opacity": 0.15,
+            "paints": [
+              [
+                [
+                  0,
+                  1.2174,
+                  -0.1087
+                ],
+                [
+                  -0.4898,
+                  0,
+                  0.7449
+                ]
+              ]
+            ]
+          }
+        },
+        {
+          "kind": "fill",
+          "role": "shade",
+          "blend": "source-over",
+          "mask": {
+            "curve": [
+              1,
+              1,
+              1,
+              0.999,
+              0.998,
+              0.996,
+              0.993,
+              0.99,
+              0.984,
+              0.978,
+              0.969,
+              0.959,
+              0.947,
+              0.933,
+              0.916,
+              0.897,
+              0.875,
+              0.85,
+              0.822,
+              0.791,
+              0.756,
+              0.717,
+              0.675,
+              0.629,
+              0.578,
+              0.523,
+              0.464,
+              0.399,
+              0.33,
+              0.256,
+              0.176,
+              0.091,
+              0
+            ],
+            "paints": [
+              [
+                [
+                  0,
+                  1.7178,
+                  -0.3589
+                ],
+                [
+                  -1,
+                  0,
+                  1
+                ]
+              ]
+            ]
+          }
+        }
+      ]
+    },
+    "structures": [
+      {
+        "id": "drift",
+        "name": "Drift",
+        "description": "Light enters from the top and bottom edges and meets in interleaved beams. Calm and balanced \u2014 a good default for large backgrounds.",
+        "densities": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "master": {
+          "base": "#000000",
+          "upper": "#3E3E3E",
+          "lower": "#313131",
+          "highlight": "#000000",
+          "reflection": "#FFFFFF"
+        },
+        "colorways": {
+          "Forest": {
+            "base": "#1D3C34",
+            "upper": "#43695B",
+            "lower": "#43695B",
+            "highlight": "#10231E",
+            "reflection": "#F6F1E8"
+          },
+          "Sage": {
+            "base": "#1D3C34",
+            "upper": "#5C7F71",
+            "lower": "#5C7F71",
+            "highlight": "#10231E",
+            "reflection": "#F6F1E8"
+          },
+          "Graphite": {
+            "base": "#10231E",
+            "upper": "#58625F",
+            "lower": "#58625F",
+            "highlight": "#10231E",
+            "reflection": "#5C7F71"
+          },
+          "Iris": {
+            "base": "#A77BCA",
+            "upper": "#D7C6E6",
+            "lower": "#5D4777",
+            "highlight": "#A77BCA",
+            "reflection": "#FFFFFF"
+          }
+        }
+      },
+      {
+        "id": "offset",
+        "name": "Offset",
+        "description": "Light rises from the base in tapered, offset spikes. Directional and energetic \u2014 keep the quiet top of the field for type.",
+        "densities": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "master": {
+          "base": "#000000",
+          "upper": "#919191",
+          "lower": "#7F7F7F",
+          "highlight": "#585858",
+          "reflection": "#FFFFFF"
+        },
+        "colorways": {
+          "Forest": {
+            "base": "#1D3C34",
+            "upper": "#43695B",
+            "lower": "#F6F1E8",
+            "highlight": "#585858",
+            "reflection": "#FFFFFF"
+          },
+          "Sage": {
+            "base": "#1D3C34",
+            "upper": "#5C7F71",
+            "lower": "#F6F1E8",
+            "highlight": "#585858",
+            "reflection": "#FFFFFF"
+          },
+          "Graphite": {
+            "base": "#10231E",
+            "upper": "#58625F",
+            "lower": "#FAFAFA",
+            "highlight": "#585858",
+            "reflection": "#FFFFFF"
+          },
+          "Iris": {
+            "base": "#A77BCA",
+            "upper": "#A77BCA",
+            "lower": "#D7C6E6",
+            "highlight": "#A77BCA",
+            "reflection": "#FFFFFF"
+          }
+        }
+      },
+      {
+        "id": "single-band",
+        "name": "Single band",
+        "description": "One luminous band held across the middle of the frame. Strong and symmetrical \u2014 crop to frame a headline above or below it.",
+        "densities": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "master": {
+          "base": "#000000",
+          "field1": "#FFFFFF",
+          "field2": "#585858",
+          "field3": "#000000",
+          "reflection": "#FFFFFF",
+          "overlay": "#D7C6E6",
+          "shade": "#000000"
+        },
+        "colorways": {
+          "Forest": {
+            "base": "#1D3C34",
+            "field1": "#A7AAA9",
+            "field2": "#43695B",
+            "field3": "#43695B",
+            "reflection": "#FFFFFF",
+            "overlay": "#D7C6E6",
+            "shade": "#1D3C34"
+          },
+          "Sage": {
+            "base": "#1D3C34",
+            "field1": "#A7AAA9",
+            "field2": "#5C7F71",
+            "field3": "#5C7F71",
+            "reflection": "#FFFFFF",
+            "overlay": "#D7C6E6",
+            "shade": "#1D3C34"
+          },
+          "Graphite": {
+            "base": "#10231E",
+            "field1": "#A7AAA9",
+            "field2": "#58625F",
+            "field3": "#58625F",
+            "reflection": "#FFFFFF",
+            "overlay": "#FAFAFA",
+            "shade": "#10231E"
+          },
+          "Iris": {
+            "base": "#5D4777",
+            "field1": "#D7C6E6",
+            "field2": "#A77BCA",
+            "field3": "#A77BCA",
+            "reflection": "#FFFFFF",
+            "overlay": "#D7C6E6",
+            "shade": "#5D4777"
+          }
+        }
+      },
+      {
+        "id": "concentric",
+        "name": "Concentric",
+        "description": "Rings radiate evenly from the center, like a ripple. Use it to pull focus toward a single point or moment.",
+        "densities": [
+          1,
+          2
+        ],
+        "master": {
+          "base": "#000000",
+          "upper": "#4D4D4D",
+          "lower": "#5A5A5A",
+          "highlight": "#2E2E2E",
+          "reflection": "#646464"
+        },
+        "colorways": {
+          "Forest": {
+            "base": "#10231E",
+            "upper": "#43695B",
+            "lower": "#43695B",
+            "highlight": "#2E2E2E",
+            "reflection": "#646464"
+          },
+          "Sage": {
+            "base": "#10231E",
+            "upper": "#5C7F71",
+            "lower": "#5C7F71",
+            "highlight": "#2E2E2E",
+            "reflection": "#646464"
+          },
+          "Graphite": {
+            "base": "#10231E",
+            "upper": "#58625F",
+            "lower": "#58625F",
+            "highlight": "#2E2E2E",
+            "reflection": "#646464"
+          },
+          "Iris": {
+            "base": "#5D4777",
+            "upper": "#A77BCA",
+            "lower": "#A77BCA",
+            "highlight": "#D7C6E6",
+            "reflection": "#A77BCA"
+          }
+        }
+      }
+    ]
+  },
+  "generation": "Adobe Illustrator 30.8.1; native gradient/clipping geometry imported from source-derived SVG interchange, masks constructed by native Illustrator action, mask-only live Gaussian blur; genuine Illustrator saveAs",
+  "repository_binary_convention": "No Git LFS filter configured for these paths; ordinary binary assets.",
+  "source_file_revisions": [
+    {
+      "file": "skills/atomsai-brand/SKILL.md",
+      "previous_sha256": "e44362d71ddd578cda799dc658adf0ad9b671f42ab87bef6286c16885216f4d2",
+      "reviewed_sha256": "0d20b5c24f1c275469fda5afc2c3e3f3aa4dfb2467d05b9d75437560311a42d6",
+      "note": "Re-read revised guidance during generation. Current exported pattern specification is identical and reviewed rules remain consistent with these deliverables."
+    },
+    {
+      "file": "skills/atomsai-brand/SKILL.md",
+      "previous_sha256": "0d20b5c24f1c275469fda5afc2c3e3f3aa4dfb2467d05b9d75437560311a42d6",
+      "reviewed_sha256": "731f1b632b9e47ba68d516eb679e9bc9532c486c256246375b942dde3c472b47",
+      "note": "Re-read current palette, print, pattern and final-check rules. Pattern specification, renderer, palette and SVG geometry hashes remain unchanged. Guidance is recorded separately from generation inputs."
+    }
+  ],
+  "catalog_fonts": {
+    "public/fonts/PPNeueMontreal-Regular.woff2": "5908af4c274bc55f9cdf731629fc71958dc7aa44a0c8efc9e878c91374ef68f8",
+    "public/fonts/FoundersGrotesk-Regular.woff2": "d7a5b2e0221f4a9a43c5e60896af3bd9ff8b8c3948f124627600a4190c6cd3a0"
+  },
+  "guidance_review": {
+    "skills/atomsai-brand/SKILL.md": {
+      "sha256": "731f1b632b9e47ba68d516eb679e9bc9532c486c256246375b942dde3c472b47",
+      "reviewed": "2026-11-10",
+      "applicable_rules_consistent": true
+    }
+  },
+  "generation_script_hashes": {
+    "scripts/print-patterns/audit-mask-contents.py": "d9554083a3abaab5154adbfa2fecb4a2df3cde937b93f829a39e2d3f75ec08ea",
+    "scripts/print-patterns/build.jsx": "cbe0d4685fe9b7198e2524d9dea7042eb2e49de3b54cd9e1b1feb1aff17d66f7",
+    "scripts/print-patterns/catalog.py": "a7473315d2163fef382a6fd2763c61d1983b28bdc983dcb2d63d6565f02bf66c",
+    "scripts/print-patterns/compare.py": "b09a129769ca2382a79d920c214e7aa105db20e615b1341e445ced3a47657b7a",
+    "scripts/print-patterns/export-spec.mjs": "8c786f2bc606a8892afb39cca7f5021802e57940d567c842f55119964833e55c",
+    "scripts/print-patterns/finalize.py": "1fa6bc2f2b09e69d77c2b12d65d5754b489dae39442815b9674d18cfc99cb27c",
+    "scripts/print-patterns/inspect-mask.jsx": "3c797766dbd01c7bd516a2ec6759f1075fae0f8b8cd6a3f557c6d95f60323b85",
+    "scripts/print-patterns/masks.aia": "74625c2131b762e3a55c339b6feaf4a6885bb9feb98c08ef0ceac113853613d2",
+    "scripts/print-patterns/pdf_image_resolution.py": "7ae22badd816adf373cbfef654402c3e476b53b503daddb35b86e2c5a6a41530",
+    "scripts/print-patterns/prepare.py": "68a00fe742fae3329b9e44be299da9ef2d7c77e4e49b73d56d455a027e327a80",
+    "scripts/print-patterns/render-references.mjs": "a547907c6a23c0ac70b2a84c7bf48b7d0bc41bdc1cf1ba6073f439aa26887166",
+    "scripts/print-patterns/repair-blend-modes.jsx": "04d5f796ed481ff9f262401845e85151316c0dcb30aef82e0348407e0570c7d2",
+    "scripts/print-patterns/repair-blend-modes.py": "ee3d9ee3f5c34a6f3a81a7fda16e3aaa9662e43af5f4836bc9c7491813a1f13d",
+    "scripts/print-patterns/requirements.txt": "991db8bb41b051120300090f2e0205e99f28d7ccd29eb5caf7077790b605481e",
+    "scripts/print-patterns/run.py": "0fabc6345b929dd336e98664170233e3642b453ec507ae84d137f8567aac8d06",
+    "scripts/print-patterns/validate.py": "830fb5f881ea1247cc8cf0b255184fca01e26fe2b5f4bfafebbbecf432b3e860",
+    "scripts/print-patterns/verify-saved.jsx": "81b3f9b5416bea18a5d21bd02f618db5866aa339c1102d3e598bbec643f87f4d",
+    "scripts/print-patterns/verify-saved.py": "ab4cdd7cbe2af5079a63bee5578c41f868f003e7ccf5494a25d73f69c916a587"
+  }
+}

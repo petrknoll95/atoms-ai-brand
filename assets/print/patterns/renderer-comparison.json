@@ -1,0 +1,338 @@
+[
+  {
+    "id": "atomsai-drift-forest-5",
+    "luminance_correlation": 0.97309,
+    "mean_absolute_rgb_channel_difference_255": 1.934,
+    "interpretation": "Geometry/falloff comparison; not colorimetric proof. ICC gamut, CMYK blending and Screen adaptation cause color differences."
+  },
+  {
+    "id": "atomsai-drift-sage-5",
+    "luminance_correlation": 0.98891,
+    "mean_absolute_rgb_channel_difference_255": 1.98,
+    "interpretation": "Geometry/falloff comparison; not colorimetric proof. ICC gamut, CMYK blending and Screen adaptation cause color differences."
+  },
+  {
+    "id": "atomsai-drift-graphite-5",
+    "luminance_correlation": 0.99908,
+    "mean_absolute_rgb_channel_difference_255": 1.047,
+    "interpretation": "Geometry/falloff comparison; not colorimetric proof. ICC gamut, CMYK blending and Screen adaptation cause color differences."
+  },
+  {
+    "id": "atomsai-drift-iris-5",
+    "luminance_correlation": 0.97501,
+    "mean_absolute_rgb_channel_difference_255": 8.064,
+    "interpretation": "Geometry/falloff comparison; not colorimetric proof. ICC gamut, CMYK blending and Screen adaptation cause color differences."
+  },
+  {
+    "id": "atomsai-drift-forest-10",
+    "luminance_correlation": 0.96909,
+    "mean_absolute_rgb_channel_difference_255": 2.084,
+    "interpretation": "Geometry/falloff comparison; not colorimetric proof. ICC gamut, CMYK blending and Screen adaptation cause color differences."
+  },
+  {
+    "id": "atomsai-drift-sage-10",
+    "luminance_correlation": 0.98708,
+    "mean_absolute_rgb_channel_difference_255": 2.172,
+    "interpretation": "Geometry/falloff comparison; not colorimetric proof. ICC gamut, CMYK blending and Screen adaptation cause color differences."
+  },
+  {
+    "id": "atomsai-drift-graphite-10",
+    "luminance_correlation": 0.99859,
+    "mean_absolute_rgb_channel_difference_255": 1.184,
+    "interpretation": "Geometry/falloff comparison; not colorimetric proof. ICC gamut, CMYK blending and Screen adaptation cause color differences."
+  },
+  {
+    "id": "atomsai-drift-iris-10",
+    "luminance_correlation": 0.97168,
+    "mean_absolute_rgb_channel_difference_255": 8.213,
+    "interpretation": "Geometry/falloff comparison; not colorimetric proof. ICC gamut, CMYK blending and Screen adaptation cause color differences."
+  },
+  {
+    "id": "atomsai-drift-forest-20",
+    "luminance_correlation": 0.96467,
+    "mean_absolute_rgb_channel_difference_255": 2.371,
+    "interpretation": "Geometry/falloff comparison; not colorimetric proof. ICC gamut, CMYK blending and Screen adaptation cause color differences."
+  },
+  {
+    "id": "atomsai-drift-sage-20",
+    "luminance_correlation": 0.98407,
+    "mean_absolute_rgb_channel_difference_255": 2.628,
+    "interpretation": "Geometry/falloff comparison; not colorimetric proof. ICC gamut, CMYK blending and Screen adaptation cause color differences."
+  },
+  {
+    "id": "atomsai-drift-graphite-20",
+    "luminance_correlation": 0.99619,
+    "mean_absolute_rgb_channel_difference_255": 1.688,
+    "interpretation": "Geometry/falloff comparison; not colorimetric proof. ICC gamut, CMYK blending and Screen adaptation cause color differences."
+  },
+  {
+    "id": "atomsai-drift-iris-20",
+    "luminance_correlation": 0.96808,
+    "mean_absolute_rgb_channel_difference_255": 8.395,
+    "interpretation": "Geometry/falloff comparison; not colorimetric proof. ICC gamut, CMYK blending and Screen adaptation cause color differences."
+  },
+  {
+    "id": "atomsai-drift-forest-40",
+    "luminance_correlation": 0.94333,
+    "mean_absolute_rgb_channel_difference_255": 3.356,
+    "interpretation": "Geometry/falloff comparison; not colorimetric proof. ICC gamut, CMYK blending and Screen adaptation cause color differences."
+  },
+  {
+    "id": "atomsai-drift-sage-40",
+    "luminance_correlation": 0.96638,
+    "mean_absolute_rgb_channel_difference_255": 4.229,
+    "interpretation": "Geometry/falloff comparison; not colorimetric proof. ICC gamut, CMYK blending and Screen adaptation cause color differences."
+  },
+  {
+    "id": "atomsai-drift-graphite-40",
+    "luminance_correlation": 0.98208,
+    "mean_absolute_rgb_channel_difference_255": 3.381,
+    "interpretation": "Geometry/falloff comparison; not colorimetric proof. ICC gamut, CMYK blending and Screen adaptation cause color differences."
+  },
+  {
+    "id": "atomsai-drift-iris-40",
+    "luminance_correlation": 0.94757,
+    "mean_absolute_rgb_channel_difference_255": 8.98,
+    "interpretation": "Geometry/falloff comparison; not colorimetric proof. ICC gamut, CMYK blending and Screen adaptation cause color differences."
+  },
+  {
+    "id": "atomsai-offset-forest-5",
+    "luminance_correlation": 0.9924,
+    "mean_absolute_rgb_channel_difference_255": 6.845,
+    "interpretation": "Geometry/falloff comparison; not colorimetric proof. ICC gamut, CMYK blending and Screen adaptation cause color differences."
+  },
+  {
+    "id": "atomsai-offset-sage-5",
+    "luminance_correlation": 0.99226,
+    "mean_absolute_rgb_channel_difference_255": 6.895,
+    "interpretation": "Geometry/falloff comparison; not colorimetric proof. ICC gamut, CMYK blending and Screen adaptation cause color differences."
+  },
+  {
+    "id": "atomsai-offset-graphite-5",
+    "luminance_correlation": 0.99138,
+    "mean_absolute_rgb_channel_difference_255": 8.84,
+    "interpretation": "Geometry/falloff comparison; not colorimetric proof. ICC gamut, CMYK blending and Screen adaptation cause color differences."
+  },
+  {
+    "id": "atomsai-offset-iris-5",
+    "luminance_correlation": 0.96713,
+    "mean_absolute_rgb_channel_difference_255": 9.783,
+    "interpretation": "Geometry/falloff comparison; not colorimetric proof. ICC gamut, CMYK blending and Screen adaptation cause color differences."
+  },
+  {
+    "id": "atomsai-offset-forest-10",
+    "luminance_correlation": 0.99196,
+    "mean_absolute_rgb_channel_difference_255": 6.94,
+    "interpretation": "Geometry/falloff comparison; not colorimetric proof. ICC gamut, CMYK blending and Screen adaptation cause color differences."
+  },
+  {
+    "id": "atomsai-offset-sage-10",
+    "luminance_correlation": 0.99181,
+    "mean_absolute_rgb_channel_difference_255": 6.988,
+    "interpretation": "Geometry/falloff comparison; not colorimetric proof. ICC gamut, CMYK blending and Screen adaptation cause color differences."
+  },
+  {
+    "id": "atomsai-offset-graphite-10",
+    "luminance_correlation": 0.99106,
+    "mean_absolute_rgb_channel_difference_255": 8.921,
+    "interpretation": "Geometry/falloff comparison; not colorimetric proof. ICC gamut, CMYK blending and Screen adaptation cause color differences."
+  },
+  {
+    "id": "atomsai-offset-iris-10",
+    "luminance_correlation": 0.96439,
+    "mean_absolute_rgb_channel_difference_255": 9.898,
+    "interpretation": "Geometry/falloff comparison; not colorimetric proof. ICC gamut, CMYK blending and Screen adaptation cause color differences."
+  },
+  {
+    "id": "atomsai-offset-forest-20",
+    "luminance_correlation": 0.99059,
+    "mean_absolute_rgb_channel_difference_255": 7.027,
+    "interpretation": "Geometry/falloff comparison; not colorimetric proof. ICC gamut, CMYK blending and Screen adaptation cause color differences."
+  },
+  {
+    "id": "atomsai-offset-sage-20",
+    "luminance_correlation": 0.99041,
+    "mean_absolute_rgb_channel_difference_255": 7.068,
+    "interpretation": "Geometry/falloff comparison; not colorimetric proof. ICC gamut, CMYK blending and Screen adaptation cause color differences."
+  },
+  {
+    "id": "atomsai-offset-graphite-20",
+    "luminance_correlation": 0.98957,
+    "mean_absolute_rgb_channel_difference_255": 9.001,
+    "interpretation": "Geometry/falloff comparison; not colorimetric proof. ICC gamut, CMYK blending and Screen adaptation cause color differences."
+  },
+  {
+    "id": "atomsai-offset-iris-20",
+    "luminance_correlation": 0.96344,
+    "mean_absolute_rgb_channel_difference_255": 9.962,
+    "interpretation": "Geometry/falloff comparison; not colorimetric proof. ICC gamut, CMYK blending and Screen adaptation cause color differences."
+  },
+  {
+    "id": "atomsai-offset-forest-40",
+    "luminance_correlation": 0.98843,
+    "mean_absolute_rgb_channel_difference_255": 7.053,
+    "interpretation": "Geometry/falloff comparison; not colorimetric proof. ICC gamut, CMYK blending and Screen adaptation cause color differences."
+  },
+  {
+    "id": "atomsai-offset-sage-40",
+    "luminance_correlation": 0.9882,
+    "mean_absolute_rgb_channel_difference_255": 7.099,
+    "interpretation": "Geometry/falloff comparison; not colorimetric proof. ICC gamut, CMYK blending and Screen adaptation cause color differences."
+  },
+  {
+    "id": "atomsai-offset-graphite-40",
+    "luminance_correlation": 0.98724,
+    "mean_absolute_rgb_channel_difference_255": 8.995,
+    "interpretation": "Geometry/falloff comparison; not colorimetric proof. ICC gamut, CMYK blending and Screen adaptation cause color differences."
+  },
+  {
+    "id": "atomsai-offset-iris-40",
+    "luminance_correlation": 0.96239,
+    "mean_absolute_rgb_channel_difference_255": 9.958,
+    "interpretation": "Geometry/falloff comparison; not colorimetric proof. ICC gamut, CMYK blending and Screen adaptation cause color differences."
+  },
+  {
+    "id": "atomsai-single-band-forest-5",
+    "luminance_correlation": 0.99789,
+    "mean_absolute_rgb_channel_difference_255": 1.935,
+    "interpretation": "Geometry/falloff comparison; not colorimetric proof. ICC gamut, CMYK blending and Screen adaptation cause color differences."
+  },
+  {
+    "id": "atomsai-single-band-sage-5",
+    "luminance_correlation": 0.99785,
+    "mean_absolute_rgb_channel_difference_255": 2.032,
+    "interpretation": "Geometry/falloff comparison; not colorimetric proof. ICC gamut, CMYK blending and Screen adaptation cause color differences."
+  },
+  {
+    "id": "atomsai-single-band-graphite-5",
+    "luminance_correlation": 0.9984,
+    "mean_absolute_rgb_channel_difference_255": 2.163,
+    "interpretation": "Geometry/falloff comparison; not colorimetric proof. ICC gamut, CMYK blending and Screen adaptation cause color differences."
+  },
+  {
+    "id": "atomsai-single-band-iris-5",
+    "luminance_correlation": 0.99789,
+    "mean_absolute_rgb_channel_difference_255": 5.836,
+    "interpretation": "Geometry/falloff comparison; not colorimetric proof. ICC gamut, CMYK blending and Screen adaptation cause color differences."
+  },
+  {
+    "id": "atomsai-single-band-forest-10",
+    "luminance_correlation": 0.9975,
+    "mean_absolute_rgb_channel_difference_255": 1.979,
+    "interpretation": "Geometry/falloff comparison; not colorimetric proof. ICC gamut, CMYK blending and Screen adaptation cause color differences."
+  },
+  {
+    "id": "atomsai-single-band-sage-10",
+    "luminance_correlation": 0.99754,
+    "mean_absolute_rgb_channel_difference_255": 2.092,
+    "interpretation": "Geometry/falloff comparison; not colorimetric proof. ICC gamut, CMYK blending and Screen adaptation cause color differences."
+  },
+  {
+    "id": "atomsai-single-band-graphite-10",
+    "luminance_correlation": 0.99798,
+    "mean_absolute_rgb_channel_difference_255": 2.276,
+    "interpretation": "Geometry/falloff comparison; not colorimetric proof. ICC gamut, CMYK blending and Screen adaptation cause color differences."
+  },
+  {
+    "id": "atomsai-single-band-iris-10",
+    "luminance_correlation": 0.99722,
+    "mean_absolute_rgb_channel_difference_255": 5.937,
+    "interpretation": "Geometry/falloff comparison; not colorimetric proof. ICC gamut, CMYK blending and Screen adaptation cause color differences."
+  },
+  {
+    "id": "atomsai-single-band-forest-20",
+    "luminance_correlation": 0.99633,
+    "mean_absolute_rgb_channel_difference_255": 2.092,
+    "interpretation": "Geometry/falloff comparison; not colorimetric proof. ICC gamut, CMYK blending and Screen adaptation cause color differences."
+  },
+  {
+    "id": "atomsai-single-band-sage-20",
+    "luminance_correlation": 0.99636,
+    "mean_absolute_rgb_channel_difference_255": 2.254,
+    "interpretation": "Geometry/falloff comparison; not colorimetric proof. ICC gamut, CMYK blending and Screen adaptation cause color differences."
+  },
+  {
+    "id": "atomsai-single-band-graphite-20",
+    "luminance_correlation": 0.99649,
+    "mean_absolute_rgb_channel_difference_255": 2.602,
+    "interpretation": "Geometry/falloff comparison; not colorimetric proof. ICC gamut, CMYK blending and Screen adaptation cause color differences."
+  },
+  {
+    "id": "atomsai-single-band-iris-20",
+    "luminance_correlation": 0.9944,
+    "mean_absolute_rgb_channel_difference_255": 6.232,
+    "interpretation": "Geometry/falloff comparison; not colorimetric proof. ICC gamut, CMYK blending and Screen adaptation cause color differences."
+  },
+  {
+    "id": "atomsai-single-band-forest-40",
+    "luminance_correlation": 0.98737,
+    "mean_absolute_rgb_channel_difference_255": 3.154,
+    "interpretation": "Geometry/falloff comparison; not colorimetric proof. ICC gamut, CMYK blending and Screen adaptation cause color differences."
+  },
+  {
+    "id": "atomsai-single-band-sage-40",
+    "luminance_correlation": 0.98691,
+    "mean_absolute_rgb_channel_difference_255": 3.55,
+    "interpretation": "Geometry/falloff comparison; not colorimetric proof. ICC gamut, CMYK blending and Screen adaptation cause color differences."
+  },
+  {
+    "id": "atomsai-single-band-graphite-40",
+    "luminance_correlation": 0.98567,
+    "mean_absolute_rgb_channel_difference_255": 4.356,
+    "interpretation": "Geometry/falloff comparison; not colorimetric proof. ICC gamut, CMYK blending and Screen adaptation cause color differences."
+  },
+  {
+    "id": "atomsai-single-band-iris-40",
+    "luminance_correlation": 0.9805,
+    "mean_absolute_rgb_channel_difference_255": 7.322,
+    "interpretation": "Geometry/falloff comparison; not colorimetric proof. ICC gamut, CMYK blending and Screen adaptation cause color differences."
+  },
+  {
+    "id": "atomsai-concentric-forest-variant-1",
+    "luminance_correlation": 0.99713,
+    "mean_absolute_rgb_channel_difference_255": 3.167,
+    "interpretation": "Geometry/falloff comparison; not colorimetric proof. ICC gamut, CMYK blending and Screen adaptation cause color differences."
+  },
+  {
+    "id": "atomsai-concentric-sage-variant-1",
+    "luminance_correlation": 0.99706,
+    "mean_absolute_rgb_channel_difference_255": 4.155,
+    "interpretation": "Geometry/falloff comparison; not colorimetric proof. ICC gamut, CMYK blending and Screen adaptation cause color differences."
+  },
+  {
+    "id": "atomsai-concentric-graphite-variant-1",
+    "luminance_correlation": 0.99677,
+    "mean_absolute_rgb_channel_difference_255": 3.75,
+    "interpretation": "Geometry/falloff comparison; not colorimetric proof. ICC gamut, CMYK blending and Screen adaptation cause color differences."
+  },
+  {
+    "id": "atomsai-concentric-iris-variant-1",
+    "luminance_correlation": 0.99651,
+    "mean_absolute_rgb_channel_difference_255": 22.416,
+    "interpretation": "Geometry/falloff comparison; not colorimetric proof. ICC gamut, CMYK blending and Screen adaptation cause color differences."
+  },
+  {
+    "id": "atomsai-concentric-forest-variant-2",
+    "luminance_correlation": 0.99456,
+    "mean_absolute_rgb_channel_difference_255": 3.164,
+    "interpretation": "Geometry/falloff comparison; not colorimetric proof. ICC gamut, CMYK blending and Screen adaptation cause color differences."
+  },
+  {
+    "id": "atomsai-concentric-sage-variant-2",
+    "luminance_correlation": 0.99437,
+    "mean_absolute_rgb_channel_difference_255": 4.075,
+    "interpretation": "Geometry/falloff comparison; not colorimetric proof. ICC gamut, CMYK blending and Screen adaptation cause color differences."
+  },
+  {
+    "id": "atomsai-concentric-graphite-variant-2",
+    "luminance_correlation": 0.99412,
+    "mean_absolute_rgb_channel_difference_255": 3.669,
+    "interpretation": "Geometry/falloff comparison; not colorimetric proof. ICC gamut, CMYK blending and Screen adaptation cause color differences."
+  },
+  {
+    "id": "atomsai-concentric-iris-variant-2",
+    "luminance_correlation": 0.99405,
+    "mean_absolute_rgb_channel_difference_255": 22.242,
+    "interpretation": "Geometry/falloff comparison; not colorimetric proof. ICC gamut, CMYK blending and Screen adaptation cause color differences."
+  }
+]

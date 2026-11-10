@@ -17,6 +17,7 @@ interface Props {
   artWidth?: string;
   previewHeight?: string;
   pngSize?: number;
+  pickerStyle?: 'swatches' | 'labels' | 'themes';
 }
 
 const {
@@ -29,6 +30,7 @@ const {
   artWidth = '50%',
   previewHeight = '14rem',
   pngSize = 2400,
+  pickerStyle = 'swatches',
 } = Astro.props;
 
 const selected = options?.find((o) => o.key === defaultOption) ?? options?.[0];
@@ -52,7 +54,7 @@ if (weights?.length) initial = withStrokeWidth(initial, weights[0].value);
             <fieldset class="options">
               <legend class="visually-hidden">{name} color</legend>
               {options.map((o) => (
-                <label class="color-option" title={o.label}>
+                <label class:list={['color-option', { 'label-option': pickerStyle !== 'swatches' }]} title={pickerStyle === 'swatches' ? o.label : undefined}>
                   <input
                     type="radio"
                     name={`${id}-color`}
@@ -63,8 +65,11 @@ if (weights?.length) initial = withStrokeWidth(initial, weights[0].value);
                     data-tone={o.tone}
                     data-label={o.label}
                   />
-                  <span class="dot" style={`--ink: ${o.ink}; --surface: ${o.surface ?? o.ink}`} />
-                  <span class="visually-hidden">{o.label}</span>
+                  {pickerStyle === 'themes' ? <><span class="picker-label theme-icon">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      {o.tone === 'light' ? <><circle cx="12" cy="12" r="4" /><path d="M12 2v2m0 16v2M2 12h2m16 0h2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42" /></> : <path d="M20.9 13.3A9 9 0 0 1 10.7 3.1 9 9 0 1 0 20.9 13.3Z" />}
+                    </svg>
+                  </span><span class="visually-hidden">{o.label}</span></> : pickerStyle === 'labels' ? <span class="picker-label">{o.label}</span> : <><span class="dot" style={`--ink: ${o.ink}; --surface: ${o.surface ?? o.ink}`} /><span class="visually-hidden">{o.label}</span></>}
                 </label>
               ))}
             </fieldset>
@@ -83,6 +88,7 @@ if (weights?.length) initial = withStrokeWidth(initial, weights[0].value);
         </div>
       )
     }
+    <slot name="preview-controls" />
     <div class="btn-row">
       <button class="btn" type="button" data-asset-action="copy-svg">Copy SVG</button>
       <button class="btn" type="button" data-asset-action="download-svg">SVG ↓</button>
@@ -110,7 +116,7 @@ if (weights?.length) initial = withStrokeWidth(initial, weights[0].value);
     --dot-edge: color-mix(in srgb, var(--deep-green) 25%, transparent);
     display: grid;
     grid-template-areas: 'pickers' 'art' 'actions';
-    grid-template-rows: 2rem minmax(0, 1fr) 2rem;
+    grid-template-rows: minmax(2rem, auto) minmax(0, 1fr) minmax(2rem, auto);
     gap: 1.5rem;
     height: var(--preview-h);
     padding: 1rem;
@@ -201,6 +207,10 @@ if (weights?.length) initial = withStrokeWidth(initial, weights[0].value);
       0 0 0 2px var(--stage-bg),
       0 0 0 3px transparent;
   }
+
+  .picker-label { display: block; padding: 0.4rem 0.7rem; border: 1px solid transparent; border-radius: 999px; color: var(--stage-ring); font-size: var(--size-annotation); opacity: 0.6; }
+  .theme-icon { width: 2rem; height: 2rem; padding: 0; display: grid; place-items: center; }
+  input:checked + .picker-label { border-color: var(--stage-ring); opacity: 1; }
 
   input:checked + .dot {
     box-shadow:

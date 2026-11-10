@@ -2,8 +2,8 @@
 name: atomsai-icons
 description: Create or refine SVG interface icons that match the AtomsAI stroke library. Use when a new AtomsAI icon is needed, an existing icon must be adapted, or SVGs need checking for grid, stroke, sharp joins, butt caps and open crossing gaps.
 metadata:
-  version: "1.0"
-  reviewed: "2026-10-16"
+  version: "1.1"
+  reviewed: "2026-11-10"
 ---
 
 # AtomsAI icon creation
@@ -20,7 +20,7 @@ Create minimal, precise SVG icons that belong beside the existing AtomsAI stroke
 
 This skill works with any agent capable of producing SVG text. Browser/design tools help inspection but are not mandatory. If rendering or fetching references is unavailable, use the embedded masters and state what could not be visually checked.
 
-Source: [icon guideline](https://petrknoll95.github.io/atoms-ai-brand/icons/) and [download manifest](https://petrknoll95.github.io/atoms-ai-brand/assets/brand/manifest.json). Current masters and written rules take precedence over this snapshot, reviewed 16 October 2026.
+Source: [icon guideline](https://petrknoll95.github.io/atoms-ai-brand/icons/) and [download manifest](https://petrknoll95.github.io/atoms-ai-brand/assets/brand/manifest.json). Current masters and written rules take precedence over this snapshot, reviewed 10 November 2026.
 
 ## Required construction
 
@@ -124,7 +124,7 @@ For Medium, set the root `stroke-width` to `2` without adding child overrides. K
 
 ## Color, scale and use with type
 
-- Available asset inks: Deep green `#27433B`, Cream `#F6F1E8`, Black `#000000`, White `#FFFFFF`. Use Deep green on light surfaces, Cream on Deep green, or the corresponding monochrome pairing. Verify contrast on the actual background.
+- Available asset inks: Deep green `#1D3C34`, Cream `#F6F1E8`, Black `#000000`, White `#FFFFFF`. Use Deep green on light surfaces, Cream on Deep green, or the corresponding monochrome pairing. Verify contrast on the actual background.
 - Inline icons inherit the label color. For standalone SVG imports, replace `currentColor` with the chosen HEX when the host cannot inherit CSS; an external SVG image does not inherit the surrounding page's text color.
 - At rendered size `S`, stroke thickness is `S × 1.5 / 24` for Regular or `S × 2 / 24` for Medium. At 16 px this is 1 px or approximately 1.33 px; at 32 px, 2 px or approximately 2.67 px.
 - Align the drawing optically with the label's capitals, accounting for the SVG's internal whitespace. The guide's button specimen uses a 1.5-cap-height box so the usual 16/24 drawing aligns with cap height; treat that as a useful implementation example, not a required size for all controls.
@@ -132,6 +132,18 @@ For Medium, set the root `stroke-width` to `2` without adding child overrides. K
 - For accessible interfaces, hide a redundant decorative icon from assistive technology and put the accessible name on the control. Give a meaningful standalone icon an appropriate label; avoid duplicate announcements beside visible text.
 
 Preview: [icons in use](https://petrknoll95.github.io/atoms-ai-brand/icons/#in-use). Broader styling: [brand skill](https://petrknoll95.github.io/atoms-ai-brand/skills/atomsai-brand/SKILL.md).
+
+## Usage limits
+
+- Measure the complete SVG frame. Simple icons start at **16 px**, detailed symbols at **24 px**; 24 px is the default. Use 20 px for compact interfaces and 32 px for feature cards. Enlarge or simplify if the open gaps stop reading at 100%.
+- For print, start at 4.5 mm for simple icons and 6.5 mm for detailed symbols; proof at final physical size.
+- Use one icon per button or link. Use one leading icon per navigation/list item, with a trailing chevron only for navigation or expansion.
+- Use one icon per feature card and up to three cards per promotional group or page section. This is not a cap on functional navigation lists.
+- Show up to five icon actions in a toolbar; move additional actions into a labelled More menu.
+- Leave at least 8 px from the icon frame to its label, 8 px between controls and 16 px between action groups. Icon-only actions use at least a 44 × 44 px target independently of icon size; the target can be invisible.
+- Use icons for actions, statuses and categories. Use illustrations for processes and abstract ideas when there is room for the illustration minimum: 200 px simple / 280 px detailed.
+
+See [minimum sizes and usage](https://petrknoll95.github.io/atoms-ai-brand/icons/#minimum-size), [visual do/don’t examples](https://petrknoll95.github.io/atoms-ai-brand/icons/#usage-examples) and the [usage pack](https://petrknoll95.github.io/atoms-ai-brand/assets/icon-usage/atomsai-icon-usage.zip). Counterexamples in the pack are teaching diagrams, not production templates.
 
 ## Reference downloads
 

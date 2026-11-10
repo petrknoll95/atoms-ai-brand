@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" overflow="visible" width="240" height="240" viewBox="0 0 240 240" fill="none" data-hidden-line-opacity="0.35">
+  <defs>
+    <radialGradient id="paint0_radial_0_4" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(120 120) rotate(90) scale(100)">
+      <stop stop-color="#A77BCA" stop-opacity="0" />
+      <stop offset="0.03125" stop-color="#A77BCA" stop-opacity="0.01" />
+      <stop offset="0.0625" stop-color="#A77BCA" stop-opacity="0.01" />
+      <stop offset="0.09375" stop-color="#A77BCA" stop-opacity="0.01" />
+      <stop offset="0.125" stop-color="#A77BCA" stop-opacity="0.01" />
+      <stop offset="0.15625" stop-color="#A77BCA" stop-opacity="0.01" />
+      <stop offset="0.1875" stop-color="#A77BCA" stop-opacity="0.01" />
+      <stop offset="0.21875" stop-color="#A77BCA" stop-opacity="0.0104675" />
+      <stop offset="0.25" stop-color="#A77BCA" stop-opacity="0.015625" />
+      <stop offset="0.28125" stop-color="#A77BCA" stop-opacity="0.0222473" />
+      <stop offset="0.3125" stop-color="#A77BCA" stop-opacity="0.0305176" />
+      <stop offset="0.34375" stop-color="#A77BCA" stop-opacity="0.0406189" />
+      <stop offset="0.375" stop-color="#A77BCA" stop-opacity="0.0527344" />
+      <stop offset="0.40625" stop-color="#A77BCA" stop-opacity="0.0670471" />
+      <stop offset="0.4375" stop-color="#A77BCA" stop-opacity="0.0837402" />
+      <stop offset="0.46875" stop-color="#A77BCA" stop-opacity="0.102997" />
+      <stop offset="0.5" stop-color="#A77BCA" stop-opacity="0.125" />
+      <stop offset="0.53125" stop-color="#A77BCA" stop-opacity="0.149933" />
+      <stop offset="0.5625" stop-color="#A77BCA" stop-opacity="0.177979" />
+      <stop offset="0.59375" stop-color="#A77BCA" stop-opacity="0.20932" />
+      <stop offset="0.625" stop-color="#A77BCA" stop-opacity="0.244141" />
+      <stop offset="0.65625" stop-color="#A77BCA" stop-opacity="0.282623" />
+      <stop offset="0.6875" stop-color="#A77BCA" stop-opacity="0.324951" />
+      <stop offset="0.71875" stop-color="#A77BCA" stop-opacity="0.371307" />
+      <stop offset="0.75" stop-color="#A77BCA" stop-opacity="0.421875" />
+      <stop offset="0.78125" stop-color="#A77BCA" stop-opacity="0.476837" />
+      <stop offset="0.8125" stop-color="#A77BCA" stop-opacity="0.536377" />
+      <stop offset="0.84375" stop-color="#A77BCA" stop-opacity="0.600677" />
+      <stop offset="0.875" stop-color="#A77BCA" stop-opacity="0.669922" />
+      <stop offset="0.90625" stop-color="#A77BCA" stop-opacity="0.744293" />
+      <stop offset="0.9375" stop-color="#A77BCA" stop-opacity="0.823975" />
+      <stop offset="0.96875" stop-color="#A77BCA" stop-opacity="0.909149" />
+      <stop offset="1" stop-color="#A77BCA" />
+    </radialGradient>
+    <radialGradient id="paint1_radial_0_4" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(69.0371 120.192) scale(101.431 239.347)">
+      <stop stop-color="currentColor" />
+      <stop offset="1" stop-color="currentColor" stop-opacity="0" />
+    </radialGradient>
+    <radialGradient id="paint2_radial_0_4" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(-0.707113 125.158) scale(101.431 239.347)">
+      <stop stop-color="currentColor" />
+      <stop offset="1" stop-color="currentColor" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+  <g data-layer="color">
+    <circle fill="url(#paint0_radial_0_4)" cx="120" cy="120" r="100" stroke="none" />
+  </g>
+  <g data-layer="visible-linework">
+    <circle fill="none" cx="120" cy="120" r="100" stroke="currentColor" />
+    <ellipse fill="none" cx="119.744" cy="120.034" rx="50" ry="125" transform="rotate(45 119.744 120.034)" stroke="url(#paint1_radial_0_4)" />
+    <ellipse fill="none" cx="50" cy="125" rx="50" ry="125" transform="matrix(0.707107 -0.707107 -0.707107 -0.707107 172.777 243.778)" stroke="url(#paint2_radial_0_4)" />
+  </g>
+</svg>

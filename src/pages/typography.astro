@@ -1,5 +1,6 @@
 ---
 import '../styles/workspace-fonts.css';
+import { typography, lineHeightPx } from '../data/typography';
 import Guide from '../layouts/Guide.astro';
 import Sub from '../components/Sub.astro';
 import chivoLicense from '../assets/workspace-fonts/chivo-OFL.txt?url';
@@ -104,36 +105,34 @@ const charset = [
 
   <Sub id="scale" title="Scale & line-height" number="5.4">
     <Fragment slot="text">
-      <p>
-        Line-height is the space between baselines. It sets the rhythm and readability of our type, and the strength of
-        its voice.
-      </p>
-      <p>
-        As type gets larger, tighten the line-height. As it gets smaller, open it up so the eye has room to rest.
-        Use 90–100% leading for headlines. The specimens below use 90% for display, 120% for the lead and 140% for body text.
-      </p>
+      <p>Use this six-step scale for websites and interfaces. Desktop: 768 px and wider. Mobile: below 768 px. Values are type size / line-height in CSS pixels.</p>
+      <p>Founders Grotesk for Display and H1–H3; PP Neue Montreal for body and captions. Regular 400 by default, Medium 500 for emphasis. Headlines use −1.5% tracking; body and captions use normal tracking.</p>
     </Fragment>
-    <div class="scale">
-      <figure>
-        <p class="scale-display balance" contenteditable="plaintext-only" spellcheck="false">The future isn’t imagined. It’s built.</p>
-        <figcaption class="muted">Display — Founders Grotesk Regular — 80 px — 90%</figcaption>
-      </figure>
-      <figure>
-        <p class="scale-lead balance" contenteditable="plaintext-only" spellcheck="false">
-          AtomsAI turns operational friction into operating leverage. Our engineers embed with your team and ship AI
-          agents into the workflows you already run.
-        </p>
-        <figcaption class="muted">Display — Founders Grotesk Regular — 32 px — 120%</figcaption>
-      </figure>
-      <figure>
-        <p class="scale-body" contenteditable="plaintext-only" spellcheck="false">
-          We don’t sell AI. We ship your workflow. Our engineers embed with your team, map the work as it really runs
-          and build agents inside your own systems, under your credentials. Accuracy, cost and latency are measured
-          from a baseline, and the code, prompts and evals are yours from week one.
-        </p>
-        <figcaption class="muted">Body — PP Neue Montreal Regular — 16 px — 140%</figcaption>
-      </figure>
+    <div class="type-table-wrap" role="region" aria-label="Desktop and mobile type scale" tabindex="0">
+      <table class="type-table">
+        <thead><tr><th scope="col">Role</th><th scope="col">Desktop</th><th scope="col">Mobile</th><th scope="col">Leading</th></tr></thead>
+        <tbody>
+          {typography.scale.map((step) => (
+            <tr>
+              <th scope="row">{step.role}</th>
+              <td>{step.desktop} / {lineHeightPx(step.desktop, step.leading)} px</td>
+              <td>{step.mobile} / {lineHeightPx(step.mobile, step.leading)} px</td>
+              <td>{step.leading * 100}%</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
+    <p class="muted scale-note">Display is for short hero statements. Keep heading levels semantic; an H1 can use the Display style. Body stays at 16 px on mobile. Use captions for supporting details, not running text.</p>
+    <div class="scale type-specimens">
+      {typography.scale.map((step) => (
+        <figure style={`--type-desktop: ${step.desktop / 16}rem; --type-mobile: ${step.mobile / 16}rem; --type-leading: ${step.leading}; --type-tracking: ${step.trackingEm}em; --type-family: '${step.family}'; --type-weight: ${step.weight}`}>
+          <figcaption class="muted">{step.role} · {step.family}</figcaption>
+          <p class="type-specimen" contenteditable="plaintext-only" spellcheck="false" aria-label={`${step.role} type specimen`}>{step.sample}</p>
+        </figure>
+      ))}
+    </div>
+    <p class="muted scale-note">Specimens follow the current viewport size. Keep body copy around 45–75 characters per line, and check multiline headings for collisions. Use the Google Workspace settings below for slides and documents.</p>
   </Sub>
 
   <Sub id="headlines" title="Headlines" number="5.5">
@@ -333,33 +332,28 @@ const charset = [
     gap: 0.75rem;
   }
 
-  /* Text is trimmed at the baseline, so large specimens keep room for their descenders. */
-  .scale-display,
-  .scale-lead,
-  .headline {
+  .headline { padding-bottom: 0.22em; }
+
+  .type-table-wrap { overflow-x: auto; }
+  .type-table { width: 100%; border-collapse: collapse; text-align: left; font-size: var(--size-annotation); }
+  .type-table th, .type-table td { padding: 1rem 0; border-bottom: 1px solid var(--rule); white-space: nowrap; }
+  .type-table th { font-weight: 500; }
+  .type-table th + th, .type-table td { padding-left: 1.5rem; }
+  .scale-note { margin-top: 1.5rem; font-size: var(--size-annotation); }
+  .type-specimens { margin-top: 3rem; gap: 2.5rem; }
+  .type-specimens figure { border-top: 1px solid var(--rule); padding-top: 1.5rem; gap: 1.25rem; }
+  .type-specimen {
+    font-family: var(--type-family), sans-serif;
+    font-size: var(--type-mobile);
+    font-weight: var(--type-weight);
+    line-height: var(--type-leading);
+    letter-spacing: var(--type-tracking);
+    max-width: 65ch;
     padding-bottom: 0.22em;
+    overflow-wrap: anywhere;
   }
-
-  .scale-display {
-    max-width: 10em;
-    font-family: var(--font-display);
-    font-size: clamp(3rem, 6vw, 5rem);
-    line-height: 0.9;
-    letter-spacing: -0.015em;
-  }
-
-  .scale-lead {
-    max-width: 24em;
-    font-family: var(--font-display);
-    font-size: 2rem;
-    line-height: 1.2;
-    letter-spacing: -0.015em;
-  }
-
-  .scale-body {
-    max-width: 36em;
-    font-size: 1rem;
-    line-height: 1.4;
+  @media (min-width: 768px) {
+    .type-specimen { font-size: var(--type-desktop); }
   }
 
   .compare {

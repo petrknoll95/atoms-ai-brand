@@ -1,0 +1,154 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="259 33 220 220" fill="none" data-hidden-line-opacity="0.35">
+  <defs>
+    <radialGradient id="iris" cx="50%" cy="50%" r="50%">
+      <stop offset="0.0" stop-color="#A77BCA" stop-opacity="0.0" />
+      <stop offset="0.03125" stop-color="#A77BCA" stop-opacity="3e-05" />
+      <stop offset="0.0625" stop-color="#A77BCA" stop-opacity="0.00024" />
+      <stop offset="0.09375" stop-color="#A77BCA" stop-opacity="0.00082" />
+      <stop offset="0.125" stop-color="#A77BCA" stop-opacity="0.00195" />
+      <stop offset="0.15625" stop-color="#A77BCA" stop-opacity="0.00381" />
+      <stop offset="0.1875" stop-color="#A77BCA" stop-opacity="0.00659" />
+      <stop offset="0.21875" stop-color="#A77BCA" stop-opacity="0.01047" />
+      <stop offset="0.25" stop-color="#A77BCA" stop-opacity="0.01562" />
+      <stop offset="0.28125" stop-color="#A77BCA" stop-opacity="0.02225" />
+      <stop offset="0.3125" stop-color="#A77BCA" stop-opacity="0.03052" />
+      <stop offset="0.34375" stop-color="#A77BCA" stop-opacity="0.04062" />
+      <stop offset="0.375" stop-color="#A77BCA" stop-opacity="0.05273" />
+      <stop offset="0.40625" stop-color="#A77BCA" stop-opacity="0.06705" />
+      <stop offset="0.4375" stop-color="#A77BCA" stop-opacity="0.08374" />
+      <stop offset="0.46875" stop-color="#A77BCA" stop-opacity="0.103" />
+      <stop offset="0.5" stop-color="#A77BCA" stop-opacity="0.125" />
+      <stop offset="0.53125" stop-color="#A77BCA" stop-opacity="0.14993" />
+      <stop offset="0.5625" stop-color="#A77BCA" stop-opacity="0.17798" />
+      <stop offset="0.59375" stop-color="#A77BCA" stop-opacity="0.20932" />
+      <stop offset="0.625" stop-color="#A77BCA" stop-opacity="0.24414" />
+      <stop offset="0.65625" stop-color="#A77BCA" stop-opacity="0.28262" />
+      <stop offset="0.6875" stop-color="#A77BCA" stop-opacity="0.32495" />
+      <stop offset="0.71875" stop-color="#A77BCA" stop-opacity="0.37131" />
+      <stop offset="0.75" stop-color="#A77BCA" stop-opacity="0.42188" />
+      <stop offset="0.78125" stop-color="#A77BCA" stop-opacity="0.47684" />
+      <stop offset="0.8125" stop-color="#A77BCA" stop-opacity="0.53638" />
+      <stop offset="0.84375" stop-color="#A77BCA" stop-opacity="0.60068" />
+      <stop offset="0.875" stop-color="#A77BCA" stop-opacity="0.66992" />
+      <stop offset="0.90625" stop-color="#A77BCA" stop-opacity="0.74429" />
+      <stop offset="0.9375" stop-color="#A77BCA" stop-opacity="0.82397" />
+      <stop offset="0.96875" stop-color="#A77BCA" stop-opacity="0.90915" />
+      <stop offset="1.0" stop-color="#A77BCA" stop-opacity="1.0" />
+    </radialGradient>
+    <mask id="depth-0-visible" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse" style="mask-type:luminance" x="249.0" y="23.0" width="240.0" height="240.0">
+      <rect x="249.0" y="23.0" width="240.0" height="240.0" fill="white" />
+      <ellipse fill="black" cx="369" cy="143" rx="22" ry="79" stroke="none" />
+    </mask>
+    <mask id="depth-0-hidden" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse" style="mask-type:luminance" x="249.0" y="23.0" width="240.0" height="240.0">
+      <rect x="249.0" y="23.0" width="240.0" height="240.0" fill="black" />
+      <ellipse fill="white" cx="369" cy="143" rx="22" ry="79" stroke="none" />
+    </mask>
+  </defs>
+  <g data-layer="color">
+    <ellipse fill="url(#iris)" cx="369" cy="143" rx="22" ry="79" stroke="none" stroke-width="1.1" />
+  </g>
+  <g data-layer="hidden-linework" opacity="0.35">
+    <g mask="url(#depth-0-hidden)">
+      <path fill="none" d="M279 83.0000L347.5154 126.0000" stroke="currentColor" stroke-width="1.1" stroke-linecap="butt" stroke-linejoin="miter" />
+    </g>
+    <g mask="url(#depth-0-hidden)">
+      <path fill="none" d="M295 101.8889L347.3566 128.8333" stroke="currentColor" stroke-width="1.1" stroke-linecap="butt" stroke-linejoin="miter" />
+    </g>
+    <g mask="url(#depth-0-hidden)">
+      <path fill="none" d="M279 103.0000L347.2276 131.6667" stroke="currentColor" stroke-width="1.1" stroke-linecap="butt" stroke-linejoin="miter" />
+    </g>
+    <g mask="url(#depth-0-hidden)">
+      <path fill="none" d="M295 118.3333L347.1277 134.5000" stroke="currentColor" stroke-width="1.1" stroke-linecap="butt" stroke-linejoin="miter" />
+    </g>
+    <g mask="url(#depth-0-hidden)">
+      <path fill="none" d="M279 123.0000L347.0567 137.3333" stroke="currentColor" stroke-width="1.1" stroke-linecap="butt" stroke-linejoin="miter" />
+    </g>
+    <g mask="url(#depth-0-hidden)">
+      <path fill="none" d="M295 134.7778L347.0142 140.1667" stroke="currentColor" stroke-width="1.1" stroke-linecap="butt" stroke-linejoin="miter" />
+    </g>
+    <g mask="url(#depth-0-hidden)">
+      <path fill="none" d="M279 143.0000L347.0000 143.0000" stroke="currentColor" stroke-width="1.1" stroke-linecap="butt" stroke-linejoin="miter" />
+    </g>
+    <g mask="url(#depth-0-hidden)">
+      <path fill="none" d="M295 151.2222L347.0142 145.8333" stroke="currentColor" stroke-width="1.1" stroke-linecap="butt" stroke-linejoin="miter" />
+    </g>
+    <g mask="url(#depth-0-hidden)">
+      <path fill="none" d="M279 163.0000L347.0567 148.6667" stroke="currentColor" stroke-width="1.1" stroke-linecap="butt" stroke-linejoin="miter" />
+    </g>
+    <g mask="url(#depth-0-hidden)">
+      <path fill="none" d="M295 167.6667L347.1277 151.5000" stroke="currentColor" stroke-width="1.1" stroke-linecap="butt" stroke-linejoin="miter" />
+    </g>
+    <g mask="url(#depth-0-hidden)">
+      <path fill="none" d="M279 183.0000L347.2276 154.3333" stroke="currentColor" stroke-width="1.1" stroke-linecap="butt" stroke-linejoin="miter" />
+    </g>
+    <g mask="url(#depth-0-hidden)">
+      <path fill="none" d="M295 184.1111L347.3566 157.1667" stroke="currentColor" stroke-width="1.1" stroke-linecap="butt" stroke-linejoin="miter" />
+    </g>
+    <g mask="url(#depth-0-hidden)">
+      <path fill="none" d="M279 203.0000L347.5154 160.0000" stroke="currentColor" stroke-width="1.1" stroke-linecap="butt" stroke-linejoin="miter" />
+    </g>
+  </g>
+  <g data-layer="visible-linework">
+    <g mask="url(#depth-0-visible)">
+      <path fill="none" d="M279 83.0000L347.5154 126.0000" stroke="currentColor" stroke-width="1.1" stroke-linecap="butt" stroke-linejoin="miter" />
+    </g>
+    <g mask="url(#depth-0-visible)">
+      <path fill="none" d="M295 101.8889L347.3566 128.8333" stroke="currentColor" stroke-width="1.1" stroke-linecap="butt" stroke-linejoin="miter" />
+    </g>
+    <g mask="url(#depth-0-visible)">
+      <path fill="none" d="M279 103.0000L347.2276 131.6667" stroke="currentColor" stroke-width="1.1" stroke-linecap="butt" stroke-linejoin="miter" />
+    </g>
+    <g mask="url(#depth-0-visible)">
+      <path fill="none" d="M295 118.3333L347.1277 134.5000" stroke="currentColor" stroke-width="1.1" stroke-linecap="butt" stroke-linejoin="miter" />
+    </g>
+    <g mask="url(#depth-0-visible)">
+      <path fill="none" d="M279 123.0000L347.0567 137.3333" stroke="currentColor" stroke-width="1.1" stroke-linecap="butt" stroke-linejoin="miter" />
+    </g>
+    <g mask="url(#depth-0-visible)">
+      <path fill="none" d="M295 134.7778L347.0142 140.1667" stroke="currentColor" stroke-width="1.1" stroke-linecap="butt" stroke-linejoin="miter" />
+    </g>
+    <g mask="url(#depth-0-visible)">
+      <path fill="none" d="M279 143.0000L347.0000 143.0000" stroke="currentColor" stroke-width="1.1" stroke-linecap="butt" stroke-linejoin="miter" />
+    </g>
+    <g mask="url(#depth-0-visible)">
+      <path fill="none" d="M295 151.2222L347.0142 145.8333" stroke="currentColor" stroke-width="1.1" stroke-linecap="butt" stroke-linejoin="miter" />
+    </g>
+    <g mask="url(#depth-0-visible)">
+      <path fill="none" d="M279 163.0000L347.0567 148.6667" stroke="currentColor" stroke-width="1.1" stroke-linecap="butt" stroke-linejoin="miter" />
+    </g>
+    <g mask="url(#depth-0-visible)">
+      <path fill="none" d="M295 167.6667L347.1277 151.5000" stroke="currentColor" stroke-width="1.1" stroke-linecap="butt" stroke-linejoin="miter" />
+    </g>
+    <g mask="url(#depth-0-visible)">
+      <path fill="none" d="M279 183.0000L347.2276 154.3333" stroke="currentColor" stroke-width="1.1" stroke-linecap="butt" stroke-linejoin="miter" />
+    </g>
+    <g mask="url(#depth-0-visible)">
+      <path fill="none" d="M295 184.1111L347.3566 157.1667" stroke="currentColor" stroke-width="1.1" stroke-linecap="butt" stroke-linejoin="miter" />
+    </g>
+    <g mask="url(#depth-0-visible)">
+      <path fill="none" d="M279 203.0000L347.5154 160.0000" stroke="currentColor" stroke-width="1.1" stroke-linecap="butt" stroke-linejoin="miter" />
+    </g>
+    <ellipse fill="none" cx="369" cy="143" rx="22" ry="79" stroke="currentColor" stroke-width="1.1" />
+    <path fill="none" d="M369 143L459 83.0000" stroke="currentColor" stroke-width="1.1" stroke-linecap="butt" stroke-linejoin="miter" />
+    <path fill="none" d="M455.3944 90.2111L459 83.0000L450.9568 83.5547" stroke="currentColor" stroke-width="1.1" stroke-linecap="butt" stroke-linejoin="miter" />
+    <path fill="none" d="M369 143L443 101.8889" stroke="currentColor" stroke-width="1.1" stroke-linecap="butt" stroke-linejoin="miter" />
+    <path fill="none" d="M369 143L459 103.0000" stroke="currentColor" stroke-width="1.1" stroke-linecap="butt" stroke-linejoin="miter" />
+    <path fill="none" d="M454.2279 109.4982L459 103.0000L450.9788 102.1877" stroke="currentColor" stroke-width="1.1" stroke-linecap="butt" stroke-linejoin="miter" />
+    <path fill="none" d="M369 143L443 118.3333" stroke="currentColor" stroke-width="1.1" stroke-linecap="butt" stroke-linejoin="miter" />
+    <path fill="none" d="M369 143L459 123.0000" stroke="currentColor" stroke-width="1.1" stroke-linecap="butt" stroke-linejoin="miter" />
+    <path fill="none" d="M453.0344 128.4233L459 123.0000L451.2990 120.6138" stroke="currentColor" stroke-width="1.1" stroke-linecap="butt" stroke-linejoin="miter" />
+    <path fill="none" d="M369 143L443 134.7778" stroke="currentColor" stroke-width="1.1" stroke-linecap="butt" stroke-linejoin="miter" />
+    <path fill="none" d="M369 143L459 143.0000" stroke="currentColor" stroke-width="1.1" stroke-linecap="butt" stroke-linejoin="miter" />
+    <path fill="none" d="M452.0000 147.0000L459 143.0000L452.0000 139.0000" stroke="currentColor" stroke-width="1.1" stroke-linecap="butt" stroke-linejoin="miter" />
+    <path fill="none" d="M369 143L443 151.2222" stroke="currentColor" stroke-width="1.1" stroke-linecap="butt" stroke-linejoin="miter" />
+    <path fill="none" d="M369 143L459 163.0000" stroke="currentColor" stroke-width="1.1" stroke-linecap="butt" stroke-linejoin="miter" />
+    <path fill="none" d="M451.2990 165.3862L459 163.0000L453.0344 157.5767" stroke="currentColor" stroke-width="1.1" stroke-linecap="butt" stroke-linejoin="miter" />
+    <path fill="none" d="M369 143L443 167.6667" stroke="currentColor" stroke-width="1.1" stroke-linecap="butt" stroke-linejoin="miter" />
+    <path fill="none" d="M369 143L459 183.0000" stroke="currentColor" stroke-width="1.1" stroke-linecap="butt" stroke-linejoin="miter" />
+    <path fill="none" d="M450.9788 183.8123L459 183.0000L454.2279 176.5018" stroke="currentColor" stroke-width="1.1" stroke-linecap="butt" stroke-linejoin="miter" />
+    <path fill="none" d="M369 143L443 184.1111" stroke="currentColor" stroke-width="1.1" stroke-linecap="butt" stroke-linejoin="miter" />
+    <path fill="none" d="M369 143L459 203.0000" stroke="currentColor" stroke-width="1.1" stroke-linecap="butt" stroke-linejoin="miter" />
+    <path fill="none" d="M450.9568 202.4453L459 203.0000L455.3944 195.7889" stroke="currentColor" stroke-width="1.1" stroke-linecap="butt" stroke-linejoin="miter" />
+    <circle fill="currentColor" cx="369" cy="143" r="2.5" />
+  </g>
+</svg>

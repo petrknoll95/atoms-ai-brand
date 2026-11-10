@@ -1,14 +1,163 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="280" height="280" viewBox="815.34 52.5 280 280" fill="none"><g>
-<g>
-<path d="M1040.27 251.3L938.535 311.034V192.5L1040.27 133.7V251.3Z" fill="SURFACE" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-<path d="M835.867 251.3L938.534 311.034V192.5L835.867 133.7V251.3Z" fill="SURFACE" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-<path d="M938.534 73.9668L1040.27 133.7L938.534 192.5L835.867 133.7L938.534 73.9668Z" fill="SURFACE" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-<path d="M938.534 192.499L893.734 217.699V167.299L938.534 141.166V192.499Z" fill="SURFACE" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-<path d="M938.535 192.499L982.402 217.699V167.299L938.535 141.166V192.499Z" fill="SURFACE" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-<path d="M938.534 192.5L982.401 217.7L938.534 243.833L893.734 217.7L938.534 192.5Z" fill="SURFACE" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-<path d="M1074.8 196.234L1030 222.367V171.034L1074.8 144.9V196.234Z" fill="SURFACE" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-<path d="M986.133 196.234L1030 222.367V171.034L986.133 144.9V196.234Z" fill="SURFACE" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-<path d="M1030 119.7L1074.8 144.9L1030 171.034L986.133 144.9L1030 119.7Z" fill="SURFACE" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-</g>
-</g>
+<svg xmlns="http://www.w3.org/2000/svg" width="280" height="280" viewBox="815.34 52.5 280 280" fill="none" data-hidden-line-opacity="0.35">
+  <defs>
+    <radialGradient id="modular-iris" cx="50%" cy="50%" r="50%">
+      <stop offset="0.00000" stop-color="#A77BCA" stop-opacity="0.0000000" />
+      <stop offset="0.03125" stop-color="#A77BCA" stop-opacity="0.0100000" />
+      <stop offset="0.06250" stop-color="#A77BCA" stop-opacity="0.0100000" />
+      <stop offset="0.09375" stop-color="#A77BCA" stop-opacity="0.0100000" />
+      <stop offset="0.12500" stop-color="#A77BCA" stop-opacity="0.0100000" />
+      <stop offset="0.15625" stop-color="#A77BCA" stop-opacity="0.0100000" />
+      <stop offset="0.18750" stop-color="#A77BCA" stop-opacity="0.0100000" />
+      <stop offset="0.21875" stop-color="#A77BCA" stop-opacity="0.0104675" />
+      <stop offset="0.25000" stop-color="#A77BCA" stop-opacity="0.0156250" />
+      <stop offset="0.28125" stop-color="#A77BCA" stop-opacity="0.0222473" />
+      <stop offset="0.31250" stop-color="#A77BCA" stop-opacity="0.0305176" />
+      <stop offset="0.34375" stop-color="#A77BCA" stop-opacity="0.0406189" />
+      <stop offset="0.37500" stop-color="#A77BCA" stop-opacity="0.0527344" />
+      <stop offset="0.40625" stop-color="#A77BCA" stop-opacity="0.0670471" />
+      <stop offset="0.43750" stop-color="#A77BCA" stop-opacity="0.0837402" />
+      <stop offset="0.46875" stop-color="#A77BCA" stop-opacity="0.1029968" />
+      <stop offset="0.50000" stop-color="#A77BCA" stop-opacity="0.1250000" />
+      <stop offset="0.53125" stop-color="#A77BCA" stop-opacity="0.1499329" />
+      <stop offset="0.56250" stop-color="#A77BCA" stop-opacity="0.1779785" />
+      <stop offset="0.59375" stop-color="#A77BCA" stop-opacity="0.2093201" />
+      <stop offset="0.62500" stop-color="#A77BCA" stop-opacity="0.2441406" />
+      <stop offset="0.65625" stop-color="#A77BCA" stop-opacity="0.2826233" />
+      <stop offset="0.68750" stop-color="#A77BCA" stop-opacity="0.3249512" />
+      <stop offset="0.71875" stop-color="#A77BCA" stop-opacity="0.3713074" />
+      <stop offset="0.75000" stop-color="#A77BCA" stop-opacity="0.4218750" />
+      <stop offset="0.78125" stop-color="#A77BCA" stop-opacity="0.4768372" />
+      <stop offset="0.81250" stop-color="#A77BCA" stop-opacity="0.5363770" />
+      <stop offset="0.84375" stop-color="#A77BCA" stop-opacity="0.6006775" />
+      <stop offset="0.87500" stop-color="#A77BCA" stop-opacity="0.6699219" />
+      <stop offset="0.90625" stop-color="#A77BCA" stop-opacity="0.7442932" />
+      <stop offset="0.93750" stop-color="#A77BCA" stop-opacity="0.8239746" />
+      <stop offset="0.96875" stop-color="#A77BCA" stop-opacity="0.9091492" />
+      <stop offset="1.00000" stop-color="#A77BCA" stop-opacity="1.0000000" />
+    </radialGradient>
+    <mask id="depth-0-visible" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse" style="mask-type:luminance" x="805.34" y="42.5" width="300.0" height="300.0">
+      <rect x="805.34" y="42.5" width="300.0" height="300.0" fill="white" />
+      <path fill="black" d="M835.867 251.3L938.534 311.034V192.5L835.867 133.7V251.3Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="black" d="M938.534 73.9668L1040.27 133.7L938.534 192.5L835.867 133.7L938.534 73.9668Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="black" d="M938.534 192.499L893.734 217.699V167.299L938.534 141.166V192.499Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="black" d="M938.535 192.499L982.402 217.699V167.299L938.535 141.166V192.499Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="black" d="M938.534 192.5L982.401 217.7L938.534 243.833L893.734 217.7L938.534 192.5Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="black" d="M1030 119.7L1074.8 144.9V196.234L1030 222.367L986.133 196.234V144.9Z" fill-rule="evenodd" stroke="none" />
+    </mask>
+    <mask id="depth-0-hidden" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse" style="mask-type:luminance" x="805.34" y="42.5" width="300.0" height="300.0">
+      <rect x="805.34" y="42.5" width="300.0" height="300.0" fill="black" />
+      <path fill="white" d="M835.867 251.3L938.534 311.034V192.5L835.867 133.7V251.3Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="white" d="M938.534 73.9668L1040.27 133.7L938.534 192.5L835.867 133.7L938.534 73.9668Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="white" d="M938.534 192.499L893.734 217.699V167.299L938.534 141.166V192.499Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="white" d="M938.535 192.499L982.402 217.699V167.299L938.535 141.166V192.499Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="white" d="M938.534 192.5L982.401 217.7L938.534 243.833L893.734 217.7L938.534 192.5Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="white" d="M1030 119.7L1074.8 144.9V196.234L1030 222.367L986.133 196.234V144.9Z" fill-rule="evenodd" stroke="none" />
+    </mask>
+    <mask id="depth-1-visible" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse" style="mask-type:luminance" x="805.34" y="42.5" width="300.0" height="300.0">
+      <rect x="805.34" y="42.5" width="300.0" height="300.0" fill="white" />
+      <path fill="black" d="M938.534 73.9668L1040.27 133.7L938.534 192.5L835.867 133.7L938.534 73.9668Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="black" d="M938.534 192.499L893.734 217.699V167.299L938.534 141.166V192.499Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="black" d="M938.535 192.499L982.402 217.699V167.299L938.535 141.166V192.499Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="black" d="M938.534 192.5L982.401 217.7L938.534 243.833L893.734 217.7L938.534 192.5Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="black" d="M1030 119.7L1074.8 144.9V196.234L1030 222.367L986.133 196.234V144.9Z" fill-rule="evenodd" stroke="none" />
+    </mask>
+    <mask id="depth-1-hidden" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse" style="mask-type:luminance" x="805.34" y="42.5" width="300.0" height="300.0">
+      <rect x="805.34" y="42.5" width="300.0" height="300.0" fill="black" />
+      <path fill="white" d="M938.534 73.9668L1040.27 133.7L938.534 192.5L835.867 133.7L938.534 73.9668Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="white" d="M938.534 192.499L893.734 217.699V167.299L938.534 141.166V192.499Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="white" d="M938.535 192.499L982.402 217.699V167.299L938.535 141.166V192.499Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="white" d="M938.534 192.5L982.401 217.7L938.534 243.833L893.734 217.7L938.534 192.5Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="white" d="M1030 119.7L1074.8 144.9V196.234L1030 222.367L986.133 196.234V144.9Z" fill-rule="evenodd" stroke="none" />
+    </mask>
+    <mask id="depth-2-visible" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse" style="mask-type:luminance" x="805.34" y="42.5" width="300.0" height="300.0">
+      <rect x="805.34" y="42.5" width="300.0" height="300.0" fill="white" />
+      <path fill="black" d="M938.534 192.499L893.734 217.699V167.299L938.534 141.166V192.499Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="black" d="M938.535 192.499L982.402 217.699V167.299L938.535 141.166V192.499Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="black" d="M938.534 192.5L982.401 217.7L938.534 243.833L893.734 217.7L938.534 192.5Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="black" d="M1030 119.7L1074.8 144.9V196.234L1030 222.367L986.133 196.234V144.9Z" fill-rule="evenodd" stroke="none" />
+    </mask>
+    <mask id="depth-2-hidden" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse" style="mask-type:luminance" x="805.34" y="42.5" width="300.0" height="300.0">
+      <rect x="805.34" y="42.5" width="300.0" height="300.0" fill="black" />
+      <path fill="white" d="M938.534 192.499L893.734 217.699V167.299L938.534 141.166V192.499Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="white" d="M938.535 192.499L982.402 217.699V167.299L938.535 141.166V192.499Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="white" d="M938.534 192.5L982.401 217.7L938.534 243.833L893.734 217.7L938.534 192.5Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="white" d="M1030 119.7L1074.8 144.9V196.234L1030 222.367L986.133 196.234V144.9Z" fill-rule="evenodd" stroke="none" />
+    </mask>
+    <mask id="depth-3-visible" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse" style="mask-type:luminance" x="805.34" y="42.5" width="300.0" height="300.0">
+      <rect x="805.34" y="42.5" width="300.0" height="300.0" fill="white" />
+      <path fill="black" d="M938.535 192.499L982.402 217.699V167.299L938.535 141.166V192.499Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="black" d="M938.534 192.5L982.401 217.7L938.534 243.833L893.734 217.7L938.534 192.5Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="black" d="M1030 119.7L1074.8 144.9V196.234L1030 222.367L986.133 196.234V144.9Z" fill-rule="evenodd" stroke="none" />
+    </mask>
+    <mask id="depth-3-hidden" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse" style="mask-type:luminance" x="805.34" y="42.5" width="300.0" height="300.0">
+      <rect x="805.34" y="42.5" width="300.0" height="300.0" fill="black" />
+      <path fill="white" d="M938.535 192.499L982.402 217.699V167.299L938.535 141.166V192.499Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="white" d="M938.534 192.5L982.401 217.7L938.534 243.833L893.734 217.7L938.534 192.5Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="white" d="M1030 119.7L1074.8 144.9V196.234L1030 222.367L986.133 196.234V144.9Z" fill-rule="evenodd" stroke="none" />
+    </mask>
+    <mask id="depth-4-visible" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse" style="mask-type:luminance" x="805.34" y="42.5" width="300.0" height="300.0">
+      <rect x="805.34" y="42.5" width="300.0" height="300.0" fill="white" />
+      <path fill="black" d="M938.534 192.5L982.401 217.7L938.534 243.833L893.734 217.7L938.534 192.5Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="black" d="M1030 119.7L1074.8 144.9V196.234L1030 222.367L986.133 196.234V144.9Z" fill-rule="evenodd" stroke="none" />
+    </mask>
+    <mask id="depth-4-hidden" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse" style="mask-type:luminance" x="805.34" y="42.5" width="300.0" height="300.0">
+      <rect x="805.34" y="42.5" width="300.0" height="300.0" fill="black" />
+      <path fill="white" d="M938.534 192.5L982.401 217.7L938.534 243.833L893.734 217.7L938.534 192.5Z" stroke="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+      <path fill="white" d="M1030 119.7L1074.8 144.9V196.234L1030 222.367L986.133 196.234V144.9Z" fill-rule="evenodd" stroke="none" />
+    </mask>
+    <mask id="depth-5-visible" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse" style="mask-type:luminance" x="805.34" y="42.5" width="300.0" height="300.0">
+      <rect x="805.34" y="42.5" width="300.0" height="300.0" fill="white" />
+      <path fill="black" d="M1030 119.7L1074.8 144.9V196.234L1030 222.367L986.133 196.234V144.9Z" fill-rule="evenodd" stroke="none" />
+    </mask>
+    <mask id="depth-5-hidden" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse" style="mask-type:luminance" x="805.34" y="42.5" width="300.0" height="300.0">
+      <rect x="805.34" y="42.5" width="300.0" height="300.0" fill="black" />
+      <path fill="white" d="M1030 119.7L1074.8 144.9V196.234L1030 222.367L986.133 196.234V144.9Z" fill-rule="evenodd" stroke="none" />
+    </mask>
+  </defs>
+  <g data-layer="color">
+    <path fill="url(#modular-iris)" d="M1030 119.7L1074.8 144.9V196.234L1030 222.367L986.133 196.234V144.9Z" fill-rule="evenodd" stroke="none" />
+  </g>
+  <g data-layer="hidden-linework" opacity="0.35">
+    <g mask="url(#depth-0-hidden)">
+      <path fill="none" d="M1040.27 251.3L938.535 311.034V192.5L1040.27 133.7V251.3Z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+    <g mask="url(#depth-1-hidden)">
+      <path fill="none" d="M835.867 251.3L938.534 311.034V192.5L835.867 133.7V251.3Z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+    <g mask="url(#depth-2-hidden)">
+      <path fill="none" d="M938.534 73.9668L1040.27 133.7L938.534 192.5L835.867 133.7L938.534 73.9668Z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+    <g mask="url(#depth-3-hidden)">
+      <path fill="none" d="M938.534 192.499L893.734 217.699V167.299L938.534 141.166V192.499Z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+    <g mask="url(#depth-4-hidden)">
+      <path fill="none" d="M938.535 192.499L982.402 217.699V167.299L938.535 141.166V192.499Z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+    <g mask="url(#depth-5-hidden)">
+      <path fill="none" d="M938.534 192.5L982.401 217.7L938.534 243.833L893.734 217.7L938.534 192.5Z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+  </g>
+  <g data-layer="visible-linework">
+    <g mask="url(#depth-0-visible)">
+      <path fill="none" d="M1040.27 251.3L938.535 311.034V192.5L1040.27 133.7V251.3Z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+    <g mask="url(#depth-1-visible)">
+      <path fill="none" d="M835.867 251.3L938.534 311.034V192.5L835.867 133.7V251.3Z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+    <g mask="url(#depth-2-visible)">
+      <path fill="none" d="M938.534 73.9668L1040.27 133.7L938.534 192.5L835.867 133.7L938.534 73.9668Z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+    <g mask="url(#depth-3-visible)">
+      <path fill="none" d="M938.534 192.499L893.734 217.699V167.299L938.534 141.166V192.499Z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+    <g mask="url(#depth-4-visible)">
+      <path fill="none" d="M938.535 192.499L982.402 217.699V167.299L938.535 141.166V192.499Z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+    <g mask="url(#depth-5-visible)">
+      <path fill="none" d="M938.534 192.5L982.401 217.7L938.534 243.833L893.734 217.7L938.534 192.5Z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+    <path fill="none" d="M1074.8 196.234L1030 222.367V171.034L1074.8 144.9V196.234Z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+    <path fill="none" d="M986.133 196.234L1030 222.367V171.034L986.133 144.9V196.234Z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+    <path fill="none" d="M1030 119.7L1074.8 144.9L1030 171.034L986.133 144.9L1030 119.7Z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+  </g>
 </svg>

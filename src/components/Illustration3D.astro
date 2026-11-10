@@ -1,0 +1,68 @@
+---
+import AssetCard from './AssetCard.astro';
+import { colors } from '../data/colors';
+interface Props { slug:string; name:string; svg:string; artWidth?:string }
+const {slug,name,svg,artWidth='200px'}=Astro.props;
+const options=[{key:'dark',label:'Dark',ink:colors.paper.hex,surface:colors.forestShade.hex,tone:'dark' as const},{key:'light',label:'Light',ink:colors.forestShade.hex,surface:colors.paper.hex,tone:'light' as const}];
+---
+<div class="illustration-3d" data-illustration-3d={slug}>
+ <AssetCard id={`atomsai-3d-${slug}`} name={name} svg={svg} options={options} defaultOption="dark" pickerStyle="themes" artWidth={artWidth} previewHeight="24rem" pngSize={2000}>
+  <button slot="preview-controls" class="btn view-reset" type="button" data-view-reset hidden>Reset view</button>
+ </AssetCard>
+ <p class="visually-hidden" data-view-status aria-live="polite"></p>
+</div>
+<style>
+.illustration-3d { min-width: 0; container-type: inline-size; }
+.illustration-3d :global(.stage) {
+ grid-template-areas: 'pickers view-controls' 'art art' 'actions actions';
+ grid-template-columns: minmax(0, 1fr) auto;
+ grid-template-rows: auto minmax(0, 1fr) auto;
+ gap: .75rem;
+ padding: 1rem;
+ color: var(--stage-ring);
+}
+.illustration-3d :global(.pickers),
+.illustration-3d :global(.options),
+.illustration-3d :global(.btn-row) { gap: .375rem; }
+.illustration-3d :global(.stage[data-tone='dark']) { --stage-ring: var(--paper); }
+.illustration-3d :global(.stage[data-tone='light']) { --stage-ring: var(--forest-shade); }
+.illustration-3d :global(.btn),
+.illustration-3d :global(.picker-label) {
+ display: inline-flex;
+ align-items: center;
+ justify-content: center;
+ min-height: 2rem;
+ padding: .375rem .625rem;
+ font-size: var(--size-annotation-small);
+ line-height: 1;
+ font-weight: 400;
+ white-space: nowrap;
+}
+.illustration-3d :global(.btn) {
+ color: var(--stage-ring);
+ background: transparent;
+ border-color: color-mix(in srgb, var(--stage-ring) 28%, transparent);
+}
+.illustration-3d :global(.theme-icon) { padding: 0; }
+.illustration-3d :global(.btn:hover) {
+ background: color-mix(in srgb, var(--stage-ring) 10%, transparent);
+ border-color: var(--stage-ring);
+}
+.illustration-3d :global(.btn:focus-visible) {
+ outline: 1.5px solid var(--stage-ring);
+ outline-offset: 3px;
+}
+.view-reset { grid-area: view-controls; justify-self: end; }
+.view-reset[hidden] { display: none; }
+.illustration-3d :global(.asset) { gap: .625rem; }
+.illustration-3d :global([data-asset-preview]){position:relative;touch-action:pan-y;cursor:grab;overflow:hidden}
+.illustration-3d :global([data-asset-preview].is-dragging){cursor:grabbing}
+.illustration-3d :global(canvas){position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:var(--canvas-size)!important;height:var(--canvas-size)!important;max-width:100%;max-height:100%;aspect-ratio:1;outline-offset:4px}
+@container (max-width: 320px) {
+ .illustration-3d :global(.stage) { padding: .75rem; }
+}
+</style>
+<script>
+ import { initIllustrations } from '../scripts/illustration-3d/controller';
+ initIllustrations();
+</script>

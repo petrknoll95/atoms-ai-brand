@@ -1,0 +1,39 @@
+{
+  "skillVersion": "2.0",
+  "reviewed": "2026-11-10",
+  "selected": [
+    {
+      "use": "customer-story",
+      "source": "/Users/petrknoll/Documents/ChatGPT/AtomsAI/output/photography-skill-eval/candid/customer-story-revised.png",
+      "publicFile": "public/photography/customer-story-ai-generated.png",
+      "width": 1448,
+      "height": 1086,
+      "sha256": "7b4bd2decf55079409e0f5708695cb9b751f78c0b0e93afccd3b1c2993c569df"
+    },
+    {
+      "use": "support",
+      "source": "/Users/petrknoll/Documents/ChatGPT/AtomsAI/output/photography-skill-eval/candid/support-revised.png",
+      "publicFile": "public/photography/support-ai-generated.png",
+      "width": 1448,
+      "height": 1086,
+      "sha256": "2baab1686bc58dcfdfdb6dd1e08d4f83c0d9bff41e0e857fb256a2af1ada5ae3"
+    },
+    {
+      "use": "onboarding",
+      "source": "/Users/petrknoll/Documents/ChatGPT/AtomsAI/output/photography-skill-eval/candid/onboarding-revised.png",
+      "publicFile": "public/photography/onboarding-ai-generated.png",
+      "width": 1448,
+      "height": 1086,
+      "sha256": "42508152af56aea0eb385d94c01a6c8170abd536560306f246b548020f815355"
+    },
+    {
+      "use": "careers",
+      "source": "/Users/petrknoll/Documents/ChatGPT/AtomsAI/output/photography-skill-eval/candid/careers-revised.png",
+      "publicFile": "public/photography/careers-ai-generated.png",
+      "width": 1448,
+      "height": 1086,
+      "sha256": "6ac2a100e4aa3da963d1f640172ee16dfad4145810f80760b1c76d599cb9ec4b"
+    }
+  ],
+  "originalsRetained": true
+}

@@ -1,0 +1,266 @@
+{
+  "id": "atomsai-drift-sage-40",
+  "status": "structural-pass",
+  "native": {
+    "layers_bottom_to_top": [
+      "01 / Base",
+      "02 / Lower",
+      "03 / Upper",
+      "04 / Highlight",
+      "05 / Reflection"
+    ],
+    "opacity_masks": 4,
+    "live_gaussian_blur_pt": [
+      2.00905511811024,
+      2.00905511811024,
+      2.00905511811024
+    ],
+    "private_edit_data": true,
+    "application_log": "application=30.8.1\nprofile=Coated FOGRA39 (ISO 12647-2:2004)\nspace=DocumentColorSpace.CMYK\nppi=300\nlayers=5\nrasterItems=0\nplacedItems=0\ntextFrames=0\n",
+    "gradient_definitions": 22,
+    "native_raster_art_objects": "See native application log; effect render caches are not flattened art",
+    "artboard_name": "AtomsAI / drift / Sage / 40 slits / 300 mm",
+    "resaved_label_and_embedded_profile_reopened": true,
+    "reopened_in_illustrator": true,
+    "saved_file_reopen_log": "id=atomsai-drift-sage-40\nprofile=Coated FOGRA39 (ISO 12647-2:2004)\nspace=DocumentColorSpace.CMYK\nppi=300\nrasterItems=0\nplacedItems=0\ntextFrames=0\nartboard=21.2598425196848,871.653543307087,871.653543307086,21.2598425196848\nlayer=01 / Base; groups=1; bounds=0.00003051757812,892.913360595729,892.913391113281,2.5465851649642e-11\nlayer=02 / Lower; groups=1; bounds=0.00003051757812,892.913360595729,892.913391113281,2.5465851649642e-11\nlayer=03 / Upper; groups=1; bounds=0.00003051757812,892.913360595729,892.913391113281,2.5465851649642e-11\nlayer=04 / Highlight; groups=1; bounds=0.00003051757812,892.913360595729,892.913391113281,2.5465851649642e-11\nlayer=05 / Reflection; groups=1; bounds=0.00003051757812,892.913360595729,892.913391113281,2.5465851649642e-11\nblend=02 / Lower BlendModes.NORMAL 100\nblend=03 / Upper BlendModes.NORMAL 100\nblend=04 / Highlight BlendModes.NORMAL 100\nblend=05 / Reflection BlendModes.SCREEN 20\nink reflection=3.9215691387653,5.8823529630899,10.9803922474384,0; overprint=false\nink highlight=84.7058832645416,58.8235318660736,69.0196096897125,78.0392169952393; overprint=false\nink upper=65.0980412960053,32.9411774873734,53.7254929542542,17.6470592617989; overprint=false\nink lower=65.0980412960053,32.9411774873734,53.7254929542542,17.6470592617989; overprint=false\nink base=82.3529422283173,48.6274510622025,66.6666686534882,60.7843160629273; overprint=false\nartboard_name=AtomsAI / drift / Sage / 40 slits / 300 mm\nResaved native master reopened again: embedded profile, five layers, zero raster/link/text confirmed.\n",
+    "saved_process_colors": {
+      "reflection": [
+        3.9215691387653,
+        5.8823529630899,
+        10.9803922474384,
+        0.0
+      ],
+      "highlight": [
+        84.7058832645416,
+        58.8235318660736,
+        69.0196096897125,
+        78.0392169952393
+      ],
+      "upper": [
+        65.0980412960053,
+        32.9411774873734,
+        53.7254929542542,
+        17.6470592617989
+      ],
+      "lower": [
+        65.0980412960053,
+        32.9411774873734,
+        53.7254929542542,
+        17.6470592617989
+      ],
+      "base": [
+        82.3529422283173,
+        48.6274510622025,
+        66.6666686534882,
+        60.7843160629273
+      ]
+    }
+  },
+  "pdf": {
+    "declared_standard": "PDF/X-4",
+    "certified": false,
+    "output_intent_registry": "http://www.color.org",
+    "trim_mm": [
+      299.99999985980554,
+      299.99999985980554
+    ],
+    "bleed_mm": [
+      3.0000000007499996,
+      3.0000000007499996,
+      2.9999999972222047,
+      2.9999999972222047
+    ],
+    "color_spaces": [
+      "/DeviceCMYK",
+      "/DeviceGray",
+      "['/ICCBased', IndirectObject(9, 0, 4515132624)]",
+      "['/Indexed', '/DeviceCMYK', 208, IndirectObject(46, 0, 4515132624)]",
+      "['/Indexed', '/DeviceCMYK', 255, IndirectObject(19, 0, 4515132624)]",
+      "['/Separation', '/Black', '/DeviceCMYK', {'/C0': [0.0, 0.0, 0.0, 0.0], '/C1': [0.0, 0.0, 0.0, 1], '/Domain': [0, 1], '/FunctionType': 2, '/N': 1, '/Range': [0.0, 1, 0.0, 1, 0.0, 1, 0.0, 1]}]"
+    ],
+    "blend_modes": [
+      "/Normal",
+      "/Screen"
+    ],
+    "icc_sha256": "da2b9b593e27cba2563cbc8596071c5c8f2395d3dbb4434538bac2bc9d58ce77",
+    "shadings": 2,
+    "soft_masks": 51,
+    "images": [
+      {
+        "width": 4021,
+        "height": 4021,
+        "color_space": "/DeviceGray"
+      },
+      {
+        "width": 4021,
+        "height": 4021,
+        "color_space": "['/Indexed', '/DeviceCMYK', 255, IndirectObject(19, 0, 4515132624)]"
+      },
+      {
+        "width": 4021,
+        "height": 4021,
+        "color_space": "/DeviceGray"
+      },
+      {
+        "width": 4021,
+        "height": 4021,
+        "color_space": "['/Indexed', '/DeviceCMYK', 255, IndirectObject(19, 0, 4515132624)]"
+      },
+      {
+        "width": 4021,
+        "height": 4021,
+        "color_space": "/DeviceGray"
+      },
+      {
+        "width": 4021,
+        "height": 4021,
+        "color_space": "['/Indexed', '/DeviceCMYK', 208, IndirectObject(46, 0, 4515132624)]"
+      },
+      {
+        "width": 4021,
+        "height": 4021,
+        "color_space": "/DeviceGray"
+      }
+    ],
+    "image_resolution_ppi": [
+      [
+        300.0000067147477,
+        300.0000067147477
+      ],
+      [
+        300.0000067147477,
+        300.0000067147477
+      ],
+      [
+        300.0000067147477,
+        300.0000067147477
+      ],
+      [
+        300.0000067147477,
+        300.0000067147477
+      ],
+      [
+        300.0000067147477,
+        300.0000067147477
+      ],
+      [
+        300.0000067147477,
+        300.0000067147477
+      ],
+      [
+        300.0000067147477,
+        300.0000067147477
+      ]
+    ],
+    "fonts": 0,
+    "overprint_true_objects": [],
+    "max_total_ink_150ppi_percent": 258.039,
+    "unprinted_edge_pixels_at_150ppi": 0,
+    "edge_sampling": "One pixel inside bleed box; excludes fractional pixmap boundary rounding",
+    "unintended_rgb_paint_operators": 0,
+    "final_document_structure": {
+      "pages": 1,
+      "version": "1.6",
+      "encrypted": false,
+      "trapped": false,
+      "interactive_actions": false,
+      "registry": "http://www.color.org"
+    },
+    "image_resolution_details": [
+      {
+        "object": 26,
+        "role": "transparency soft mask",
+        "width": 4021,
+        "height": 4021,
+        "ppi": [
+          300.0000067147477,
+          300.0000067147477
+        ]
+      },
+      {
+        "object": 27,
+        "role": "transparency soft mask",
+        "width": 4021,
+        "height": 4021,
+        "ppi": [
+          300.0000067147477,
+          300.0000067147477
+        ]
+      },
+      {
+        "object": 28,
+        "role": "image alpha/mask",
+        "width": 4021,
+        "height": 4021,
+        "ppi": [
+          300.0000067147477,
+          300.0000067147477
+        ]
+      },
+      {
+        "object": 36,
+        "role": "transparency soft mask",
+        "width": 4021,
+        "height": 4021,
+        "ppi": [
+          300.0000067147477,
+          300.0000067147477
+        ]
+      },
+      {
+        "object": 37,
+        "role": "image alpha/mask",
+        "width": 4021,
+        "height": 4021,
+        "ppi": [
+          300.0000067147477,
+          300.0000067147477
+        ]
+      },
+      {
+        "object": 47,
+        "role": "transparency soft mask",
+        "width": 4021,
+        "height": 4021,
+        "ppi": [
+          300.0000067147477,
+          300.0000067147477
+        ]
+      },
+      {
+        "object": 48,
+        "role": "image alpha/mask",
+        "width": 4021,
+        "height": 4021,
+        "ppi": [
+          300.0000067147477,
+          300.0000067147477
+        ]
+      }
+    ],
+    "image_resolution_method": "CTM traversal through page forms, soft-mask groups and image alpha masks"
+  },
+  "files": {
+    "atomsai-drift-sage-40-cmyk.ai": {
+      "bytes": 6819205,
+      "sha256": "79a4610f30547a41f3a22ce372e603f48383afc8ce91fb4d3d735486b54f9ca3"
+    },
+    "atomsai-drift-sage-40-cmyk-print.pdf": {
+      "bytes": 4228162,
+      "sha256": "3cfd2b3b64dac09dc556e2984719808db0066ade263d6b3b794e491af09a25f2"
+    },
+    "atomsai-drift-sage-40-preview.png": {
+      "bytes": 446344,
+      "sha256": "effc5952f3aed97c305d646583eeddd301a27f369b1f7e16bde6313cc0d02f1b"
+    }
+  },
+  "qualification": "Structural checks and sampled ink/bleed analysis, not certified PDF/X conformance. FOGRA39 is an assumed condition.",
+  "preview": {
+    "mode": "RGB",
+    "size_px": [
+      1200,
+      1200
+    ],
+    "embedded_profile": "sRGB"
+  }
+}

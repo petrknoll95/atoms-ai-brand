@@ -1,0 +1,5522 @@
+[
+  {
+    "id": "atomsai-drift-forest-5",
+    "family": "drift",
+    "colorway": "Forest",
+    "density_key": 0,
+    "slits": 5,
+    "status": "validated",
+    "palette": {
+      "base": {
+        "hex": "#1D3C34",
+        "cmyk": [
+          82.352941,
+          48.627451,
+          66.666667,
+          60.784314
+        ]
+      },
+      "upper": {
+        "hex": "#43695B",
+        "cmyk": [
+          72.54902,
+          38.039216,
+          60.392157,
+          29.019608
+        ]
+      },
+      "lower": {
+        "hex": "#43695B",
+        "cmyk": [
+          72.54902,
+          38.039216,
+          60.392157,
+          29.019608
+        ]
+      },
+      "highlight": {
+        "hex": "#10231E",
+        "cmyk": [
+          84.705882,
+          58.823529,
+          69.019608,
+          78.039216
+        ]
+      },
+      "reflection": {
+        "hex": "#F6F1E8",
+        "cmyk": [
+          3.921569,
+          5.882353,
+          10.980392,
+          0.0
+        ]
+      }
+    },
+    "validation": "drift/atomsai-drift-forest-5-validation.json",
+    "saved_cmyk": {
+      "reflection": [
+        3.9215691387653,
+        5.8823529630899,
+        10.9803922474384,
+        0.0
+      ],
+      "highlight": [
+        84.7058832645416,
+        58.8235318660736,
+        69.0196096897125,
+        78.0392169952393
+      ],
+      "upper": [
+        72.5490212440491,
+        38.0392163991928,
+        60.3921592235565,
+        29.0196090936661
+      ],
+      "lower": [
+        72.5490212440491,
+        38.0392163991928,
+        60.3921592235565,
+        29.0196090936661
+      ],
+      "base": [
+        82.3529422283173,
+        48.6274510622025,
+        66.6666686534882,
+        60.7843160629273
+      ]
+    },
+    "native_reopen": "passed",
+    "visual_review": "reviewed in family contact sheet and renderer comparison"
+  },
+  {
+    "id": "atomsai-drift-sage-5",
+    "family": "drift",
+    "colorway": "Sage",
+    "density_key": 0,
+    "slits": 5,
+    "status": "validated",
+    "palette": {
+      "base": {
+        "hex": "#1D3C34",
+        "cmyk": [
+          82.352941,
+          48.627451,
+          66.666667,
+          60.784314
+        ]
+      },
+      "upper": {
+        "hex": "#5C7F71",
+        "cmyk": [
+          65.098039,
+          32.941176,
+          53.72549,
+          17.647059
+        ]
+      },
+      "lower": {
+        "hex": "#5C7F71",
+        "cmyk": [
+          65.098039,
+          32.941176,
+          53.72549,
+          17.647059
+        ]
+      },
+      "highlight": {
+        "hex": "#10231E",
+        "cmyk": [
+          84.705882,
+          58.823529,
+          69.019608,
+          78.039216
+        ]
+      },
+      "reflection": {
+        "hex": "#F6F1E8",
+        "cmyk": [
+          3.921569,
+          5.882353,
+          10.980392,
+          0.0
+        ]
+      }
+    },
+    "validation": "drift/atomsai-drift-sage-5-validation.json",
+    "saved_cmyk": {
+      "reflection": [
+        3.9215691387653,
+        5.8823529630899,
+        10.9803922474384,
+        0.0
+      ],
+      "highlight": [
+        84.7058832645416,
+        58.8235318660736,
+        69.0196096897125,
+        78.0392169952393
+      ],
+      "upper": [
+        65.0980412960053,
+        32.9411774873734,
+        53.7254929542542,
+        17.6470592617989
+      ],
+      "lower": [
+        65.0980412960053,
+        32.9411774873734,
+        53.7254929542542,
+        17.6470592617989
+      ],
+      "base": [
+        82.3529422283173,
+        48.6274510622025,
+        66.6666686534882,
+        60.7843160629273
+      ]
+    },
+    "native_reopen": "passed",
+    "visual_review": "reviewed in family contact sheet and renderer comparison"
+  },
+  {
+    "id": "atomsai-drift-graphite-5",
+    "family": "drift",
+    "colorway": "Graphite",
+    "density_key": 0,
+    "slits": 5,
+    "status": "validated",
+    "palette": {
+      "base": {
+        "hex": "#10231E",
+        "cmyk": [
+          84.705882,
+          58.823529,
+          69.019608,
+          78.039216
+        ]
+      },
+      "upper": {
+        "hex": "#58625F",
+        "cmyk": [
+          61.568627,
+          44.313725,
+          49.411765,
+          35.294118
+        ]
+      },
+      "lower": {
+        "hex": "#58625F",
+        "cmyk": [
+          61.568627,
+          44.313725,
+          49.411765,
+          35.294118
+        ]
+      },
+      "highlight": {
+        "hex": "#10231E",
+        "cmyk": [
+          84.705882,
+          58.823529,
+          69.019608,
+          78.039216
+        ]
+      },
+      "reflection": {
+        "hex": "#5C7F71",
+        "cmyk": [
+          65.098039,
+          32.941176,
+          53.72549,
+          17.647059
+        ]
+      }
+    },
+    "validation": "drift/atomsai-drift-graphite-5-validation.json",
+    "saved_cmyk": {
+      "reflection": [
+        65.0980412960053,
+        32.9411774873734,
+        53.7254929542542,
+        17.6470592617989
+      ],
+      "highlight": [
+        84.7058832645416,
+        58.8235318660736,
+        69.0196096897125,
+        78.0392169952393
+      ],
+      "upper": [
+        61.5686297416687,
+        44.3137258291245,
+        49.4117647409439,
+        35.2941185235977
+      ],
+      "lower": [
+        61.5686297416687,
+        44.3137258291245,
+        49.4117647409439,
+        35.2941185235977
+      ],
+      "base": [
+        84.7058832645416,
+        58.8235318660736,
+        69.0196096897125,
+        78.0392169952393
+      ]
+    },
+    "native_reopen": "passed",
+    "visual_review": "reviewed in family contact sheet and renderer comparison"
+  },
+  {
+    "id": "atomsai-drift-iris-5",
+    "family": "drift",
+    "colorway": "Iris",
+    "density_key": 0,
+    "slits": 5,
+    "status": "validated",
+    "palette": {
+      "base": {
+        "hex": "#A77BCA",
+        "cmyk": [
+          43.137255,
+          58.039216,
+          0.0,
+          0.0
+        ]
+      },
+      "upper": {
+        "hex": "#D7C6E6",
+        "cmyk": [
+          16.862745,
+          25.882353,
+          0.0,
+          0.0
+        ]
+      },
+      "lower": {
+        "hex": "#5D4777",
+        "cmyk": [
+          72.156863,
+          77.254902,
+          26.666667,
+          11.372549
+        ]
+      },
+      "highlight": {
+        "hex": "#A77BCA",
+        "cmyk": [
+          43.137255,
+          58.039216,
+          0.0,
+          0.0
+        ]
+      },
+      "reflection": {
+        "hex": "#FFFFFF",
+        "cmyk": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      }
+    },
+    "validation": "drift/atomsai-drift-iris-5-validation.json",
+    "saved_cmyk": {
+      "reflection": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "highlight": [
+        43.1372553110123,
+        58.0392181873322,
+        0.0,
+        0.0
+      ],
+      "upper": [
+        16.8627455830574,
+        25.8823543787003,
+        0.0,
+        0.0
+      ],
+      "lower": [
+        72.1568644046784,
+        77.2549033164978,
+        26.6666680574417,
+        11.3725490868092
+      ],
+      "base": [
+        43.1372553110123,
+        58.0392181873322,
+        0.0,
+        0.0
+      ]
+    },
+    "native_reopen": "passed",
+    "visual_review": "reviewed in family contact sheet and renderer comparison"
+  },
+  {
+    "id": "atomsai-drift-forest-10",
+    "family": "drift",
+    "colorway": "Forest",
+    "density_key": 1,
+    "slits": 10,
+    "status": "validated",
+    "palette": {
+      "base": {
+        "hex": "#1D3C34",
+        "cmyk": [
+          82.352941,
+          48.627451,
+          66.666667,
+          60.784314
+        ]
+      },
+      "upper": {
+        "hex": "#43695B",
+        "cmyk": [
+          72.54902,
+          38.039216,
+          60.392157,
+          29.019608
+        ]
+      },
+      "lower": {
+        "hex": "#43695B",
+        "cmyk": [
+          72.54902,
+          38.039216,
+          60.392157,
+          29.019608
+        ]
+      },
+      "highlight": {
+        "hex": "#10231E",
+        "cmyk": [
+          84.705882,
+          58.823529,
+          69.019608,
+          78.039216
+        ]
+      },
+      "reflection": {
+        "hex": "#F6F1E8",
+        "cmyk": [
+          3.921569,
+          5.882353,
+          10.980392,
+          0.0
+        ]
+      }
+    },
+    "validation": "drift/atomsai-drift-forest-10-validation.json",
+    "saved_cmyk": {
+      "reflection": [
+        3.9215691387653,
+        5.8823529630899,
+        10.9803922474384,
+        0.0
+      ],
+      "highlight": [
+        84.7058832645416,
+        58.8235318660736,
+        69.0196096897125,
+        78.0392169952393
+      ],
+      "upper": [
+        72.5490212440491,
+        38.0392163991928,
+        60.3921592235565,
+        29.0196090936661
+      ],
+      "lower": [
+        72.5490212440491,
+        38.0392163991928,
+        60.3921592235565,
+        29.0196090936661
+      ],
+      "base": [
+        82.3529422283173,
+        48.6274510622025,
+        66.6666686534882,
+        60.7843160629273
+      ]
+    },
+    "native_reopen": "passed",
+    "visual_review": "reviewed in family contact sheet and renderer comparison"
+  },
+  {
+    "id": "atomsai-drift-sage-10",
+    "family": "drift",
+    "colorway": "Sage",
+    "density_key": 1,
+    "slits": 10,
+    "status": "validated",
+    "palette": {
+      "base": {
+        "hex": "#1D3C34",
+        "cmyk": [
+          82.352941,
+          48.627451,
+          66.666667,
+          60.784314
+        ]
+      },
+      "upper": {
+        "hex": "#5C7F71",
+        "cmyk": [
+          65.098039,
+          32.941176,
+          53.72549,
+          17.647059
+        ]
+      },
+      "lower": {
+        "hex": "#5C7F71",
+        "cmyk": [
+          65.098039,
+          32.941176,
+          53.72549,
+          17.647059
+        ]
+      },
+      "highlight": {
+        "hex": "#10231E",
+        "cmyk": [
+          84.705882,
+          58.823529,
+          69.019608,
+          78.039216
+        ]
+      },
+      "reflection": {
+        "hex": "#F6F1E8",
+        "cmyk": [
+          3.921569,
+          5.882353,
+          10.980392,
+          0.0
+        ]
+      }
+    },
+    "validation": "drift/atomsai-drift-sage-10-validation.json",
+    "saved_cmyk": {
+      "reflection": [
+        3.9215691387653,
+        5.8823529630899,
+        10.9803922474384,
+        0.0
+      ],
+      "highlight": [
+        84.7058832645416,
+        58.8235318660736,
+        69.0196096897125,
+        78.0392169952393
+      ],
+      "upper": [
+        65.0980412960053,
+        32.9411774873734,
+        53.7254929542542,
+        17.6470592617989
+      ],
+      "lower": [
+        65.0980412960053,
+        32.9411774873734,
+        53.7254929542542,
+        17.6470592617989
+      ],
+      "base": [
+        82.3529422283173,
+        48.6274510622025,
+        66.6666686534882,
+        60.7843160629273
+      ]
+    },
+    "native_reopen": "passed",
+    "visual_review": "reviewed in family contact sheet and renderer comparison"
+  },
+  {
+    "id": "atomsai-drift-graphite-10",
+    "family": "drift",
+    "colorway": "Graphite",
+    "density_key": 1,
+    "slits": 10,
+    "status": "validated",
+    "palette": {
+      "base": {
+        "hex": "#10231E",
+        "cmyk": [
+          84.705882,
+          58.823529,
+          69.019608,
+          78.039216
+        ]
+      },
+      "upper": {
+        "hex": "#58625F",
+        "cmyk": [
+          61.568627,
+          44.313725,
+          49.411765,
+          35.294118
+        ]
+      },
+      "lower": {
+        "hex": "#58625F",
+        "cmyk": [
+          61.568627,
+          44.313725,
+          49.411765,
+          35.294118
+        ]
+      },
+      "highlight": {
+        "hex": "#10231E",
+        "cmyk": [
+          84.705882,
+          58.823529,
+          69.019608,
+          78.039216
+        ]
+      },
+      "reflection": {
+        "hex": "#5C7F71",
+        "cmyk": [
+          65.098039,
+          32.941176,
+          53.72549,
+          17.647059
+        ]
+      }
+    },
+    "validation": "drift/atomsai-drift-graphite-10-validation.json",
+    "saved_cmyk": {
+      "reflection": [
+        65.0980412960053,
+        32.9411774873734,
+        53.7254929542542,
+        17.6470592617989
+      ],
+      "highlight": [
+        84.7058832645416,
+        58.8235318660736,
+        69.0196096897125,
+        78.0392169952393
+      ],
+      "upper": [
+        61.5686297416687,
+        44.3137258291245,
+        49.4117647409439,
+        35.2941185235977
+      ],
+      "lower": [
+        61.5686297416687,
+        44.3137258291245,
+        49.4117647409439,
+        35.2941185235977
+      ],
+      "base": [
+        84.7058832645416,
+        58.8235318660736,
+        69.0196096897125,
+        78.0392169952393
+      ]
+    },
+    "native_reopen": "passed",
+    "visual_review": "reviewed in family contact sheet and renderer comparison"
+  },
+  {
+    "id": "atomsai-drift-iris-10",
+    "family": "drift",
+    "colorway": "Iris",
+    "density_key": 1,
+    "slits": 10,
+    "status": "validated",
+    "palette": {
+      "base": {
+        "hex": "#A77BCA",
+        "cmyk": [
+          43.137255,
+          58.039216,
+          0.0,
+          0.0
+        ]
+      },
+      "upper": {
+        "hex": "#D7C6E6",
+        "cmyk": [
+          16.862745,
+          25.882353,
+          0.0,
+          0.0
+        ]
+      },
+      "lower": {
+        "hex": "#5D4777",
+        "cmyk": [
+          72.156863,
+          77.254902,
+          26.666667,
+          11.372549
+        ]
+      },
+      "highlight": {
+        "hex": "#A77BCA",
+        "cmyk": [
+          43.137255,
+          58.039216,
+          0.0,
+          0.0
+        ]
+      },
+      "reflection": {
+        "hex": "#FFFFFF",
+        "cmyk": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      }
+    },
+    "validation": "drift/atomsai-drift-iris-10-validation.json",
+    "saved_cmyk": {
+      "reflection": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "highlight": [
+        43.1372553110123,
+        58.0392181873322,
+        0.0,
+        0.0
+      ],
+      "upper": [
+        16.8627455830574,
+        25.8823543787003,
+        0.0,
+        0.0
+      ],
+      "lower": [
+        72.1568644046784,
+        77.2549033164978,
+        26.6666680574417,
+        11.3725490868092
+      ],
+      "base": [
+        43.1372553110123,
+        58.0392181873322,
+        0.0,
+        0.0
+      ]
+    },
+    "native_reopen": "passed",
+    "visual_review": "reviewed in family contact sheet and renderer comparison"
+  },
+  {
+    "id": "atomsai-drift-forest-20",
+    "family": "drift",
+    "colorway": "Forest",
+    "density_key": 2,
+    "slits": 20,
+    "status": "validated",
+    "palette": {
+      "base": {
+        "hex": "#1D3C34",
+        "cmyk": [
+          82.352941,
+          48.627451,
+          66.666667,
+          60.784314
+        ]
+      },
+      "upper": {
+        "hex": "#43695B",
+        "cmyk": [
+          72.54902,
+          38.039216,
+          60.392157,
+          29.019608
+        ]
+      },
+      "lower": {
+        "hex": "#43695B",
+        "cmyk": [
+          72.54902,
+          38.039216,
+          60.392157,
+          29.019608
+        ]
+      },
+      "highlight": {
+        "hex": "#10231E",
+        "cmyk": [
+          84.705882,
+          58.823529,
+          69.019608,
+          78.039216
+        ]
+      },
+      "reflection": {
+        "hex": "#F6F1E8",
+        "cmyk": [
+          3.921569,
+          5.882353,
+          10.980392,
+          0.0
+        ]
+      }
+    },
+    "validation": "drift/atomsai-drift-forest-20-validation.json",
+    "saved_cmyk": {
+      "reflection": [
+        3.9215691387653,
+        5.8823529630899,
+        10.9803922474384,
+        0.0
+      ],
+      "highlight": [
+        84.7058832645416,
+        58.8235318660736,
+        69.0196096897125,
+        78.0392169952393
+      ],
+      "upper": [
+        72.5490212440491,
+        38.0392163991928,
+        60.3921592235565,
+        29.0196090936661
+      ],
+      "lower": [
+        72.5490212440491,
+        38.0392163991928,
+        60.3921592235565,
+        29.0196090936661
+      ],
+      "base": [
+        82.3529422283173,
+        48.6274510622025,
+        66.6666686534882,
+        60.7843160629273
+      ]
+    },
+    "native_reopen": "passed",
+    "visual_review": "reviewed in family contact sheet and renderer comparison"
+  },
+  {
+    "id": "atomsai-drift-sage-20",
+    "family": "drift",
+    "colorway": "Sage",
+    "density_key": 2,
+    "slits": 20,
+    "status": "validated",
+    "palette": {
+      "base": {
+        "hex": "#1D3C34",
+        "cmyk": [
+          82.352941,
+          48.627451,
+          66.666667,
+          60.784314
+        ]
+      },
+      "upper": {
+        "hex": "#5C7F71",
+        "cmyk": [
+          65.098039,
+          32.941176,
+          53.72549,
+          17.647059
+        ]
+      },
+      "lower": {
+        "hex": "#5C7F71",
+        "cmyk": [
+          65.098039,
+          32.941176,
+          53.72549,
+          17.647059
+        ]
+      },
+      "highlight": {
+        "hex": "#10231E",
+        "cmyk": [
+          84.705882,
+          58.823529,
+          69.019608,
+          78.039216
+        ]
+      },
+      "reflection": {
+        "hex": "#F6F1E8",
+        "cmyk": [
+          3.921569,
+          5.882353,
+          10.980392,
+          0.0
+        ]
+      }
+    },
+    "validation": "drift/atomsai-drift-sage-20-validation.json",
+    "saved_cmyk": {
+      "reflection": [
+        3.9215691387653,
+        5.8823529630899,
+        10.9803922474384,
+        0.0
+      ],
+      "highlight": [
+        84.7058832645416,
+        58.8235318660736,
+        69.0196096897125,
+        78.0392169952393
+      ],
+      "upper": [
+        65.0980412960053,
+        32.9411774873734,
+        53.7254929542542,
+        17.6470592617989
+      ],
+      "lower": [
+        65.0980412960053,
+        32.9411774873734,
+        53.7254929542542,
+        17.6470592617989
+      ],
+      "base": [
+        82.3529422283173,
+        48.6274510622025,
+        66.6666686534882,
+        60.7843160629273
+      ]
+    },
+    "native_reopen": "passed",
+    "visual_review": "reviewed in family contact sheet and renderer comparison"
+  },
+  {
+    "id": "atomsai-drift-graphite-20",
+    "family": "drift",
+    "colorway": "Graphite",
+    "density_key": 2,
+    "slits": 20,
+    "status": "validated",
+    "palette": {
+      "base": {
+        "hex": "#10231E",
+        "cmyk": [
+          84.705882,
+          58.823529,
+          69.019608,
+          78.039216
+        ]
+      },
+      "upper": {
+        "hex": "#58625F",
+        "cmyk": [
+          61.568627,
+          44.313725,
+          49.411765,
+          35.294118
+        ]
+      },
+      "lower": {
+        "hex": "#58625F",
+        "cmyk": [
+          61.568627,
+          44.313725,
+          49.411765,
+          35.294118
+        ]
+      },
+      "highlight": {
+        "hex": "#10231E",
+        "cmyk": [
+          84.705882,
+          58.823529,
+          69.019608,
+          78.039216
+        ]
+      },
+      "reflection": {
+        "hex": "#5C7F71",
+        "cmyk": [
+          65.098039,
+          32.941176,
+          53.72549,
+          17.647059
+        ]
+      }
+    },
+    "validation": "drift/atomsai-drift-graphite-20-validation.json",
+    "saved_cmyk": {
+      "reflection": [
+        65.0980412960053,
+        32.9411774873734,
+        53.7254929542542,
+        17.6470592617989
+      ],
+      "highlight": [
+        84.7058832645416,
+        58.8235318660736,
+        69.0196096897125,
+        78.0392169952393
+      ],
+      "upper": [
+        61.5686297416687,
+        44.3137258291245,
+        49.4117647409439,
+        35.2941185235977
+      ],
+      "lower": [
+        61.5686297416687,
+        44.3137258291245,
+        49.4117647409439,
+        35.2941185235977
+      ],
+      "base": [
+        84.7058832645416,
+        58.8235318660736,
+        69.0196096897125,
+        78.0392169952393
+      ]
+    },
+    "native_reopen": "passed",
+    "visual_review": "reviewed in family contact sheet and renderer comparison"
+  },
+  {
+    "id": "atomsai-drift-iris-20",
+    "family": "drift",
+    "colorway": "Iris",
+    "density_key": 2,
+    "slits": 20,
+    "status": "validated",
+    "palette": {
+      "base": {
+        "hex": "#A77BCA",
+        "cmyk": [
+          43.137255,
+          58.039216,
+          0.0,
+          0.0
+        ]
+      },
+      "upper": {
+        "hex": "#D7C6E6",
+        "cmyk": [
+          16.862745,
+          25.882353,
+          0.0,
+          0.0
+        ]
+      },
+      "lower": {
+        "hex": "#5D4777",
+        "cmyk": [
+          72.156863,
+          77.254902,
+          26.666667,
+          11.372549
+        ]
+      },
+      "highlight": {
+        "hex": "#A77BCA",
+        "cmyk": [
+          43.137255,
+          58.039216,
+          0.0,
+          0.0
+        ]
+      },
+      "reflection": {
+        "hex": "#FFFFFF",
+        "cmyk": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      }
+    },
+    "validation": "drift/atomsai-drift-iris-20-validation.json",
+    "saved_cmyk": {
+      "reflection": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "highlight": [
+        43.1372553110123,
+        58.0392181873322,
+        0.0,
+        0.0
+      ],
+      "upper": [
+        16.8627455830574,
+        25.8823543787003,
+        0.0,
+        0.0
+      ],
+      "lower": [
+        72.1568644046784,
+        77.2549033164978,
+        26.6666680574417,
+        11.3725490868092
+      ],
+      "base": [
+        43.1372553110123,
+        58.0392181873322,
+        0.0,
+        0.0
+      ]
+    },
+    "native_reopen": "passed",
+    "visual_review": "reviewed in family contact sheet and renderer comparison"
+  },
+  {
+    "id": "atomsai-drift-forest-40",
+    "family": "drift",
+    "colorway": "Forest",
+    "density_key": 3,
+    "slits": 40,
+    "status": "validated",
+    "palette": {
+      "base": {
+        "hex": "#1D3C34",
+        "cmyk": [
+          82.352941,
+          48.627451,
+          66.666667,
+          60.784314
+        ]
+      },
+      "upper": {
+        "hex": "#43695B",
+        "cmyk": [
+          72.54902,
+          38.039216,
+          60.392157,
+          29.019608
+        ]
+      },
+      "lower": {
+        "hex": "#43695B",
+        "cmyk": [
+          72.54902,
+          38.039216,
+          60.392157,
+          29.019608
+        ]
+      },
+      "highlight": {
+        "hex": "#10231E",
+        "cmyk": [
+          84.705882,
+          58.823529,
+          69.019608,
+          78.039216
+        ]
+      },
+      "reflection": {
+        "hex": "#F6F1E8",
+        "cmyk": [
+          3.921569,
+          5.882353,
+          10.980392,
+          0.0
+        ]
+      }
+    },
+    "validation": "drift/atomsai-drift-forest-40-validation.json",
+    "saved_cmyk": {
+      "reflection": [
+        3.9215691387653,
+        5.8823529630899,
+        10.9803922474384,
+        0.0
+      ],
+      "highlight": [
+        84.7058832645416,
+        58.8235318660736,
+        69.0196096897125,
+        78.0392169952393
+      ],
+      "upper": [
+        72.5490212440491,
+        38.0392163991928,
+        60.3921592235565,
+        29.0196090936661
+      ],
+      "lower": [
+        72.5490212440491,
+        38.0392163991928,
+        60.3921592235565,
+        29.0196090936661
+      ],
+      "base": [
+        82.3529422283173,
+        48.6274510622025,
+        66.6666686534882,
+        60.7843160629273
+      ]
+    },
+    "native_reopen": "passed",
+    "visual_review": "reviewed in family contact sheet and renderer comparison"
+  },
+  {
+    "id": "atomsai-drift-sage-40",
+    "family": "drift",
+    "colorway": "Sage",
+    "density_key": 3,
+    "slits": 40,
+    "status": "validated",
+    "palette": {
+      "base": {
+        "hex": "#1D3C34",
+        "cmyk": [
+          82.352941,
+          48.627451,
+          66.666667,
+          60.784314
+        ]
+      },
+      "upper": {
+        "hex": "#5C7F71",
+        "cmyk": [
+          65.098039,
+          32.941176,
+          53.72549,
+          17.647059
+        ]
+      },
+      "lower": {
+        "hex": "#5C7F71",
+        "cmyk": [
+          65.098039,
+          32.941176,
+          53.72549,
+          17.647059
+        ]
+      },
+      "highlight": {
+        "hex": "#10231E",
+        "cmyk": [
+          84.705882,
+          58.823529,
+          69.019608,
+          78.039216
+        ]
+      },
+      "reflection": {
+        "hex": "#F6F1E8",
+        "cmyk": [
+          3.921569,
+          5.882353,
+          10.980392,
+          0.0
+        ]
+      }
+    },
+    "validation": "drift/atomsai-drift-sage-40-validation.json",
+    "saved_cmyk": {
+      "reflection": [
+        3.9215691387653,
+        5.8823529630899,
+        10.9803922474384,
+        0.0
+      ],
+      "highlight": [
+        84.7058832645416,
+        58.8235318660736,
+        69.0196096897125,
+        78.0392169952393
+      ],
+      "upper": [
+        65.0980412960053,
+        32.9411774873734,
+        53.7254929542542,
+        17.6470592617989
+      ],
+      "lower": [
+        65.0980412960053,
+        32.9411774873734,
+        53.7254929542542,
+        17.6470592617989
+      ],
+      "base": [
+        82.3529422283173,
+        48.6274510622025,
+        66.6666686534882,
+        60.7843160629273
+      ]
+    },
+    "native_reopen": "passed",
+    "visual_review": "reviewed in family contact sheet and renderer comparison"
+  },
+  {
+    "id": "atomsai-drift-graphite-40",
+    "family": "drift",
+    "colorway": "Graphite",
+    "density_key": 3,
+    "slits": 40,
+    "status": "validated",
+    "palette": {
+      "base": {
+        "hex": "#10231E",
+        "cmyk": [
+          84.705882,
+          58.823529,
+          69.019608,
+          78.039216
+        ]
+      },
+      "upper": {
+        "hex": "#58625F",
+        "cmyk": [
+          61.568627,
+          44.313725,
+          49.411765,
+          35.294118
+        ]
+      },
+      "lower": {
+        "hex": "#58625F",
+        "cmyk": [
+          61.568627,
+          44.313725,
+          49.411765,
+          35.294118
+        ]
+      },
+      "highlight": {
+        "hex": "#10231E",
+        "cmyk": [
+          84.705882,
+          58.823529,
+          69.019608,
+          78.039216
+        ]
+      },
+      "reflection": {
+        "hex": "#5C7F71",
+        "cmyk": [
+          65.098039,
+          32.941176,
+          53.72549,
+          17.647059
+        ]
+      }
+    },
+    "validation": "drift/atomsai-drift-graphite-40-validation.json",
+    "saved_cmyk": {
+      "reflection": [
+        65.0980412960053,
+        32.9411774873734,
+        53.7254929542542,
+        17.6470592617989
+      ],
+      "highlight": [
+        84.7058832645416,
+        58.8235318660736,
+        69.0196096897125,
+        78.0392169952393
+      ],
+      "upper": [
+        61.5686297416687,
+        44.3137258291245,
+        49.4117647409439,
+        35.2941185235977
+      ],
+      "lower": [
+        61.5686297416687,
+        44.3137258291245,
+        49.4117647409439,
+        35.2941185235977
+      ],
+      "base": [
+        84.7058832645416,
+        58.8235318660736,
+        69.0196096897125,
+        78.0392169952393
+      ]
+    },
+    "native_reopen": "passed",
+    "visual_review": "reviewed in family contact sheet and renderer comparison"
+  },
+  {
+    "id": "atomsai-drift-iris-40",
+    "family": "drift",
+    "colorway": "Iris",
+    "density_key": 3,
+    "slits": 40,
+    "status": "validated",
+    "palette": {
+      "base": {
+        "hex": "#A77BCA",
+        "cmyk": [
+          43.137255,
+          58.039216,
+          0.0,
+          0.0
+        ]
+      },
+      "upper": {
+        "hex": "#D7C6E6",
+        "cmyk": [
+          16.862745,
+          25.882353,
+          0.0,
+          0.0
+        ]
+      },
+      "lower": {
+        "hex": "#5D4777",
+        "cmyk": [
+          72.156863,
+          77.254902,
+          26.666667,
+          11.372549
+        ]
+      },
+      "highlight": {
+        "hex": "#A77BCA",
+        "cmyk": [
+          43.137255,
+          58.039216,
+          0.0,
+          0.0
+        ]
+      },
+      "reflection": {
+        "hex": "#FFFFFF",
+        "cmyk": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      }
+    },
+    "validation": "drift/atomsai-drift-iris-40-validation.json",
+    "saved_cmyk": {
+      "reflection": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "highlight": [
+        43.1372553110123,
+        58.0392181873322,
+        0.0,
+        0.0
+      ],
+      "upper": [
+        16.8627455830574,
+        25.8823543787003,
+        0.0,
+        0.0
+      ],
+      "lower": [
+        72.1568644046784,
+        77.2549033164978,
+        26.6666680574417,
+        11.3725490868092
+      ],
+      "base": [
+        43.1372553110123,
+        58.0392181873322,
+        0.0,
+        0.0
+      ]
+    },
+    "native_reopen": "passed",
+    "visual_review": "reviewed in family contact sheet and renderer comparison"
+  },
+  {
+    "id": "atomsai-offset-forest-5",
+    "family": "offset",
+    "colorway": "Forest",
+    "density_key": 0,
+    "slits": 5,
+    "status": "validated",
+    "palette": {
+      "base": {
+        "hex": "#1D3C34",
+        "cmyk": [
+          82.352941,
+          48.627451,
+          66.666667,
+          60.784314
+        ]
+      },
+      "upper": {
+        "hex": "#43695B",
+        "cmyk": [
+          72.54902,
+          38.039216,
+          60.392157,
+          29.019608
+        ]
+      },
+      "lower": {
+        "hex": "#F6F1E8",
+        "cmyk": [
+          3.921569,
+          5.882353,
+          10.980392,
+          0.0
+        ]
+      },
+      "highlight": {
+        "hex": "#585858",
+        "cmyk": [
+          58.431373,
+          49.411765,
+          48.235294,
+          41.176471
+        ]
+      },
+      "reflection": {
+        "hex": "#FFFFFF",
+        "cmyk": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      }
+    },
+    "validation": "offset/atomsai-offset-forest-5-validation.json",
+    "saved_cmyk": {
+      "reflection": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "highlight": [
+        58.4313750267029,
+        49.4117647409439,
+        48.2352942228317,
+        41.1764711141586
+      ],
+      "lower": [
+        3.9215691387653,
+        5.8823529630899,
+        10.9803922474384,
+        0.0
+      ],
+      "upper": [
+        72.5490212440491,
+        38.0392163991928,
+        60.3921592235565,
+        29.0196090936661
+      ],
+      "base": [
+        82.3529422283173,
+        48.6274510622025,
+        66.6666686534882,
+        60.7843160629273
+      ]
+    },
+    "native_reopen": "passed",
+    "visual_review": "reviewed in family contact sheet and renderer comparison"
+  },
+  {
+    "id": "atomsai-offset-sage-5",
+    "family": "offset",
+    "colorway": "Sage",
+    "density_key": 0,
+    "slits": 5,
+    "status": "validated",
+    "palette": {
+      "base": {
+        "hex": "#1D3C34",
+        "cmyk": [
+          82.352941,
+          48.627451,
+          66.666667,
+          60.784314
+        ]
+      },
+      "upper": {
+        "hex": "#5C7F71",
+        "cmyk": [
+          65.098039,
+          32.941176,
+          53.72549,
+          17.647059
+        ]
+      },
+      "lower": {
+        "hex": "#F6F1E8",
+        "cmyk": [
+          3.921569,
+          5.882353,
+          10.980392,
+          0.0
+        ]
+      },
+      "highlight": {
+        "hex": "#585858",
+        "cmyk": [
+          58.431373,
+          49.411765,
+          48.235294,
+          41.176471
+        ]
+      },
+      "reflection": {
+        "hex": "#FFFFFF",
+        "cmyk": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      }
+    },
+    "validation": "offset/atomsai-offset-sage-5-validation.json",
+    "saved_cmyk": {
+      "reflection": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "highlight": [
+        58.4313750267029,
+        49.4117647409439,
+        48.2352942228317,
+        41.1764711141586
+      ],
+      "lower": [
+        3.9215691387653,
+        5.8823529630899,
+        10.9803922474384,
+        0.0
+      ],
+      "upper": [
+        65.0980412960053,
+        32.9411774873734,
+        53.7254929542542,
+        17.6470592617989
+      ],
+      "base": [
+        82.3529422283173,
+        48.6274510622025,
+        66.6666686534882,
+        60.7843160629273
+      ]
+    },
+    "native_reopen": "passed",
+    "visual_review": "reviewed in family contact sheet and renderer comparison"
+  },
+  {
+    "id": "atomsai-offset-graphite-5",
+    "family": "offset",
+    "colorway": "Graphite",
+    "density_key": 0,
+    "slits": 5,
+    "status": "validated",
+    "palette": {
+      "base": {
+        "hex": "#10231E",
+        "cmyk": [
+          84.705882,
+          58.823529,
+          69.019608,
+          78.039216
+        ]
+      },
+      "upper": {
+        "hex": "#58625F",
+        "cmyk": [
+          61.568627,
+          44.313725,
+          49.411765,
+          35.294118
+        ]
+      },
+      "lower": {
+        "hex": "#FAFAFA",
+        "cmyk": [
+          1.568627,
+          1.960784,
+          1.960784,
+          0.0
+        ]
+      },
+      "highlight": {
+        "hex": "#585858",
+        "cmyk": [
+          58.431373,
+          49.411765,
+          48.235294,
+          41.176471
+        ]
+      },
+      "reflection": {
+        "hex": "#FFFFFF",
+        "cmyk": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      }
+    },
+    "validation": "offset/atomsai-offset-graphite-5-validation.json",
+    "saved_cmyk": {
+      "reflection": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "highlight": [
+        58.4313750267029,
+        49.4117647409439,
+        48.2352942228317,
+        41.1764711141586
+      ],
+      "lower": [
+        1.5686269849539,
+        1.9607840105891,
+        1.9607840105891,
+        0.0
+      ],
+      "upper": [
+        61.5686297416687,
+        44.3137258291245,
+        49.4117647409439,
+        35.2941185235977
+      ],
+      "base": [
+        84.7058832645416,
+        58.8235318660736,
+        69.0196096897125,
+        78.0392169952393
+      ]
+    },
+    "native_reopen": "passed",
+    "visual_review": "reviewed in family contact sheet and renderer comparison"
+  },
+  {
+    "id": "atomsai-offset-iris-5",
+    "family": "offset",
+    "colorway": "Iris",
+    "density_key": 0,
+    "slits": 5,
+    "status": "validated",
+    "palette": {
+      "base": {
+        "hex": "#A77BCA",
+        "cmyk": [
+          43.137255,
+          58.039216,
+          0.0,
+          0.0
+        ]
+      },
+      "upper": {
+        "hex": "#A77BCA",
+        "cmyk": [
+          43.137255,
+          58.039216,
+          0.0,
+          0.0
+        ]
+      },
+      "lower": {
+        "hex": "#D7C6E6",
+        "cmyk": [
+          16.862745,
+          25.882353,
+          0.0,
+          0.0
+        ]
+      },
+      "highlight": {
+        "hex": "#A77BCA",
+        "cmyk": [
+          43.137255,
+          58.039216,
+          0.0,
+          0.0
+        ]
+      },
+      "reflection": {
+        "hex": "#FFFFFF",
+        "cmyk": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      }
+    },
+    "validation": "offset/atomsai-offset-iris-5-validation.json",
+    "saved_cmyk": {
+      "reflection": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "highlight": [
+        43.1372553110123,
+        58.0392181873322,
+        0.0,
+        0.0
+      ],
+      "lower": [
+        16.8627455830574,
+        25.8823543787003,
+        0.0,
+        0.0
+      ],
+      "upper": [
+        43.1372553110123,
+        58.0392181873322,
+        0.0,
+        0.0
+      ],
+      "base": [
+        43.1372553110123,
+        58.0392181873322,
+        0.0,
+        0.0
+      ]
+    },
+    "native_reopen": "passed",
+    "visual_review": "reviewed in family contact sheet and renderer comparison"
+  },
+  {
+    "id": "atomsai-offset-forest-10",
+    "family": "offset",
+    "colorway": "Forest",
+    "density_key": 1,
+    "slits": 10,
+    "status": "validated",
+    "palette": {
+      "base": {
+        "hex": "#1D3C34",
+        "cmyk": [
+          82.352941,
+          48.627451,
+          66.666667,
+          60.784314
+        ]
+      },
+      "upper": {
+        "hex": "#43695B",
+        "cmyk": [
+          72.54902,
+          38.039216,
+          60.392157,
+          29.019608
+        ]
+      },
+      "lower": {
+        "hex": "#F6F1E8",
+        "cmyk": [
+          3.921569,
+          5.882353,
+          10.980392,
+          0.0
+        ]
+      },
+      "highlight": {
+        "hex": "#585858",
+        "cmyk": [
+          58.431373,
+          49.411765,
+          48.235294,
+          41.176471
+        ]
+      },
+      "reflection": {
+        "hex": "#FFFFFF",
+        "cmyk": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      }
+    },
+    "validation": "offset/atomsai-offset-forest-10-validation.json",
+    "saved_cmyk": {
+      "reflection": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "highlight": [
+        58.4313750267029,
+        49.4117647409439,
+        48.2352942228317,
+        41.1764711141586
+      ],
+      "lower": [
+        3.9215691387653,
+        5.8823529630899,
+        10.9803922474384,
+        0.0
+      ],
+      "upper": [
+        72.5490212440491,
+        38.0392163991928,
+        60.3921592235565,
+        29.0196090936661
+      ],
+      "base": [
+        82.3529422283173,
+        48.6274510622025,
+        66.6666686534882,
+        60.7843160629273
+      ]
+    },
+    "native_reopen": "passed",
+    "visual_review": "reviewed in family contact sheet and renderer comparison"
+  },
+  {
+    "id": "atomsai-offset-sage-10",
+    "family": "offset",
+    "colorway": "Sage",
+    "density_key": 1,
+    "slits": 10,
+    "status": "validated",
+    "palette": {
+      "base": {
+        "hex": "#1D3C34",
+        "cmyk": [
+          82.352941,
+          48.627451,
+          66.666667,
+          60.784314
+        ]
+      },
+      "upper": {
+        "hex": "#5C7F71",
+        "cmyk": [
+          65.098039,
+          32.941176,
+          53.72549,
+          17.647059
+        ]
+      },
+      "lower": {
+        "hex": "#F6F1E8",
+        "cmyk": [
+          3.921569,
+          5.882353,
+          10.980392,
+          0.0
+        ]
+      },
+      "highlight": {
+        "hex": "#585858",
+        "cmyk": [
+          58.431373,
+          49.411765,
+          48.235294,
+          41.176471
+        ]
+      },
+      "reflection": {
+        "hex": "#FFFFFF",
+        "cmyk": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      }
+    },
+    "validation": "offset/atomsai-offset-sage-10-validation.json",
+    "saved_cmyk": {
+      "reflection": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "highlight": [
+        58.4313750267029,
+        49.4117647409439,
+        48.2352942228317,
+        41.1764711141586
+      ],
+      "lower": [
+        3.9215691387653,
+        5.8823529630899,
+        10.9803922474384,
+        0.0
+      ],
+      "upper": [
+        65.0980412960053,
+        32.9411774873734,
+        53.7254929542542,
+        17.6470592617989
+      ],
+      "base": [
+        82.3529422283173,
+        48.6274510622025,
+        66.6666686534882,
+        60.7843160629273
+      ]
+    },
+    "native_reopen": "passed",
+    "visual_review": "reviewed in family contact sheet and renderer comparison"
+  },
+  {
+    "id": "atomsai-offset-graphite-10",
+    "family": "offset",
+    "colorway": "Graphite",
+    "density_key": 1,
+    "slits": 10,
+    "status": "validated",
+    "palette": {
+      "base": {
+        "hex": "#10231E",
+        "cmyk": [
+          84.705882,
+          58.823529,
+          69.019608,
+          78.039216
+        ]
+      },
+      "upper": {
+        "hex": "#58625F",
+        "cmyk": [
+          61.568627,
+          44.313725,
+          49.411765,
+          35.294118
+        ]
+      },
+      "lower": {
+        "hex": "#FAFAFA",
+        "cmyk": [
+          1.568627,
+          1.960784,
+          1.960784,
+          0.0
+        ]
+      },
+      "highlight": {
+        "hex": "#585858",
+        "cmyk": [
+          58.431373,
+          49.411765,
+          48.235294,
+          41.176471
+        ]
+      },
+      "reflection": {
+        "hex": "#FFFFFF",
+        "cmyk": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      }
+    },
+    "validation": "offset/atomsai-offset-graphite-10-validation.json",
+    "saved_cmyk": {
+      "reflection": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "highlight": [
+        58.4313750267029,
+        49.4117647409439,
+        48.2352942228317,
+        41.1764711141586
+      ],
+      "lower": [
+        1.5686269849539,
+        1.9607840105891,
+        1.9607840105891,
+        0.0
+      ],
+      "upper": [
+        61.5686297416687,
+        44.3137258291245,
+        49.4117647409439,
+        35.2941185235977
+      ],
+      "base": [
+        84.7058832645416,
+        58.8235318660736,
+        69.0196096897125,
+        78.0392169952393
+      ]
+    },
+    "native_reopen": "passed",
+    "visual_review": "reviewed in family contact sheet and renderer comparison"
+  },
+  {
+    "id": "atomsai-offset-iris-10",
+    "family": "offset",
+    "colorway": "Iris",
+    "density_key": 1,
+    "slits": 10,
+    "status": "validated",
+    "palette": {
+      "base": {
+        "hex": "#A77BCA",
+        "cmyk": [
+          43.137255,
+          58.039216,
+          0.0,
+          0.0
+        ]
+      },
+      "upper": {
+        "hex": "#A77BCA",
+        "cmyk": [
+          43.137255,
+          58.039216,
+          0.0,
+          0.0
+        ]
+      },
+      "lower": {
+        "hex": "#D7C6E6",
+        "cmyk": [
+          16.862745,
+          25.882353,
+          0.0,
+          0.0
+        ]
+      },
+      "highlight": {
+        "hex": "#A77BCA",
+        "cmyk": [
+          43.137255,
+          58.039216,
+          0.0,
+          0.0
+        ]
+      },
+      "reflection": {
+        "hex": "#FFFFFF",
+        "cmyk": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      }
+    },
+    "validation": "offset/atomsai-offset-iris-10-validation.json",
+    "saved_cmyk": {
+      "reflection": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "highlight": [
+        43.1372553110123,
+        58.0392181873322,
+        0.0,
+        0.0
+      ],
+      "lower": [
+        16.8627455830574,
+        25.8823543787003,
+        0.0,
+        0.0
+      ],
+      "upper": [
+        43.1372553110123,
+        58.0392181873322,
+        0.0,
+        0.0
+      ],
+      "base": [
+        43.1372553110123,
+        58.0392181873322,
+        0.0,
+        0.0
+      ]
+    },
+    "native_reopen": "passed",
+    "visual_review": "reviewed in family contact sheet and renderer comparison"
+  },
+  {
+    "id": "atomsai-offset-forest-20",
+    "family": "offset",
+    "colorway": "Forest",
+    "density_key": 2,
+    "slits": 20,
+    "status": "validated",
+    "palette": {
+      "base": {
+        "hex": "#1D3C34",
+        "cmyk": [
+          82.352941,
+          48.627451,
+          66.666667,
+          60.784314
+        ]
+      },
+      "upper": {
+        "hex": "#43695B",
+        "cmyk": [
+          72.54902,
+          38.039216,
+          60.392157,
+          29.019608
+        ]
+      },
+      "lower": {
+        "hex": "#F6F1E8",
+        "cmyk": [
+          3.921569,
+          5.882353,
+          10.980392,
+          0.0
+        ]
+      },
+      "highlight": {
+        "hex": "#585858",
+        "cmyk": [
+          58.431373,
+          49.411765,
+          48.235294,
+          41.176471
+        ]
+      },
+      "reflection": {
+        "hex": "#FFFFFF",
+        "cmyk": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      }
+    },
+    "validation": "offset/atomsai-offset-forest-20-validation.json",
+    "saved_cmyk": {
+      "reflection": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "highlight": [
+        58.4313750267029,
+        49.4117647409439,
+        48.2352942228317,
+        41.1764711141586
+      ],
+      "lower": [
+        3.9215691387653,
+        5.8823529630899,
+        10.9803922474384,
+        0.0
+      ],
+      "upper": [
+        72.5490212440491,
+        38.0392163991928,
+        60.3921592235565,
+        29.0196090936661
+      ],
+      "base": [
+        82.3529422283173,
+        48.6274510622025,
+        66.6666686534882,
+        60.7843160629273
+      ]
+    },
+    "native_reopen": "passed",
+    "visual_review": "reviewed in family contact sheet and renderer comparison"
+  },
+  {
+    "id": "atomsai-offset-sage-20",
+    "family": "offset",
+    "colorway": "Sage",
+    "density_key": 2,
+    "slits": 20,
+    "status": "validated",
+    "palette": {
+      "base": {
+        "hex": "#1D3C34",
+        "cmyk": [
+          82.352941,
+          48.627451,
+          66.666667,
+          60.784314
+        ]
+      },
+      "upper": {
+        "hex": "#5C7F71",
+        "cmyk": [
+          65.098039,
+          32.941176,
+          53.72549,
+          17.647059
+        ]
+      },
+      "lower": {
+        "hex": "#F6F1E8",
+        "cmyk": [
+          3.921569,
+          5.882353,
+          10.980392,
+          0.0
+        ]
+      },
+      "highlight": {
+        "hex": "#585858",
+        "cmyk": [
+          58.431373,
+          49.411765,
+          48.235294,
+          41.176471
+        ]
+      },
+      "reflection": {
+        "hex": "#FFFFFF",
+        "cmyk": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      }
+    },
+    "validation": "offset/atomsai-offset-sage-20-validation.json",
+    "saved_cmyk": {
+      "reflection": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "highlight": [
+        58.4313750267029,
+        49.4117647409439,
+        48.2352942228317,
+        41.1764711141586
+      ],
+      "lower": [
+        3.9215691387653,
+        5.8823529630899,
+        10.9803922474384,
+        0.0
+      ],
+      "upper": [
+        65.0980412960053,
+        32.9411774873734,
+        53.7254929542542,
+        17.6470592617989
+      ],
+      "base": [
+        82.3529422283173,
+        48.6274510622025,
+        66.6666686534882,
+        60.7843160629273
+      ]
+    },
+    "native_reopen": "passed",
+    "visual_review": "reviewed in family contact sheet and renderer comparison"
+  },
+  {
+    "id": "atomsai-offset-graphite-20",
+    "family": "offset",
+    "colorway": "Graphite",
+    "density_key": 2,
+    "slits": 20,
+    "status": "validated",
+    "palette": {
+      "base": {
+        "hex": "#10231E",
+        "cmyk": [
+          84.705882,
+          58.823529,
+          69.019608,
+          78.039216
+        ]
+      },
+      "upper": {
+        "hex": "#58625F",
+        "cmyk": [
+          61.568627,
+          44.313725,
+          49.411765,
+          35.294118
+        ]
+      },
+      "lower": {
+        "hex": "#FAFAFA",
+        "cmyk": [
+          1.568627,
+          1.960784,
+          1.960784,
+          0.0
+        ]
+      },
+      "highlight": {
+        "hex": "#585858",
+        "cmyk": [
+          58.431373,
+          49.411765,
+          48.235294,
+          41.176471
+        ]
+      },
+      "reflection": {
+        "hex": "#FFFFFF",
+        "cmyk": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      }
+    },
+    "validation": "offset/atomsai-offset-graphite-20-validation.json",
+    "saved_cmyk": {
+      "reflection": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "highlight": [
+        58.4313750267029,
+        49.4117647409439,
+        48.2352942228317,
+        41.1764711141586
+      ],
+      "lower": [
+        1.5686269849539,
+        1.9607840105891,
+        1.9607840105891,
+        0.0
+      ],
+      "upper": [
+        61.5686297416687,
+        44.3137258291245,
+        49.4117647409439,
+        35.2941185235977
+      ],
+      "base": [
+        84.7058832645416,
+        58.8235318660736,
+        69.0196096897125,
+        78.0392169952393
+      ]
+    },
+    "native_reopen": "passed",
+    "visual_review": "reviewed in family contact sheet and renderer comparison"
+  },
+  {
+    "id": "atomsai-offset-iris-20",
+    "family": "offset",
+    "colorway": "Iris",
+    "density_key": 2,
+    "slits": 20,
+    "status": "validated",
+    "palette": {
+      "base": {
+        "hex": "#A77BCA",
+        "cmyk": [
+          43.137255,
+          58.039216,
+          0.0,
+          0.0
+        ]
+      },
+      "upper": {
+        "hex": "#A77BCA",
+        "cmyk": [
+          43.137255,
+          58.039216,
+          0.0,
+          0.0
+        ]
+      },
+      "lower": {
+        "hex": "#D7C6E6",
+        "cmyk": [
+          16.862745,
+          25.882353,
+          0.0,
+          0.0
+        ]
+      },
+      "highlight": {
+        "hex": "#A77BCA",
+        "cmyk": [
+          43.137255,
+          58.039216,
+          0.0,
+          0.0
+        ]
+      },
+      "reflection": {
+        "hex": "#FFFFFF",
+        "cmyk": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      }
+    },
+    "validation": "offset/atomsai-offset-iris-20-validation.json",
+    "saved_cmyk": {
+      "reflection": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "highlight": [
+        43.1372553110123,
+        58.0392181873322,
+        0.0,
+        0.0
+      ],
+      "lower": [
+        16.8627455830574,
+        25.8823543787003,
+        0.0,
+        0.0
+      ],
+      "upper": [
+        43.1372553110123,
+        58.0392181873322,
+        0.0,
+        0.0
+      ],
+      "base": [
+        43.1372553110123,
+        58.0392181873322,
+        0.0,
+        0.0
+      ]
+    },
+    "native_reopen": "passed",
+    "visual_review": "reviewed in family contact sheet and renderer comparison"
+  },
+  {
+    "id": "atomsai-offset-forest-40",
+    "family": "offset",
+    "colorway": "Forest",
+    "density_key": 3,
+    "slits": 40,
+    "status": "validated",
+    "palette": {
+      "base": {
+        "hex": "#1D3C34",
+        "cmyk": [
+          82.352941,
+          48.627451,
+          66.666667,
+          60.784314
+        ]
+      },
+      "upper": {
+        "hex": "#43695B",
+        "cmyk": [
+          72.54902,
+          38.039216,
+          60.392157,
+          29.019608
+        ]
+      },
+      "lower": {
+        "hex": "#F6F1E8",
+        "cmyk": [
+          3.921569,
+          5.882353,
+          10.980392,
+          0.0
+        ]
+      },
+      "highlight": {
+        "hex": "#585858",
+        "cmyk": [
+          58.431373,
+          49.411765,
+          48.235294,
+          41.176471
+        ]
+      },
+      "reflection": {
+        "hex": "#FFFFFF",
+        "cmyk": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      }
+    },
+    "validation": "offset/atomsai-offset-forest-40-validation.json",
+    "saved_cmyk": {
+      "reflection": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "highlight": [
+        58.4313750267029,
+        49.4117647409439,
+        48.2352942228317,
+        41.1764711141586
+      ],
+      "lower": [
+        3.9215691387653,
+        5.8823529630899,
+        10.9803922474384,
+        0.0
+      ],
+      "upper": [
+        72.5490212440491,
+        38.0392163991928,
+        60.3921592235565,
+        29.0196090936661
+      ],
+      "base": [
+        82.3529422283173,
+        48.6274510622025,
+        66.6666686534882,
+        60.7843160629273
+      ]
+    },
+    "native_reopen": "passed",
+    "visual_review": "reviewed in family contact sheet and renderer comparison"
+  },
+  {
+    "id": "atomsai-offset-sage-40",
+    "family": "offset",
+    "colorway": "Sage",
+    "density_key": 3,
+    "slits": 40,
+    "status": "validated",
+    "palette": {
+      "base": {
+        "hex": "#1D3C34",
+        "cmyk": [
+          82.352941,
+          48.627451,
+          66.666667,
+          60.784314
+        ]
+      },
+      "upper": {
+        "hex": "#5C7F71",
+        "cmyk": [
+          65.098039,
+          32.941176,
+          53.72549,
+          17.647059
+        ]
+      },
+      "lower": {
+        "hex": "#F6F1E8",
+        "cmyk": [
+          3.921569,
+          5.882353,
+          10.980392,
+          0.0
+        ]
+      },
+      "highlight": {
+        "hex": "#585858",
+        "cmyk": [
+          58.431373,
+          49.411765,
+          48.235294,
+          41.176471
+        ]
+      },
+      "reflection": {
+        "hex": "#FFFFFF",
+        "cmyk": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      }
+    },
+    "validation": "offset/atomsai-offset-sage-40-validation.json",
+    "saved_cmyk": {
+      "reflection": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "highlight": [
+        58.4313750267029,
+        49.4117647409439,
+        48.2352942228317,
+        41.1764711141586
+      ],
+      "lower": [
+        3.9215691387653,
+        5.8823529630899,
+        10.9803922474384,
+        0.0
+      ],
+      "upper": [
+        65.0980412960053,
+        32.9411774873734,
+        53.7254929542542,
+        17.6470592617989
+      ],
+      "base": [
+        82.3529422283173,
+        48.6274510622025,
+        66.6666686534882,
+        60.7843160629273
+      ]
+    },
+    "native_reopen": "passed",
+    "visual_review": "reviewed in family contact sheet and renderer comparison"
+  },
+  {
+    "id": "atomsai-offset-graphite-40",
+    "family": "offset",
+    "colorway": "Graphite",
+    "density_key": 3,
+    "slits": 40,
+    "status": "validated",
+    "palette": {
+      "base": {
+        "hex": "#10231E",
+        "cmyk": [
+          84.705882,
+          58.823529,
+          69.019608,
+          78.039216
+        ]
+      },
+      "upper": {
+        "hex": "#58625F",
+        "cmyk": [
+          61.568627,
+          44.313725,
+          49.411765,
+          35.294118
+        ]
+      },
+      "lower": {
+        "hex": "#FAFAFA",
+        "cmyk": [
+          1.568627,
+          1.960784,
+          1.960784,
+          0.0
+        ]
+      },
+      "highlight": {
+        "hex": "#585858",
+        "cmyk": [
+          58.431373,
+          49.411765,
+          48.235294,
+          41.176471
+        ]
+      },
+      "reflection": {
+        "hex": "#FFFFFF",
+        "cmyk": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      }
+    },
+    "validation": "offset/atomsai-offset-graphite-40-validation.json",
+    "saved_cmyk": {
+      "reflection": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "highlight": [
+        58.4313750267029,
+        49.4117647409439,
+        48.2352942228317,
+        41.1764711141586
+      ],
+      "lower": [
+        1.5686269849539,
+        1.9607840105891,
+        1.9607840105891,
+        0.0
+      ],
+      "upper": [
+        61.5686297416687,
+        44.3137258291245,
+        49.4117647409439,
+        35.2941185235977
+      ],
+      "base": [
+        84.7058832645416,
+        58.8235318660736,
+        69.0196096897125,
+        78.0392169952393
+      ]
+    },
+    "native_reopen": "passed",
+    "visual_review": "reviewed in family contact sheet and renderer comparison"
+  },
+  {
+    "id": "atomsai-offset-iris-40",
+    "family": "offset",
+    "colorway": "Iris",
+    "density_key": 3,
+    "slits": 40,
+    "status": "validated",
+    "palette": {
+      "base": {
+        "hex": "#A77BCA",
+        "cmyk": [
+          43.137255,
+          58.039216,
+          0.0,
+          0.0
+        ]
+      },
+      "upper": {
+        "hex": "#A77BCA",
+        "cmyk": [
+          43.137255,
+          58.039216,
+          0.0,
+          0.0
+        ]
+      },
+      "lower": {
+        "hex": "#D7C6E6",
+        "cmyk": [
+          16.862745,
+          25.882353,
+          0.0,
+          0.0
+        ]
+      },
+      "highlight": {
+        "hex": "#A77BCA",
+        "cmyk": [
+          43.137255,
+          58.039216,
+          0.0,
+          0.0
+        ]
+      },
+      "reflection": {
+        "hex": "#FFFFFF",
+        "cmyk": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      }
+    },
+    "validation": "offset/atomsai-offset-iris-40-validation.json",
+    "saved_cmyk": {
+      "reflection": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "highlight": [
+        43.1372553110123,
+        58.0392181873322,
+        0.0,
+        0.0
+      ],
+      "lower": [
+        16.8627455830574,
+        25.8823543787003,
+        0.0,
+        0.0
+      ],
+      "upper": [
+        43.1372553110123,
+        58.0392181873322,
+        0.0,
+        0.0
+      ],
+      "base": [
+        43.1372553110123,
+        58.0392181873322,
+        0.0,
+        0.0
+      ]
+    },
+    "native_reopen": "passed",
+    "visual_review": "reviewed in family contact sheet and renderer comparison"
+  },
+  {
+    "id": "atomsai-single-band-forest-5",
+    "family": "single-band",
+    "colorway": "Forest",
+    "density_key": 0,
+    "slits": 5,
+    "status": "validated",
+    "palette": {
+      "base": {
+        "hex": "#1D3C34",
+        "cmyk": [
+          82.352941,
+          48.627451,
+          66.666667,
+          60.784314
+        ]
+      },
+      "field1": {
+        "hex": "#A7AAA9",
+        "cmyk": [
+          36.470588,
+          27.058824,
+          29.411765,
+          6.666667
+        ]
+      },
+      "field2": {
+        "hex": "#43695B",
+        "cmyk": [
+          72.54902,
+          38.039216,
+          60.392157,
+          29.019608
+        ]
+      },
+      "field3": {
+        "hex": "#43695B",
+        "cmyk": [
+          72.54902,
+          38.039216,
+          60.392157,
+          29.019608
+        ]
+      },
+      "reflection": {
+        "hex": "#FFFFFF",
+        "cmyk": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "overlay": {
+        "hex": "#D7C6E6",
+        "cmyk": [
+          16.862745,
+          25.882353,
+          0.0,
+          0.0
+        ]
+      },
+      "shade": {
+        "hex": "#1D3C34",
+        "cmyk": [
+          82.352941,
+          48.627451,
+          66.666667,
+          60.784314
+        ]
+      }
+    },
+    "validation": "single-band/atomsai-single-band-forest-5-validation.json",
+    "saved_cmyk": {
+      "shade": [
+        82.3529422283173,
+        48.6274510622025,
+        66.6666686534882,
+        60.7843160629273
+      ],
+      "overlay": [
+        16.8627455830574,
+        25.8823543787003,
+        0.0,
+        0.0
+      ],
+      "reflection": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "field3": [
+        72.5490212440491,
+        38.0392163991928,
+        60.3921592235565,
+        29.0196090936661
+      ],
+      "field2": [
+        72.5490212440491,
+        38.0392163991928,
+        60.3921592235565,
+        29.0196090936661
+      ],
+      "field1": [
+        36.4705890417099,
+        27.0588248968124,
+        29.4117659330368,
+        6.66666701436041
+      ],
+      "base": [
+        82.3529422283173,
+        48.6274510622025,
+        66.6666686534882,
+        60.7843160629273
+      ]
+    },
+    "native_reopen": "passed",
+    "visual_review": "reviewed in family contact sheet and renderer comparison"
+  },
+  {
+    "id": "atomsai-single-band-sage-5",
+    "family": "single-band",
+    "colorway": "Sage",
+    "density_key": 0,
+    "slits": 5,
+    "status": "validated",
+    "palette": {
+      "base": {
+        "hex": "#1D3C34",
+        "cmyk": [
+          82.352941,
+          48.627451,
+          66.666667,
+          60.784314
+        ]
+      },
+      "field1": {
+        "hex": "#A7AAA9",
+        "cmyk": [
+          36.470588,
+          27.058824,
+          29.411765,
+          6.666667
+        ]
+      },
+      "field2": {
+        "hex": "#5C7F71",
+        "cmyk": [
+          65.098039,
+          32.941176,
+          53.72549,
+          17.647059
+        ]
+      },
+      "field3": {
+        "hex": "#5C7F71",
+        "cmyk": [
+          65.098039,
+          32.941176,
+          53.72549,
+          17.647059
+        ]
+      },
+      "reflection": {
+        "hex": "#FFFFFF",
+        "cmyk": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "overlay": {
+        "hex": "#D7C6E6",
+        "cmyk": [
+          16.862745,
+          25.882353,
+          0.0,
+          0.0
+        ]
+      },
+      "shade": {
+        "hex": "#1D3C34",
+        "cmyk": [
+          82.352941,
+          48.627451,
+          66.666667,
+          60.784314
+        ]
+      }
+    },
+    "validation": "single-band/atomsai-single-band-sage-5-validation.json",
+    "saved_cmyk": {
+      "shade": [
+        82.3529422283173,
+        48.6274510622025,
+        66.6666686534882,
+        60.7843160629273
+      ],
+      "overlay": [
+        16.8627455830574,
+        25.8823543787003,
+        0.0,
+        0.0
+      ],
+      "reflection": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "field3": [
+        65.0980412960053,
+        32.9411774873734,
+        53.7254929542542,
+        17.6470592617989
+      ],
+      "field2": [
+        65.0980412960053,
+        32.9411774873734,
+        53.7254929542542,
+        17.6470592617989
+      ],
+      "field1": [
+        36.4705890417099,
+        27.0588248968124,
+        29.4117659330368,
+        6.66666701436041
+      ],
+      "base": [
+        82.3529422283173,
+        48.6274510622025,
+        66.6666686534882,
+        60.7843160629273
+      ]
+    },
+    "native_reopen": "passed",
+    "visual_review": "reviewed in family contact sheet and renderer comparison"
+  },
+  {
+    "id": "atomsai-single-band-graphite-5",
+    "family": "single-band",
+    "colorway": "Graphite",
+    "density_key": 0,
+    "slits": 5,
+    "status": "validated",
+    "palette": {
+      "base": {
+        "hex": "#10231E",
+        "cmyk": [
+          84.705882,
+          58.823529,
+          69.019608,
+          78.039216
+        ]
+      },
+      "field1": {
+        "hex": "#A7AAA9",
+        "cmyk": [
+          36.470588,
+          27.058824,
+          29.411765,
+          6.666667
+        ]
+      },
+      "field2": {
+        "hex": "#58625F",
+        "cmyk": [
+          61.568627,
+          44.313725,
+          49.411765,
+          35.294118
+        ]
+      },
+      "field3": {
+        "hex": "#58625F",
+        "cmyk": [
+          61.568627,
+          44.313725,
+          49.411765,
+          35.294118
+        ]
+      },
+      "reflection": {
+        "hex": "#FFFFFF",
+        "cmyk": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "overlay": {
+        "hex": "#FAFAFA",
+        "cmyk": [
+          1.568627,
+          1.960784,
+          1.960784,
+          0.0
+        ]
+      },
+      "shade": {
+        "hex": "#10231E",
+        "cmyk": [
+          84.705882,
+          58.823529,
+          69.019608,
+          78.039216
+        ]
+      }
+    },
+    "validation": "single-band/atomsai-single-band-graphite-5-validation.json",
+    "saved_cmyk": {
+      "shade": [
+        84.7058832645416,
+        58.8235318660736,
+        69.0196096897125,
+        78.0392169952393
+      ],
+      "overlay": [
+        1.5686269849539,
+        1.9607840105891,
+        1.9607840105891,
+        0.0
+      ],
+      "reflection": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "field3": [
+        61.5686297416687,
+        44.3137258291245,
+        49.4117647409439,
+        35.2941185235977
+      ],
+      "field2": [
+        61.5686297416687,
+        44.3137258291245,
+        49.4117647409439,
+        35.2941185235977
+      ],
+      "field1": [
+        36.4705890417099,
+        27.0588248968124,
+        29.4117659330368,
+        6.66666701436041
+      ],
+      "base": [
+        84.7058832645416,
+        58.8235318660736,
+        69.0196096897125,
+        78.0392169952393
+      ]
+    },
+    "native_reopen": "passed",
+    "visual_review": "reviewed in family contact sheet and renderer comparison"
+  },
+  {
+    "id": "atomsai-single-band-iris-5",
+    "family": "single-band",
+    "colorway": "Iris",
+    "density_key": 0,
+    "slits": 5,
+    "status": "validated",
+    "palette": {
+      "base": {
+        "hex": "#5D4777",
+        "cmyk": [
+          72.156863,
+          77.254902,
+          26.666667,
+          11.372549
+        ]
+      },
+      "field1": {
+        "hex": "#D7C6E6",
+        "cmyk": [
+          16.862745,
+          25.882353,
+          0.0,
+          0.0
+        ]
+      },
+      "field2": {
+        "hex": "#A77BCA",
+        "cmyk": [
+          43.137255,
+          58.039216,
+          0.0,
+          0.0
+        ]
+      },
+      "field3": {
+        "hex": "#A77BCA",
+        "cmyk": [
+          43.137255,
+          58.039216,
+          0.0,
+          0.0
+        ]
+      },
+      "reflection": {
+        "hex": "#FFFFFF",
+        "cmyk": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "overlay": {
+        "hex": "#D7C6E6",
+        "cmyk": [
+          16.862745,
+          25.882353,
+          0.0,
+          0.0
+        ]
+      },
+      "shade": {
+        "hex": "#5D4777",
+        "cmyk": [
+          72.156863,
+          77.254902,
+          26.666667,
+          11.372549
+        ]
+      }
+    },
+    "validation": "single-band/atomsai-single-band-iris-5-validation.json",
+    "saved_cmyk": {
+      "shade": [
+        72.1568644046784,
+        77.2549033164978,
+        26.6666680574417,
+        11.3725490868092
+      ],
+      "overlay": [
+        16.8627455830574,
+        25.8823543787003,
+        0.0,
+        0.0
+      ],
+      "reflection": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "field3": [
+        43.1372553110123,
+        58.0392181873322,
+        0.0,
+        0.0
+      ],
+      "field2": [
+        43.1372553110123,
+        58.0392181873322,
+        0.0,
+        0.0
+      ],
+      "field1": [
+        16.8627455830574,
+        25.8823543787003,
+        0.0,
+        0.0
+      ],
+      "base": [
+        72.1568644046784,
+        77.2549033164978,
+        26.6666680574417,
+        11.3725490868092
+      ]
+    },
+    "native_reopen": "passed",
+    "visual_review": "reviewed in family contact sheet and renderer comparison"
+  },
+  {
+    "id": "atomsai-single-band-forest-10",
+    "family": "single-band",
+    "colorway": "Forest",
+    "density_key": 1,
+    "slits": 10,
+    "status": "validated",
+    "palette": {
+      "base": {
+        "hex": "#1D3C34",
+        "cmyk": [
+          82.352941,
+          48.627451,
+          66.666667,
+          60.784314
+        ]
+      },
+      "field1": {
+        "hex": "#A7AAA9",
+        "cmyk": [
+          36.470588,
+          27.058824,
+          29.411765,
+          6.666667
+        ]
+      },
+      "field2": {
+        "hex": "#43695B",
+        "cmyk": [
+          72.54902,
+          38.039216,
+          60.392157,
+          29.019608
+        ]
+      },
+      "field3": {
+        "hex": "#43695B",
+        "cmyk": [
+          72.54902,
+          38.039216,
+          60.392157,
+          29.019608
+        ]
+      },
+      "reflection": {
+        "hex": "#FFFFFF",
+        "cmyk": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "overlay": {
+        "hex": "#D7C6E6",
+        "cmyk": [
+          16.862745,
+          25.882353,
+          0.0,
+          0.0
+        ]
+      },
+      "shade": {
+        "hex": "#1D3C34",
+        "cmyk": [
+          82.352941,
+          48.627451,
+          66.666667,
+          60.784314
+        ]
+      }
+    },
+    "validation": "single-band/atomsai-single-band-forest-10-validation.json",
+    "saved_cmyk": {
+      "shade": [
+        82.3529422283173,
+        48.6274510622025,
+        66.6666686534882,
+        60.7843160629273
+      ],
+      "overlay": [
+        16.8627455830574,
+        25.8823543787003,
+        0.0,
+        0.0
+      ],
+      "reflection": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "field3": [
+        72.5490212440491,
+        38.0392163991928,
+        60.3921592235565,
+        29.0196090936661
+      ],
+      "field2": [
+        72.5490212440491,
+        38.0392163991928,
+        60.3921592235565,
+        29.0196090936661
+      ],
+      "field1": [
+        36.4705890417099,
+        27.0588248968124,
+        29.4117659330368,
+        6.66666701436041
+      ],
+      "base": [
+        82.3529422283173,
+        48.6274510622025,
+        66.6666686534882,
+        60.7843160629273
+      ]
+    },
+    "native_reopen": "passed",
+    "visual_review": "reviewed in family contact sheet and renderer comparison"
+  },
+  {
+    "id": "atomsai-single-band-sage-10",
+    "family": "single-band",
+    "colorway": "Sage",
+    "density_key": 1,
+    "slits": 10,
+    "status": "validated",
+    "palette": {
+      "base": {
+        "hex": "#1D3C34",
+        "cmyk": [
+          82.352941,
+          48.627451,
+          66.666667,
+          60.784314
+        ]
+      },
+      "field1": {
+        "hex": "#A7AAA9",
+        "cmyk": [
+          36.470588,
+          27.058824,
+          29.411765,
+          6.666667
+        ]
+      },
+      "field2": {
+        "hex": "#5C7F71",
+        "cmyk": [
+          65.098039,
+          32.941176,
+          53.72549,
+          17.647059
+        ]
+      },
+      "field3": {
+        "hex": "#5C7F71",
+        "cmyk": [
+          65.098039,
+          32.941176,
+          53.72549,
+          17.647059
+        ]
+      },
+      "reflection": {
+        "hex": "#FFFFFF",
+        "cmyk": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "overlay": {
+        "hex": "#D7C6E6",
+        "cmyk": [
+          16.862745,
+          25.882353,
+          0.0,
+          0.0
+        ]
+      },
+      "shade": {
+        "hex": "#1D3C34",
+        "cmyk": [
+          82.352941,
+          48.627451,
+          66.666667,
+          60.784314
+        ]
+      }
+    },
+    "validation": "single-band/atomsai-single-band-sage-10-validation.json",
+    "saved_cmyk": {
+      "shade": [
+        82.3529422283173,
+        48.6274510622025,
+        66.6666686534882,
+        60.7843160629273
+      ],
+      "overlay": [
+        16.8627455830574,
+        25.8823543787003,
+        0.0,
+        0.0
+      ],
+      "reflection": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "field3": [
+        65.0980412960053,
+        32.9411774873734,
+        53.7254929542542,
+        17.6470592617989
+      ],
+      "field2": [
+        65.0980412960053,
+        32.9411774873734,
+        53.7254929542542,
+        17.6470592617989
+      ],
+      "field1": [
+        36.4705890417099,
+        27.0588248968124,
+        29.4117659330368,
+        6.66666701436041
+      ],
+      "base": [
+        82.3529422283173,
+        48.6274510622025,
+        66.6666686534882,
+        60.7843160629273
+      ]
+    },
+    "native_reopen": "passed",
+    "visual_review": "reviewed in family contact sheet and renderer comparison"
+  },
+  {
+    "id": "atomsai-single-band-graphite-10",
+    "family": "single-band",
+    "colorway": "Graphite",
+    "density_key": 1,
+    "slits": 10,
+    "status": "validated",
+    "palette": {
+      "base": {
+        "hex": "#10231E",
+        "cmyk": [
+          84.705882,
+          58.823529,
+          69.019608,
+          78.039216
+        ]
+      },
+      "field1": {
+        "hex": "#A7AAA9",
+        "cmyk": [
+          36.470588,
+          27.058824,
+          29.411765,
+          6.666667
+        ]
+      },
+      "field2": {
+        "hex": "#58625F",
+        "cmyk": [
+          61.568627,
+          44.313725,
+          49.411765,
+          35.294118
+        ]
+      },
+      "field3": {
+        "hex": "#58625F",
+        "cmyk": [
+          61.568627,
+          44.313725,
+          49.411765,
+          35.294118
+        ]
+      },
+      "reflection": {
+        "hex": "#FFFFFF",
+        "cmyk": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "overlay": {
+        "hex": "#FAFAFA",
+        "cmyk": [
+          1.568627,
+          1.960784,
+          1.960784,
+          0.0
+        ]
+      },
+      "shade": {
+        "hex": "#10231E",
+        "cmyk": [
+          84.705882,
+          58.823529,
+          69.019608,
+          78.039216
+        ]
+      }
+    },
+    "validation": "single-band/atomsai-single-band-graphite-10-validation.json",
+    "saved_cmyk": {
+      "shade": [
+        84.7058832645416,
+        58.8235318660736,
+        69.0196096897125,
+        78.0392169952393
+      ],
+      "overlay": [
+        1.5686269849539,
+        1.9607840105891,
+        1.9607840105891,
+        0.0
+      ],
+      "reflection": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "field3": [
+        61.5686297416687,
+        44.3137258291245,
+        49.4117647409439,
+        35.2941185235977
+      ],
+      "field2": [
+        61.5686297416687,
+        44.3137258291245,
+        49.4117647409439,
+        35.2941185235977
+      ],
+      "field1": [
+        36.4705890417099,
+        27.0588248968124,
+        29.4117659330368,
+        6.66666701436041
+      ],
+      "base": [
+        84.7058832645416,
+        58.8235318660736,
+        69.0196096897125,
+        78.0392169952393
+      ]
+    },
+    "native_reopen": "passed",
+    "visual_review": "reviewed in family contact sheet and renderer comparison"
+  },
+  {
+    "id": "atomsai-single-band-iris-10",
+    "family": "single-band",
+    "colorway": "Iris",
+    "density_key": 1,
+    "slits": 10,
+    "status": "validated",
+    "palette": {
+      "base": {
+        "hex": "#5D4777",
+        "cmyk": [
+          72.156863,
+          77.254902,
+          26.666667,
+          11.372549
+        ]
+      },
+      "field1": {
+        "hex": "#D7C6E6",
+        "cmyk": [
+          16.862745,
+          25.882353,
+          0.0,
+          0.0
+        ]
+      },
+      "field2": {
+        "hex": "#A77BCA",
+        "cmyk": [
+          43.137255,
+          58.039216,
+          0.0,
+          0.0
+        ]
+      },
+      "field3": {
+        "hex": "#A77BCA",
+        "cmyk": [
+          43.137255,
+          58.039216,
+          0.0,
+          0.0
+        ]
+      },
+      "reflection": {
+        "hex": "#FFFFFF",
+        "cmyk": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "overlay": {
+        "hex": "#D7C6E6",
+        "cmyk": [
+          16.862745,
+          25.882353,
+          0.0,
+          0.0
+        ]
+      },
+      "shade": {
+        "hex": "#5D4777",
+        "cmyk": [
+          72.156863,
+          77.254902,
+          26.666667,
+          11.372549
+        ]
+      }
+    },
+    "validation": "single-band/atomsai-single-band-iris-10-validation.json",
+    "saved_cmyk": {
+      "shade": [
+        72.1568644046784,
+        77.2549033164978,
+        26.6666680574417,
+        11.3725490868092
+      ],
+      "overlay": [
+        16.8627455830574,
+        25.8823543787003,
+        0.0,
+        0.0
+      ],
+      "reflection": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "field3": [
+        43.1372553110123,
+        58.0392181873322,
+        0.0,
+        0.0
+      ],
+      "field2": [
+        43.1372553110123,
+        58.0392181873322,
+        0.0,
+        0.0
+      ],
+      "field1": [
+        16.8627455830574,
+        25.8823543787003,
+        0.0,
+        0.0
+      ],
+      "base": [
+        72.1568644046784,
+        77.2549033164978,
+        26.6666680574417,
+        11.3725490868092
+      ]
+    },
+    "native_reopen": "passed",
+    "visual_review": "reviewed in family contact sheet and renderer comparison"
+  },
+  {
+    "id": "atomsai-single-band-forest-20",
+    "family": "single-band",
+    "colorway": "Forest",
+    "density_key": 2,
+    "slits": 20,
+    "status": "validated",
+    "palette": {
+      "base": {
+        "hex": "#1D3C34",
+        "cmyk": [
+          82.352941,
+          48.627451,
+          66.666667,
+          60.784314
+        ]
+      },
+      "field1": {
+        "hex": "#A7AAA9",
+        "cmyk": [
+          36.470588,
+          27.058824,
+          29.411765,
+          6.666667
+        ]
+      },
+      "field2": {
+        "hex": "#43695B",
+        "cmyk": [
+          72.54902,
+          38.039216,
+          60.392157,
+          29.019608
+        ]
+      },
+      "field3": {
+        "hex": "#43695B",
+        "cmyk": [
+          72.54902,
+          38.039216,
+          60.392157,
+          29.019608
+        ]
+      },
+      "reflection": {
+        "hex": "#FFFFFF",
+        "cmyk": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "overlay": {
+        "hex": "#D7C6E6",
+        "cmyk": [
+          16.862745,
+          25.882353,
+          0.0,
+          0.0
+        ]
+      },
+      "shade": {
+        "hex": "#1D3C34",
+        "cmyk": [
+          82.352941,
+          48.627451,
+          66.666667,
+          60.784314
+        ]
+      }
+    },
+    "validation": "single-band/atomsai-single-band-forest-20-validation.json",
+    "saved_cmyk": {
+      "shade": [
+        82.3529422283173,
+        48.6274510622025,
+        66.6666686534882,
+        60.7843160629273
+      ],
+      "overlay": [
+        16.8627455830574,
+        25.8823543787003,
+        0.0,
+        0.0
+      ],
+      "reflection": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "field3": [
+        72.5490212440491,
+        38.0392163991928,
+        60.3921592235565,
+        29.0196090936661
+      ],
+      "field2": [
+        72.5490212440491,
+        38.0392163991928,
+        60.3921592235565,
+        29.0196090936661
+      ],
+      "field1": [
+        36.4705890417099,
+        27.0588248968124,
+        29.4117659330368,
+        6.66666701436041
+      ],
+      "base": [
+        82.3529422283173,
+        48.6274510622025,
+        66.6666686534882,
+        60.7843160629273
+      ]
+    },
+    "native_reopen": "passed",
+    "visual_review": "reviewed in family contact sheet and renderer comparison"
+  },
+  {
+    "id": "atomsai-single-band-sage-20",
+    "family": "single-band",
+    "colorway": "Sage",
+    "density_key": 2,
+    "slits": 20,
+    "status": "validated",
+    "palette": {
+      "base": {
+        "hex": "#1D3C34",
+        "cmyk": [
+          82.352941,
+          48.627451,
+          66.666667,
+          60.784314
+        ]
+      },
+      "field1": {
+        "hex": "#A7AAA9",
+        "cmyk": [
+          36.470588,
+          27.058824,
+          29.411765,
+          6.666667
+        ]
+      },
+      "field2": {
+        "hex": "#5C7F71",
+        "cmyk": [
+          65.098039,
+          32.941176,
+          53.72549,
+          17.647059
+        ]
+      },
+      "field3": {
+        "hex": "#5C7F71",
+        "cmyk": [
+          65.098039,
+          32.941176,
+          53.72549,
+          17.647059
+        ]
+      },
+      "reflection": {
+        "hex": "#FFFFFF",
+        "cmyk": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "overlay": {
+        "hex": "#D7C6E6",
+        "cmyk": [
+          16.862745,
+          25.882353,
+          0.0,
+          0.0
+        ]
+      },
+      "shade": {
+        "hex": "#1D3C34",
+        "cmyk": [
+          82.352941,
+          48.627451,
+          66.666667,
+          60.784314
+        ]
+      }
+    },
+    "validation": "single-band/atomsai-single-band-sage-20-validation.json",
+    "saved_cmyk": {
+      "shade": [
+        82.3529422283173,
+        48.6274510622025,
+        66.6666686534882,
+        60.7843160629273
+      ],
+      "overlay": [
+        16.8627455830574,
+        25.8823543787003,
+        0.0,
+        0.0
+      ],
+      "reflection": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "field3": [
+        65.0980412960053,
+        32.9411774873734,
+        53.7254929542542,
+        17.6470592617989
+      ],
+      "field2": [
+        65.0980412960053,
+        32.9411774873734,
+        53.7254929542542,
+        17.6470592617989
+      ],
+      "field1": [
+        36.4705890417099,
+        27.0588248968124,
+        29.4117659330368,
+        6.66666701436041
+      ],
+      "base": [
+        82.3529422283173,
+        48.6274510622025,
+        66.6666686534882,
+        60.7843160629273
+      ]
+    },
+    "native_reopen": "passed",
+    "visual_review": "reviewed in family contact sheet and renderer comparison"
+  },
+  {
+    "id": "atomsai-single-band-graphite-20",
+    "family": "single-band",
+    "colorway": "Graphite",
+    "density_key": 2,
+    "slits": 20,
+    "status": "validated",
+    "palette": {
+      "base": {
+        "hex": "#10231E",
+        "cmyk": [
+          84.705882,
+          58.823529,
+          69.019608,
+          78.039216
+        ]
+      },
+      "field1": {
+        "hex": "#A7AAA9",
+        "cmyk": [
+          36.470588,
+          27.058824,
+          29.411765,
+          6.666667
+        ]
+      },
+      "field2": {
+        "hex": "#58625F",
+        "cmyk": [
+          61.568627,
+          44.313725,
+          49.411765,
+          35.294118
+        ]
+      },
+      "field3": {
+        "hex": "#58625F",
+        "cmyk": [
+          61.568627,
+          44.313725,
+          49.411765,
+          35.294118
+        ]
+      },
+      "reflection": {
+        "hex": "#FFFFFF",
+        "cmyk": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "overlay": {
+        "hex": "#FAFAFA",
+        "cmyk": [
+          1.568627,
+          1.960784,
+          1.960784,
+          0.0
+        ]
+      },
+      "shade": {
+        "hex": "#10231E",
+        "cmyk": [
+          84.705882,
+          58.823529,
+          69.019608,
+          78.039216
+        ]
+      }
+    },
+    "validation": "single-band/atomsai-single-band-graphite-20-validation.json",
+    "saved_cmyk": {
+      "shade": [
+        84.7058832645416,
+        58.8235318660736,
+        69.0196096897125,
+        78.0392169952393
+      ],
+      "overlay": [
+        1.5686269849539,
+        1.9607840105891,
+        1.9607840105891,
+        0.0
+      ],
+      "reflection": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "field3": [
+        61.5686297416687,
+        44.3137258291245,
+        49.4117647409439,
+        35.2941185235977
+      ],
+      "field2": [
+        61.5686297416687,
+        44.3137258291245,
+        49.4117647409439,
+        35.2941185235977
+      ],
+      "field1": [
+        36.4705890417099,
+        27.0588248968124,
+        29.4117659330368,
+        6.66666701436041
+      ],
+      "base": [
+        84.7058832645416,
+        58.8235318660736,
+        69.0196096897125,
+        78.0392169952393
+      ]
+    },
+    "native_reopen": "passed",
+    "visual_review": "reviewed in family contact sheet and renderer comparison"
+  },
+  {
+    "id": "atomsai-single-band-iris-20",
+    "family": "single-band",
+    "colorway": "Iris",
+    "density_key": 2,
+    "slits": 20,
+    "status": "validated",
+    "palette": {
+      "base": {
+        "hex": "#5D4777",
+        "cmyk": [
+          72.156863,
+          77.254902,
+          26.666667,
+          11.372549
+        ]
+      },
+      "field1": {
+        "hex": "#D7C6E6",
+        "cmyk": [
+          16.862745,
+          25.882353,
+          0.0,
+          0.0
+        ]
+      },
+      "field2": {
+        "hex": "#A77BCA",
+        "cmyk": [
+          43.137255,
+          58.039216,
+          0.0,
+          0.0
+        ]
+      },
+      "field3": {
+        "hex": "#A77BCA",
+        "cmyk": [
+          43.137255,
+          58.039216,
+          0.0,
+          0.0
+        ]
+      },
+      "reflection": {
+        "hex": "#FFFFFF",
+        "cmyk": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "overlay": {
+        "hex": "#D7C6E6",
+        "cmyk": [
+          16.862745,
+          25.882353,
+          0.0,
+          0.0
+        ]
+      },
+      "shade": {
+        "hex": "#5D4777",
+        "cmyk": [
+          72.156863,
+          77.254902,
+          26.666667,
+          11.372549
+        ]
+      }
+    },
+    "validation": "single-band/atomsai-single-band-iris-20-validation.json",
+    "saved_cmyk": {
+      "shade": [
+        72.1568644046784,
+        77.2549033164978,
+        26.6666680574417,
+        11.3725490868092
+      ],
+      "overlay": [
+        16.8627455830574,
+        25.8823543787003,
+        0.0,
+        0.0
+      ],
+      "reflection": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "field3": [
+        43.1372553110123,
+        58.0392181873322,
+        0.0,
+        0.0
+      ],
+      "field2": [
+        43.1372553110123,
+        58.0392181873322,
+        0.0,
+        0.0
+      ],
+      "field1": [
+        16.8627455830574,
+        25.8823543787003,
+        0.0,
+        0.0
+      ],
+      "base": [
+        72.1568644046784,
+        77.2549033164978,
+        26.6666680574417,
+        11.3725490868092
+      ]
+    },
+    "native_reopen": "passed",
+    "visual_review": "reviewed in family contact sheet and renderer comparison"
+  },
+  {
+    "id": "atomsai-single-band-forest-40",
+    "family": "single-band",
+    "colorway": "Forest",
+    "density_key": 3,
+    "slits": 40,
+    "status": "validated",
+    "palette": {
+      "base": {
+        "hex": "#1D3C34",
+        "cmyk": [
+          82.352941,
+          48.627451,
+          66.666667,
+          60.784314
+        ]
+      },
+      "field1": {
+        "hex": "#A7AAA9",
+        "cmyk": [
+          36.470588,
+          27.058824,
+          29.411765,
+          6.666667
+        ]
+      },
+      "field2": {
+        "hex": "#43695B",
+        "cmyk": [
+          72.54902,
+          38.039216,
+          60.392157,
+          29.019608
+        ]
+      },
+      "field3": {
+        "hex": "#43695B",
+        "cmyk": [
+          72.54902,
+          38.039216,
+          60.392157,
+          29.019608
+        ]
+      },
+      "reflection": {
+        "hex": "#FFFFFF",
+        "cmyk": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "overlay": {
+        "hex": "#D7C6E6",
+        "cmyk": [
+          16.862745,
+          25.882353,
+          0.0,
+          0.0
+        ]
+      },
+      "shade": {
+        "hex": "#1D3C34",
+        "cmyk": [
+          82.352941,
+          48.627451,
+          66.666667,
+          60.784314
+        ]
+      }
+    },
+    "validation": "single-band/atomsai-single-band-forest-40-validation.json",
+    "saved_cmyk": {
+      "shade": [
+        82.3529422283173,
+        48.6274510622025,
+        66.6666686534882,
+        60.7843160629273
+      ],
+      "overlay": [
+        16.8627455830574,
+        25.8823543787003,
+        0.0,
+        0.0
+      ],
+      "reflection": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "field3": [
+        72.5490212440491,
+        38.0392163991928,
+        60.3921592235565,
+        29.0196090936661
+      ],
+      "field2": [
+        72.5490212440491,
+        38.0392163991928,
+        60.3921592235565,
+        29.0196090936661
+      ],
+      "field1": [
+        36.4705890417099,
+        27.0588248968124,
+        29.4117659330368,
+        6.66666701436041
+      ],
+      "base": [
+        82.3529422283173,
+        48.6274510622025,
+        66.6666686534882,
+        60.7843160629273
+      ]
+    },
+    "native_reopen": "passed",
+    "visual_review": "reviewed in family contact sheet and renderer comparison"
+  },
+  {
+    "id": "atomsai-single-band-sage-40",
+    "family": "single-band",
+    "colorway": "Sage",
+    "density_key": 3,
+    "slits": 40,
+    "status": "validated",
+    "palette": {
+      "base": {
+        "hex": "#1D3C34",
+        "cmyk": [
+          82.352941,
+          48.627451,
+          66.666667,
+          60.784314
+        ]
+      },
+      "field1": {
+        "hex": "#A7AAA9",
+        "cmyk": [
+          36.470588,
+          27.058824,
+          29.411765,
+          6.666667
+        ]
+      },
+      "field2": {
+        "hex": "#5C7F71",
+        "cmyk": [
+          65.098039,
+          32.941176,
+          53.72549,
+          17.647059
+        ]
+      },
+      "field3": {
+        "hex": "#5C7F71",
+        "cmyk": [
+          65.098039,
+          32.941176,
+          53.72549,
+          17.647059
+        ]
+      },
+      "reflection": {
+        "hex": "#FFFFFF",
+        "cmyk": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "overlay": {
+        "hex": "#D7C6E6",
+        "cmyk": [
+          16.862745,
+          25.882353,
+          0.0,
+          0.0
+        ]
+      },
+      "shade": {
+        "hex": "#1D3C34",
+        "cmyk": [
+          82.352941,
+          48.627451,
+          66.666667,
+          60.784314
+        ]
+      }
+    },
+    "validation": "single-band/atomsai-single-band-sage-40-validation.json",
+    "saved_cmyk": {
+      "shade": [
+        82.3529422283173,
+        48.6274510622025,
+        66.6666686534882,
+        60.7843160629273
+      ],
+      "overlay": [
+        16.8627455830574,
+        25.8823543787003,
+        0.0,
+        0.0
+      ],
+      "reflection": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "field3": [
+        65.0980412960053,
+        32.9411774873734,
+        53.7254929542542,
+        17.6470592617989
+      ],
+      "field2": [
+        65.0980412960053,
+        32.9411774873734,
+        53.7254929542542,
+        17.6470592617989
+      ],
+      "field1": [
+        36.4705890417099,
+        27.0588248968124,
+        29.4117659330368,
+        6.66666701436041
+      ],
+      "base": [
+        82.3529422283173,
+        48.6274510622025,
+        66.6666686534882,
+        60.7843160629273
+      ]
+    },
+    "native_reopen": "passed",
+    "visual_review": "reviewed in family contact sheet and renderer comparison"
+  },
+  {
+    "id": "atomsai-single-band-graphite-40",
+    "family": "single-band",
+    "colorway": "Graphite",
+    "density_key": 3,
+    "slits": 40,
+    "status": "validated",
+    "palette": {
+      "base": {
+        "hex": "#10231E",
+        "cmyk": [
+          84.705882,
+          58.823529,
+          69.019608,
+          78.039216
+        ]
+      },
+      "field1": {
+        "hex": "#A7AAA9",
+        "cmyk": [
+          36.470588,
+          27.058824,
+          29.411765,
+          6.666667
+        ]
+      },
+      "field2": {
+        "hex": "#58625F",
+        "cmyk": [
+          61.568627,
+          44.313725,
+          49.411765,
+          35.294118
+        ]
+      },
+      "field3": {
+        "hex": "#58625F",
+        "cmyk": [
+          61.568627,
+          44.313725,
+          49.411765,
+          35.294118
+        ]
+      },
+      "reflection": {
+        "hex": "#FFFFFF",
+        "cmyk": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "overlay": {
+        "hex": "#FAFAFA",
+        "cmyk": [
+          1.568627,
+          1.960784,
+          1.960784,
+          0.0
+        ]
+      },
+      "shade": {
+        "hex": "#10231E",
+        "cmyk": [
+          84.705882,
+          58.823529,
+          69.019608,
+          78.039216
+        ]
+      }
+    },
+    "validation": "single-band/atomsai-single-band-graphite-40-validation.json",
+    "saved_cmyk": {
+      "shade": [
+        84.7058832645416,
+        58.8235318660736,
+        69.0196096897125,
+        78.0392169952393
+      ],
+      "overlay": [
+        1.5686269849539,
+        1.9607840105891,
+        1.9607840105891,
+        0.0
+      ],
+      "reflection": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "field3": [
+        61.5686297416687,
+        44.3137258291245,
+        49.4117647409439,
+        35.2941185235977
+      ],
+      "field2": [
+        61.5686297416687,
+        44.3137258291245,
+        49.4117647409439,
+        35.2941185235977
+      ],
+      "field1": [
+        36.4705890417099,
+        27.0588248968124,
+        29.4117659330368,
+        6.66666701436041
+      ],
+      "base": [
+        84.7058832645416,
+        58.8235318660736,
+        69.0196096897125,
+        78.0392169952393
+      ]
+    },
+    "native_reopen": "passed",
+    "visual_review": "reviewed in family contact sheet and renderer comparison"
+  },
+  {
+    "id": "atomsai-single-band-iris-40",
+    "family": "single-band",
+    "colorway": "Iris",
+    "density_key": 3,
+    "slits": 40,
+    "status": "validated",
+    "palette": {
+      "base": {
+        "hex": "#5D4777",
+        "cmyk": [
+          72.156863,
+          77.254902,
+          26.666667,
+          11.372549
+        ]
+      },
+      "field1": {
+        "hex": "#D7C6E6",
+        "cmyk": [
+          16.862745,
+          25.882353,
+          0.0,
+          0.0
+        ]
+      },
+      "field2": {
+        "hex": "#A77BCA",
+        "cmyk": [
+          43.137255,
+          58.039216,
+          0.0,
+          0.0
+        ]
+      },
+      "field3": {
+        "hex": "#A77BCA",
+        "cmyk": [
+          43.137255,
+          58.039216,
+          0.0,
+          0.0
+        ]
+      },
+      "reflection": {
+        "hex": "#FFFFFF",
+        "cmyk": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "overlay": {
+        "hex": "#D7C6E6",
+        "cmyk": [
+          16.862745,
+          25.882353,
+          0.0,
+          0.0
+        ]
+      },
+      "shade": {
+        "hex": "#5D4777",
+        "cmyk": [
+          72.156863,
+          77.254902,
+          26.666667,
+          11.372549
+        ]
+      }
+    },
+    "validation": "single-band/atomsai-single-band-iris-40-validation.json",
+    "saved_cmyk": {
+      "shade": [
+        72.1568644046784,
+        77.2549033164978,
+        26.6666680574417,
+        11.3725490868092
+      ],
+      "overlay": [
+        16.8627455830574,
+        25.8823543787003,
+        0.0,
+        0.0
+      ],
+      "reflection": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "field3": [
+        43.1372553110123,
+        58.0392181873322,
+        0.0,
+        0.0
+      ],
+      "field2": [
+        43.1372553110123,
+        58.0392181873322,
+        0.0,
+        0.0
+      ],
+      "field1": [
+        16.8627455830574,
+        25.8823543787003,
+        0.0,
+        0.0
+      ],
+      "base": [
+        72.1568644046784,
+        77.2549033164978,
+        26.6666680574417,
+        11.3725490868092
+      ]
+    },
+    "native_reopen": "passed",
+    "visual_review": "reviewed in family contact sheet and renderer comparison"
+  },
+  {
+    "id": "atomsai-concentric-forest-variant-1",
+    "family": "concentric",
+    "colorway": "Forest",
+    "density_key": 1,
+    "slits": null,
+    "status": "validated",
+    "palette": {
+      "base": {
+        "hex": "#10231E",
+        "cmyk": [
+          84.705882,
+          58.823529,
+          69.019608,
+          78.039216
+        ]
+      },
+      "upper": {
+        "hex": "#43695B",
+        "cmyk": [
+          72.54902,
+          38.039216,
+          60.392157,
+          29.019608
+        ]
+      },
+      "lower": {
+        "hex": "#43695B",
+        "cmyk": [
+          72.54902,
+          38.039216,
+          60.392157,
+          29.019608
+        ]
+      },
+      "highlight": {
+        "hex": "#2E2E2E",
+        "cmyk": [
+          68.627451,
+          61.176471,
+          57.254902,
+          69.411765
+        ]
+      },
+      "reflection": {
+        "hex": "#646464",
+        "cmyk": [
+          55.294118,
+          46.27451,
+          45.882353,
+          34.117647
+        ]
+      }
+    },
+    "validation": "concentric/atomsai-concentric-forest-variant-1-validation.json",
+    "saved_cmyk": {
+      "reflection": [
+        55.2941203117371,
+        46.2745100259781,
+        45.8823531866074,
+        34.1176480054855
+      ],
+      "highlight": [
+        68.6274528503418,
+        61.176472902298,
+        57.2549045085907,
+        69.4117665290833
+      ],
+      "lower": [
+        72.5490212440491,
+        38.0392163991928,
+        60.3921592235565,
+        29.0196090936661
+      ],
+      "upper": [
+        72.5490212440491,
+        38.0392163991928,
+        60.3921592235565,
+        29.0196090936661
+      ],
+      "base": [
+        84.7058832645416,
+        58.8235318660736,
+        69.0196096897125,
+        78.0392169952393
+      ]
+    },
+    "native_reopen": "passed",
+    "visual_review": "reviewed in family contact sheet and renderer comparison"
+  },
+  {
+    "id": "atomsai-concentric-sage-variant-1",
+    "family": "concentric",
+    "colorway": "Sage",
+    "density_key": 1,
+    "slits": null,
+    "status": "validated",
+    "palette": {
+      "base": {
+        "hex": "#10231E",
+        "cmyk": [
+          84.705882,
+          58.823529,
+          69.019608,
+          78.039216
+        ]
+      },
+      "upper": {
+        "hex": "#5C7F71",
+        "cmyk": [
+          65.098039,
+          32.941176,
+          53.72549,
+          17.647059
+        ]
+      },
+      "lower": {
+        "hex": "#5C7F71",
+        "cmyk": [
+          65.098039,
+          32.941176,
+          53.72549,
+          17.647059
+        ]
+      },
+      "highlight": {
+        "hex": "#2E2E2E",
+        "cmyk": [
+          68.627451,
+          61.176471,
+          57.254902,
+          69.411765
+        ]
+      },
+      "reflection": {
+        "hex": "#646464",
+        "cmyk": [
+          55.294118,
+          46.27451,
+          45.882353,
+          34.117647
+        ]
+      }
+    },
+    "validation": "concentric/atomsai-concentric-sage-variant-1-validation.json",
+    "saved_cmyk": {
+      "reflection": [
+        55.2941203117371,
+        46.2745100259781,
+        45.8823531866074,
+        34.1176480054855
+      ],
+      "highlight": [
+        68.6274528503418,
+        61.176472902298,
+        57.2549045085907,
+        69.4117665290833
+      ],
+      "lower": [
+        65.0980412960053,
+        32.9411774873734,
+        53.7254929542542,
+        17.6470592617989
+      ],
+      "upper": [
+        65.0980412960053,
+        32.9411774873734,
+        53.7254929542542,
+        17.6470592617989
+      ],
+      "base": [
+        84.7058832645416,
+        58.8235318660736,
+        69.0196096897125,
+        78.0392169952393
+      ]
+    },
+    "native_reopen": "passed",
+    "visual_review": "reviewed in family contact sheet and renderer comparison"
+  },
+  {
+    "id": "atomsai-concentric-graphite-variant-1",
+    "family": "concentric",
+    "colorway": "Graphite",
+    "density_key": 1,
+    "slits": null,
+    "status": "validated",
+    "palette": {
+      "base": {
+        "hex": "#10231E",
+        "cmyk": [
+          84.705882,
+          58.823529,
+          69.019608,
+          78.039216
+        ]
+      },
+      "upper": {
+        "hex": "#58625F",
+        "cmyk": [
+          61.568627,
+          44.313725,
+          49.411765,
+          35.294118
+        ]
+      },
+      "lower": {
+        "hex": "#58625F",
+        "cmyk": [
+          61.568627,
+          44.313725,
+          49.411765,
+          35.294118
+        ]
+      },
+      "highlight": {
+        "hex": "#2E2E2E",
+        "cmyk": [
+          68.627451,
+          61.176471,
+          57.254902,
+          69.411765
+        ]
+      },
+      "reflection": {
+        "hex": "#646464",
+        "cmyk": [
+          55.294118,
+          46.27451,
+          45.882353,
+          34.117647
+        ]
+      }
+    },
+    "validation": "concentric/atomsai-concentric-graphite-variant-1-validation.json",
+    "saved_cmyk": {
+      "reflection": [
+        55.2941203117371,
+        46.2745100259781,
+        45.8823531866074,
+        34.1176480054855
+      ],
+      "highlight": [
+        68.6274528503418,
+        61.176472902298,
+        57.2549045085907,
+        69.4117665290833
+      ],
+      "lower": [
+        61.5686297416687,
+        44.3137258291245,
+        49.4117647409439,
+        35.2941185235977
+      ],
+      "upper": [
+        61.5686297416687,
+        44.3137258291245,
+        49.4117647409439,
+        35.2941185235977
+      ],
+      "base": [
+        84.7058832645416,
+        58.8235318660736,
+        69.0196096897125,
+        78.0392169952393
+      ]
+    },
+    "native_reopen": "passed",
+    "visual_review": "reviewed in family contact sheet and renderer comparison"
+  },
+  {
+    "id": "atomsai-concentric-iris-variant-1",
+    "family": "concentric",
+    "colorway": "Iris",
+    "density_key": 1,
+    "slits": null,
+    "status": "validated",
+    "palette": {
+      "base": {
+        "hex": "#5D4777",
+        "cmyk": [
+          72.156863,
+          77.254902,
+          26.666667,
+          11.372549
+        ]
+      },
+      "upper": {
+        "hex": "#A77BCA",
+        "cmyk": [
+          43.137255,
+          58.039216,
+          0.0,
+          0.0
+        ]
+      },
+      "lower": {
+        "hex": "#A77BCA",
+        "cmyk": [
+          43.137255,
+          58.039216,
+          0.0,
+          0.0
+        ]
+      },
+      "highlight": {
+        "hex": "#D7C6E6",
+        "cmyk": [
+          16.862745,
+          25.882353,
+          0.0,
+          0.0
+        ]
+      },
+      "reflection": {
+        "hex": "#A77BCA",
+        "cmyk": [
+          43.137255,
+          58.039216,
+          0.0,
+          0.0
+        ]
+      }
+    },
+    "validation": "concentric/atomsai-concentric-iris-variant-1-validation.json",
+    "saved_cmyk": {
+      "reflection": [
+        43.1372553110123,
+        58.0392181873322,
+        0.0,
+        0.0
+      ],
+      "highlight": [
+        16.8627455830574,
+        25.8823543787003,
+        0.0,
+        0.0
+      ],
+      "lower": [
+        43.1372553110123,
+        58.0392181873322,
+        0.0,
+        0.0
+      ],
+      "upper": [
+        43.1372553110123,
+        58.0392181873322,
+        0.0,
+        0.0
+      ],
+      "base": [
+        72.1568644046784,
+        77.2549033164978,
+        26.6666680574417,
+        11.3725490868092
+      ]
+    },
+    "native_reopen": "passed",
+    "visual_review": "reviewed in family contact sheet and renderer comparison"
+  },
+  {
+    "id": "atomsai-concentric-forest-variant-2",
+    "family": "concentric",
+    "colorway": "Forest",
+    "density_key": 2,
+    "slits": null,
+    "status": "validated",
+    "palette": {
+      "base": {
+        "hex": "#10231E",
+        "cmyk": [
+          84.705882,
+          58.823529,
+          69.019608,
+          78.039216
+        ]
+      },
+      "upper": {
+        "hex": "#43695B",
+        "cmyk": [
+          72.54902,
+          38.039216,
+          60.392157,
+          29.019608
+        ]
+      },
+      "lower": {
+        "hex": "#43695B",
+        "cmyk": [
+          72.54902,
+          38.039216,
+          60.392157,
+          29.019608
+        ]
+      },
+      "highlight": {
+        "hex": "#2E2E2E",
+        "cmyk": [
+          68.627451,
+          61.176471,
+          57.254902,
+          69.411765
+        ]
+      },
+      "reflection": {
+        "hex": "#646464",
+        "cmyk": [
+          55.294118,
+          46.27451,
+          45.882353,
+          34.117647
+        ]
+      }
+    },
+    "validation": "concentric/atomsai-concentric-forest-variant-2-validation.json",
+    "saved_cmyk": {
+      "reflection": [
+        55.2941203117371,
+        46.2745100259781,
+        45.8823531866074,
+        34.1176480054855
+      ],
+      "highlight": [
+        68.6274528503418,
+        61.176472902298,
+        57.2549045085907,
+        69.4117665290833
+      ],
+      "lower": [
+        72.5490212440491,
+        38.0392163991928,
+        60.3921592235565,
+        29.0196090936661
+      ],
+      "upper": [
+        72.5490212440491,
+        38.0392163991928,
+        60.3921592235565,
+        29.0196090936661
+      ],
+      "base": [
+        84.7058832645416,
+        58.8235318660736,
+        69.0196096897125,
+        78.0392169952393
+      ]
+    },
+    "native_reopen": "passed",
+    "visual_review": "reviewed in family contact sheet and renderer comparison"
+  },
+  {
+    "id": "atomsai-concentric-sage-variant-2",
+    "family": "concentric",
+    "colorway": "Sage",
+    "density_key": 2,
+    "slits": null,
+    "status": "validated",
+    "palette": {
+      "base": {
+        "hex": "#10231E",
+        "cmyk": [
+          84.705882,
+          58.823529,
+          69.019608,
+          78.039216
+        ]
+      },
+      "upper": {
+        "hex": "#5C7F71",
+        "cmyk": [
+          65.098039,
+          32.941176,
+          53.72549,
+          17.647059
+        ]
+      },
+      "lower": {
+        "hex": "#5C7F71",
+        "cmyk": [
+          65.098039,
+          32.941176,
+          53.72549,
+          17.647059
+        ]
+      },
+      "highlight": {
+        "hex": "#2E2E2E",
+        "cmyk": [
+          68.627451,
+          61.176471,
+          57.254902,
+          69.411765
+        ]
+      },
+      "reflection": {
+        "hex": "#646464",
+        "cmyk": [
+          55.294118,
+          46.27451,
+          45.882353,
+          34.117647
+        ]
+      }
+    },
+    "validation": "concentric/atomsai-concentric-sage-variant-2-validation.json",
+    "saved_cmyk": {
+      "reflection": [
+        55.2941203117371,
+        46.2745100259781,
+        45.8823531866074,
+        34.1176480054855
+      ],
+      "highlight": [
+        68.6274528503418,
+        61.176472902298,
+        57.2549045085907,
+        69.4117665290833
+      ],
+      "lower": [
+        65.0980412960053,
+        32.9411774873734,
+        53.7254929542542,
+        17.6470592617989
+      ],
+      "upper": [
+        65.0980412960053,
+        32.9411774873734,
+        53.7254929542542,
+        17.6470592617989
+      ],
+      "base": [
+        84.7058832645416,
+        58.8235318660736,
+        69.0196096897125,
+        78.0392169952393
+      ]
+    },
+    "native_reopen": "passed",
+    "visual_review": "reviewed in family contact sheet and renderer comparison"
+  },
+  {
+    "id": "atomsai-concentric-graphite-variant-2",
+    "family": "concentric",
+    "colorway": "Graphite",
+    "density_key": 2,
+    "slits": null,
+    "status": "validated",
+    "palette": {
+      "base": {
+        "hex": "#10231E",
+        "cmyk": [
+          84.705882,
+          58.823529,
+          69.019608,
+          78.039216
+        ]
+      },
+      "upper": {
+        "hex": "#58625F",
+        "cmyk": [
+          61.568627,
+          44.313725,
+          49.411765,
+          35.294118
+        ]
+      },
+      "lower": {
+        "hex": "#58625F",
+        "cmyk": [
+          61.568627,
+          44.313725,
+          49.411765,
+          35.294118
+        ]
+      },
+      "highlight": {
+        "hex": "#2E2E2E",
+        "cmyk": [
+          68.627451,
+          61.176471,
+          57.254902,
+          69.411765
+        ]
+      },
+      "reflection": {
+        "hex": "#646464",
+        "cmyk": [
+          55.294118,
+          46.27451,
+          45.882353,
+          34.117647
+        ]
+      }
+    },
+    "validation": "concentric/atomsai-concentric-graphite-variant-2-validation.json",
+    "saved_cmyk": {
+      "reflection": [
+        55.2941203117371,
+        46.2745100259781,
+        45.8823531866074,
+        34.1176480054855
+      ],
+      "highlight": [
+        68.6274528503418,
+        61.176472902298,
+        57.2549045085907,
+        69.4117665290833
+      ],
+      "lower": [
+        61.5686297416687,
+        44.3137258291245,
+        49.4117647409439,
+        35.2941185235977
+      ],
+      "upper": [
+        61.5686297416687,
+        44.3137258291245,
+        49.4117647409439,
+        35.2941185235977
+      ],
+      "base": [
+        84.7058832645416,
+        58.8235318660736,
+        69.0196096897125,
+        78.0392169952393
+      ]
+    },
+    "native_reopen": "passed",
+    "visual_review": "reviewed in family contact sheet and renderer comparison"
+  },
+  {
+    "id": "atomsai-concentric-iris-variant-2",
+    "family": "concentric",
+    "colorway": "Iris",
+    "density_key": 2,
+    "slits": null,
+    "status": "validated",
+    "palette": {
+      "base": {
+        "hex": "#5D4777",
+        "cmyk": [
+          72.156863,
+          77.254902,
+          26.666667,
+          11.372549
+        ]
+      },
+      "upper": {
+        "hex": "#A77BCA",
+        "cmyk": [
+          43.137255,
+          58.039216,
+          0.0,
+          0.0
+        ]
+      },
+      "lower": {
+        "hex": "#A77BCA",
+        "cmyk": [
+          43.137255,
+          58.039216,
+          0.0,
+          0.0
+        ]
+      },
+      "highlight": {
+        "hex": "#D7C6E6",
+        "cmyk": [
+          16.862745,
+          25.882353,
+          0.0,
+          0.0
+        ]
+      },
+      "reflection": {
+        "hex": "#A77BCA",
+        "cmyk": [
+          43.137255,
+          58.039216,
+          0.0,
+          0.0
+        ]
+      }
+    },
+    "validation": "concentric/atomsai-concentric-iris-variant-2-validation.json",
+    "saved_cmyk": {
+      "reflection": [
+        43.1372553110123,
+        58.0392181873322,
+        0.0,
+        0.0
+      ],
+      "highlight": [
+        16.8627455830574,
+        25.8823543787003,
+        0.0,
+        0.0
+      ],
+      "lower": [
+        43.1372553110123,
+        58.0392181873322,
+        0.0,
+        0.0
+      ],
+      "upper": [
+        43.1372553110123,
+        58.0392181873322,
+        0.0,
+        0.0
+      ],
+      "base": [
+        72.1568644046784,
+        77.2549033164978,
+        26.6666680574417,
+        11.3725490868092
+      ]
+    },
+    "native_reopen": "passed",
+    "visual_review": "reviewed in family contact sheet and renderer comparison"
+  }
+]

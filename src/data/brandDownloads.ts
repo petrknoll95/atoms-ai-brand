@@ -34,11 +34,10 @@ export const brandDownloads: BrandDownload[] = [
   }))),
   ...Object.entries(illustrations).map(([file, svg]) => {
     const name = file.split('/').pop()!.replace('.svg', '');
-    const opaque = svg.includes('SURFACE');
     return {
       path: `illustration/${name}.svg`, name, category: 'illustration' as const,
-      variant: opaque ? 'Deep green on White, opaque linework' : 'Black, concept drawing',
-      svg: colorize(svg, opaque ? colors.deepGreen.hex : colors.black.hex, colors.white.hex),
+      variant: 'White linework on Black, translucent Iris layers',
+      svg: colorize(svg, colors.white.hex, colors.black.hex),
     };
   }),
 ];

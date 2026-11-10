@@ -3,12 +3,15 @@ import Guide from '../layouts/Guide.astro';
 import Sub from '../components/Sub.astro';
 import Figure from '../components/Figure.astro';
 import { withBase } from '../data/base';
-import AssetCard from '../components/AssetCard.astro';
+import Illustration3D from '../components/Illustration3D.astro';
 import { colors } from '../data/colors';
-import type { ColorOption } from '../data/assets';
+import { namespaceSvgIds } from '../scripts/svg';
 
 const files = import.meta.glob<string>('../assets/brand/illustration/*.svg', { query: '?raw', import: 'default', eager: true });
-const svg = (name: string) => files[`../assets/brand/illustration/${name}.svg`].trim();
+let illustrationInstance = 0;
+const svg = (name: string) => namespaceSvgIds(
+  files[`../assets/brand/illustration/${name}.svg`].trim(), `illustration-${illustrationInstance++}`,
+);
 
 const concepts = [
   { slug: 'full-visibility', title: 'Full Visibility', caption: 'We map every workflow, system and handoff before we build.' },
@@ -17,21 +20,24 @@ const concepts = [
 ];
 
 const objects = [
-  { slug: 'scale', title: 'Scale' },
+  { slug: 'stack', title: 'Stack', width: '202.236px' },
+  { slug: 'input', title: 'Input', width: '201px' },
+  { slug: 'orbit', title: 'Orbit', width: '240px' },
+  { slug: 'stack-2', title: 'Stack 2', width: '181px' },
   { slug: 'focus', title: 'Focus' },
   { slug: 'modular', title: 'Modular' },
   { slug: 'always-on', title: 'Always on' },
-  { slug: 'insight', title: 'Insight' },
   { slug: 'momentum', title: 'Momentum' },
+  { slug: 'layers', title: 'Layers' },
+  { slug: 'states', title: 'States' },
+  { slug: 'unfolding', title: 'Unfolding' },
+  { slug: 'nested', title: 'Nested' },
+  { slug: 'filtering', title: 'Filtering' },
+  { slug: 'precision', title: 'Precision' },
+  { slug: 'versatility', title: 'Versatility' },
+  { slug: 'efficiency', title: 'Efficiency' },
 ];
 
-// Linework is opaque: a line color plus the surface color that fills each form.
-const linework: ColorOption[] = [
-  { key: 'deep-green-white', label: 'Deep green on White', ink: colors.deepGreen.hex, surface: colors.white.hex, tone: 'light' },
-  { key: 'deep-green-cream', label: 'Deep green on Cream', ink: colors.deepGreen.hex, surface: colors.cream.hex, tone: 'light' },
-  { key: 'cream-deep-green', label: 'Cream on Deep green', ink: colors.cream.hex, surface: colors.deepGreen.hex, tone: 'dark' },
-  { key: 'black-white', label: 'Black on White', ink: colors.black.hex, surface: colors.white.hex, tone: 'light' },
-];
 ---
 
 <Guide slug="illustration" description="AtomsAI illustration style and linework, ready to download.">
@@ -41,13 +47,13 @@ const linework: ColorOption[] = [
         Our illustrations express abstract ideas through simple geometry: outlined 2D and 3D forms drawn with a single
         line weight. One concept per drawing, minimal and precise.
       </p>
-      <p>Draw in one palette color on a light surface. Use small nodes and arrows for emphasis. No fills, shading, gradients or literal imagery.</p>
+      <p>Fine monochrome outlines, translucent layers and a soft Iris fade. Keep the center clear and let the color build gently toward the edge.</p>
     </Fragment>
     <div class="grid three">
       {
         concepts.map((c) => (
           <div class="concept">
-            <AssetCard id={`atomsai-illustration-${c.slug}`} name={c.title} svg={svg(c.slug)} defaultOption="black" artWidth="62%" previewHeight="24rem" pngSize={2000} />
+            <Illustration3D slug={c.slug} name={c.title} svg={svg(c.slug)} />
             <p class="muted">{c.caption}</p>
           </div>
         ))
@@ -58,24 +64,14 @@ const linework: ColorOption[] = [
   <Sub id="linework" title="Linework" number="7.2">
     <Fragment slot="text">
       <p>
-        For product and campaign moments we draw solid isometric objects in a single thin line. Forms are opaque: nearer
-        shapes hide the lines behind them, which gives depth without any shading.
+        Use thin, precise Paper outlines on Forest shade, or Forest shade outlines on Paper. Hidden linework stays at 35% opacity behind any number of surfaces. Visible and highlighted outlines stay at full opacity. Always on and Versatility use opaque surfaces: hidden edges, including highlighted edges, are omitted.
       </p>
-      <p>One object per card, centered, with generous space around it. Line in Deep green, filled with the surface color.</p>
+      <p>Center each drawing with generous clear space. Use diamond fades on isometric rectangular surfaces, aligned to all four edges. Use radial fades on curved surfaces. Preserve the order and transparency of overlapping layers.</p>
     </Fragment>
     <div class="grid three">
       {
         objects.map((o) => (
-          <AssetCard
-            id={`atomsai-linework-${o.slug}`}
-            name={o.title}
-            svg={svg(o.slug)}
-            options={linework}
-            defaultOption="deep-green-white"
-            artWidth="72%"
-            previewHeight="24rem"
-            pngSize={2000}
-          />
+          <Illustration3D slug={o.slug} name={o.title} svg={svg(o.slug)} artWidth={'width' in o ? o.width : '200px'} />
         ))
       }
     </div>
@@ -88,15 +84,15 @@ const linework: ColorOption[] = [
     <div class="usage-pair">
       <Figure caption="Do — one centered object with space for its caption.">
         <div class="layout-example">
-          <div class="example-art" set:html={svg('focus').replaceAll('SURFACE', colors.cream.hex)} />
+          <div class="example-art" set:html={svg('focus').replaceAll('SURFACE', colors.forestShade.hex)} />
           <p>Focus on the work that matters.</p>
         </div>
       </Figure>
       <Figure caption="Don’t — several unrelated objects competing inside one card.">
-        <div class="layout-example crowded">
-          <div class="example-art" set:html={svg('focus').replaceAll('SURFACE', colors.cream.hex)} />
-          <div class="extra-art" set:html={svg('scale').replaceAll('SURFACE', colors.cream.hex)} />
-          <div class="extra-art second" set:html={svg('modular').replaceAll('SURFACE', colors.cream.hex)} />
+        <div class="layout-example crowded dont-example">
+          <div class="example-art" set:html={svg('focus').replaceAll('SURFACE', colors.forestShade.hex)} />
+          <div class="extra-art" set:html={svg('momentum').replaceAll('SURFACE', colors.forestShade.hex)} />
+          <div class="extra-art second" set:html={svg('modular').replaceAll('SURFACE', colors.forestShade.hex)} />
           <p>Focus on the work that matters.</p>
         </div>
       </Figure>
@@ -105,15 +101,15 @@ const linework: ColorOption[] = [
 
   <Sub id="size-stroke" title="Size & stroke" number="7.4">
     <Fragment slot="text">
-      <p>Measure the full artwork frame at its final display size. Simple isometric objects start at 192 px wide. Concept drawings and objects with dense internal detail start at 280 px. Below these sizes, use an <a href={withBase('/icons/')}>icon</a>.</p>
-      <p>Scale artwork and strokes together. Keep the existing 1.5-unit master stroke. The samples below use the 280-unit Focus master. For another master, divide its final width by its viewBox width, then multiply by 1.5 to find its rendered stroke.</p>
+      <p>Measure the full artwork frame at its final display size. Simple isometric objects start at 200 px wide. Concept drawings and objects with dense internal detail start at 280 px. Below these sizes, use an <a href={withBase('/icons/')}>icon</a>.</p>
+      <p>Scale artwork and strokes together. Use a 1 px outline at a 200 px artwork width. The samples below scale the Focus master and its linework together.</p>
       <p>Check at 100% on the target screen. Keep lines at least 1 px thick and the smallest visible gap at least 2 px. Increase the artwork size if its details merge. For print, proof at the final physical size.</p>
     </Fragment>
     <div class="size-specimens">
-      {[192, 280, 420, 560].map((width) => (
-        <Figure tone="plain" caption={`${width} px frame · ${(width / 280 * 1.5).toFixed(2)} px stroke`}>
+      {[200, 280, 420, 560].map((width) => (
+        <Figure tone="plain" caption={`${width} px frame · ${(width / 200).toFixed(2)} px stroke`}>
           <div class="size-scroll">
-            <div class="sized-art" style={`width: ${width}px`} set:html={svg('focus').replaceAll('SURFACE', colors.white.hex)} />
+            <div class="sized-art" style={`width: ${width}px`} set:html={svg('focus').replaceAll('SURFACE', colors.forestShade.hex)} />
           </div>
         </Figure>
       ))}
@@ -125,22 +121,22 @@ const linework: ColorOption[] = [
     <div class="usage-pair">
       <Figure caption="Do — keep concept drawings at 280 px or larger.">
         <div class="detail-example">
-          <div style="width: 280px" set:html={svg('full-visibility')} />
+          <div style="width: 280px" set:html={svg('full-visibility').replaceAll('SURFACE', colors.forestShade.hex)} />
         </div>
       </Figure>
       <Figure caption="Don’t — shrink a detailed drawing into an icon slot.">
-        <div class="detail-example">
-          <div style="width: 64px" set:html={svg('full-visibility')} />
+        <div class="detail-example dont-example">
+          <div style="width: 64px" set:html={svg('full-visibility').replaceAll('SURFACE', colors.forestShade.hex)} />
         </div>
       </Figure>
       <Figure caption="Do — preserve stroke proportions as the object scales.">
         <div class="detail-example">
-          <div style="width: 192px" set:html={svg('focus').replaceAll('SURFACE', colors.white.hex)} />
+          <div style="width: 200px" set:html={svg('focus').replaceAll('SURFACE', colors.forestShade.hex)} />
         </div>
       </Figure>
       <Figure caption="Don’t — thicken the stroke until interior gaps close.">
-        <div class="detail-example">
-          <div style="width: 192px" set:html={svg('focus').replaceAll('SURFACE', colors.white.hex).replaceAll('stroke-width="1.5"', 'stroke-width="8"')} />
+        <div class="detail-example dont-example">
+          <div style="width: 200px" set:html={svg('focus').replaceAll('SURFACE', colors.forestShade.hex).replaceAll('stroke-width="1.4"', 'stroke-width="8"')} />
         </div>
       </Figure>
     </div>
@@ -160,24 +156,36 @@ const linework: ColorOption[] = [
     place-items: center;
     gap: 2rem;
     padding: 3rem 2rem;
-    background: var(--cream);
-    color: var(--deep-green);
+    background: var(--forest-shade);
+    color: var(--paper);
   }
 
-  .example-art { width: 192px; max-width: 100%; }
+  .example-art { width: 200px; max-width: 100%; }
   .extra-art { position: absolute; width: 160px; top: 1rem; left: 0.5rem; }
   .extra-art.second { top: 6rem; left: auto; right: 0.5rem; }
   .size-specimens { display: grid; gap: 3rem; margin-bottom: 2rem; }
-  .size-scroll { overflow-x: auto; background: var(--white); }
-  .sized-art { flex-shrink: 0; color: var(--deep-green); }
+  .size-specimens :global(.figure-body), .usage-pair :global(.figure-body) { min-width: 0; }
+  .size-scroll { overflow-x: auto; background: var(--forest-shade); }
+  .sized-art { flex-shrink: 0; color: var(--paper); }
   .detail-example {
     display: grid;
     place-items: center;
     min-height: 352px;
     padding: 2rem;
     overflow-x: auto;
-    color: var(--deep-green);
-    background: var(--white);
+    color: var(--paper);
+    background: var(--forest-shade);
+  }
+
+  .dont-example { position: relative; }
+  .dont-example::after {
+    content: '';
+    position: absolute;
+    inset: 1.25rem;
+    pointer-events: none;
+    background:
+      linear-gradient(to top right, transparent calc(50% - 1px), var(--iris-dark) calc(50% - 1px), var(--iris-dark) calc(50% + 1px), transparent calc(50% + 1px)),
+      linear-gradient(to bottom right, transparent calc(50% - 1px), var(--iris-dark) calc(50% - 1px), var(--iris-dark) calc(50% + 1px), transparent calc(50% + 1px));
   }
 
   @media (max-width: 760px) {
@@ -190,7 +198,7 @@ const linework: ColorOption[] = [
   }
 
   .three {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
   }
 
   .concept {
