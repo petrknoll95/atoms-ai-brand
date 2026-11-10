@@ -1,13 +1,23 @@
 ---
 import AssetCard from './AssetCard.astro';
 import { colors } from '../data/colors';
+import { loopSeconds } from '../scripts/illustration-3d/motion';
 interface Props { slug:string; name:string; svg:string; artWidth?:string }
 const {slug,name,svg,artWidth='200px'}=Astro.props;
 const options=[{key:'dark',label:'Dark',ink:colors.paper.hex,surface:colors.forestShade.hex,tone:'dark' as const},{key:'light',label:'Light',ink:colors.forestShade.hex,surface:colors.paper.hex,tone:'light' as const}];
+const animated = loopSeconds(slug) !== undefined;
 ---
-<div class="illustration-3d" data-illustration-3d={slug}>
+<div class="illustration-3d" data-illustration-3d={slug} data-name={name}>
  <AssetCard id={`atomsai-3d-${slug}`} name={name} svg={svg} options={options} defaultOption="dark" pickerStyle="themes" artWidth={artWidth} previewHeight="24rem" pngSize={2000}>
-  <button slot="preview-controls" class="btn view-reset" type="button" data-view-reset hidden>Reset view</button>
+  <div slot="preview-controls" class="view-controls">
+   <button class="btn view-reset" type="button" data-view-reset hidden>Reset view</button>
+   {animated && (
+    <button class="btn motion-toggle" type="button" data-motion-toggle data-state="playing" aria-label={`Pause ${name} animation`}>
+     <svg class="icon-pause" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M9 6.5v11M15 6.5v11" /></svg>
+     <svg class="icon-play" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true"><path d="M8.5 6v12l9.5-6z" /></svg>
+    </button>
+   )}
+  </div>
  </AssetCard>
  <p class="visually-hidden" data-view-status aria-live="polite"></p>
 </div>
@@ -52,8 +62,11 @@ const options=[{key:'dark',label:'Dark',ink:colors.paper.hex,surface:colors.fore
  outline: 1.5px solid var(--stage-ring);
  outline-offset: 3px;
 }
-.view-reset { grid-area: view-controls; justify-self: end; }
+.view-controls { grid-area: view-controls; justify-self: end; display: flex; align-items: center; gap: .375rem; }
 .view-reset[hidden] { display: none; }
+.illustration-3d .motion-toggle { width: 2rem; padding: 0; }
+.motion-toggle[data-state='playing'] .icon-play,
+.motion-toggle[data-state='paused'] .icon-pause { display: none; }
 .illustration-3d :global(.asset) { gap: .625rem; }
 .illustration-3d :global([data-asset-preview]){position:relative;touch-action:pan-y;cursor:grab;overflow:hidden}
 .illustration-3d :global([data-asset-preview].is-dragging){cursor:grabbing}

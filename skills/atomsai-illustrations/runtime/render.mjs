@@ -33,15 +33,37 @@ function prepareFace(points, hole, owner) {
     }
     return { points, hole, owner, minX, maxX, minY, maxY, maxZ, plane };
 }
-/** Project/depth-test once; canvas and SVG consume the identical drawing commands. */
-export function projectScene(scene, view) {
-    const omitHidden = scene.hiddenLines === 'omit';
-    // Compute the view matrix once, rather than trigonometry for every vertex.
+/** The camera's rotation for a view, computed once rather than trigonometry for every vertex. */
+export function viewTransform(view) {
     const x = project(rotate([1, 0, 0], view.yaw, view.pitch)), y = project(rotate([0, 1, 0], view.yaw, view.pitch)), z = project(rotate([0, 0, 1], view.yaw, view.pitch));
-    const rawTransform = (p) => [x[0] * p[0] + y[0] * p[1] + z[0] * p[2], x[1] * p[0] + y[1] * p[1] + z[1] * p[2], x[2] * p[0] + y[2] * p[1] + z[2] * p[2]];
+    return (p) => [x[0] * p[0] + y[0] * p[1] + z[0] * p[2], x[1] * p[0] + y[1] * p[1] + z[1] * p[2], x[2] * p[0] + y[2] * p[1] + z[2] * p[2]];
+}
+/** Largest screen-space reach of the points that set the rotation fit. */
+export function sceneExtent(scene, rawTransform) {
+    let extent = 1;
+    const reach = (p) => { const q = rawTransform(p); extent = Math.max(extent, Math.abs(q[0]), Math.abs(q[1])); };
+    for (const l of scene.lines)
+        l.points.forEach(reach);
+    for (const f of scene.faces)
+        f.points.forEach(reach);
+    for (const a of scene.arrows) {
+        reach(a.a);
+        reach(a.b);
+    }
+    for (const d of scene.dots)
+        reach(d.point);
+    return extent;
+}
+const modulo = (value, period) => ((value % period) + period) % period;
+/**
+ * Project/depth-test once; canvas and SVG consume the identical drawing commands.
+ * A motion loop passes the extent of its whole cycle, so the fit never changes mid-loop.
+ */
+export function projectScene(scene, view, options = {}) {
+    const omitHidden = scene.hiddenLines === 'omit';
+    const rawTransform = viewTransform(view);
     // Keep the entire rotated volume within the same camera viewport.
-    const extentPoints = [...scene.lines.flatMap(l => l.points), ...scene.faces.flatMap(f => f.points), ...scene.arrows.flatMap(a => [a.a, a.b]), ...scene.dots.map(d => d.point)].map(rawTransform);
-    const extent = Math.max(1, ...extentPoints.map(p => Math.max(Math.abs(p[0]), Math.abs(p[1]))));
+    const extent = options.extent ?? sceneExtent(scene, rawTransform);
     const fit = Math.min(1, 170 / extent);
     const transform = (p) => mul(rawTransform(p), fit);
     const faces = scene.faces.map(f => prepareFace(f.points.map(transform), f.hole?.map(transform), f.owner));
@@ -127,20 +149,37 @@ export function projectScene(scene, view) {
         const pts = l.points.slice();
         if (l.closed)
             pts.push(pts[0]);
+        // A dash pattern runs along the whole projected outline, through visibility changes. A
+        // closed outline holds a whole number of periods, so its pattern has no seam.
+        let dash = l.dash, period = 0, along = 0, runStart = 0;
+        if (dash) {
+            period = dash.reduce((sum, d) => sum + d, 0);
+            let length = 0;
+            for (let i = 1; i < pts.length; i++)
+                length += Math.hypot(pts[i][0] - pts[i - 1][0], pts[i][1] - pts[i - 1][1]);
+            if (l.closed && length > period) {
+                const fitted = length / Math.round(length / period);
+                dash = dash.map(d => d * fitted / period);
+                period = fitted;
+            }
+        }
+        const phase = (l.dashPhase ?? 0) * period;
         let run = [], state;
         const flush = () => {
             if (run.length >= 2 && !(state && omitHidden))
-                (l.highlight ? frame.accent : state ? frame.rear : frame.front).push({ points: run, width: l.width ?? 1, dash: l.dash });
+                (l.highlight ? frame.accent : state ? frame.rear : frame.front).push({ points: run, width: l.width ?? 1, dash, ...(dash ? { dashOffset: modulo(runStart + phase, period) } : {}) });
             run = [];
         };
         for (let i = 1; i < pts.length; i++) {
             const a = pts[i - 1], b = pts[i], aKey = vertexKey(a), bKey = vertexKey(b), key = aKey < bKey ? `${aKey}|${bKey}` : `${bKey}|${aKey}`;
+            const segment = Math.hypot(b[0] - a[0], b[1] - a[1]);
             if (dedup.has(key)) {
                 flush();
+                along += segment;
                 continue;
             }
             dedup.add(key);
-            const steps = accentOverlay ? 1 : Math.max(1, Math.ceil(Math.hypot(b[0] - a[0], b[1] - a[1]) / .6));
+            const steps = accentOverlay ? 1 : Math.max(1, Math.ceil(segment / .6));
             const dx = b[0] - a[0], dy = b[1] - a[1], dz = b[2] - a[2];
             for (let j = 0; j < steps; j++) {
                 const t = (j + .5) / steps, occluded = accentOverlay ? false : hidden(a[0] + dx * t, a[1] + dy * t, a[2] + dz * t, l.silhouette ? l.owner : undefined);
@@ -148,8 +187,10 @@ export function projectScene(scene, view) {
                     flush();
                     state = occluded;
                 }
-                if (!run.length)
+                if (!run.length) {
                     run.push(lerp(a, b, j / steps));
+                    runStart = along + segment * j / steps;
+                }
                 // Retain corners and visibility boundaries, not hundreds of collinear samples.
                 const end = lerp(a, b, (j + 1) / steps);
                 if (j > 0 && run.length > 1)
@@ -157,6 +198,7 @@ export function projectScene(scene, view) {
                 else
                     run.push(end);
             }
+            along += segment;
         }
         flush();
     }
@@ -200,7 +242,7 @@ export function frameToSvg(frame) {
         }
     }
     const ink = frame.white ? colors.forestShade.hex : colors.paper.hex;
-    const lines = (items) => items.map(l => `<path d="${path(l.points)}" stroke-width="${number(l.width)}"${l.dash ? ` stroke-dasharray="${l.dash.join(' ')}"` : ''}/>`).join('');
+    const lines = (items) => items.map(l => `<path d="${path(l.points)}" stroke-width="${number(l.width)}"${l.dash ? ` stroke-dasharray="${l.dash.map(number).join(' ')}"` : ''}${l.dashOffset ? ` stroke-dashoffset="${number(l.dashOffset)}"` : ''}/>`).join('');
     const dots = (items) => items.map(d => `<circle cx="${number(d.point[0] + 192)}" cy="${number(d.point[1] + 192)}" r="${number(d.r)}" fill="${ink}" stroke="none"/>`).join('');
     return `<svg xmlns="http://www.w3.org/2000/svg" width="384" height="384" viewBox="0 0 384 384" data-projection="orthographic" data-hidden-runs="${frame.rear.length}" data-visible-runs="${frame.front.length}">${fill}<g fill="none" stroke="${ink}" stroke-linejoin="miter" stroke-linecap="butt"><g opacity="${CAMERA.hiddenOpacity}">${lines(frame.rear)}${dots(frame.rearDots)}</g><g>${lines(frame.front)}${dots(frame.frontDots)}</g><g>${lines(frame.accent)}</g></g></svg>`;
 }

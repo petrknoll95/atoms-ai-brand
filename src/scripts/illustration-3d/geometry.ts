@@ -9,15 +9,20 @@ export type Stroke = {
     points: V[];
     closed?: boolean;
     dash?: number[];
+    /** Dash pattern advance, in whole dash periods; motion loops animate it. */
+    dashPhase?: number;
     highlight?: boolean;
     width?: number;
     normals?: V[];
     owner?: number;
+    /** Movable part of the model, named for gallery motion loops. */
+    part?: string;
 };
 export type Face = {
     points: V[];
     hole?: V[];
     owner?: number;
+    part?: string;
 };
 export type Highlight = {
     points: V[];
@@ -27,6 +32,7 @@ export type Highlight = {
     kind: 'radial' | 'diamond';
     gradient: V[];
     mesh?: V[][];
+    part?: string;
 };
 export type Contour = {
     center: V;
@@ -39,6 +45,7 @@ export type Contour = {
     highlight?: boolean;
     width: number;
     owner: number;
+    part?: string;
 };
 export type Cylinder = {
     top: V;
@@ -50,7 +57,10 @@ export type Cylinder = {
     owner: number;
     highlight: boolean;
     width: number;
+    part?: string;
 };
+/** Model dimensions of a movable part (centers, axes, radii), read by its motion loop. */
+export type PartInfo = Record<string, V | number>;
 export type Scene = {
     /** Omit occluded strokes, including accent outlines, for opaque examples. */
     hiddenLines?: 'omit';
@@ -59,6 +69,7 @@ export type Scene = {
         a: V;
         b: V;
         size: number;
+        part?: string;
     }[];
     lines: Stroke[];
     faces: Face[];
@@ -69,9 +80,16 @@ export type Scene = {
         r: number;
         normals?: V[];
         owner?: number;
+        part?: string;
     }[];
     frameAspect?: number;
     primitiveCounts: Record<string, number>;
+    /** Movable parts, in model space. */
+    parts?: Record<string, PartInfo>;
+    /** Model pose as the images of X, Y and Z; a rigid rotation. */
+    pose?: [V, V, V];
+    /** Reference fit applied after posing: fitted = (posed − origin) × scale. */
+    fitted?: { origin: V; scale: number };
 };
 export const CAMERA = { yaw: Math.PI / 4, pitch: Math.PI / 6, size: 384, hiddenOpacity: .35, iris: '#A77BCA' };
 const c = Math.SQRT1_2, s = .5, h = Math.sqrt(3) / 2;

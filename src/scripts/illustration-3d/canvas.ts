@@ -47,16 +47,16 @@ function linework(ctx: CanvasRenderingContext2D, lines: DrawLine[], dots: DrawDo
   // Batch equal strokes into one draw call, retaining individual subpaths.
   const groups = new Map<string, { path: Path2D; line: DrawLine }>();
   for (const line of lines) {
-    const key = `${line.width}:${line.dash?.join(',') ?? ''}`;
+    const key = `${line.width}:${line.dash?.join(',') ?? ''}:${line.dashOffset ?? 0}`;
     let group = groups.get(key);
     if (!group) { group = { path: new Path2D(), line }; groups.set(key, group); }
     group.path.moveTo(line.points[0][0], line.points[0][1]);
     for (let i = 1; i < line.points.length; i++) group.path.lineTo(line.points[i][0], line.points[i][1]);
   }
   for (const { path, line } of groups.values()) {
-    ctx.lineWidth = line.width; ctx.setLineDash(line.dash ?? []); ctx.stroke(path);
+    ctx.lineWidth = line.width; ctx.setLineDash(line.dash ?? []); ctx.lineDashOffset = line.dashOffset ?? 0; ctx.stroke(path);
   }
-  ctx.setLineDash([]);
+  ctx.setLineDash([]); ctx.lineDashOffset = 0;
   const circles = new Path2D();
   for (const { point, r } of dots) { circles.moveTo(point[0] + r, point[1]); circles.arc(point[0], point[1], r, 0, Math.PI * 2); }
   ctx.fill(circles);

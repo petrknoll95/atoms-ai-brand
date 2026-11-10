@@ -5,21 +5,24 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import ts from 'typescript';
+import sharp from 'sharp';
 
 const temp = await mkdtemp(join(tmpdir(), 'atomsai-illustrations-'));
 try {
   await writeFile(join(temp, 'colors.mjs'), ts.transpileModule(await readFile('src/data/colors.ts', 'utf8'), { compilerOptions: { target: ts.ScriptTarget.ES2022, module: ts.ModuleKind.ES2022 } }).outputText);
-  for (const name of ['geometry', 'primitives', 'models', 'render']) {
+  await writeFile(join(temp, 'slitLogo.mjs'), ts.transpileModule(await readFile('src/data/slitLogo.ts', 'utf8'), { compilerOptions: { target: ts.ScriptTarget.ES2022, module: ts.ModuleKind.ES2022 } }).outputText);
+  for (const name of ['geometry', 'primitives', 'models', 'render', 'motion']) {
     let source = await readFile(`src/scripts/illustration-3d/${name}.ts`, 'utf8');
     source = source.replace("import metrics from './data/reference-metrics.json';", `const metrics = ${await readFile('src/scripts/illustration-3d/data/reference-metrics.json', 'utf8')};`);
-    const code = ts.transpileModule(source, { compilerOptions: { target: ts.ScriptTarget.ES2022, module: ts.ModuleKind.ES2022 } }).outputText.replace(/from '\.\/(geometry|primitives)'/g, "from './$1.mjs'").replace("from '../../data/colors'", "from './colors.mjs'");
+    const code = ts.transpileModule(source, { compilerOptions: { target: ts.ScriptTarget.ES2022, module: ts.ModuleKind.ES2022 } }).outputText.replace(/from '\.\/(geometry|primitives|render)'/g, "from './$1.mjs'").replace("from '../../data/colors'", "from './colors.mjs'").replace("from '../../data/slitLogo'", "from './slitLogo.mjs'");
     await writeFile(join(temp, `${name}.mjs`), code);
   }
   const load = (name) => import(pathToFileURL(join(temp, `${name}.mjs`)));
   const { scene, fromView, project, rotate, sub, dot, add, mul, cross, unit } = await load('geometry');
   const { box, ring, X, Z } = await load('primitives');
   const { makeScene, SLUGS } = await load('models');
-  const { renderScene, projectScene, frameToSvg } = await load('render');
+  const { renderScene, projectScene, frameToSvg, sceneExtent, viewTransform } = await load('render');
+  const { createAnimator } = await load('motion');
   const { colors } = await load('colors');
   const base = { yaw: 0, pitch: 0, white: false };
 
@@ -81,7 +84,7 @@ try {
     assert.ok(lineLength(frame.accent) < lineLength(prior.accent), 'Hidden highlighted tube edges are removed too');
     assert.ok(frameToSvg(frame).includes('data-hidden-runs="0"'), 'SVG export omits the same hidden edges as the canvas');
   }
-  for (const slug of SLUGS.filter(slug => !['always-on', 'versatility'].includes(slug))) assert.equal(makeScene(slug).hiddenLines, undefined, `${slug} retains default translucency`);
+  for (const slug of SLUGS.filter(slug => !['always-on', 'versatility', 'one-user', 'two-users', 'three-users'].includes(slug))) assert.equal(makeScene(slug).hiddenLines, undefined, `${slug} retains default translucency`);
 
   // Versatility is an opaque cube with quadrant divisions on all six faces.
   const versatility = makeScene('versatility');
@@ -222,6 +225,40 @@ try {
     assert.ok(Math.abs(dot(sub(point, focus), sectionNormal)) < 1e-7, 'Both fans share one axial section');
   }
 
+  // Users: a sphere head resting on the apex of a half-ellipsoid of shoulders, in the user icon's
+  // proportions, standing as one, two or three equal figures on one ground plane.
+  for (const [slug, count] of [['one-user', 1], ['two-users', 2], ['three-users', 3]]) {
+    const s = makeScene(slug), domes = s.contours.filter(c => c.half), heads = s.contours.filter(c => !c.half);
+    assert.equal(s.hiddenLines, 'omit', `${slug} draws opaque solids`);
+    assert.deepEqual(s.primitiveCounts, { hemisphere: count, sphere: count });
+    assert.equal(s.lines.length, count, 'Each user has one stroke, its base rim; contours are computed per view');
+    const shoulder = Math.hypot(...domes[0].axes[0]), close = (a, b) => Math.abs(a - b) < 1e-7 * shoulder;
+    domes.forEach((dome, i) => {
+      const [a, b, c] = dome.axes.map(v => Math.hypot(...v)), head = heads[i];
+      assert.ok(close(a, shoulder) && close(b, shoulder) && close(c, shoulder * 6 / 7), 'Shoulders keep the icon’s 14 × 6 proportion');
+      assert.ok(head.axes.every(v => close(Math.hypot(...v), shoulder / 2)), 'Heads are true spheres, half the shoulder radius');
+      assert.ok(close(dome.center[1], domes[0].center[1]), 'Every user stands on one ground plane');
+      const apex = sub(dome.center, dome.axes[2]), lowest = sub(head.center, [0, shoulder / 2, 0]);
+      assert.ok(Math.hypot(...sub(apex, lowest)) < 1e-7 * shoulder, 'Each head rests on its shoulders at one point');
+      assert.equal(s.faces.filter(f => f.points.length === 96 && f.owner === dome.owner).length, 1, 'A base disk closes each figure');
+    });
+    for (let i = 0; i < count; i++) for (let j = i + 1; j < count; j++)
+      assert.ok(close(Math.hypot(...sub(domes[i].center, domes[j].center)), shoulder * 16 / 7), 'Users stand 160 apart, clear of each other');
+    const depth = c => dot(c.center, [1, 0, 1]), lit = heads.filter(h => h.highlight);
+    assert.equal(lit.length, 1, 'One Iris head');
+    assert.equal(depth(lit[0]), Math.max(...heads.map(depth)), 'The Iris head belongs to the nearest user');
+    // The loop lifts heads straight up by at most the icon's head clearance; shoulders never move.
+    const loop = createAnimator(slug, s);
+    for (let i = 1; i < 24; i++) {
+      const frame = loop.scene(i / 24);
+      assert.deepEqual(frame.contours.filter(c => c.half), domes, 'Shoulders stay planted');
+      frame.contours.filter(c => !c.half).forEach((head, k) => {
+        const moved = sub(head.center, heads[k].center);
+        assert.ok(Math.abs(moved[0]) + Math.abs(moved[2]) < 1e-7 && moved[1] > -1e-9 && moved[1] < shoulder * 3 / 7 + 1e-7, 'Heads lift straight up, at most the icon clearance');
+      });
+    }
+  }
+
   let renders = 0;
   for (const slug of SLUGS) {
     const s = makeScene(slug);
@@ -242,8 +279,43 @@ try {
     assert.ok(original.includes(`stroke="${colors.paper.hex}"`), `${slug} uses Paper linework in Dark mode`);
     assert.ok(renderScene(s, { ...base, white: true }).includes(`stroke="${colors.forestShade.hex}"`), `${slug} uses Forest shade linework in Light mode`);
   }
-  assert.equal(SLUGS.length, 20);
+  assert.equal(SLUGS.length, 23);
+
+  // Motion loops move each example's own geometry, start on the still and return to it seamlessly.
+  const page = await readFile('src/pages/illustration.astro', 'utf8');
+  const gallery = [...page.matchAll(/\{ slug: '([^']+)', title:/g)].map(match => match[1]);
+  const raster = svg => sharp(Buffer.from(svg)).resize(384, 384).flatten({ background: colors.forestShade.hex }).raw().toBuffer();
+  let loopFrames = 0;
+  for (const slug of gallery) {
+    const s = makeScene(slug), loop = createAnimator(slug, s);
+    assert.ok(loop, `${slug} has a motion loop`);
+    assert.ok(loop.seconds >= 2 && loop.seconds <= 12, `${slug} loops at the gallery pace`);
+    for (const white of [false, true]) {
+      const view = { ...base, white };
+      assert.equal(frameToSvg(projectScene(loop.scene(0), view, { extent: loop.extent(view) })), renderScene(s, view), `${slug} starts on the still`);
+    }
+    for (const [yaw, pitch] of [[0, 0], [.65, -.35], [Math.PI, .4]]) {
+      const view = { yaw, pitch, white: false }, extent = loop.extent(view);
+      const [start, end] = await Promise.all([0, 1].map(t => raster(frameToSvg(projectScene(loop.scene(t), view, { extent })))));
+      let difference = 0;
+      for (let i = 0; i < start.length; i++) difference += Math.abs(start[i] - end[i]);
+      assert.ok(difference / start.length < .01, `${slug} loops without a seam`);
+      for (let i = 0; i < 48; i++) {
+        const frame = loop.scene(i / 48);
+        // Extreme points of moving parts approximate their hulls, so allow 1% for the curve between.
+        assert.ok(sceneExtent(frame, viewTransform(view)) <= extent * 1.01, `${slug} stays inside its loop fit`);
+        const projected = projectScene(frame, view, { extent });
+        if (s.hiddenLines === 'omit') assert.equal(projected.rear.length + projected.rearDots.length, 0, `${slug} stays opaque in motion`);
+        for (const line of [...projected.front, ...projected.rear, ...projected.accent]) {
+          assert.equal(line.width, 1.28, `${slug} keeps one stroke weight in motion`);
+          for (const p of line.points) assert.ok(Math.abs(p[0]) < 184 && Math.abs(p[1]) < 184, `${slug} stays inside the viewport`);
+        }
+        loopFrames++;
+      }
+    }
+  }
   console.log(`Passed: complete solids, circular rings, rigid rotations, single hidden opacity, and ${renders} vector projections across ${SLUGS.length} scenes.`);
+  console.log(`Passed: ${gallery.length} motion loops start on the still, close without a seam and keep the visual contract across ${loopFrames} frames.`);
 } finally {
   await rm(temp, { recursive: true, force: true });
 }
