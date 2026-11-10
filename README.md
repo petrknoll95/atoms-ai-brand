@@ -128,3 +128,9 @@ Founders Grotesk (Klim Type Foundry) and PP Neue Montreal (Pangram Pangram) are 
 ## Glass styling
 
 `/glass/` builds live glass surfaces from the user's static CSS reference. `src/data/glass.ts` generates the shared material CSS, JSON, self-contained HTML examples and notes, including an explicit `atoms-glass--dark` variant. All material dimensions use em and scale with the wrapper's font size. `GlassSpecimen.astro` compares light and dark cropped 4:3 inputs over flat brand fills and empty cards over the existing canvas pattern renderer. No panel images are used. `/assets/glass/` serves four files and a ZIP. Run `npm run check`, `npm run build`, and `node scripts/check-glass.mjs` to verify contrast, package parity and delivery links.
+## Page feedback
+
+Choose **Feedback** on any guideline page to pin a shared comment to text, artwork,
+or another visual element. No account or login screen is required. Comments and
+replies sync through Firebase; they are visible to other visitors. See
+[feedback setup and verification](firebase/README.md).
