@@ -10,7 +10,7 @@ const palette = {
     sage: { token: 'sage', name: 'Sage', hex: '#5C7F71', group: 'forest' },
     sageTint: { token: 'sage-tint', name: 'Sage tint', hex: '#94A596', group: 'forest' },
     stone: { token: 'stone', name: 'Stone', hex: '#BAC5B9', group: 'forest' },
-    cream: { token: 'cream', name: 'Cream', hex: '#F6F1E8', group: 'forest', cmyk: [0, 2, 6, 4] },
+    cream: { token: 'cream', name: 'Cream', hex: '#F6F1E8', group: 'forest' },
     charcoal: { token: 'charcoal', name: 'Charcoal', hex: '#33413D', group: 'neutral' },
     graphite: { token: 'graphite', name: 'Graphite', hex: '#58625F', group: 'neutral' },
     slate: { token: 'slate', name: 'Slate', hex: '#7E8583', group: 'neutral' },
@@ -172,13 +172,3 @@ export const wcag = (ratio) => ratio >= 7 ? 'AAA' : ratio >= 4.5 ? 'AA' : ratio 
 export const assetColors = ['black', 'deepGreen', 'cream', 'white'];
 /** The palette as CSS custom properties (served at /tokens.css). */
 export const tokensCss = () => `/* AtomsAI brand colors */\n:root {\n${allColors.map((c) => `  --${c.token}: ${c.hex};`).join('\n')}\n}\n`;
-/** Existing print values, with a simple sRGB estimate where none is specified. */
-export const cmykFor = (color) => {
-    if (color.cmyk)
-        return color.cmyk;
-    const [r, g, b] = rgb(color.hex).map(v => v / 255);
-    const k = 1 - Math.max(r, g, b);
-    if (k === 1)
-        return [0, 0, 0, 100];
-    return [(1 - r - k) / (1 - k), (1 - g - k) / (1 - k), (1 - b - k) / (1 - k), k].map(v => Math.round(v * 100));
-};
