@@ -1,3 +1,4 @@
+import { glassSpec } from '../../../data/glass';
 import type { APIRoute } from 'astro';
 import { publishedUrl } from '../../../data/base';
 import { brandDownloads } from '../../../data/brandDownloads';
@@ -18,6 +19,15 @@ export const GET: APIRoute = () => new Response(JSON.stringify({
     guidance: publishedUrl('/logos/README.md'),
     sizes: logoManifest.sizes,
     sizeUnit: logoManifest.sizeUnit,
+  },
+  glass: {
+    ...glassSpec(),
+    guidelines: publishedUrl('/glass/'),
+    download: publishedUrl('/assets/glass/atomsai-glass.zip'),
+    css: publishedUrl('/assets/glass/atomsai-glass.css'),
+    json: publishedUrl('/assets/glass/atomsai-glass.json'),
+    examples: publishedUrl('/assets/glass/examples.html'),
+    guidance: publishedUrl('/assets/glass/README.md'),
   },
   palette: allColors.map((c) => ({ ...c, rgb: rgb(c.hex) })),
   print: { ...printReference, download: publishedUrl('/atomsai-pantone-shortlist.json'), matches: printMatches },

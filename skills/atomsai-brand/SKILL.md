@@ -175,6 +175,18 @@ Retrieve the exact eased stops and CSS from the `gradients` field of the [asset 
 
 Preview: [palette, combinations and themes](https://petrknoll95.github.io/atoms-ai-brand/color/). Download: [CSS color variables](https://petrknoll95.github.io/atoms-ai-brand/tokens.css).
 
+## Glass styling
+
+Build glass with the supplied CSS reference's static layers: White at 10% → 30% → 10% in a −75° gradient, backdrop blur, fixed −45° screen reflection, inset lighting, conic rim, contact shadow and separate blurred shadow ring. Match the corners to the component’s shape; set `--glass-radius` to any CSS border-radius value. The 0.6em fallback and pill class are examples, not restrictions. No animation, transitions, hover scaling or active-state rotation.
+
+Set font size on `atoms-glass-wrap` to scale the entire component. Use em throughout the material, without pixel clamps: backdrop blur 0.375em; rim 0.0625em; contact shadow 0 / 0.25 / 0.125 / −0.125em in Black at 20%. The detached shadow ring uses Black 20% → 10% and 0.125em blur. Preserve the reference's inset lighting and use a subtle 15% White screen reflection with a broad, eased cosine falloff. Apply shadows only to the glass surface, never to text, icons or other contents. Get the complete wrapper markup and exact values from the downloadable kit. Keep live labels above the reflection; use Cream on checked dark areas and Deep green on light backgrounds. Check the final crop against 4.5:1 for normal text or use the opaque fallback.
+
+For dark mode, add `atoms-glass--dark` to the wrapper: Black fill at 25% → 40% → 25%, Cream text, White rim 8%, reflection 6%, lower highlight 6% and inner glow 2%. It shares the light version's dimensions, eased reflection and black shadows. Use Forest shade for the opaque fallback. Apply the modifier when the host application's dark theme is active.
+
+The native Figma panels informed the compositions; the user-supplied CSS defines this web material. Render the surface as live HTML/CSS, never as a panel screenshot. Light and dark inputs sit on flat Mist and Forest green; the empty cards share the existing pattern renderer for comparison. Add `atoms-glass--solid` to the wrapper for an opaque surface. Unsupported backdrop-filter, reduced transparency, increased contrast and print use opaque fills; forced colors use the system palette.
+
+Preview: [glass styling](https://petrknoll95.github.io/atoms-ai-brand/glass/). Download: [glass kit](https://petrknoll95.github.io/atoms-ai-brand/assets/glass/atomsai-glass.zip) with CSS, JSON, standalone HTML and usage notes.
+
 ## Typography
 
 | Role | Family | Weight | Line-height and spacing |

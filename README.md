@@ -31,6 +31,7 @@ and `base` to `'/'`.
 | Icons | 15 stroke icons with a shared color and Regular/Medium weight switch; Copy SVG, SVG, PNG (512 px) |
 | Patterns | Live renders of every structure, density and colorway, and live usage tiles |
 | Illustration | Concept drawings and linework, recolorable, as SVG or PNG |
+| Glass styling | Live CSS glass over rendered brand patterns, static highlights, readable combinations and CSS/JSON/HTML downloads |
 | Examples | Application mockups |
 | Tools | `/tools/`: the pattern generator, with a Tweakpane panel (structure, colorway, density, size, rotation, scale, position, PNG export, shareable link), and the looping mark reveal with four colorways, an export frame, logo size and video export (MP4 or WebM, four aspect ratios, 720p to 4K) |
 | Assets | `/assets/`: 128 logo exports with a Download menu on each color variant, bitmap sizes, Copy SVG and full or per-logo ZIPs, plus the font library with individual and category downloads |
@@ -105,3 +106,7 @@ The renderer in `src/scripts/pattern-renderer.ts` reproduces the Figma pattern c
 ## Fonts
 
 Founders Grotesk (Klim Type Foundry) and PP Neue Montreal (Pangram Pangram) are commercial typefaces. Self-hosting them on a public site requires web licenses from both foundries. Keep this repository and any deployment private until those licenses are confirmed.
+
+## Glass styling
+
+`/glass/` builds live glass surfaces from the user's static CSS reference. `src/data/glass.ts` generates the shared material CSS, JSON, self-contained HTML examples and notes, including an explicit `atoms-glass--dark` variant. All material dimensions use em and scale with the wrapper's font size. `GlassSpecimen.astro` compares light and dark cropped 4:3 inputs over flat brand fills and empty cards over the existing canvas pattern renderer. No panel images are used. `/assets/glass/` serves four files and a ZIP. Run `npm run check`, `npm run build`, and `node scripts/check-glass.mjs` to verify contrast, package parity and delivery links.

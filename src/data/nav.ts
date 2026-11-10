@@ -90,6 +90,10 @@ export const sections: Section[] = [
     subs: [s('style', 'Style', '7.1'), s('linework', 'Linework', '7.2'), s('usage-limits', 'Usage limits', '7.3'), s('size-stroke', 'Size & stroke', '7.4'), s('readability', 'Readability', '7.5')],
   },
   {
+    slug: 'glass', title: 'Glass styling', href: withBase('/glass/'),
+    subs: [s('in-use', 'In use'), s('settings', 'Settings'), s('readability', 'Readability'), s('downloads', 'Downloads')],
+  },
+  {
     slug: 'examples',
     title: 'Examples',
     href: withBase('/examples/'),
@@ -106,7 +110,7 @@ export const tools: Section[] = [
     subs: [s('pattern-generator', 'Pattern generator', '9.1'), s('mark-reveal', 'Mark reveal', '9.2'),
       { id: 'animated-patterns', title: 'Animated patterns', number: '9.3', href: withBase('/tools/animated-patterns/') }],
   },
-  { slug: 'assets', title: 'Assets', href: withBase('/assets/'), subs: [s('logos', 'Logos', '10.1'), s('fonts', 'Brand Fonts', '10.2'), s('google-fonts', 'Google Fonts', '10.3')] },
+  { slug: 'assets', title: 'Assets', href: withBase('/assets/'), subs: [s('logos', 'Logos', '10.1'), s('fonts', 'Brand Fonts', '10.2'), s('google-fonts', 'Google Fonts', '10.3'), s('glass', 'Glass styling')] },
   {
     slug: 'skills', title: 'Skills', href: withBase('/skills/'),
     subs: [

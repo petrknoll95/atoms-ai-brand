@@ -1,4 +1,5 @@
 ---
+import GlassDownloads from '../../components/GlassDownloads.astro';
 import Guide from '../../layouts/Guide.astro';
 import Sub from '../../components/Sub.astro';
 import DownloadGroup from '../../components/DownloadGroup.astro';
@@ -36,6 +37,7 @@ const logoBytes = logoManifest.files.reduce((total, file) => total + file.bytes,
   <Sub id="google-fonts" title="Google Fonts" number="10.3">
     <FontGrid cards={googleFonts} />
   </Sub>
+  <Sub id="glass" title="Glass styling"><GlassDownloads /></Sub>
 </Guide>
 
 <style>

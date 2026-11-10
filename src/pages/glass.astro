@@ -1,0 +1,62 @@
+---
+import Guide from '../layouts/Guide.astro';
+import Sub from '../components/Sub.astro';
+import GlassDownloads from '../components/GlassDownloads.astro';
+import GlassSpecimen from '../components/GlassSpecimen.astro';
+import { glassCss, readableBackgrounds, darkReadableBackgrounds } from '../data/glass';
+---
+<Guide slug="glass" description="AtomsAI glass constructed with CSS: translucent fill, backdrop blur, fixed reflections and a highlighted rim.">
+  <style is:inline set:html={glassCss()} />
+  <Sub id="in-use" title="In use">
+    <Fragment slot="text"><p>Light and dark glass with softened edges and subtle reflections.</p></Fragment>
+    <div class="examples">
+      <figure><GlassSpecimen variant="banner" /><figcaption>Light · input</figcaption></figure>
+      <figure><GlassSpecimen variant="banner" theme="dark" /><figcaption>Dark · input</figcaption></figure>
+      <figure><GlassSpecimen variant="post" /><figcaption>Light · card</figcaption></figure>
+      <figure><GlassSpecimen variant="post" theme="dark" /><figcaption>Dark · card</figcaption></figure>
+    </div>
+  </Sub>
+  <Sub id="settings" title="Settings">
+    <div class="settings">
+      <p>All dimensions scale with the component’s font size.</p>
+      <dl class="values">
+        <div><dt>Light fill</dt><dd>−75° · White 10% → 30% → 10%</dd></div>
+        <div><dt>Dark fill</dt><dd>−75° · Black 25% → 40% → 25%</dd></div>
+        <div><dt>Backdrop blur</dt><dd>0.375 em</dd></div>
+        <div><dt>Border</dt><dd>Conic rim · 0.0625 em</dd></div>
+        <div><dt>Rim light</dt><dd>White · light 50% / dark 8%</dd></div>
+        <div><dt>Reflection</dt><dd>White · light 15% / dark 6%</dd></div>
+        <div><dt>Contact shadow</dt><dd>0 / 0.25 / 0.125 / −0.125 em · Black 20%<span class="muted">x / y / blur / spread</span></dd></div>
+        <div><dt>Soft shadow</dt><dd>Black 20% → 10% · blur 0.125 em</dd></div>
+        <div><dt>Corners</dt><dd>Match the component’s shape<span class="muted">Any radius, from square to fully rounded</span></dd></div>
+      </dl>
+    </div>
+  </Sub>
+  <Sub id="readability" title="Readability">
+    <Fragment slot="text"><p>Deep green text on light glass; Cream on dark glass. Check the final crop and use an opaque surface when needed.</p></Fragment>
+    <div class="contrast-studies">
+      {readableBackgrounds.map(c => <figure>
+        <div class="study" style={`--study-bg:${c.hex}`}><div class="atoms-glass-wrap atoms-glass--pill atoms-glass--light"><span class="atoms-glass__shadow" aria-hidden="true"></span><div class="atoms-glass"><div class="atoms-glass__content"><span>A clear next step.</span></div></div></div></div>
+      </figure>)}
+      {darkReadableBackgrounds.map(c => <figure>
+        <div class="study" style={`--study-bg:${c.hex}`}><div class="atoms-glass-wrap atoms-glass--pill atoms-glass--dark"><span class="atoms-glass__shadow" aria-hidden="true"></span><div class="atoms-glass"><div class="atoms-glass__content"><span>A clear next step.</span></div></div></div></div>
+      </figure>)}
+    </div>
+  </Sub>
+  <Sub id="downloads" title="Downloads"><GlassDownloads /></Sub>
+</Guide>
+<style>
+  .examples { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2rem; }
+  figure { min-width: 0; }
+  figcaption { margin-top: .875rem; color: var(--muted); }
+  .values > div { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; padding: 1rem 0; border-top: 1px solid var(--rule); }
+  dt { color: var(--muted); }
+  .settings { display: grid; gap: 1.5rem; }
+  .values > div { grid-template-columns: minmax(7rem, 1fr) minmax(0, 2fr); }
+  dd span { display: block; margin-top: .5rem; }
+  .contrast-studies { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem; }
+  .study { aspect-ratio: 3 / 2; box-sizing: border-box; background: var(--study-bg); padding: 1rem; display: grid; place-items: center; font-size: 16px; }
+  @media (max-width: 640px) {
+    .examples, .contrast-studies { grid-template-columns: minmax(0, 1fr); }
+  }
+</style>

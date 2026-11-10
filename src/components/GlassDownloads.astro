@@ -1,0 +1,21 @@
+---
+import { withBase } from '../data/base';
+import { glassCss } from '../data/glass';
+---
+<div class="downloads">
+  <div class="btn-row">
+    <a class="btn" href={withBase('/assets/glass/atomsai-glass.zip')} download="atomsai-glass.zip">Download glass kit ↓</a>
+    <button type="button" class="btn" data-copy={glassCss()} data-copy-message="Glass CSS copied">Copy CSS</button>
+  </div>
+  <p class="muted">CSS, settings and a working HTML example. No image files required.</p>
+  <div class="files">
+    <a href={withBase('/assets/glass/atomsai-glass.css')} download>CSS ↓</a>
+    <a href={withBase('/assets/glass/atomsai-glass.json')} download>JSON ↓</a>
+    <a href={withBase('/assets/glass/examples.html')} download>HTML examples ↓</a>
+    <a href={withBase('/assets/glass/README.md')} download>Notes ↓</a>
+  </div>
+</div>
+<style>
+  .downloads { display: grid; gap: 1.25rem; }
+  .files { display: flex; flex-wrap: wrap; gap: .75rem 1.5rem; }
+</style>
