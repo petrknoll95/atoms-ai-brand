@@ -8,6 +8,7 @@ import { allColors, colors, combinations, contrast, gradientCss, gradients, ramp
 import { downloadCategories } from '../../../data/downloads';
 import { colorwayNames, DENSITY_STOPS, SLITS, structures } from '../../../data/patterns';
 import { printMatches, printReference } from '../../../data/printColors';
+import { printPatterns, printPatternUrl } from '../../../data/printPatterns';
 import logoManifest from '../../../../public/logos/manifest.json';
 import { photographyAssets, photographyVersion, referenceNotice } from '../../../data/photography';
 
@@ -68,6 +69,17 @@ export const GET: APIRoute = () => new Response(JSON.stringify({
   gradients: gradients.map((g) => ({ name: `${colors[g.from].name} → ${colors[g.to].name}`, css: gradientCss(g), stops: g.stops })),
   patterns: {
     generator: publishedUrl('/tools/#pattern-generator'), publishedSlitCounts: SLITS,
+    printLibrary: {
+      library: publishedUrl('/assets/#patterns'),
+      catalog: publishedUrl(`${printPatternUrl}/catalog.html`),
+      guidance: publishedUrl(`${printPatternUrl}/README.md`),
+      inventory: publishedUrl(`${printPatternUrl}/inventory.json`),
+      validation: publishedUrl(`${printPatternUrl}/validation-summary.json`),
+      combinations: printPatterns.length,
+      formats: ['AI', 'PDF', 'PNG'], trimMm: [300, 300], bleedMm: 3,
+      profile: 'Coated FOGRA39 (ISO 12647-2:2004)',
+      note: 'Assumed coated-offset condition, not printer approved. PDFs structurally checked for PDF/X-4; certified conformance is unverified. PNGs are RGB previews, not print originals.',
+    },
     generatorSlitCounts: DENSITY_STOPS, colorways: colorwayNames,
     structures: structures.map(({ id, name, description, densities, colorways }) => ({
       id, name, description, densityIndices: densities, colorways,
@@ -75,6 +87,12 @@ export const GET: APIRoute = () => new Response(JSON.stringify({
     note: 'Concentric uses only density indices 1 and 2 (10 and 20 in the generator). The generator produces final PNGs; these color recipes alone are not rendered patterns.',
   },
   assets: [
+    ...printPatterns.flatMap((pattern) => pattern.files.map((file) => ({
+      name: pattern.name, category: 'pattern', structure: pattern.family,
+      colorway: pattern.colorway, densityKey: pattern.densityKey, density: pattern.density,
+      format: file.format, description: file.description, bytes: file.bytes,
+      url: publishedUrl(`${printPatternUrl}/${file.path}`),
+    }))),
     ...photographyAssets().map(({ file, name, format, description }) => ({
       name, category: 'photography', format, description, url: publishedUrl(`/assets/photography/${file}`),
     })),

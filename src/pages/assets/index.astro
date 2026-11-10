@@ -6,6 +6,7 @@ import DownloadGroup from '../../components/DownloadGroup.astro';
 import FontGrid from '../../components/FontGrid.astro';
 import LogoDownloads from '../../components/LogoDownloads.astro';
 import PhotographyDownloads from '../../components/PhotographyDownloads.astro';
+import PrintPatternDownloads from '../../components/PrintPatternDownloads.astro';
 import { downloadCategories } from '../../data/downloads';
 import { logoVariants } from '../../data/logoExports';
 import { withBase } from '../../data/base';
@@ -37,6 +38,13 @@ const logoBytes = logoManifest.files.reduce((total, file) => total + file.bytes,
   }
   <Sub id="google-fonts" title="Google Fonts" number="10.3">
     <FontGrid cards={googleFonts} />
+  </Sub>
+  <Sub id="patterns" title="Patterns">
+    <Fragment slot="text">
+      <p>56 print sets across Drift, Offset, Single band and Concentric, in Forest, Sage, Graphite and Iris. Each set includes an editable Illustrator master, a CMYK print PDF and an RGB PNG preview.</p>
+      <p>300 × 300 mm trim with 3 mm bleed. Prepared for Coated FOGRA39, an assumed coated-offset condition; confirm it with your printer before production. See the <a href={withBase('/patterns/')}>pattern guidelines</a> for usage.</p>
+    </Fragment>
+    <PrintPatternDownloads />
   </Sub>
   <Sub id="ai-identity" title="AI identity">
     <Fragment slot="text"><p>AtomsAI Signal: idle, listening, thinking and speaking. 32 static and animated SVGs in four inks, plus a working HTML reference, state data and usage guide.</p></Fragment>

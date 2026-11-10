@@ -136,7 +136,7 @@ export const tools: Section[] = [
     subs: [s('pattern-generator', 'Pattern generator', '9.1'), s('mark-reveal', 'Mark reveal', '9.2'),
       { id: 'animated-patterns', title: 'Animated patterns', number: '9.3', href: withBase('/tools/animated-patterns/') }],
   },
-  { slug: 'assets', title: 'Assets', href: withBase('/assets/'), subs: [s('logos', 'Logos', '10.1'), s('fonts', 'Brand Fonts', '10.2'), s('google-fonts', 'Google Fonts', '10.3'), s('glass', 'Glass styling'), s('photography', 'Photography', '10.4'), s('ai-identity', 'AI identity')] },
+  { slug: 'assets', title: 'Assets', href: withBase('/assets/'), subs: [s('logos', 'Logos', '10.1'), s('fonts', 'Brand Fonts', '10.2'), s('google-fonts', 'Google Fonts', '10.3'), s('patterns', 'Patterns'), s('glass', 'Glass styling'), s('photography', 'Photography', '10.4'), s('ai-identity', 'AI identity')] },
   {
     slug: 'skills', title: 'Skills', href: withBase('/skills/'),
     subs: [

@@ -2,6 +2,7 @@
 import Guide from '../layouts/Guide.astro';
 import Sub from '../components/Sub.astro';
 import PatternTile from '../components/PatternTile.astro';
+import { withBase } from '../data/base';
 import { SLITS, structures, type Colors, type StructureId } from '../data/patterns';
 
 const greens = ['Forest', 'Sage', 'Graphite'];
@@ -69,7 +70,8 @@ const usage: Record<'do' | 'dont', UsageExample[]> = {
         Our patterns are drawn from interference — light passing through parallel slits and overlapping. They add depth
         and rhythm, and can carry a moment on their own or quietly fill space.
       </p>
-      <p>Four structures, each in up to four densities and two colorways, built as editable components.</p>
+      <p>Four structures, each in up to four densities and four colorways: Forest, Sage, Graphite and Iris.</p>
+      <p><a href={withBase('/assets/#patterns')}>Download the 56 print pattern sets →</a> Editable Illustrator masters, CMYK print PDFs and RGB previews are available in Assets, with editing and production notes.</p>
     </Fragment>
     <div class="structures">
       {

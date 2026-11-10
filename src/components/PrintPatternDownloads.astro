@@ -1,0 +1,89 @@
+---
+import { withBase } from '../data/base';
+import { printPatternColorways, printPatternFamilies, printPatternFileSize, printPatternUrl, printPatterns } from '../data/printPatterns';
+---
+
+<div class="pattern-library">
+  <div class="btn-row">
+    <a class="btn" href={withBase(`${printPatternUrl}/catalog.html`)}>View all {printPatterns.length} patterns →</a>
+    <a class="btn" href={withBase(`${printPatternUrl}/README.md`)} download="atomsai-print-patterns-README.md">Editing &amp; production notes ↓</a>
+  </div>
+  <div class="pattern-grid">
+    {printPatternFamilies.map((family) => {
+      const initial = family.variants.find((variant) => variant.colorway === 'Forest' && variant.densityKey === 1)!;
+      const preview = initial.files.find((file) => file.format === 'PNG')!;
+      return (
+        <section class="pattern-card" aria-labelledby={`download-${family.id}`} data-pattern-card data-directory={withBase(`${printPatternUrl}/${family.id}/`)} data-family={family.name}>
+          <div class="family-heading">
+            <h3 class="display" id={`download-${family.id}`}>{family.name}</h3>
+            <p class="muted">{family.variants.length} sets</p>
+          </div>
+          <img data-pattern-preview src={withBase(`${printPatternUrl}/${preview.path}`)} alt={initial.name} width="1200" height="1200" loading="lazy" />
+          <label class="variant-control">
+            <span>Colorway &amp; density</span>
+            <select data-pattern-select aria-label={`${family.name} colorway and density`} disabled>
+              {printPatternColorways.map((colorway) => (
+                <optgroup label={colorway}>
+                  {family.variants.filter((variant) => variant.colorway === colorway).map((variant) => (
+                    <option value={variant.id} selected={variant.id === initial.id} data-name={variant.name} data-sizes={JSON.stringify(variant.files.map((file) => printPatternFileSize(file.bytes)))}>
+                      {variant.colorway} · {variant.density}
+                    </option>
+                  ))}
+                </optgroup>
+              ))}
+            </select>
+          </label>
+          <div class="formats">
+            {initial.files.map((file) => (
+              <a class="btn format" data-pattern-download data-format={file.format} data-suffix={file.suffix} href={withBase(`${printPatternUrl}/${file.path}`)} download={`${initial.id}${file.suffix}`} aria-label={`Download ${initial.name}: ${file.description}`}>
+                <span>{file.format} ↓</span>
+                <span class="muted file-size" data-pattern-size>{printPatternFileSize(file.bytes)}</span>
+              </a>
+            ))}
+          </div>
+        </section>
+      );
+    })}
+  </div>
+  <noscript><p>Open the full catalog above to choose from all colorways and densities.</p></noscript>
+</div>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-pattern-card]').forEach((card) => {
+    const select = card.querySelector<HTMLSelectElement>('[data-pattern-select]')!;
+    const preview = card.querySelector<HTMLImageElement>('[data-pattern-preview]')!;
+    const links = card.querySelectorAll<HTMLAnchorElement>('[data-pattern-download]');
+    const update = () => {
+      const option = select.selectedOptions[0];
+      const sizes: string[] = JSON.parse(option.dataset.sizes!);
+      const prefix = `${card.dataset.directory}${option.value}`;
+      preview.src = `${prefix}-preview.png`;
+      preview.alt = option.dataset.name!;
+      links.forEach((link, index) => {
+        link.href = `${prefix}${link.dataset.suffix}`;
+        link.download = `${option.value}${link.dataset.suffix}`;
+        link.setAttribute('aria-label', `Download ${option.dataset.name}: ${link.dataset.format}`);
+        link.querySelector('[data-pattern-size]')!.textContent = sizes[index];
+      });
+    };
+    select.disabled = false;
+    select.addEventListener('change', update);
+    // Browsers can restore a prior choice when navigating back to this page.
+    update();
+  });
+</script>
+
+<style>
+  .pattern-library { container-type: inline-size; display: grid; gap: 2rem; }
+  .pattern-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 3rem 1.25rem; }
+  @container (min-width: 32rem) { .pattern-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  .pattern-card { min-width: 0; display: grid; align-content: start; gap: 1rem; }
+  .family-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; }
+  .family-heading .muted { white-space: nowrap; }
+  .pattern-card img { display: block; width: 100%; height: auto; aspect-ratio: 1; }
+  .variant-control { display: grid; gap: 0.5rem; }
+  select { width: 100%; min-width: 0; padding: 0.75rem; color: var(--fg); background: var(--bg); border: 1px solid var(--rule); border-radius: 0; }
+  .formats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.5rem; }
+  .format { display: grid; justify-items: center; gap: 0.25rem; padding: 0.75rem 0.5rem; }
+  .file-size { font-size: 0.75rem; white-space: nowrap; }
+</style>
